@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 70" fill="none">
+  <!-- BAKAMLA Emblem -->
+  <g transform="translate(10, 10)">
+    <path d="M25 4 L44 12 L44 26 C44 38, 25 46, 25 46 C25 46, 6 38, 6 26 L6 12 Z" fill="#0F172A" stroke="#EAB308" stroke-width="2.5"/>
+    <!-- Anchor inside shield -->
+    <path d="M25 14 L25 34 M17 24 C17 33, 33 33, 33 24 M20 18 L30 18" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"/>
+    <circle cx="25" cy="13" r="2.5" fill="#EAB308"/>
+  </g>
+  <!-- Typography -->
+  <text x="68" y="35" font-family="Plus Jakarta Sans, sans-serif" font-size="20" font-weight="900" fill="#0F172A" letter-spacing="1.5">BAKAMLA RI</text>
+  <text x="68" y="49" font-family="Plus Jakarta Sans, sans-serif" font-size="8.5" font-weight="700" fill="#64748B" letter-spacing="0.5">INDONESIAN COAST GUARD</text>
+</svg>
+

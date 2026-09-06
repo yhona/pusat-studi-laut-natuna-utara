@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 70" fill="none">
+  <!-- Pushidrosal Navy Emblem -->
+  <g transform="translate(10, 10)">
+    <circle cx="25" cy="25" r="23" fill="#0F172A" stroke="#38BDF8" stroke-width="2.5"/>
+    <!-- Compass Rose & Anchor -->
+    <path d="M25 7 L28 22 L43 25 L28 28 L25 43 L22 28 L7 25 L22 22 Z" fill="#F8FAFC" opacity="0.9"/>
+    <circle cx="25" cy="25" r="5" fill="#E0F2FE"/>
+    <path d="M25 15 L25 35 M19 28 C19 34, 31 34, 31 28" stroke="#38BDF8" stroke-width="2" fill="none" stroke-linecap="round"/>
+  </g>
+  <!-- Typography -->
+  <text x="68" y="35" font-family="Plus Jakarta Sans, sans-serif" font-size="18" font-weight="900" fill="#0C4A6E" letter-spacing="1">PUSHIDROSAL</text>
+  <text x="68" y="49" font-family="Plus Jakarta Sans, sans-serif" font-size="8.5" font-weight="700" fill="#64748B" letter-spacing="0.5">TNI ANGKATAN LAUT</text>
+</svg>
+

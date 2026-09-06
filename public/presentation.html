@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Presentasi Eksekutif: Portal North Natuna Sea Research Center UMRAH</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Alpine.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umrah: {
+              navy: '#002B49',
+              dark: '#001424',
+              card: '#081c30',
+              light: '#0284c7',
+              accent: '#f59e0b',
+              gold: '#d97706',
+              cyan: '#06b6d4',
+              surface: '#0d2238'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #030a12;
+      color: #f8fafc;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    /* 16:9 Presentation Frame */
+    .slide-viewport {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 50% 15%, #002b49 0%, #030a12 85%);
+    }
+
+    .slide-frame {
+      width: min(100vw, calc(100vh * 16 / 9));
+      height: min(100vh, calc(100vw * 9 / 16));
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(150deg, #07192c 0%, #030d17 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 45px rgba(2, 132, 199, 0.12);
+    }
+
+    .slide-inner {
+      flex: 1;
+      overflow-y: auto;
+      padding: 2rem 3rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Custom Scrollbar for inner slide */
+    .slide-inner::-webkit-scrollbar {
+      width: 4px;
+    }
+    .slide-inner::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 4px;
+    }
+
+    /* Browser Mockup Window Style */
+    .browser-mockup {
+      border-radius: 0.75rem;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: #0b1c2e;
+      box-shadow: 0 20px 30px -10px rgba(0,0,0,0.6), 0 0 15px rgba(6, 182, 212, 0.15);
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+    .browser-mockup:hover {
+      border-color: rgba(6, 182, 212, 0.4);
+      transform: translateY(-2px);
+    }
+    .browser-header {
+      background: #071524;
+      padding: 0.4rem 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Print styling */
+    @media print {
+      body {
+        overflow: visible;
+        background: #fff;
+        color: #0f172a;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .slide-viewport {
+        width: 100%;
+        height: auto;
+        display: block;
+        background: none;
+      }
+      .slide-frame {
+        width: 100% !important;
+        height: 100vh !important;
+        page-break-after: always;
+        break-after: page;
+        border: none !important;
+        box-shadow: none !important;
+        background: #ffffff !important;
+        color: #0f172a !important;
+      }
+      .slide-inner {
+        padding: 2rem !important;
+        color: #0f172a !important;
+      }
+      .text-white { color: #0f172a !important; }
+      .text-slate-300, .text-slate-400 { color: #334155 !important; }
+      .bg-white\/5, .bg-umrah-card, .bg-slate-900\/80 {
+        background-color: #f8fafc !important;
+        border-color: #cbd5e1 !important;
+      }
+    }
+  </style>
+</head>
+<body x-data="slideApp()" @keydown.window="handleKeydown($event)">
+
+  <!-- Root Presentation Viewport -->
+  <div class="slide-viewport">
+    <div class="slide-frame">
+
+      <!-- Header Top Bar -->
+      <header class="flex items-center justify-between px-8 py-3 border-b border-white/10 bg-slate-950/50 backdrop-blur z-20">
+        <div class="flex items-center space-x-3">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-umrah-light to-umrah-navy flex items-center justify-center text-white font-bold shadow-md shadow-cyan-500/20">
+            <i class="fa-solid fa-anchor text-sm"></i>
+          </div>
+          <div>
+            <div class="text-xs font-bold tracking-widest text-umrah-accent uppercase">Pusat Studi Laut Natuna Utara</div>
+            <div class="text-[11px] text-slate-400 font-medium">North Natuna Sea Research Center &bull; UMRAH</div>
+          </div>
+        </div>
+
+        <div class="flex items-center space-x-4">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+            Executive Client Pitch & Visual Showcase
+          </span>
+          <div class="text-xs font-mono text-slate-400">
+            Slide <span class="text-white font-bold" x-text="currentSlide"></span> / <span x-text="totalSlides"></span>
+          </div>
+        </div>
+      </header>
+
+      <!-- SLIDE CONTENTS -->
+      <main class="slide-inner">
+
+        <!-- ==================== SLIDE 1: COVER & OVERVIEW ==================== -->
+        <div x-show="currentSlide === 1" class="h-full flex flex-col justify-center animate-fade">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center max-w-6xl mx-auto">
+            <div class="md:col-span-7 space-y-4">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-[11px] font-bold tracking-wider text-cyan-300 uppercase">
+                <i class="fa-solid fa-compass"></i> Portal Resmi & Ekosistem Digital Kemaritiman
+              </div>
+              
+              <h1 class="text-3xl md:text-4xl font-extrabold text-white leading-tight">
+                Pusat Studi Laut Natuna Utara <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-amber-400">
+                  North Natuna Sea Research Center (UMRAH)
+                </span>
+              </h1>
+
+              <p class="text-sm text-slate-300 font-light leading-relaxed">
+                Episentrum Riset Tropis, Advokasi Kebijakan Publik, dan Hilirisasi Layanan Industri Kemaritiman Berbasis Kepulauan Riau & Natuna Menuju Pentas Global.
+              </p>
+
+              <!-- Stats Pill -->
+              <div class="grid grid-cols-4 gap-2.5 pt-1">
+                <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 text-center">
+                  <div class="text-lg font-black text-amber-400">142+</div>
+                  <div class="text-[10px] text-slate-400">Publikasi Scopus</div>
+                </div>
+                <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 text-center">
+                  <div class="text-lg font-black text-cyan-400">4 Klaster</div>
+                  <div class="text-[10px] text-slate-400">Riset Unggulan</div>
+                </div>
+                <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 text-center">
+                  <div class="text-lg font-black text-emerald-400">IHO S-44</div>
+                  <div class="text-[10px] text-slate-400">Standar Batimetri</div>
+                </div>
+                <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 text-center">
+                  <div class="text-lg font-black text-purple-400">35+ Mitra</div>
+                  <div class="text-[10px] text-slate-400">Institusi & Industri</div>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-4 text-[11px] text-slate-400 pt-2">
+                <span><i class="fa-solid fa-building-columns text-cyan-400 mr-1"></i> Kampus Dompak, Tanjungpinang</span>
+                <span><i class="fa-solid fa-server text-amber-400 mr-1"></i> CodeIgniter 4 + Tailwind + SQLite</span>
+              </div>
+            </div>
+
+            <!-- Visual Mockup Hero -->
+            <div class="md:col-span-5">
+              <div class="browser-mockup cursor-pointer group" @click="openZoomModal('/images/presentation/clean_hero_restored.png', 'Tampilan Beranda Utama (Hero Banner & Metrik Capaian)')">
+                <div class="browser-header flex justify-between items-center">
+                  <div class="flex gap-1.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
+                  </div>
+                  <div class="text-[10px] text-slate-400 font-mono bg-black/40 px-2 py-0.5 rounded">http://maritim.umrah.ac.id</div>
+                  <div class="text-[10px] text-cyan-400 font-semibold group-hover:text-cyan-300"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i>Zoom</div>
+                </div>
+                <div class="relative overflow-hidden aspect-[16/10]">
+                  <img src="/images/presentation/clean_hero_restored.png" class="w-full h-full object-cover object-top transition duration-300 group-hover:scale-105" alt="Beranda Utama Portal UMRAH">
+                  <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent p-2.5 text-center">
+                    <span class="text-[10px] font-bold text-white uppercase tracking-wider">Antarmuka Modern, Bersih & Berwibawa</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== SLIDE 2: URGENSI & TAMPILAN BERANDA ==================== -->
+        <div x-show="currentSlide === 2" class="h-full flex flex-col justify-center animate-fade">
+          <div class="space-y-4">
+            <div>
+              <span class="text-xs font-bold tracking-widest text-cyan-400 uppercase">01 / Urgensi & Konteks Geostrategis</span>
+              <h2 class="text-2xl md:text-3xl font-extrabold text-white">Mengapa Portal Ini Menjadi Pilar Utama?</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+              <div class="md:col-span-6 space-y-3">
+                <div class="p-3.5 rounded-xl bg-umrah-card border border-white/10 flex items-start gap-3">
+                  <div class="w-9 h-9 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0 text-base">
+                    <i class="fa-solid fa-water"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-xs font-bold text-white">Geostrategis Kepulauan Terluar</h4>
+                    <p class="text-[11px] text-slate-300 mt-0.5">
+                      96% wilayah Kepri berupa lautan dengan 2.408 pulau di koridor Selat Malaka dan berhadapan langsung dengan Laut Natuna Utara di perbatasan 4 negara.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-umrah-card border border-white/10 flex items-start gap-3">
+                  <div class="w-9 h-9 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0 text-base">
+                    <i class="fa-solid fa-network-wired"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-xs font-bold text-white">Integrasi Data Riset Terpadu (Single Gateway)</h4>
+                    <p class="text-[11px] text-slate-300 mt-0.5">
+                      Menyatukan publikasi ilmiah, data oseanografi, policy brief, dan laporan ekspedisi yang sebelumnya terfragmentasi menjadi satu ekosistem terpercaya.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-umrah-card border border-white/10 flex items-start gap-3">
+                  <div class="w-9 h-9 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 text-base">
+                    <i class="fa-solid fa-hand-holding-dollar"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-xs font-bold text-white">Hilirisasi & Kemandirian BLU (Income Generation)</h4>
+                    <p class="text-[11px] text-slate-300 mt-0.5">
+                      Membuka peluang pendapatan universitas melalui jasa komersial survei batimetri, AMDAL, pemodelan arus, dan uji laboratorium terakreditasi.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Visual Browser Preview -->
+              <div class="md:col-span-6">
+                <div class="browser-mockup cursor-pointer group" @click="openZoomModal('/images/presentation/home_desktop_settled.png', 'Tampilan Beranda Lengkap Portal Kemaritiman UMRAH')">
+                  <div class="browser-header flex justify-between items-center">
+                    <div class="flex gap-1.5">
+                      <span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
+                    </div>
+                    <div class="text-[10px] text-slate-400 font-mono bg-black/40 px-2 py-0.5 rounded">/home &bull; Overview Beranda</div>
+                    <div class="text-[10px] text-cyan-400 font-semibold group-hover:text-cyan-300"><i class="fa-solid fa-expand mr-1"></i>Perbesar</div>
+                  </div>
+                  <div class="relative overflow-hidden aspect-[16/10]">
+                    <img src="/images/presentation/home_desktop_settled.png" class="w-full h-full object-cover object-top transition duration-300 group-hover:scale-105" alt="Overview Beranda">
+                  </div>
+                </div>
+                <div class="text-center text-[10px] text-slate-400 mt-2">
+                  <i class="fa-solid fa-circle-info text-cyan-400 mr-1"></i> Klik gambar untuk melihat resolusi penuh antarmuka portal
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== SLIDE 3: 4 KLASTER RISET & TAMPILAN HALAMAN RISET ==================== -->
+        <div x-show="currentSlide === 3" class="h-full flex flex-col justify-center animate-fade">
+          <div class="space-y-4">
+            <div class="flex justify-between items-end">
+              <div>
+                <span class="text-xs font-bold tracking-widest text-cyan-400 uppercase">02 / Arsitektur Keilmuan</span>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-white">4 Klaster Riset Unggulan PSK UMRAH</h2>
+              </div>
+              <div class="text-[11px] font-mono text-amber-400 bg-amber-500/10 px-3 py-1 rounded-lg border border-amber-500/20">
+                142 Publikasi Scopus Terindeks
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+              <div class="md:col-span-6 grid grid-cols-1 gap-2.5">
+                <div class="p-3 rounded-xl bg-umrah-card border border-amber-500/30 space-y-1">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-amber-300 flex items-center gap-1.5">
+                      <i class="fa-solid fa-scale-balanced"></i> 1. Hukum Laut Internasional
+                    </span>
+                    <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300">UNCLOS 1982</span>
+                  </div>
+                  <p class="text-[11px] text-slate-300">Batas ZEE Natuna, hak lintas ALKI I, perlindungan nelayan tradisional, dan diplomasi LCS.</p>
+                </div>
+
+                <div class="p-3 rounded-xl bg-umrah-card border border-emerald-500/30 space-y-1">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-emerald-300 flex items-center gap-1.5">
+                      <i class="fa-solid fa-ship"></i> 2. Logistik & Konektivitas Kepulauan
+                    </span>
+                    <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300">Tol Laut & Cold Chain</span>
+                  </div>
+                  <p class="text-[11px] text-slate-300">Rantai dingin perikanan surya, rute feeder perintis, dan armada kapal hemat energi.</p>
+                </div>
+
+                <div class="p-3 rounded-xl bg-umrah-card border border-blue-500/30 space-y-1">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-blue-300 flex items-center gap-1.5">
+                      <i class="fa-solid fa-network-wired"></i> 3. Ketahanan Digital Kepulauan
+                    </span>
+                    <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300">Kabel Laut & Cyber</span>
+                  </div>
+                  <p class="text-[11px] text-slate-300">Proteksi koridor kabel bawah laut, Maritime Domain Awareness satelit, dan komunikasi 3T.</p>
+                </div>
+
+                <div class="p-3 rounded-xl bg-umrah-card border border-purple-500/30 space-y-1">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-purple-300 flex items-center gap-1.5">
+                      <i class="fa-solid fa-bolt"></i> 4. Energi Terbarukan di Wilayah Kepulauan
+                    </span>
+                    <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300">PLTS & Arus Laut</span>
+                  </div>
+                  <p class="text-[11px] text-slate-300">Turbin arus selat sempit, floating solar PV, smart microgrid, dan desalinasi surya pesisir.</p>
+                </div>
+              </div>
+
+              <!-- Visual Riset Preview -->
+              <div class="md:col-span-6 space-y-3">
+                <div class="browser-mockup cursor-pointer group" @click="openZoomModal('/images/presentation/riset_detail_desktop.png', 'Halaman Detail Klaster Riset & Publikasi DOI')">
+                  <div class="browser-header flex justify-between items-center">
+                    <div class="flex gap-1.5">
+                      <span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
+                    </div>
+                    <div class="text-[10px] text-slate-400 font-mono bg-black/40 px-2 py-0.5 rounded">/riset/oseanografi-iklim &bull; Detail Klaster</div>
+                    <div class="text-[10px] text-cyan-400 font-semibold group-hover:text-cyan-300"><i class="fa-solid fa-expand mr-1"></i>Perbesar</div>
+                  </div>
+                  <div class="relative overflow-hidden aspect-[16/10]">
+                    <img src="/images/presentation/riset_detail_desktop.png" class="w-full h-full object-cover object-top transition duration-300 group-hover:scale-105" alt="Detail Klaster Riset">
+                  </div>
+                </div>
+                <div class="p-2.5 rounded-lg bg-black/40 border border-white/5 flex items-center justify-between text-[11px] text-slate-300">
+                  <span><i class="fa-solid fa-link text-cyan-400 mr-1.5"></i> Terhubung langsung dengan link DOI & profil Scopus</span>
+                  <span class="text-cyan-400 font-mono font-semibold">Live Database Driven</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== SLIDE 4: DEWAN PAKAR & SCREENSHOT PROFIL ==================== -->
+        <div x-show="currentSlide === 4" class="h-full flex flex-col justify-center animate-fade">
+          <div class="space-y-4">
+            <div class="flex justify-between items-end">
+              <div>
+                <span class="text-xs font-bold tracking-widest text-cyan-400 uppercase">03 / Sumber Daya Manusia</span>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-white">Profil Dewan Pakar & Rekam Jejak Peneliti</h2>
+              </div>
+              <div class="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-lg border border-emerald-500/20">
+                100% Doktor & Guru Besar Maritim
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+              <!-- Left: Pakar Mini Cards -->
+              <div class="md:col-span-5 space-y-2">
+                <div class="p-2.5 rounded-xl bg-umrah-card border border-gold-500/50 flex items-center gap-3 shadow-sm">
+                  <img src="/images/peneliti_atika.jpg" class="w-11 h-11 rounded-full object-cover border-2 border-gold-400">
+                  <div class="flex-1 min-w-0">
+                    <div class="text-xs font-bold text-white truncate">Dr. Atika Thahira, S.H., M.H.</div>
+                    <div class="text-[10px] text-gold-400 font-bold">Koordinator Pusat Studi &bull; Hukum Laut & ZEE Natuna</div>
+                    <div class="text-[9px] text-slate-400 font-mono">NIP. 19820714 200812 2 003 | Scopus: 57201948210</div>
+                  </div>
+                </div>
+
+                <div class="p-2.5 rounded-xl bg-umrah-card border border-cyan-500/40 flex items-center gap-3">
+                  <img src="/images/peneliti_raja_sofyan.jpg" class="w-11 h-11 rounded-full object-cover border border-cyan-400">
+                  <div class="flex-1 min-w-0">
+                    <div class="text-xs font-bold text-white truncate">Dr. Ady Muzwardi, S.IP., M.A., M.H.I.</div>
+                    <div class="text-[10px] text-cyan-400 font-semibold">Head of Research Department</div>
+                    <div class="text-[9px] text-slate-400 font-mono">NIP. 19810410 200604 1 002 | Scopus: 57210984321</div>
+                  </div>
+                </div>
+
+                <div class="p-2.5 rounded-xl bg-umrah-card border border-white/10 flex items-center gap-3">
+                  <img src="/images/peneliti_maria.jpg" class="w-11 h-11 rounded-full object-cover border border-cyan-300">
+                  <div class="flex-1 min-w-0">
+                    <div class="text-xs font-bold text-white truncate">Rachma Indriyani, S.H., LL.M., Ph.D.</div>
+                    <div class="text-[10px] text-slate-300 font-semibold">Vice of Research Department</div>
+                    <div class="text-[9px] text-slate-400 font-mono">NIP. 19861118 201212 2 001 | Scopus: 57193829104</div>
+                  </div>
+                </div>
+
+                <div class="p-2.5 rounded-xl bg-umrah-card border border-cyan-500/30 flex items-center gap-3">
+                  <img src="/images/peneliti_euis.jpg" class="w-11 h-11 rounded-full object-cover border border-cyan-300">
+                  <div class="flex-1 min-w-0">
+                    <div class="text-xs font-bold text-white truncate">Euis Ammelia, S.IP., M.I.P.</div>
+                    <div class="text-[10px] text-cyan-300 font-semibold">Secretary of Research Department</div>
+                    <div class="text-[9px] text-slate-400 font-mono">NIP. 19890512 201803 2 001 | SINTA: 6909581</div>
+                  </div>
+                </div>
+
+                <div class="p-2.5 rounded-xl bg-umrah-card border border-emerald-500/40 flex items-center gap-3">
+                  <img src="/images/peneliti_hendra.jpg" class="w-11 h-11 rounded-full object-cover border border-emerald-400">
+                  <div class="flex-1 min-w-0">
+                    <div class="text-xs font-bold text-white truncate">Dedy Afrizal, S.Sos., M.Si., Ph.D.</div>
+                    <div class="text-[10px] text-emerald-400 font-semibold">Head of the Community Service Department</div>
+                    <div class="text-[9px] text-slate-400 font-mono">NIP. 19780824 200501 1 003 | Scopus: 57223419085</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right: Screenshot of Profil Page -->
+              <div class="md:col-span-7">
+                <div class="browser-mockup cursor-pointer group" @click="openZoomModal('/images/presentation/profil_desktop.png', 'Tampilan Halaman Profil & Dewan Pakar PSK UMRAH')">
+                  <div class="browser-header flex justify-between items-center">
+                    <div class="flex gap-1.5">
+                      <span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
+                    </div>
+                    <div class="text-[10px] text-slate-400 font-mono bg-black/40 px-2 py-0.5 rounded">/profil &bull; Tab Struktur Dewan Pakar</div>
+                    <div class="text-[10px] text-cyan-400 font-semibold group-hover:text-cyan-300"><i class="fa-solid fa-expand mr-1"></i>Perbesar</div>
+                  </div>
+                  <div class="relative overflow-hidden aspect-[16/10]">
+                    <img src="/images/presentation/profil_desktop.png" class="w-full h-full object-cover object-top transition duration-300 group-hover:scale-105" alt="Profil Dewan Pakar">
+                  </div>
+                </div>
+                <div class="text-center text-[10px] text-slate-400 mt-2">
+                  <i class="fa-solid fa-check text-emerald-400 mr-1"></i> Dilengkapi tab Visi-Misi, Sejarah, Struktur Organisasi, dan NIP/Scopus ID lengkap
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== SLIDE 5: PETA JALAN RISET (ROADMAP 2025-2030) ==================== -->
+        <div x-show="currentSlide === 5" class="h-full flex flex-col justify-center animate-fade">
+          <div class="space-y-4">
+            <div>
+              <span class="text-xs font-bold tracking-widest text-cyan-400 uppercase">04 / Perencanaan Strategis</span>
+              <h2 class="text-2xl md:text-3xl font-extrabold text-white">Peta Jalan Riset 2025–2030</h2>
+              <p class="text-xs text-slate-300">Kompas arah riset berkesinambungan menuju pusat rujukan sains kemaritiman di Asia Tenggara.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+              <div class="p-4 rounded-xl bg-gradient-to-b from-cyan-950/40 to-umrah-card border border-cyan-500/30 space-y-2.5">
+                <div class="inline-block px-2.5 py-0.5 rounded bg-cyan-500 text-slate-950 text-xs font-black">
+                  FASE I (2025–2026)
+                </div>
+                <h3 class="text-sm font-bold text-white">Fondasi & Baseline Data</h3>
+                <ul class="text-[11px] text-slate-300 space-y-1.5 list-disc list-inside">
+                  <li>Pemetaan batimetri detail Selat Riau & perairan Natuna.</li>
+                  <li>Katalogisasi biodiversitas mangrove & padang lamun Kepri.</li>
+                  <li>Standarisasi lab oseanografi berstandar ISO 17025.</li>
+                  <li>Sinergi jejaring riset BRIN, BAKAMLA, dan KKP.</li>
+                </ul>
+              </div>
+
+              <div class="p-4 rounded-xl bg-gradient-to-b from-amber-950/40 to-umrah-card border border-amber-500/30 space-y-2.5">
+                <div class="inline-block px-2.5 py-0.5 rounded bg-amber-500 text-slate-950 text-xs font-black">
+                  FASE II (2027–2028)
+                </div>
+                <h3 class="text-sm font-bold text-white">Hilirisasi & Industri Biru</h3>
+                <ul class="text-[11px] text-slate-300 space-y-1.5 list-disc list-inside">
+                  <li>Pilot project turbin arus laut skala mikro di selat sempit.</li>
+                  <li>Sistem logistik rantai dingin pintar bagi nelayan Natuna.</li>
+                  <li>Komersialisasi jasa survei batimetri standar IHO S-44.</li>
+                  <li>Diseminasi 10 Policy Brief strategis untuk Pemda & Pusat.</li>
+                </ul>
+              </div>
+
+              <div class="p-4 rounded-xl bg-gradient-to-b from-purple-950/40 to-umrah-card border border-purple-500/30 space-y-2.5">
+                <div class="inline-block px-2.5 py-0.5 rounded bg-purple-500 text-white text-xs font-black">
+                  FASE III (2029–2030)
+                </div>
+                <h3 class="text-sm font-bold text-white">Episentrum Tropis Global</h3>
+                <ul class="text-[11px] text-slate-300 space-y-1.5 list-disc list-inside">
+                  <li>Pusat rujukan mitigasi perubahan iklim maritim ASEAN.</li>
+                  <li>Implementasi skema perdagangan karbon biru (Blue Carbon).</li>
+                  <li>Pusat inkubasi startup teknologi maritim (OceanTech).</li>
+                  <li>Akreditasi riset maritim internasional terintegrasi.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Visual banner footer -->
+            <div class="p-3 rounded-xl bg-slate-900/80 border border-white/10 flex items-center justify-between text-xs text-slate-300">
+              <span><i class="fa-solid fa-flag-checkered text-amber-400 mr-2"></i> <strong>Target 2030:</strong> 300+ Publikasi Terindeks, 50 Paten Komersial, 100% Kemandirian Riset</span>
+              <span class="text-cyan-400 font-semibold font-mono">Roadmap 5 Tahun Terstruktur</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== SLIDE 6: HILIRISASI LAYANAN & MODAL SPEK TEKNIS ==================== -->
+        <div x-show="currentSlide === 6" class="h-full flex flex-col justify-center animate-fade">
+          <div class="space-y-4">
+            <div class="flex justify-between items-end">
+              <div>
+                <span class="text-xs font-bold tracking-widest text-cyan-400 uppercase">05 / Hilirisasi & Layanan Industri</span>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-white">Layanan Komersial & Laboratorium Terakreditasi</h2>
+              </div>
+              <div class="text-[11px] font-mono text-cyan-400 bg-cyan-500/10 px-3 py-1 rounded-lg border border-cyan-500/20">
+                Standar IHO S-44 Special Order
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+              <div class="md:col-span-5 space-y-2.5">
+                <div class="p-2.5 rounded-xl bg-umrah-card border border-white/10 space-y-1">
+                  <h4 class="text-xs font-bold text-cyan-300 flex items-center gap-1.5">
+                    <i class="fa-solid fa-water"></i> 1. Survei Batimetri & Hidrografi
+                  </h4>
+                  <p class="text-[11px] text-slate-300">Pemetaan kontur dasar laut dengan Multibeam Echosounder (MBES) akurasi tinggi.</p>
+                </div>
+
+                <div class="p-2.5 rounded-xl bg-umrah-card border border-white/10 space-y-1">
+                  <h4 class="text-xs font-bold text-amber-300 flex items-center gap-1.5">
+                    <i class="fa-solid fa-wind"></i> 2. Pemodelan Hidro-Oseanografi
+                  </h4>
+                  <p class="text-[11px] text-slate-300">Simulasi arus pasut, gelombang ekstrem, dan sedimentasi muara pelabuhan.</p>
+                </div>
+
+                <div class="p-2.5 rounded-xl bg-umrah-card border border-white/10 space-y-1">
+                  <h4 class="text-xs font-bold text-emerald-300 flex items-center gap-1.5">
+                    <i class="fa-solid fa-vial"></i> 3. Uji Kualitas Air & Sedimen
+                  </h4>
+                  <p class="text-[11px] text-slate-300">Pengujian baku mutu air laut, logam berat, dan mikroplastik izin lingkungan.</p>
+                </div>
+
+                <div class="p-2.5 rounded-xl bg-umrah-card border border-white/10 space-y-1">
+                  <h4 class="text-xs font-bold text-purple-300 flex items-center gap-1.5">
+                    <i class="fa-solid fa-map-location-dot"></i> 4. AMDAL & Zonasi Laut (RZWP-3-K)
+                  </h4>
+                  <p class="text-[11px] text-slate-300">Konsultasi tata ruang wilayah pesisir & pulau kecil terpadu bagi pemda/industri.</p>
+                </div>
+              </div>
+
+              <!-- Visual Modal Spek Teknis Preview -->
+              <div class="md:col-span-7">
+                <div class="browser-mockup cursor-pointer group" @click="openZoomModal('/images/presentation/layanan_spec_modal_desktop.png', 'Modal Interaktif Detail Spesifikasi Teknis & SLA Layanan')">
+                  <div class="browser-header flex justify-between items-center">
+                    <div class="flex gap-1.5">
+                      <span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
+                    </div>
+                    <div class="text-[10px] text-slate-400 font-mono bg-black/40 px-2 py-0.5 rounded">/layanan &bull; Modal Spesifikasi Teknis</div>
+                    <div class="text-[10px] text-cyan-400 font-semibold group-hover:text-cyan-300"><i class="fa-solid fa-expand mr-1"></i>Perbesar</div>
+                  </div>
+                  <div class="relative overflow-hidden aspect-[16/10]">
+                    <img src="/images/presentation/layanan_spec_modal_desktop.png" class="w-full h-full object-cover object-center transition duration-300 group-hover:scale-105" alt="Modal Spesifikasi Teknis">
+                  </div>
+                </div>
+                <div class="text-center text-[10px] text-slate-400 mt-2">
+                  <i class="fa-solid fa-magnifying-glass text-cyan-400 mr-1"></i> Klien dapat melihat spesifikasi instrumen survei, akurasi, dan SLA kerja secara transparan
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== SLIDE 7: KALKULATOR SURVEI INTERAKTIF ==================== -->
+        <div x-show="currentSlide === 7" class="h-full flex flex-col justify-center animate-fade">
+          <div class="space-y-4">
+            <div class="flex justify-between items-end">
+              <div>
+                <span class="text-xs font-bold tracking-widest text-amber-400 uppercase">06 / Inovasi Unggulan Interaktif</span>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-white">Kalkulator Estimasi Biaya Survei Lapangan</h2>
+              </div>
+              <div class="text-[11px] font-mono text-amber-400 bg-amber-500/10 px-3 py-1 rounded-lg border border-amber-500/20">
+                Self-Service Real-Time Estimation
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+              <div class="md:col-span-5 space-y-3">
+                <div class="p-3.5 rounded-xl bg-umrah-card border border-amber-500/30 space-y-2">
+                  <div class="text-xs font-bold text-amber-300 flex items-center gap-1.5">
+                    <i class="fa-solid fa-sliders"></i> Parameter Fleksibel & Mandiri
+                  </div>
+                  <ul class="text-[11px] text-slate-300 space-y-1">
+                    <li>&bull; Pilihan Paket Survei (Batimetri, Arus, Air, AMDAL)</li>
+                    <li>&bull; Luas Wilayah Survei (Hektar / Km²)</li>
+                    <li>&bull; Durasi Pelaksanaan (Hari Kerja di Laut)</li>
+                    <li>&bull; Dukungan Kapal Riset & Tim Pakar Surveyor</li>
+                  </ul>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-umrah-card border border-white/10 space-y-2">
+                  <div class="text-xs font-bold text-cyan-300 flex items-center gap-1.5">
+                    <i class="fa-solid fa-calculator"></i> Breakdown Transparan Otomatis
+                  </div>
+                  <p class="text-[11px] text-slate-300 leading-relaxed">
+                    Sistem secara instan mengkalkulasi mobilisasi armada, sewa instrumen sensor, honor surveyor, pengolahan data GIS, dan total estimasi anggaran dengan tombol langsung ajukan penawaran resmi.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Visual Live Calculator Screenshot -->
+              <div class="md:col-span-7">
+                <div class="browser-mockup cursor-pointer group" @click="openZoomModal('/images/presentation/layanan_calculator_desktop.png', 'Tampilan Interaktif Kalkulator Estimasi Biaya Survei di Portal')">
+                  <div class="browser-header flex justify-between items-center">
+                    <div class="flex gap-1.5">
+                      <span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
+                    </div>
+                    <div class="text-[10px] text-slate-400 font-mono bg-black/40 px-2 py-0.5 rounded">/layanan &bull; Interactive Calculator Widget</div>
+                    <div class="text-[10px] text-cyan-400 font-semibold group-hover:text-cyan-300"><i class="fa-solid fa-expand mr-1"></i>Perbesar</div>
+                  </div>
+                  <div class="relative overflow-hidden aspect-[16/10]">
+                    <img src="/images/presentation/layanan_calculator_desktop.png" class="w-full h-full object-cover object-top transition duration-300 group-hover:scale-105" alt="Kalkulator Survei Interaktif">
+                  </div>
+                </div>
+                <div class="text-center text-[10px] text-slate-400 mt-2">
+                  <i class="fa-solid fa-check-circle text-emerald-400 mr-1"></i> Berbasis Alpine.js reactive state tanpa perlu refresh halaman browser
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== SLIDE 8: POLICY BRIEF MODAL ==================== -->
+        <div x-show="currentSlide === 8" class="h-full flex flex-col justify-center animate-fade">
+          <div class="space-y-4">
+            <div class="flex justify-between items-end">
+              <div>
+                <span class="text-xs font-bold tracking-widest text-cyan-400 uppercase">07 / Advokasi Kebijakan Publik</span>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-white">Diseminasi Policy Brief & Jurnal Bereputasi</h2>
+              </div>
+              <div class="text-[11px] font-mono text-cyan-400 bg-cyan-500/10 px-3 py-1 rounded-lg border border-cyan-500/20">
+                SINTA 2 & Scopus Q1-Q2
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+              <div class="md:col-span-5 space-y-3">
+                <div class="p-3.5 rounded-xl bg-umrah-card border border-amber-500/30 space-y-2">
+                  <div class="text-xs font-bold text-amber-300 flex items-center gap-1.5">
+                    <i class="fa-solid fa-landmark"></i> Modal Ringkasan Eksekutif (Policy Brief)
+                  </div>
+                  <p class="text-[11px] text-slate-300 leading-relaxed">
+                    Pengambil kebijakan (Gubernur, Bupati, DPR, Kementerian) dapat membaca <strong>3 poin urgensi masalah</strong>, dampak ekonomi, dan <strong>matriks rekomendasi aksi konkret</strong> hanya dalam 2 menit tanpa harus membaca jurnal 50 halaman.
+                  </p>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-umrah-card border border-white/10 space-y-2">
+                  <div class="text-xs font-bold text-cyan-300 flex items-center gap-1.5">
+                    <i class="fa-solid fa-book-bookmark"></i> Jurnal Ilmiah dengan Link DOI Aktif
+                  </div>
+                  <p class="text-[11px] text-slate-300 leading-relaxed">
+                    Setiap naskah penelitian dilengkapi tautan Digital Object Identifier (DOI) resmi, indikator indeks akreditasi, metadata abstrak lengkap, dan tombol 1-click download naskah PDF.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Visual Policy Brief Modal Screenshot -->
+              <div class="md:col-span-7">
+                <div class="browser-mockup cursor-pointer group" @click="openZoomModal('/images/presentation/publikasi_policy_brief_modal.png', 'Modal Ringkasan Eksekutif & Rekomendasi Kebijakan (Policy Brief)')">
+                  <div class="browser-header flex justify-between items-center">
+                    <div class="flex gap-1.5">
+                      <span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
+                    </div>
+                    <div class="text-[10px] text-slate-400 font-mono bg-black/40 px-2 py-0.5 rounded">/publikasi &bull; Modal Ringkasan Eksekutif</div>
+                    <div class="text-[10px] text-cyan-400 font-semibold group-hover:text-cyan-300"><i class="fa-solid fa-expand mr-1"></i>Perbesar</div>
+                  </div>
+                  <div class="relative overflow-hidden aspect-[16/10]">
+                    <img src="/images/presentation/publikasi_policy_brief_modal.png" class="w-full h-full object-cover object-center transition duration-300 group-hover:scale-105" alt="Policy Brief Modal">
+                  </div>
+                </div>
+                <div class="text-center text-[10px] text-slate-400 mt-2">
+                  <i class="fa-solid fa-file-pdf text-rose-400 mr-1"></i> Dilengkapi tombol unduh dokumen PDF resmi Policy Brief
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== SLIDE 9: PORTAL BERITA & REPOSITORI UNDUHAN ==================== -->
+        <div x-show="currentSlide === 9" class="h-full flex flex-col justify-center animate-fade">
+          <div class="space-y-4">
+            <div class="flex justify-between items-end">
+              <div>
+                <span class="text-xs font-bold tracking-widest text-cyan-400 uppercase">08 / Diseminasi Publik & Repositori</span>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-white">Portal Berita Live Search & Unduhan Dokumen</h2>
+              </div>
+              <div class="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-lg border border-emerald-500/20">
+                Real-time Download Counter
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+              <!-- Left Preview: Berita Live Search -->
+              <div class="md:col-span-6 space-y-2">
+                <div class="browser-mockup cursor-pointer group" @click="openZoomModal('/images/presentation/berita_crawled_desktop.png', 'Fitur Live Search Cepat Tanpa Reload di Portal Berita')">
+                  <div class="browser-header flex justify-between items-center">
+                    <div class="flex gap-1.5">
+                      <span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
+                    </div>
+                    <div class="text-[10px] text-slate-400 font-mono bg-black/40 px-2 py-0.5 rounded">/berita &bull; Live Instant Search</div>
+                    <div class="text-[10px] text-cyan-400 font-semibold group-hover:text-cyan-300"><i class="fa-solid fa-expand mr-1"></i>Perbesar</div>
+                  </div>
+                  <div class="relative overflow-hidden aspect-[16/10]">
+                    <img src="/images/presentation/berita_crawled_desktop.png" class="w-full h-full object-cover object-top transition duration-300 group-hover:scale-105" alt="Berita Live Search">
+                  </div>
+                </div>
+                <div class="p-2.5 rounded-lg bg-umrah-card border border-white/10 text-[11px] text-slate-300">
+                  <strong class="text-cyan-400">Liputan Riil & Live Search:</strong> Memuat rilis riset resmi (Pulitzer Center, Peluncuran 5 Pusat Studi, MoU BSKLN Kemlu) dengan pencarian kata kunci instan.
+                </div>
+              </div>
+
+              <!-- Right Preview: Repositori Unduhan -->
+              <div class="md:col-span-6 space-y-2">
+                <div class="browser-mockup cursor-pointer group" @click="openZoomModal('/images/presentation/unduhan_desktop.png', 'Pusat Repositori Unduhan Dokumen Resmi & Download Counter')">
+                  <div class="browser-header flex justify-between items-center">
+                    <div class="flex gap-1.5">
+                      <span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
+                    </div>
+                    <div class="text-[10px] text-slate-400 font-mono bg-black/40 px-2 py-0.5 rounded">/unduhan &bull; Database Download Tracking</div>
+                    <div class="text-[10px] text-cyan-400 font-semibold group-hover:text-cyan-300"><i class="fa-solid fa-expand mr-1"></i>Perbesar</div>
+                  </div>
+                  <div class="relative overflow-hidden aspect-[16/10]">
+                    <img src="/images/presentation/unduhan_desktop.png" class="w-full h-full object-cover object-top transition duration-300 group-hover:scale-105" alt="Repositori Unduhan">
+                  </div>
+                </div>
+                <div class="p-2.5 rounded-lg bg-umrah-card border border-white/10 text-[11px] text-slate-300">
+                  <strong class="text-emerald-400">Database Counter Otomatis:</strong> Setiap klik tombol unduh dokumen (SOP, Pedoman Riset) otomatis menambahkan angka counter di database SQLite.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== SLIDE 10: KEMITRAAN & FORM KONTAK ==================== -->
+        <div x-show="currentSlide === 10" class="h-full flex flex-col justify-center animate-fade">
+          <div class="space-y-4">
+            <div class="flex justify-between items-end">
+              <div>
+                <span class="text-xs font-bold tracking-widest text-cyan-400 uppercase">09 / Ekosistem Kemitraan</span>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-white">Jejaring Lembaga Mitra & Integrasi Kontak</h2>
+              </div>
+              <div class="text-[11px] font-mono text-cyan-400 bg-cyan-500/10 px-3 py-1 rounded-lg border border-cyan-500/20">
+                35+ Lembaga Nasional & Global
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+              <!-- Left Preview: Partner Logos -->
+              <div class="md:col-span-6 space-y-2">
+                <div class="browser-mockup cursor-pointer group" @click="openZoomModal('/images/presentation/partner_logos_desktop.png', 'Grid Logo Lembaga Mitra Strategis Nasional & Internasional')">
+                  <div class="browser-header flex justify-between items-center">
+                    <div class="flex gap-1.5">
+                      <span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
+                    </div>
+                    <div class="text-[10px] text-slate-400 font-mono bg-black/40 px-2 py-0.5 rounded">/home &bull; Section Lembaga Mitra</div>
+                    <div class="text-[10px] text-cyan-400 font-semibold group-hover:text-cyan-300"><i class="fa-solid fa-expand mr-1"></i>Perbesar</div>
+                  </div>
+                  <div class="relative overflow-hidden aspect-[16/10]">
+                    <img src="/images/presentation/partner_logos_desktop.png" class="w-full h-full object-cover object-center transition duration-300 group-hover:scale-105" alt="Logo Mitra Strategis">
+                  </div>
+                </div>
+                <div class="p-2.5 rounded-lg bg-umrah-card border border-white/10 text-[11px] text-slate-300">
+                  <strong class="text-amber-400">Logo Vektor Interaktif:</strong> Menampilkan logo resmi BRIN, BAKAMLA, KKP, Pushidrosal, Pemprov Kepri, Bappenas, BIG, dan UMT Malaysia dengan efek hover.
+                </div>
+              </div>
+
+              <!-- Right Preview: Form Kontak -->
+              <div class="md:col-span-6 space-y-2">
+                <div class="browser-mockup cursor-pointer group" @click="openZoomModal('/images/presentation/kontak_desktop.png', 'Formulir Inisiasi Kerjasama Terhubung Langsung ke Database')">
+                  <div class="browser-header flex justify-between items-center">
+                    <div class="flex gap-1.5">
+                      <span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
+                    </div>
+                    <div class="text-[10px] text-slate-400 font-mono bg-black/40 px-2 py-0.5 rounded">/kontak &bull; Inisiasi Kemitraan & MoU</div>
+                    <div class="text-[10px] text-cyan-400 font-semibold group-hover:text-cyan-300"><i class="fa-solid fa-expand mr-1"></i>Perbesar</div>
+                  </div>
+                  <div class="relative overflow-hidden aspect-[16/10]">
+                    <img src="/images/presentation/kontak_desktop.png" class="w-full h-full object-cover object-top transition duration-300 group-hover:scale-105" alt="Form Kontak">
+                  </div>
+                </div>
+                <div class="p-2.5 rounded-lg bg-umrah-card border border-white/10 text-[11px] text-slate-300">
+                  <strong class="text-emerald-400">Terhubung ke Database:</strong> Pesan kerjasama langsung disimpan ke tabel <code>kontak_pesan</code> dengan pencatatan IP pengirim dan proteksi CSRF.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== SLIDE 11: ARSITEKTUR TEKNOLOGI & MULTI-DEVICE ==================== -->
+        <div x-show="currentSlide === 11" class="h-full flex flex-col justify-center animate-fade">
+          <div class="space-y-4">
+            <div class="flex justify-between items-end">
+              <div>
+                <span class="text-xs font-bold tracking-widest text-cyan-400 uppercase">10 / Arsitektur Teknologi</span>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-white">Fondasi Teknis Tangguh & Multi-Device</h2>
+              </div>
+              <div class="text-[11px] font-mono text-cyan-400 bg-cyan-500/10 px-3 py-1 rounded-lg border border-cyan-500/20">
+                Load Time &lt; 0.4s &bull; RAM &lt; 2MB
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+              <div class="md:col-span-5 space-y-2.5">
+                <div class="p-3 rounded-xl bg-umrah-card border border-white/10 space-y-1">
+                  <div class="text-xs font-bold text-rose-400 flex items-center gap-1.5">
+                    <i class="fa-brands fa-php text-sm"></i> CodeIgniter 4 Enterprise Ready
+                  </div>
+                  <p class="text-[11px] text-slate-300">Framework standar perguruan tinggi di Indonesia. Eksekusi ultra cepat, aman, dan tanpa bloatware.</p>
+                </div>
+
+                <div class="p-3 rounded-xl bg-umrah-card border border-white/10 space-y-1">
+                  <div class="text-xs font-bold text-cyan-400 flex items-center gap-1.5">
+                    <i class="fa-solid fa-wind text-sm"></i> Tailwind CSS Mobile-First
+                  </div>
+                  <p class="text-[11px] text-slate-300">Tampilan adaptif sempurna dari smartphone, tablet, proyektor rapat, hingga monitor 4K ultra-wide.</p>
+                </div>
+
+                <div class="p-3 rounded-xl bg-umrah-card border border-white/10 space-y-1">
+                  <div class="text-xs font-bold text-amber-400 flex items-center gap-1.5">
+                    <i class="fa-solid fa-database text-sm"></i> Dual-Ready Database (SQLite & MySQL)
+                  </div>
+                  <p class="text-[11px] text-slate-300">Zero-configuration SQLite3 dan siap dialihkan ke database server kampus (MariaDB/MySQL) kapan saja.</p>
+                </div>
+
+                <div class="p-3 rounded-xl bg-umrah-card border border-white/10 space-y-1">
+                  <div class="text-xs font-bold text-emerald-400 flex items-center gap-1.5">
+                    <i class="fa-solid fa-globe text-sm"></i> Bilingual Engine (ID / EN)
+                  </div>
+                  <p class="text-[11px] text-slate-300">Mendukung Bahasa Indonesia dan English untuk menjangkau akademisi luar negeri & konsorsium riset internasional.</p>
+                </div>
+              </div>
+
+              <!-- Visual Multi-Device Showcase (English + Mobile) -->
+              <div class="md:col-span-7 grid grid-cols-12 gap-3 items-center">
+                <!-- English Version Preview -->
+                <div class="col-span-8">
+                  <div class="browser-mockup cursor-pointer group" @click="openZoomModal('/images/presentation/home_english.png', 'Fitur Multi-Bahasa: Tampilan Portal Versi Bahasa Inggris (EN)')">
+                    <div class="browser-header flex justify-between items-center">
+                      <div class="flex gap-1.5">
+                        <span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
+                      </div>
+                      <div class="text-[9px] text-slate-400 font-mono bg-black/40 px-1.5 py-0.5 rounded">lang=en &bull; International</div>
+                      <div class="text-[9px] text-cyan-400 font-semibold group-hover:text-cyan-300"><i class="fa-solid fa-expand"></i></div>
+                    </div>
+                    <div class="relative overflow-hidden aspect-[16/11]">
+                      <img src="/images/presentation/home_english.png" class="w-full h-full object-cover object-top transition duration-300 group-hover:scale-105" alt="Portal Bahasa Inggris">
+                    </div>
+                  </div>
+                  <div class="text-center text-[10px] text-slate-400 mt-1">Versi Bahasa Inggris (EN)</div>
+                </div>
+
+                <!-- Mobile Smartphone Preview -->
+                <div class="col-span-4">
+                  <div class="rounded-2xl border-2 border-slate-700 overflow-hidden shadow-2xl bg-black cursor-pointer group" @click="openZoomModal('/images/presentation/home_mobile.png', 'Tampilan Responsif Mobile Smartphone')">
+                    <div class="bg-slate-900 py-1 text-center border-b border-slate-800">
+                      <span class="w-8 h-1 rounded-full bg-slate-700 inline-block"></span>
+                    </div>
+                    <div class="overflow-hidden aspect-[9/16]">
+                      <img src="/images/presentation/home_mobile.png" class="w-full h-full object-cover object-top transition duration-300 group-hover:scale-105" alt="Mobile View">
+                    </div>
+                  </div>
+                  <div class="text-center text-[10px] text-slate-400 mt-1">Mobile Responsif</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== SLIDE 12: KESIMPULAN & AJAKAN DEMO ==================== -->
+        <div x-show="currentSlide === 12" class="h-full flex flex-col justify-center animate-fade">
+          <div class="max-w-4xl mx-auto text-center space-y-5">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-400/30 text-xs font-bold tracking-wider text-emerald-300 uppercase">
+              <i class="fa-solid fa-circle-check"></i> 100% Siap Operasi & Live Demo
+            </div>
+
+            <h2 class="text-3xl md:text-4xl font-extrabold text-white leading-tight">
+              Mewujudkan UMRAH Sebagai Episentrum <br>
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-amber-400">
+                Keunggulan Maritim Tropis Berkelas Dunia
+              </span>
+            </h2>
+
+            <p class="text-sm text-slate-300 max-w-2xl mx-auto font-light">
+              Portal ini siap diserahterimakan dan dikembangkan lebih lanjut untuk mendukung akreditasi institusi, hilirisasi riset maritim, dan peningkatan pendapatan BLU universitas.
+            </p>
+
+            <!-- Roadmap Selanjutnya Box -->
+            <div class="p-4 rounded-2xl bg-umrah-card border border-white/10 max-w-2xl mx-auto text-left space-y-2">
+              <div class="text-xs font-bold text-amber-400 uppercase tracking-wide flex items-center gap-2">
+                <i class="fa-solid fa-rocket"></i> Rekomendasi Tahap Pengembangan Lanjutan:
+              </div>
+              <ul class="text-xs text-slate-300 space-y-1 list-disc list-inside">
+                <li>Integrasi Modul WebGIS Peta Interaktif Sebaran Sensor Pasut & Ekspedisi Laut.</li>
+                <li>Dashboard CMS Back-Office untuk pengelolaan publikasi mandiri staf LPPM.</li>
+                <li>Single Sign-On (SSO) akun dosen dan mahasiswa UMRAH.</li>
+              </ul>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="pt-2 flex items-center justify-center gap-4">
+              <a href="/" target="_blank" class="px-6 py-3 bg-gradient-to-r from-cyan-500 to-sky-600 text-slate-950 font-black rounded-xl text-xs uppercase tracking-wider shadow-lg shadow-cyan-500/30 hover:brightness-110 transition flex items-center gap-2">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Buka Live Demo Portal (http://localhost:8080)
+              </a>
+              <button @click="toggleSpeakerNotes()" class="px-5 py-3 bg-white/10 border border-white/20 text-white font-bold rounded-xl text-xs uppercase tracking-wider hover:bg-white/20 transition flex items-center gap-2">
+                <i class="fa-solid fa-file-lines text-amber-400"></i> Buka Catatan Presenter (N)
+              </button>
+            </div>
+
+            <div class="text-[11px] text-slate-400">
+              Sesi Tanya Jawab &bull; North Natuna Sea Research Center Universitas Maritim Raja Ali Haji &bull; 2026
+            </div>
+          </div>
+        </div>
+
+      </main>
+
+      <!-- ZOOM MODAL OVERLAY (FOR EXAMINING HIGH-RES SCREENSHOT DETAILS) -->
+      <div x-show="zoomModal.open" 
+           class="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-4 animate-fade"
+           @click.self="closeZoomModal()"
+           @keydown.escape.window="closeZoomModal()">
+        <div class="max-w-5xl w-full bg-slate-900 border border-cyan-500/40 rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[92vh]">
+          <div class="flex items-center justify-between px-5 py-3 bg-slate-950 border-b border-white/10">
+            <div class="text-xs font-bold text-cyan-400 flex items-center gap-2">
+              <i class="fa-solid fa-image"></i>
+              <span x-text="zoomModal.caption"></span>
+            </div>
+            <button @click="closeZoomModal()" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 text-slate-300 flex items-center justify-center transition">
+              <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+          </div>
+          <div class="p-3 overflow-auto flex-1 flex items-center justify-center bg-black/50">
+            <img :src="zoomModal.src" class="max-w-full max-h-[80vh] object-contain rounded-lg shadow-lg border border-white/10" :alt="zoomModal.caption">
+          </div>
+        </div>
+      </div>
+
+      <!-- SPEAKER NOTES DRAWER / MODAL -->
+      <div x-show="showNotes" class="absolute inset-x-0 bottom-14 bg-slate-950/95 border-t-2 border-amber-500/60 p-4 backdrop-blur-xl z-30 shadow-2xl transition-all duration-300 max-h-52 overflow-y-auto">
+        <div class="flex items-center justify-between mb-1.5">
+          <div class="flex items-center gap-2 text-xs font-bold text-amber-400 uppercase tracking-widest">
+            <i class="fa-solid fa-microphone-lines"></i> Naskah / Panduan Bicara Presenter (Slide <span x-text="currentSlide"></span>)
+          </div>
+          <button @click="showNotes = false" class="text-slate-400 hover:text-white text-xs">
+            <i class="fa-solid fa-xmark text-sm"></i> Tutup (N)
+          </button>
+        </div>
+        <div class="text-xs text-slate-200 leading-relaxed font-sans" x-html="speakerNotes[currentSlide]"></div>
+      </div>
+
+      <!-- PRESENTATION CONTROL BAR (BOTTOM) -->
+      <footer class="no-print flex items-center justify-between px-8 py-2.5 bg-slate-950/90 border-t border-white/10 z-20">
+        <!-- Slide Thumbnails Indicator -->
+        <div class="flex items-center space-x-1.5 overflow-x-auto py-1 max-w-[42%]">
+          <template x-for="i in totalSlides" :key="i">
+            <button 
+              @click="goToSlide(i)" 
+              :class="currentSlide === i ? 'w-8 bg-cyan-400 text-slate-950 font-black' : 'w-6 bg-white/10 text-slate-400 hover:bg-white/20'"
+              class="h-6 rounded-md text-[10px] flex items-center justify-center transition-all duration-200 shrink-0 font-mono"
+              x-text="i">
+            </button>
+          </template>
+        </div>
+
+        <!-- Controls Right -->
+        <div class="flex items-center space-x-3">
+          <!-- Speaker Notes Toggle -->
+          <button @click="toggleSpeakerNotes()" class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-semibold text-slate-300 flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-note-sticky text-amber-400"></i>
+            <span class="hidden sm:inline">Notes</span>
+            <kbd class="text-[9px] px-1 bg-black/40 rounded border border-white/10">N</kbd>
+          </button>
+
+          <!-- PDF Export Button -->
+          <button @click="printDeck()" class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-semibold text-slate-300 flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-file-pdf text-rose-400"></i>
+            <span class="hidden sm:inline">Export PDF</span>
+            <kbd class="text-[9px] px-1 bg-black/40 rounded border border-white/10">P</kbd>
+          </button>
+
+          <!-- Navigation Buttons -->
+          <div class="flex items-center space-x-1 bg-white/10 p-1 rounded-lg">
+            <button @click="prevSlide()" :disabled="currentSlide === 1" class="w-8 h-7 rounded flex items-center justify-center text-slate-300 hover:bg-white/10 disabled:opacity-30 disabled:hover:bg-transparent">
+              <i class="fa-solid fa-chevron-left text-xs"></i>
+            </button>
+            <button @click="nextSlide()" :disabled="currentSlide === totalSlides" class="w-8 h-7 rounded flex items-center justify-center text-slate-300 hover:bg-white/10 disabled:opacity-30 disabled:hover:bg-transparent">
+              <i class="fa-solid fa-chevron-right text-xs"></i>
+            </button>
+          </div>
+
+          <!-- Fullscreen Toggle -->
+          <button @click="toggleFullscreen()" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 text-slate-300 flex items-center justify-center text-xs transition">
+            <i class="fa-solid fa-expand"></i>
+          </button>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- Interactive Alpine Logic -->
+  <script>
+    function slideApp() {
+      return {
+        currentSlide: 1,
+        totalSlides: 12,
+        showNotes: false,
+        zoomModal: {
+          open: false,
+          src: '',
+          caption: ''
+        },
+        speakerNotes: {
+          1: `<strong>Kata Pengantar Pembuka:</strong> "Selamat pagi/siang Bapak/Ibu sekalian. Hari ini kami dengan bangga mempresentasikan hasil perancangan dan implementasi Portal Resmi North Natuna Sea Research Center Universitas Maritim Raja Ali Haji (UMRAH). Di sebelah kanan dapat Bapak/Ibu lihat screenshot tampilan beranda utama yang bersih, modern, dan merepresentasikan maritim nusantara."`,
+          2: `<strong>Poin Urgensi:</strong> "Mengapa portal ini sangat krusial bagi UMRAH? Pertama, Kepri adalah 96% lautan dengan 2.408 pulau di perbatasan 4 negara. Selama ini, publikasi dan layanan riset belum terkonsolidasi. Dengan portal ini, UMRAH memiliki 'Single Gateway' yang menggabungkan riset, advokasi, dan layanan industri."`,
+          3: `<strong>Arsitektur 4 Klaster Riset:</strong> "Bapak/Ibu, kita membagi kekuatan riset ke dalam 4 klaster strategis: 1. Hukum Laut Internasional, 2. Logistik dan Konektivitas Kepulauan, 3. Ketahanan Digital Kepulauan, serta 4. Energi Terbarukan di Wilayah Kepulauan. Pada screenshot di sebelah kanan, tampak tampilan detail klaster dengan daftar publikasi terindeks Scopus dan link DOI resmi."`,
+          4: `<strong>SDM & Kepemimpinan Peneliti:</strong> "Pusat Studi Laut Natuna Utara dipimpin oleh Koordinator Dr. Atika Thahira, S.H., M.H., pakar hukum laut internasional dan advokasi ZEE Natuna. Struktur diperkuat oleh Dr. Ady Muzwardi, S.IP., M.A., M.H.I. selaku Head of Research Department didampingi Rachma Indriyani, S.H., LL.M., Ph.D. sebagai Vice of Research Department, Euis Ammelia, S.IP., M.I.P. selaku Secretary of Research Department, serta Dedy Afrizal, S.Sos., M.Si., Ph.D. selaku Head of Community Service Department. Kami menampilkan transparansi profil dengan NIP resmi, bidang kepakaran, Scopus ID/SINTA ID, dan link profil akademik seperti terlihat pada tab profil di sebelah kanan."`,
+          5: `<strong>Peta Jalan 2025–2030:</strong> "Arah pengembangan riset memiliki roadmap yang sangat jelas. Fase 1 fokus pada pemetaan baseline data dan instrumen lab. Fase 2 fokus pada hilirisasi ke industri, dan Fase 3 memposisikan UMRAH sebagai episentrum mitigasi perubahan iklim & blue carbon di Asia Tenggara."`,
+          6: `<strong>Hilirisasi Layanan Industri:</strong> "Pusat Studi tidak hanya menghabiskan anggaran riset, tapi juga dirancang menghasilkan PNBP/BLU bagi universitas. Kami menyediakan 4 layanan bernilai ekonomi tinggi: Batimetri IHO S-44, Pemodelan Arus Oseanografi, Pengujian Laboratorium Lingkungan, dan Konsultasi AMDAL/RZWP-3-K. Pada screenshot terlihat modal spesifikasi teknis instrumen yang bisa diakses calon klien."`,
+          7: `<strong>Inovasi Kalkulator Biaya Survei:</strong> "Ini adalah fitur unggulan dan diferensiasi utama kita. Seperti terlihat pada screenshot kanan, calon mitra industri dapat menghitung estimasi biaya survei secara transparan dan mandiri langsung di website. Begitu luas wilayah atau armada digeser, biaya langsung terhitung otomatis."`,
+          8: `<strong>Policy Brief & Jurnal SINTA:</strong> "Sebagai kampus kebangsaan maritim, UMRAH aktif mengadvokasi kebijakan. Kami sediakan 'Executive Summary Modal' khusus Policy Brief agar bupati, gubernur, dan kementerian bisa langsung membaca intisari rekomendasi dalam 2 menit tanpa harus membaca jurnal tebal."`,
+          9: `<strong>Portal Berita & Repositori Terintegrasi:</strong> "Di sebelah kiri adalah fitur live search portal berita tanpa reload yang kini memuat rilis riil resmi: riset pendanaan Pulitzer Center Washington DC, peluncuran pusat studi pada Hardiknas, dan MoU diplomasi BSKLN Kemlu RI. Di sebelah kanan adalah repositori unduhan dengan counter otomatis yang mencatat unduhan ke database SQLite."`,
+          10: `<strong>Ekosistem Kemitraan:</strong> "Portal menampilkan logo resmi jejaring mitra kita seperti BRIN, BAKAMLA, KKP, dan Pushidrosal. Di sebelah kanan adalah formulir inisiasi kemitraan yang langsung tersimpan rapi ke tabel database."`,
+          11: `<strong>Arsitektur Teknologi:</strong> "Secara teknis, aplikasi ini dibangun di atas CodeIgniter 4 yang ringan dan stabil (<2MB RAM), styling Tailwind CSS responsif, database portabel SQLite/MySQL, dan fitur multi-bahasa Indonesia - Inggris seperti terlihat pada preview mobile dan versi English di sebelah kanan."`,
+          12: `<strong>Penutup & Ajakan Aksi:</strong> "Sebagai kesimpulan, portal ini telah selesai 100% dan siap dioperasikan. Sekarang mari kita buka bersama live demo aplikasi untuk menguji langsung interaksi fiturnya."`
+        },
+        nextSlide() {
+          if (this.currentSlide < this.totalSlides) {
+            this.currentSlide++;
+          }
+        },
+        prevSlide() {
+          if (this.currentSlide > 1) {
+            this.currentSlide--;
+          }
+        },
+        goToSlide(index) {
+          if (index >= 1 && index <= this.totalSlides) {
+            this.currentSlide = index;
+          }
+        },
+        toggleSpeakerNotes() {
+          this.showNotes = !this.showNotes;
+        },
+        toggleFullscreen() {
+          if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(() => {});
+          } else {
+            if (document.exitFullscreen) {
+              document.exitFullscreen();
+            }
+          }
+        },
+        printDeck() {
+          window.print();
+        },
+        openZoomModal(src, caption) {
+          this.zoomModal.src = src;
+          this.zoomModal.caption = caption;
+          this.zoomModal.open = true;
+        },
+        closeZoomModal() {
+          this.zoomModal.open = false;
+        },
+        handleKeydown(e) {
+          if (this.zoomModal.open) {
+            if (e.key === 'Escape') this.closeZoomModal();
+            return;
+          }
+          if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+            e.preventDefault();
+            this.nextSlide();
+          } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+            e.preventDefault();
+            this.prevSlide();
+          } else if (e.key === 'n' || e.key === 'N') {
+            this.toggleSpeakerNotes();
+          } else if (e.key === 'p' || e.key === 'P') {
+            this.printDeck();
+          } else if (e.key === 'f' || e.key === 'F') {
+            this.toggleFullscreen();
+          }
+        }
+      }
+    }
+  </script>
+</body>
+</html>
