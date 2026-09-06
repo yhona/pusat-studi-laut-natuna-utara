@@ -1,6 +1,7 @@
 <?= $this->extend('layout/main') ?>
 
 <?= $this->section('content') ?>
+<?php $isEn = (service('request')->getLocale() === 'en'); ?>
 
 <!-- Page Header Banner / Breadcrumbs -->
 <div class="bg-navy-950 text-white py-12 relative overflow-hidden border-b-2 border-gold-500">
@@ -8,10 +9,10 @@
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-4">
         <nav class="flex flex-wrap items-center gap-2 text-xs text-gold-400 font-medium">
             <a href="<?= base_url() ?>" class="hover:underline flex items-center gap-1">
-                <i class="fa-solid fa-house text-[10px]"></i> Beranda
+                <i class="fa-solid fa-house text-[10px]"></i> <?= lang('App.nav_home') ?>
             </a>
             <span>/</span>
-            <a href="<?= base_url('berita') ?>" class="hover:underline">Berita & Agenda</a>
+            <a href="<?= base_url('berita') ?>" class="hover:underline"><?= lang('App.nav_news') ?></a>
             <span>/</span>
             <span class="text-slate-300 truncate max-w-xs sm:max-w-md"><?= esc($article['title']) ?></span>
         </nav>
@@ -87,7 +88,7 @@
                         <div class="my-6 p-5 sm:p-6 bg-gradient-to-br from-navy-950 to-navy-900 text-white rounded-xl shadow-md border border-gold-500/30 space-y-3 not-prose">
                             <div class="flex items-center gap-2 text-gold-400 font-bold text-xs uppercase tracking-wider">
                                 <i class="fa-solid fa-lightbulb text-gold-400"></i>
-                                <span>Poin Kunci & Temuan Riset</span>
+                                <span><?= $isEn ? 'Key Research Findings & Highlights' : 'Poin Kunci & Temuan Riset' ?></span>
                             </div>
                             <ul class="space-y-2 text-xs sm:text-sm text-slate-200">
                                 <?php foreach ($article['key_takeaways'] as $point): ?>
@@ -105,7 +106,7 @@
                 <!-- Tags -->
                 <?php if (!empty($article['tags'])): ?>
                 <div class="pt-6 border-t border-slate-100 flex flex-wrap items-center gap-2">
-                    <span class="text-xs font-semibold text-slate-500 mr-1"><i class="fa-solid fa-tags"></i> Topik:</span>
+                    <span class="text-xs font-semibold text-slate-500 mr-1"><i class="fa-solid fa-tags"></i> <?= $isEn ? 'Topics:' : 'Topik:' ?></span>
                     <?php foreach ($article['tags'] as $tag): ?>
                     <span class="px-3 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium transition-colors">
                         #<?= esc($tag) ?>
@@ -117,29 +118,29 @@
                 <!-- Social Share Bar -->
                 <div class="pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
                     <span class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
-                        <i class="fa-solid fa-share-nodes text-maritime-600"></i> Bagikan Artikel Ini:
+                        <i class="fa-solid fa-share-nodes text-maritime-600"></i> <?= $isEn ? 'Share This Article:' : 'Bagikan Artikel Ini:' ?>
                     </span>
                     <div class="flex items-center gap-2">
                         <!-- WhatsApp -->
-                        <a href="https://api.whatsapp.com/send?text=<?= urlencode($article['title'] . ' ' . current_url()) ?>" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center text-sm shadow transition-colors" title="Bagikan via WhatsApp">
+                        <a href="https://api.whatsapp.com/send?text=<?= urlencode($article['title'] . ' ' . current_url()) ?>" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center text-sm shadow transition-colors" title="<?= $isEn ? 'Share via WhatsApp' : 'Bagikan via WhatsApp' ?>">
                             <i class="fa-brands fa-whatsapp"></i>
                         </a>
                         <!-- Twitter/X -->
-                        <a href="https://twitter.com/intent/tweet?text=<?= urlencode($article['title']) ?>&url=<?= urlencode(current_url()) ?>" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-black hover:bg-slate-800 text-white flex items-center justify-center text-sm shadow transition-colors" title="Bagikan ke X">
+                        <a href="https://twitter.com/intent/tweet?text=<?= urlencode($article['title']) ?>&url=<?= urlencode(current_url()) ?>" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-black hover:bg-slate-800 text-white flex items-center justify-center text-sm shadow transition-colors" title="<?= $isEn ? 'Share to X' : 'Bagikan ke X' ?>">
                             <i class="fa-brands fa-x-twitter"></i>
                         </a>
                         <!-- LinkedIn -->
-                        <a href="https://www.linkedin.com/sharing/share-offsite/?url=<?= urlencode(current_url()) ?>" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-sky-700 hover:bg-sky-800 text-white flex items-center justify-center text-sm shadow transition-colors" title="Bagikan ke LinkedIn">
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url=<?= urlencode(current_url()) ?>" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-sky-700 hover:bg-sky-800 text-white flex items-center justify-center text-sm shadow transition-colors" title="<?= $isEn ? 'Share to LinkedIn' : 'Bagikan ke LinkedIn' ?>">
                             <i class="fa-brands fa-linkedin-in"></i>
                         </a>
                         <!-- Copy Link Button -->
                         <div class="relative">
                             <button @click="copyShareUrl()" type="button" class="px-3 h-9 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold flex items-center gap-1.5 border border-slate-200 shadow-sm transition-colors">
                                 <i class="fa-solid fa-link text-slate-500"></i>
-                                <span x-text="copied ? 'Tersalin!' : 'Salin Tautan'">Salin Tautan</span>
+                                <span x-text="copied ? '<?= $isEn ? 'Copied!' : 'Tersalin!' ?>' : '<?= $isEn ? 'Copy Link' : 'Salin Tautan' ?>'"><?= $isEn ? 'Copy Link' : 'Salin Tautan' ?></span>
                             </button>
                             <span x-show="copied" x-cloak class="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-navy-900 text-gold-400 text-[10px] rounded shadow-md whitespace-nowrap">
-                                URL disalin ke clipboard!
+                                <?= $isEn ? 'URL copied to clipboard!' : 'URL disalin ke clipboard!' ?>
                             </span>
                         </div>
                     </div>
@@ -154,7 +155,9 @@
                         <h4 class="text-sm font-bold text-navy-950"><?= esc($article['author']) ?></h4>
                         <p class="text-xs text-maritime-700 font-medium"><?= esc($article['author_role']) ?></p>
                         <p class="text-xs text-slate-500 leading-relaxed pt-1">
-                            Periset aktif di lingkungan Pusat Studi Laut Natuna Utara (North Natuna Sea Research Center) Universitas Maritim Raja Ali Haji (UMRAH). Berkomitmen dalam diseminasi iptek kelautan dan kedaulatan bahari nusantara.
+                            <?= $isEn 
+                                ? 'Active research fellow at the North Natuna Sea Research Center (NNSRC), Universitas Maritim Raja Ali Haji (UMRAH). Committed to advancing marine scientific dissemination and archipelagic maritime sovereignty.' 
+                                : 'Periset aktif di lingkungan Pusat Studi Laut Natuna Utara (North Natuna Sea Research Center) Universitas Maritim Raja Ali Haji (UMRAH). Berkomitmen dalam diseminasi iptek kelautan dan kedaulatan bahari nusantara.' ?>
                         </p>
                     </div>
                 </div>
@@ -163,7 +166,7 @@
                 <div class="pt-4">
                     <a href="<?= base_url('berita') ?>" class="inline-flex items-center gap-2 text-maritime-700 hover:text-navy-950 font-semibold text-xs sm:text-sm group">
                         <i class="fa-solid fa-arrow-left transition-transform group-hover:-translate-x-1"></i>
-                        <span>Kembali ke Arsip Berita & Agenda</span>
+                        <span><?= $isEn ? 'Back to News & Agenda Archive' : 'Kembali ke Arsip Berita & Agenda' ?></span>
                     </a>
                 </div>
 
@@ -177,12 +180,14 @@
                     <div class="w-10 h-10 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center text-lg">
                         <i class="fa-solid fa-handshake"></i>
                     </div>
-                    <h4 class="text-base font-bold text-white">Kolaborasi Riset & Publikasi</h4>
+                    <h4 class="text-base font-bold text-white"><?= $isEn ? 'Research Collaboration & Publishing' : 'Kolaborasi Riset & Publikasi' ?></h4>
                     <p class="text-xs text-slate-300 leading-relaxed">
-                        Pusat Studi Laut Natuna Utara (North Natuna Sea Research Center) membuka peluang kemitraan dengan instansi pemerintah, BUMN, swasta, dan universitas mitra dalam studi kelautan.
+                        <?= $isEn 
+                            ? 'The North Natuna Sea Research Center (NNSRC) welcomes institutional partnerships with government agencies, SOEs, private sectors, and global university partners in marine science.' 
+                            : 'Pusat Studi Laut Natuna Utara (North Natuna Sea Research Center) membuka peluang kemitraan dengan instansi pemerintah, BUMN, swasta, dan universitas mitra dalam studi kelautan.' ?>
                     </p>
                     <a href="<?= base_url('kontak#kerjasama') ?>" class="inline-block w-full text-center py-2.5 px-4 rounded-lg bg-gold-500 hover:bg-gold-400 text-navy-950 font-bold text-xs shadow transition-colors">
-                        Ajukan Kemitraan Riset
+                        <?= $isEn ? 'Propose Research Partnership' : 'Ajukan Kemitraan Riset' ?>
                     </a>
                 </div>
 
@@ -193,15 +198,17 @@
                             <i class="fa-solid fa-download"></i>
                         </div>
                         <div>
-                            <h4 class="text-sm font-bold text-navy-950">Pusat Unduhan & Dokumen</h4>
-                            <p class="text-[11px] text-slate-500">SOP Lab, Policy Brief, dan Template</p>
+                            <h4 class="text-sm font-bold text-navy-950"><?= $isEn ? 'Download Center & Documents' : 'Pusat Unduhan & Dokumen' ?></h4>
+                            <p class="text-[11px] text-slate-500"><?= $isEn ? 'Lab SOPs, Policy Briefs, and Templates' : 'SOP Lab, Policy Brief, dan Template' ?></p>
                         </div>
                     </div>
                     <p class="text-xs text-slate-600 leading-relaxed">
-                        Dapatkan naskah resmi pedoman survei batimetri, formulir kerjasama, dan publikasi kajian strategis kemaritiman.
+                        <?= $isEn 
+                            ? 'Access official bathymetry guidelines, partnership forms, and strategic maritime policy briefs.' 
+                            : 'Dapatkan naskah resmi pedoman survei batimetri, formulir kerjasama, dan publikasi kajian strategis kemaritiman.' ?>
                     </p>
                     <a href="<?= base_url('unduhan') ?>" class="inline-flex items-center gap-1.5 text-xs font-semibold text-maritime-600 hover:text-navy-950 pt-1">
-                        <span>Buka Repositori Dokumen</span>
+                        <span><?= $isEn ? 'Open Document Repository' : 'Buka Repositori Dokumen' ?></span>
                         <i class="fa-solid fa-arrow-right text-[10px]"></i>
                     </a>
                 </div>
@@ -215,11 +222,11 @@
         <section class="mt-16 pt-12 border-t border-slate-200 space-y-6">
             <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
                 <div>
-                    <span class="text-maritime-600 uppercase text-xs font-bold tracking-wider block">Diseminasi Terkait</span>
-                    <h3 class="text-xl sm:text-2xl font-bold text-navy-950 mt-0.5">Artikel & Agenda Terkait</h3>
+                    <span class="text-maritime-600 uppercase text-xs font-bold tracking-wider block"><?= $isEn ? 'Related Dissemination' : 'Diseminasi Terkait' ?></span>
+                    <h3 class="text-xl sm:text-2xl font-bold text-navy-950 mt-0.5"><?= $isEn ? 'Related Articles & Agenda' : 'Artikel & Agenda Terkait' ?></h3>
                 </div>
                 <a href="<?= base_url('berita') ?>" class="text-xs font-semibold text-maritime-700 hover:text-navy-950 flex items-center gap-1">
-                    <span>Lihat Semua Berita</span>
+                    <span><?= $isEn ? 'View All News' : 'Lihat Semua Berita' ?></span>
                     <i class="fa-solid fa-arrow-right text-[10px]"></i>
                 </a>
             </div>
@@ -252,7 +259,7 @@
                         <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
                             <span class="text-slate-400 text-[11px] truncate max-w-[120px]"><i class="fa-solid fa-user text-slate-300 mr-1"></i> <?= esc($rel['author']) ?></span>
                             <a href="<?= base_url('berita/' . $rel['slug']) ?>" class="font-semibold text-maritime-600 hover:text-navy-950 flex items-center gap-1">
-                                <span>Baca</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                                <span><?= $isEn ? 'Read' : 'Baca' ?></span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </a>
                         </div>
                     </div>

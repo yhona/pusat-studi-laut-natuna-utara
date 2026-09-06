@@ -20,7 +20,43 @@ class Unduhan extends BaseController
      */
     public function index(): string
     {
+        $isEn = (service('request')->getLocale() === 'en');
         $documents = $this->unduhanModel->findAll();
+
+        if ($isEn) {
+            foreach ($documents as &$doc) {
+                if ($doc['category_id'] === 'sop') {
+                    $doc['category'] = 'Lab SOP';
+                } elseif ($doc['category_id'] === 'policy-brief') {
+                    $doc['category'] = 'Policy Brief';
+                } elseif ($doc['category_id'] === 'template') {
+                    $doc['category'] = 'Partnership Template';
+                } elseif ($doc['category_id'] === 'panduan') {
+                    $doc['category'] = 'Research Guide';
+                }
+
+                if ($doc['slug'] === 'sop-adcp-multibeam') {
+                    $doc['title'] = 'SOP Hydro-Acoustic Survey (ADCP & Multibeam Echosounder)';
+                    $doc['desc']  = 'Standard operating procedure for oceanographic acoustic sensor calibration, transect track surveys, and bathymetric data processing.';
+                } elseif ($doc['slug'] === 'sop-uji-kualitas-air') {
+                    $doc['title'] = 'SOP Seawater Quality & Heavy Metal Spectrophotometry Testing';
+                    $doc['desc']  = 'Accredited testing protocols for pH, salinity, DO, nitrate, phosphate, and heavy metals (Pb, Cd, Cu) in island waters.';
+                } elseif ($doc['slug'] === 'pb-kedaulatan-natuna-lcs') {
+                    $doc['title'] = 'Policy Brief: Archipelagic Maritime Governance & Natuna EEZ Sovereignty';
+                    $doc['desc']  = 'Strategic policy recommendations for integrated satellite monitoring and UNCLOS 1982 maritime border protection.';
+                } elseif ($doc['slug'] === 'pb-logistik-pesisir') {
+                    $doc['title'] = 'Policy Brief: Coastal Logistics Connectivity & Island Inflation Stabilization';
+                    $doc['desc']  = 'Pioneer sea transportation subsidy models and local feeder port optimization to reduce inter-island price disparities.';
+                } elseif ($doc['slug'] === 'tpl-mou-riset-kemaritiman') {
+                    $doc['title'] = 'Standard MoU Template for Marine Research & Pentahelix Collaboration';
+                    $doc['desc']  = 'Official draft agreement for joint research between UMRAH, regional governments, industries, and international universities.';
+                } elseif ($doc['slug'] === 'panduan-keselamatan-survei') {
+                    $doc['title'] = 'Standard Field Safety & Survival Protocol for Marine Research Vessels';
+                    $doc['desc']  = 'Compulsory safety manual, emergency procedures, and offshore life-saving protocol for research expeditions in open waters.';
+                }
+            }
+            unset($doc);
+        }
 
         // Calculate statistics
         $stats = [
@@ -33,7 +69,7 @@ class Unduhan extends BaseController
         ];
 
         $data = [
-            'title'     => 'Repositori Dokumen & Pusat Unduhan - Pusat Studi Laut Natuna Utara UMRAH',
+            'title'     => $isEn ? 'Document Repository & Download Center - NNSRC UMRAH' : 'Repositori Dokumen & Pusat Unduhan - Pusat Studi Laut Natuna Utara UMRAH',
             'documents' => $documents,
             'stats'     => $stats,
         ];

@@ -1,6 +1,7 @@
 <?= $this->extend('layout/main') ?>
 
 <?= $this->section('content') ?>
+<?php $isEn = (service('request')->getLocale() === 'en'); ?>
 
 <!-- Page Header Banner / Breadcrumbs -->
 <div class="bg-navy-950 text-white py-14 relative overflow-hidden border-b-2 border-gold-500">
@@ -8,10 +9,10 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-4">
         <nav class="flex items-center space-x-2 text-xs text-gold-400 font-medium">
             <a href="<?= base_url() ?>" class="hover:underline flex items-center gap-1">
-                <i class="fa-solid fa-house text-[10px]"></i> Beranda
+                <i class="fa-solid fa-house text-[10px]"></i> <?= lang('App.nav_home') ?>
             </a>
             <span>/</span>
-            <a href="<?= base_url('riset') ?>" class="hover:underline">Klaster Riset</a>
+            <a href="<?= base_url('riset') ?>" class="hover:underline"><?= lang('App.nav_research') ?></a>
             <span>/</span>
             <span class="text-slate-300"><?= esc($cluster['short_title']) ?></span>
         </nav>
@@ -57,13 +58,15 @@
                 <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-4">
                     <div class="flex items-center gap-2 text-maritime-600 text-xs font-bold uppercase tracking-wider">
                         <span class="w-6 h-0.5 bg-maritime-600"></span>
-                        <span>Mandat Ilmiah & Arah Kebijakan</span>
+                        <span><?= $isEn ? 'Scientific Mandate & Strategic Policy' : 'Mandat Ilmiah & Arah Kebijakan' ?></span>
                     </div>
                     <h2 class="text-xl sm:text-2xl font-bold text-navy-950">
-                        Kontribusi Strategis bagi Kedaulatan & Sains Maritim
+                        <?= $isEn ? 'Strategic Contribution to Sovereignty & Marine Sciences' : 'Kontribusi Strategis bagi Kedaulatan & Sains Maritim' ?>
                     </h2>
                     <p class="text-xs sm:text-sm text-slate-700 leading-relaxed text-justify">
-                        Klaster ini dirancang untuk menjawab tantangan spesifik kelautan kepulauan tropis di wilayah perbatasan barat Indonesia. Melalui integrasi pendekatan saintifik, instrumen akustik modern, serta kolaborasi pentahelix bersama kementerian teknis dan institusi global, riset yang dihasilkan bermuara pada hilirisasi teknologi dan advokasi kebijakan publik yang terukur.
+                        <?= $isEn 
+                            ? 'This cluster is established to address specific challenges of tropical archipelagic maritime affairs in Indonesia\'s western frontier. Integrating scientific methodologies, cutting-edge acoustic instrumentation, and pentahelix alliances with ministries and international institutions, all outcomes yield technology commercialization and measurable public policy advocacy.' 
+                            : 'Klaster ini dirancang untuk menjawab tantangan spesifik kelautan kepulauan tropis di wilayah perbatasan barat Indonesia. Melalui integrasi pendekatan saintifik, instrumen akustik modern, serta kolaborasi pentahelix bersama kementerian teknis dan institusi global, riset yang dihasilkan bermuara pada hilirisasi teknologi dan advokasi kebijakan publik yang terukur.' ?>
                     </p>
                 </div>
 
@@ -71,8 +74,8 @@
                 <div class="space-y-4">
                     <div class="flex items-center justify-between">
                         <div>
-                            <span class="text-maritime-600 uppercase text-xs font-bold tracking-wider block">Pilar Keilmuan</span>
-                            <h3 class="text-xl font-bold text-navy-950">Sub-Fokus Riset Prioritas</h3>
+                            <span class="text-maritime-600 uppercase text-xs font-bold tracking-wider block"><?= $isEn ? 'Academic Pillars' : 'Pilar Keilmuan' ?></span>
+                            <h3 class="text-xl font-bold text-navy-950"><?= $isEn ? 'Priority Research Sub-Foci' : 'Sub-Fokus Riset Prioritas' ?></h3>
                         </div>
                     </div>
 
@@ -99,11 +102,11 @@
                 <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-6">
                     <div class="flex items-center justify-between border-b border-slate-100 pb-4">
                         <div>
-                            <span class="text-maritime-600 uppercase text-xs font-bold tracking-wider block">Portofolio Riset Aktif</span>
-                            <h3 class="text-lg sm:text-xl font-bold text-navy-950">Proyek Riset Unggulan (Flagship Projects)</h3>
+                            <span class="text-maritime-600 uppercase text-xs font-bold tracking-wider block"><?= $isEn ? 'Active Research Portfolio' : 'Portofolio Riset Aktif' ?></span>
+                            <h3 class="text-lg sm:text-xl font-bold text-navy-950"><?= $isEn ? 'Flagship Research Projects' : 'Proyek Riset Unggulan (Flagship Projects)' ?></h3>
                         </div>
                         <span class="hidden sm:inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg">
-                            <i class="fa-solid fa-circle text-[8px]"></i> Aktif 2024-2026
+                            <i class="fa-solid fa-circle text-[8px]"></i> <?= $isEn ? 'Active 2024-2026' : 'Aktif 2024-2026' ?>
                         </span>
                     </div>
 
@@ -136,8 +139,8 @@
                             <i class="fa-solid fa-toolbox"></i>
                         </div>
                         <div>
-                            <h3 class="text-lg font-bold text-navy-950">Fasilitas Laboratorium & Instrumen Pendukung</h3>
-                            <p class="text-xs text-slate-500">Infrastruktur penelitian terakreditasi dan peralatan oseanografi lapangan</p>
+                            <h3 class="text-lg font-bold text-navy-950"><?= $isEn ? 'Laboratory Facilities & Supporting Instruments' : 'Fasilitas Laboratorium & Instrumen Pendukung' ?></h3>
+                            <p class="text-xs text-slate-500"><?= $isEn ? 'Accredited research infrastructure and field oceanographic instrumentation' : 'Infrastruktur penelitian terakreditasi dan peralatan oseanografi lapangan' ?></p>
                         </div>
                     </div>
 
@@ -155,8 +158,8 @@
                 <?php if (!empty($cluster['publications'])): ?>
                 <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-4">
                     <div>
-                        <span class="text-maritime-600 uppercase text-xs font-bold tracking-wider block">Diseminasi Internasional</span>
-                        <h3 class="text-lg sm:text-xl font-bold text-navy-950">Publikasi Jurnal Bereputasi Pilihan</h3>
+                        <span class="text-maritime-600 uppercase text-xs font-bold tracking-wider block"><?= $isEn ? 'International Dissemination' : 'Diseminasi Internasional' ?></span>
+                        <h3 class="text-lg sm:text-xl font-bold text-navy-950"><?= $isEn ? 'Selected Peer-Reviewed Journal Publications' : 'Publikasi Jurnal Bereputasi Pilihan' ?></h3>
                     </div>
 
                     <div class="space-y-3">
@@ -187,7 +190,7 @@
                 <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs space-y-5">
                     <div class="flex items-center gap-2 text-maritime-600 text-xs font-bold uppercase tracking-wider">
                         <i class="fa-solid fa-user-tie"></i>
-                        <span>Pimpinan Riset Klaster</span>
+                        <span><?= $isEn ? 'Cluster Research Lead' : 'Pimpinan Riset Klaster' ?></span>
                     </div>
 
                     <div class="flex items-center gap-4">
@@ -214,13 +217,13 @@
                             <span class="font-mono font-bold text-maritime-700"><?= esc($cluster['coordinator']['scopus_id']) ?></span>
                         </div>
                         <div class="flex items-center justify-between">
-                            <span class="text-slate-400">Email Resmi:</span>
+                            <span class="text-slate-400"><?= $isEn ? 'Official Email:' : 'Email Resmi:' ?></span>
                             <a href="mailto:<?= esc($cluster['coordinator']['email']) ?>" class="font-medium text-navy-950 hover:underline"><?= esc($cluster['coordinator']['email']) ?></a>
                         </div>
                     </div>
 
                     <a href="mailto:<?= esc($cluster['coordinator']['email']) ?>" class="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors">
-                        <i class="fa-regular fa-envelope"></i> Hubungi Peneliti Utama
+                        <i class="fa-regular fa-envelope"></i> <?= $isEn ? 'Contact Principal Investigator' : 'Hubungi Peneliti Utama' ?>
                     </a>
                 </div>
 
@@ -229,25 +232,29 @@
                     <div class="w-10 h-10 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center text-lg">
                         <i class="fa-solid fa-handshake-angle"></i>
                     </div>
-                    <h4 class="text-base font-bold text-white">Inisiasi Kerjasama Klaster</h4>
+                    <h4 class="text-base font-bold text-white"><?= $isEn ? 'Initiate Cluster Partnership' : 'Inisiasi Kerjasama Klaster' ?></h4>
                     <p class="text-xs text-slate-300 leading-relaxed">
-                        Tertarik berkolaborasi dalam penelitian bersama, jasa survei hidro-oseanografi, atau perumusan policy brief bidang <?= strtolower(esc($cluster['short_title'])) ?>?
+                        <?= $isEn 
+                            ? ('Interested in collaborative research, hydro-oceanographic survey services, or policy brief formulation in ' . esc($cluster['short_title']) . '?')
+                            : ('Tertarik berkolaborasi dalam penelitian bersama, jasa survei hidro-oseanografi, atau perumusan policy brief bidang ' . strtolower(esc($cluster['short_title'])) . '?') ?>
                     </p>
                     <a href="<?= base_url('kontak#kerjasama') ?>" class="inline-block w-full text-center py-3 px-4 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-950 font-bold text-xs shadow transition-colors">
-                        Ajukan Kerjasama Riset
+                        <?= $isEn ? 'Apply for Research Partnership' : 'Ajukan Kerjasama Riset' ?>
                     </a>
                 </div>
 
                 <!-- Link to Repositori Unduhan -->
                 <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs space-y-3">
                     <h4 class="text-sm font-bold text-navy-950 flex items-center gap-2">
-                        <i class="fa-solid fa-download text-maritime-600"></i> Dokumen & SOP Klaster
+                        <i class="fa-solid fa-download text-maritime-600"></i> <?= $isEn ? 'Cluster Documents & SOPs' : 'Dokumen & SOP Klaster' ?>
                     </h4>
                     <p class="text-xs text-slate-600 leading-relaxed">
-                        Unduh SOP pengujian laboratorium, panduan metodologi survei, dan template KAK terkait klaster ini di pusat repositori.
+                        <?= $isEn 
+                            ? 'Download laboratory testing SOPs, survey methodology guidelines, and ToR templates related to this cluster from the central repository.' 
+                            : 'Unduh SOP pengujian laboratorium, panduan metodologi survei, dan template KAK terkait klaster ini di pusat repositori.' ?>
                     </p>
                     <a href="<?= base_url('unduhan') ?>" class="inline-flex items-center gap-1.5 text-xs font-semibold text-maritime-600 hover:text-navy-950 pt-1">
-                        <span>Buka Pusat Repositori</span>
+                        <span><?= $isEn ? 'Open Repository Center' : 'Buka Pusat Repositori' ?></span>
                         <i class="fa-solid fa-arrow-right text-[10px]"></i>
                     </a>
                 </div>
@@ -261,11 +268,11 @@
         <section class="mt-16 pt-12 border-t border-slate-200 space-y-6">
             <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
                 <div>
-                    <span class="text-maritime-600 uppercase text-xs font-bold tracking-wider block">Eksplorasi Keilmuan</span>
-                    <h3 class="text-xl sm:text-2xl font-bold text-navy-950 mt-0.5">Jelajahi Klaster Riset Lainnya</h3>
+                    <span class="text-maritime-600 uppercase text-xs font-bold tracking-wider block"><?= $isEn ? 'Scientific Exploration' : 'Eksplorasi Keilmuan' ?></span>
+                    <h3 class="text-xl sm:text-2xl font-bold text-navy-950 mt-0.5"><?= $isEn ? 'Explore Other Research Clusters' : 'Jelajahi Klaster Riset Lainnya' ?></h3>
                 </div>
                 <a href="<?= base_url('riset') ?>" class="text-xs font-semibold text-maritime-700 hover:text-navy-950 flex items-center gap-1">
-                    <span>Lihat Semua Klaster & Roadmap</span>
+                    <span><?= $isEn ? 'View All Clusters & Roadmap' : 'Lihat Semua Klaster & Roadmap' ?></span>
                     <i class="fa-solid fa-arrow-right text-[10px]"></i>
                 </a>
             </div>
@@ -288,8 +295,8 @@
 
                     <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
                         <span class="text-slate-400 text-[11px]"><?= esc($other['coordinator']['name']) ?></span>
-                        <a href="<?= base_url('riset/' . $other['id']) ?>" class="font-bold text-maritime-600 hover:text-navy-950 flex items-center gap-1">
-                            <span>Detail</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        <a href="<?= base_url('riset/' . $other['slug']) ?>" class="font-bold text-maritime-600 hover:text-navy-950 flex items-center gap-1">
+                            <span><?= $isEn ? 'Details' : 'Detail' ?></span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
                         </a>
                     </div>
                 </div>

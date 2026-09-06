@@ -2,18 +2,20 @@
 
 <?= $this->section('content') ?>
 
+<?php $isEn = (service('request')->getLocale() === 'en'); ?>
+
 <!-- Page Header Banner -->
 <div class="bg-navy-950 text-white py-14 relative overflow-hidden border-b-2 border-gold-500">
     <div class="absolute inset-0 opacity-10 bg-pattern"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <nav class="flex items-center space-x-2 text-xs text-gold-400 mb-2 font-medium">
-            <a href="<?= base_url() ?>" class="hover:underline">Beranda</a>
+            <a href="<?= base_url() ?>" class="hover:underline"><?= lang('App.nav_home') ?></a>
             <span>/</span>
-            <span class="text-slate-300">Riset & Inovasi</span>
+            <span class="text-slate-300"><?= lang('App.nav_research') ?></span>
         </nav>
-        <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">Klaster & Roadmap Riset Kemaritiman</h1>
+        <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white"><?= lang('App.nav_research_roadmap') ?></h1>
         <p class="text-slate-300 text-xs sm:text-sm mt-1 max-w-2xl">
-            Peta jalan penelitian multidisiplin jangka panjang Universitas Maritim Raja Ali Haji untuk mewujudkan kemandirian sains kelautan nasional.
+            <?= $isEn ? 'Long-term multidisciplinary research roadmap of Raja Ali Haji Maritime University to advance national ocean science autonomy.' : 'Peta jalan penelitian multidisiplin jangka panjang Universitas Maritim Raja Ali Haji untuk mewujudkan kemandirian sains kelautan nasional.' ?>
         </p>
     </div>
 </div>
@@ -25,9 +27,9 @@
         <!-- 4 Klaster Riset Section -->
         <div class="space-y-8">
             <div>
-                <span class="text-maritime-600 uppercase text-xs font-bold tracking-wider block">Arsitektur Keilmuan</span>
-                <h3 class="text-2xl font-bold text-navy-950 mt-1">Klaster Bidang Unggulan Riset</h3>
-                <p class="text-slate-600 text-xs sm:text-sm mt-1">Didesain secara khusus untuk menjawab tantangan geografis Kepulauan Riau dan kedaulatan laut Indonesia.</p>
+                <span class="text-maritime-600 uppercase text-xs font-bold tracking-wider block"><?= $isEn ? 'Scientific Architecture' : 'Arsitektur Keilmuan' ?></span>
+                <h3 class="text-2xl font-bold text-navy-950 mt-1"><?= $isEn ? 'Strategic Research Clusters' : 'Klaster Bidang Unggulan Riset' ?></h3>
+                <p class="text-slate-600 text-xs sm:text-sm mt-1"><?= $isEn ? 'Specifically structured to address Riau Islands archipelagic challenges and Indonesian maritime sovereignty.' : 'Didesain secara khusus untuk menjawab tantangan geografis Kepulauan Riau dan kedaulatan laut Indonesia.' ?></p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -50,9 +52,9 @@
                         </p>
                     </div>
                     <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-                        <span class="text-slate-500"><strong class="text-slate-700">Koordinator:</strong> <?= esc($cl['coordinator']['name'] ?? 'Tim Dewan Pakar') ?></span>
+                        <span class="text-slate-500"><strong class="text-slate-700"><?= lang('App.cluster_coordinator') ?>:</strong> <?= esc($cl['coordinator']['name'] ?? 'Tim Dewan Pakar') ?></span>
                         <a href="<?= base_url('riset/' . $cl['slug']) ?>" class="font-bold text-maritime-600 hover:text-navy-950 flex items-center gap-1">
-                            <span>Pelajari Klaster</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            <span><?= lang('App.cluster_explore') ?></span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
                         </a>
                     </div>
                 </div>
@@ -63,8 +65,8 @@
         <!-- Roadmap Riset 2025-2030 -->
         <div class="bg-white rounded-2xl p-8 sm:p-10 border border-slate-200 shadow-sm space-y-8">
             <div>
-                <span class="text-gold-600 uppercase text-xs font-bold tracking-wider block">Rencana Jangka Panjang</span>
-                <h3 class="text-xl sm:text-2xl font-bold text-navy-950 mt-1">Roadmap Riset Kemaritiman (2025 – 2030)</h3>
+                <span class="text-gold-600 uppercase text-xs font-bold tracking-wider block"><?= $isEn ? 'Strategic Roadmap' : 'Rencana Jangka Panjang' ?></span>
+                <h3 class="text-xl sm:text-2xl font-bold text-navy-950 mt-1"><?= $isEn ? 'Maritime Research Roadmap (2025 – 2030)' : 'Roadmap Riset Kemaritiman (2025 – 2030)' ?></h3>
             </div>
 
             <div class="space-y-6 relative before:absolute before:inset-0 before:left-3.5 before:w-0.5 before:bg-slate-200">

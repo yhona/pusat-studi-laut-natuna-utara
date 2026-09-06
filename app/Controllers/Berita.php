@@ -19,11 +19,28 @@ class Berita extends BaseController
      */
     public function index(): string
     {
+        $isEn = (service('request')->getLocale() === 'en');
         $articles = $this->beritaModel->orderBy('published_at', 'DESC')->findAll();
+
+        if ($isEn) {
+            foreach ($articles as &$art) {
+                if ($art['category'] === 'Riset') {
+                    $art['category'] = 'Research';
+                } elseif ($art['category'] === 'Kerjasama') {
+                    $art['category'] = 'Partnership';
+                } elseif ($art['category'] === 'Pengabdian') {
+                    $art['category'] = 'Community Service';
+                } elseif ($art['category'] === 'Seminar') {
+                    $art['category'] = 'Conference';
+                }
+            }
+            unset($art);
+        }
+
         $categories = array_values(array_unique(array_filter(array_column($articles, 'category'))));
 
         $data = [
-            'title'      => 'Berita & Agenda Kegiatan - Pusat Studi Laut Natuna Utara UMRAH',
+            'title'      => $isEn ? 'News & Maritime Agenda - NNSRC UMRAH' : 'Berita & Agenda Kegiatan - Pusat Studi Laut Natuna Utara UMRAH',
             'articles'   => $articles,
             'categories' => $categories,
         ];
@@ -40,16 +57,44 @@ class Berita extends BaseController
      */
     public function detail(string $slug): string
     {
+        $isEn = (service('request')->getLocale() === 'en');
         $article = $this->beritaModel->where('slug', $slug)->first();
 
         if (! $article) {
             throw PageNotFoundException::forPageNotFound('Artikel berita tidak ditemukan: ' . esc($slug));
         }
 
+        if ($isEn) {
+            if ($article['category'] === 'Riset') {
+                $article['category'] = 'Research';
+            } elseif ($article['category'] === 'Kerjasama') {
+                $article['category'] = 'Partnership';
+            } elseif ($article['category'] === 'Pengabdian') {
+                $article['category'] = 'Community Service';
+            } elseif ($article['category'] === 'Seminar') {
+                $article['category'] = 'Conference';
+            }
+        }
+
         $related = $this->getRelatedArticles($slug, 3);
 
+        if ($isEn) {
+            foreach ($related as &$rel) {
+                if ($rel['category'] === 'Riset') {
+                    $rel['category'] = 'Research';
+                } elseif ($rel['category'] === 'Kerjasama') {
+                    $rel['category'] = 'Partnership';
+                } elseif ($rel['category'] === 'Pengabdian') {
+                    $rel['category'] = 'Community Service';
+                } elseif ($rel['category'] === 'Seminar') {
+                    $rel['category'] = 'Conference';
+                }
+            }
+            unset($rel);
+        }
+
         $data = [
-            'title'   => $article['title'] . ' - North Natuna Sea Research Center UMRAH',
+            'title'   => $article['title'] . ($isEn ? ' - NNSRC UMRAH' : ' - Pusat Studi Laut Natuna Utara UMRAH'),
             'article' => $article,
             'related' => $related,
         ];

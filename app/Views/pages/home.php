@@ -2,6 +2,8 @@
 
 <?= $this->section('content') ?>
 
+<?php $isEn = (service('request')->getLocale() === 'en'); ?>
+
 <!-- Hero Slider Section (Alpine.js Interactive Carousel) -->
 <section class="relative bg-navy-950 text-white overflow-hidden" x-data="{
     activeSlide: 0,
@@ -47,11 +49,11 @@
 
                     <div class="pt-4 flex flex-wrap items-center gap-4">
                         <a :href="slide.link" class="inline-flex items-center gap-2.5 px-6 py-3 rounded-lg bg-maritime-600 hover:bg-maritime-500 text-white font-semibold text-sm shadow-lg shadow-maritime-900/50 hover:shadow-maritime-600/30 transition-all">
-                            <span>Pelajari Lebih Lanjut</span>
+                            <span><?= lang('App.btn_learn_more') ?></span>
                             <i class="fa-solid fa-arrow-right text-xs"></i>
                         </a>
                         <a href="<?= base_url('profil') ?>" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-navy-800/80 hover:bg-navy-800 text-slate-200 hover:text-white border border-slate-700 font-medium text-sm transition-colors">
-                            <span>Tentang Pusat Studi</span>
+                            <span><?= lang('App.nav_about') ?></span>
                         </a>
                     </div>
                 </div>
@@ -71,10 +73,10 @@
             </div>
 
             <div class="flex items-center gap-2 text-slate-400">
-                <button @click="activeSlide = (activeSlide - 1 + slides.length) % slides.length" class="w-9 h-9 rounded-lg border border-slate-800 hover:border-slate-600 hover:text-white flex items-center justify-center transition-colors" aria-label="Slide sebelumnya">
+                <button @click="activeSlide = (activeSlide - 1 + slides.length) % slides.length" class="w-9 h-9 rounded-lg border border-slate-800 hover:border-slate-600 hover:text-white flex items-center justify-center transition-colors" aria-label="<?= lang('App.slide_prev') ?>">
                     <i class="fa-solid fa-chevron-left text-xs"></i>
                 </button>
-                <button @click="activeSlide = (activeSlide + 1) % slides.length" class="w-9 h-9 rounded-lg border border-slate-800 hover:border-slate-600 hover:text-white flex items-center justify-center transition-colors" aria-label="Slide berikutnya">
+                <button @click="activeSlide = (activeSlide + 1) % slides.length" class="w-9 h-9 rounded-lg border border-slate-800 hover:border-slate-600 hover:text-white flex items-center justify-center transition-colors" aria-label="<?= lang('App.slide_next') ?>">
                     <i class="fa-solid fa-chevron-right text-xs"></i>
                 </button>
             </div>
@@ -87,10 +89,10 @@
 <div class="bg-gold-500 text-navy-950 py-2.5 px-4 text-xs sm:text-sm font-semibold shadow-inner">
     <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
         <div class="flex items-center gap-2 overflow-hidden">
-            <span class="bg-navy-950 text-gold-400 text-[10px] uppercase font-bold px-2 py-0.5 rounded tracking-wider flex-shrink-0">Kajian Khusus</span>
-            <span class="truncate">Pusat Studi Laut Natuna Utara (North Natuna Sea Research Center) UMRAH merilis Seri Kajian Strategis 2026: Dinamika Geopolitik Laut Cina Selatan & Penguatan Kedaulatan ZEE Laut Natuna Utara.</span>
+            <span class="bg-navy-950 text-gold-400 text-[10px] uppercase font-bold px-2 py-0.5 rounded tracking-wider flex-shrink-0"><?= lang('App.announcement_badge') ?></span>
+            <span class="truncate"><?= lang('App.announcement_text') ?></span>
         </div>
-        <a href="<?= base_url('publikasi#policy-brief') ?>" class="flex-shrink-0 underline hover:text-navy-800 font-bold whitespace-nowrap">Baca Policy Brief <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-0.5"></i></a>
+        <a href="<?= base_url('publikasi#policy-brief') ?>" class="flex-shrink-0 underline hover:text-navy-800 font-bold whitespace-nowrap"><?= lang('App.announcement_link') ?> <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-0.5"></i></a>
     </div>
 </div>
 
@@ -107,13 +109,13 @@
                             <img src="<?= base_url('images/kepala_pusat.jpg') ?>" alt="Dr. Atika Thahira, S.H., M.H." class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500">
                             <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-navy-950 via-navy-900/80 to-transparent p-4 text-white text-center z-10">
                                 <h4 class="font-bold text-sm text-gold-400">Dr. Atika Thahira, S.H., M.H.</h4>
-                                <p class="text-[11px] text-slate-300">Koordinator Pusat Studi Laut Natuna Utara UMRAH</p>
+                                <p class="text-[11px] text-slate-300"><?= $isEn ? 'Center Coordinator of North Natuna Sea Research Center UMRAH' : 'Koordinator Pusat Studi Laut Natuna Utara UMRAH' ?></p>
                             </div>
                         </div>
                     </div>
                     <!-- Decorative Maritime Stamp -->
                     <div class="absolute -bottom-3 -right-3 bg-navy-900 text-gold-400 text-xs font-bold px-3 py-1.5 rounded-lg shadow-lg border border-gold-500/30 flex items-center gap-1.5">
-                        <i class="fa-solid fa-shield-halved"></i> Mandat Kemaritiman
+                        <i class="fa-solid fa-shield-halved"></i> <?= lang('App.profile_stamp') ?>
                     </div>
                 </div>
             </div>
@@ -122,20 +124,20 @@
             <div class="lg:col-span-8 space-y-4">
                 <div class="flex items-center gap-2 text-maritime-600 text-xs font-bold uppercase tracking-wider">
                     <span class="w-6 h-0.5 bg-maritime-600"></span>
-                    <span>Pengantar Koordinator Pusat Studi</span>
+                    <span><?= lang('App.profile_lead_intro') ?></span>
                 </div>
                 <h3 class="text-2xl sm:text-3xl font-bold text-navy-950 tracking-tight leading-snug">
-                    Mengokohkan Kedaulatan Bahari Melalui Riset Saintifik & Diplomasi Maritim Laut Natuna Utara
+                    <?= lang('App.profile_lead_heading') ?>
                 </h3>
                 <blockquote class="border-l-4 border-gold-500 pl-4 py-1 text-slate-600 italic text-sm sm:text-base leading-relaxed">
-                    "Kepulauan Riau dengan gugus kepulauan terluar Natuna-Anambas dan perairan Selat Malaka berhadapan langsung dengan episentrum dinamika geopolitik Laut Cina Selatan. Pusat Studi Laut Natuna Utara (North Natuna Sea Research Center) UMRAH memegang mandat moral dan akademis sebagai garda terdepan sains kebaharian, pemantauan oseanografi ZEE, serta penegakan hukum UNCLOS 1982 demi menjaga kedaulatan laut ibu pertiwi."
+                    <?= lang('App.profile_lead_quote') ?>
                 </blockquote>
                 <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                    Sebagai universitas negeri berkarakter kemaritiman di perbatasan utara Indonesia, kami mendedikasikan riset terapan untuk memperkuat data batimetri dasar laut, ketahanan pangan nelayan tradisional di perbatasan, pemodelan arus lintas laut lepas, hingga perlindungan kedaulatan pulau-pulau kecil terluar (PPKT).
+                    <?= lang('App.profile_lead_p') ?>
                 </p>
                 <div class="pt-3 flex flex-wrap items-center gap-4">
                     <a href="<?= base_url('profil') ?>" class="inline-flex items-center gap-2 text-maritime-700 hover:text-maritime-900 font-semibold text-xs sm:text-sm">
-                        <span>Baca Profil & Rencana Strategis Selengkapnya</span>
+                        <span><?= lang('App.profile_read_more') ?></span>
                         <i class="fa-solid fa-chevron-right text-xs"></i>
                     </a>
                 </div>
@@ -150,9 +152,9 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="text-center max-w-2xl mx-auto mb-12 space-y-2">
-            <span class="text-xs uppercase font-bold tracking-wider text-maritime-600">Fokus Keunggulan Riset</span>
-            <h3 class="text-2xl sm:text-3xl font-extrabold text-navy-950">4 Klaster Riset Kemaritiman UMRAH</h3>
-            <p class="text-slate-600 text-xs sm:text-sm">Pusat keunggulan iptek kelautan terpadu yang memfokuskan kajian pada isu strategis perairan perbatasan dan pulau-pulau terpencil.</p>
+            <span class="text-xs uppercase font-bold tracking-wider text-maritime-600"><?= lang('App.cluster_heading_tag') ?></span>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-navy-950"><?= lang('App.cluster_heading_title') ?></h3>
+            <p class="text-slate-600 text-xs sm:text-sm"><?= lang('App.cluster_heading_desc') ?></p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -177,11 +179,11 @@
 
                 <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
                     <div class="text-slate-500">
-                        <span class="block text-[10px] uppercase text-slate-400 font-semibold">Koordinator:</span>
+                        <span class="block text-[10px] uppercase text-slate-400 font-semibold"><?= lang('App.cluster_coordinator') ?>:</span>
                         <span class="font-medium text-slate-700"><?= esc($cluster['lead']) ?></span>
                     </div>
-                    <a href="<?= base_url('riset/' . $cluster['id']) ?>" class="font-semibold text-maritime-600 hover:text-maritime-800 flex items-center gap-1" aria-label="Pelajari Lebih Lanjut">
-                        <span class="text-[11px] font-medium">Pelajari</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    <a href="<?= base_url('riset/' . $cluster['id']) ?>" class="font-semibold text-maritime-600 hover:text-maritime-800 flex items-center gap-1" aria-label="<?= lang('App.btn_learn_more') ?>">
+                        <span class="text-[11px] font-medium"><?= lang('App.cluster_learn') ?></span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
                     </a>
                 </div>
             </div>
@@ -191,23 +193,23 @@
     </div>
 </section>
 
-<!-- Layanan & Jasa Konsultasi Maritim (Adopsi Fitur PSE UGM) -->
+<!-- Layanan & Jasa Konsultasi Maritim -->
 <section class="py-16 bg-white border-y border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
             <div>
                 <span class="text-xs uppercase font-bold tracking-wider text-gold-600 flex items-center gap-1.5">
-                    <i class="fa-solid fa-microchip"></i> Sains Terapan & Hilirisasi
+                    <i class="fa-solid fa-microchip"></i> <?= lang('App.service_tag') ?>
                 </span>
                 <h3 class="text-2xl sm:text-3xl font-extrabold text-navy-950 mt-1">
-                    Layanan & Jasa Konsultasi Kemaritiman
+                    <?= lang('App.service_heading') ?>
                 </h3>
                 <p class="text-xs sm:text-sm text-slate-600 mt-1 max-w-2xl">
-                    Didukung peralatan oseanografi modern dan dewan pakar lintas disiplin untuk melayani pemerintah daerah, BUMN, industri pelayaran, dan masyarakat pesisir.
+                    <?= lang('App.service_desc') ?>
                 </p>
             </div>
             <a href="<?= base_url('layanan') ?>" class="inline-flex items-center gap-2 text-xs font-bold text-maritime-600 hover:text-maritime-800 flex-shrink-0">
-                Lihat Semua Layanan <i class="fa-solid fa-arrow-right"></i>
+                <?= lang('App.btn_view_all_services') ?> <i class="fa-solid fa-arrow-right"></i>
             </a>
         </div>
 
@@ -217,11 +219,11 @@
                 <div class="w-10 h-10 rounded-lg bg-navy-800 text-gold-400 flex items-center justify-center text-lg mb-4">
                     <i class="fa-solid fa-water"></i>
                 </div>
-                <h4 class="text-base font-bold text-navy-900 mb-2">Survei Batimetri & Oseanografi</h4>
+                <h4 class="text-base font-bold text-navy-900 mb-2"><?= lang('App.service_card_1_title') ?></h4>
                 <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                    Pemetaan kontur kedalaman laut, arus pasang surut, profil gelombang, dan sedimentasi menggunakan Singlebeam / Multibeam Echosounder & ADCP.
+                    <?= lang('App.service_card_1_desc') ?>
                 </p>
-                <a href="<?= base_url('layanan#batimetri') ?>" class="text-xs font-semibold text-maritime-600 hover:underline">Spesifikasi & Instrumen →</a>
+                <a href="<?= base_url('layanan#batimetri') ?>" class="text-xs font-semibold text-maritime-600 hover:underline"><?= $isEn ? 'Specifications & Instruments →' : 'Spesifikasi & Instrumen →' ?></a>
             </div>
 
             <!-- Jasa 2 -->
@@ -229,11 +231,11 @@
                 <div class="w-10 h-10 rounded-lg bg-navy-800 text-gold-400 flex items-center justify-center text-lg mb-4">
                     <i class="fa-solid fa-flask"></i>
                 </div>
-                <h4 class="text-base font-bold text-navy-900 mb-2">Uji Kualitas Air Laut & AMDAL</h4>
+                <h4 class="text-base font-bold text-navy-900 mb-2"><?= lang('App.service_card_2_title') ?></h4>
                 <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                    Pengujian parameter fisika-kimia-biologi perairan laut, deteksi logam berat, klorofil-a, serta studi dampak lingkungan proyek reklamasi dan pelabuhan.
+                    <?= lang('App.service_card_2_desc') ?>
                 </p>
-                <a href="<?= base_url('layanan#amdal') ?>" class="text-xs font-semibold text-maritime-600 hover:underline">Parameter & Prosedur →</a>
+                <a href="<?= base_url('layanan#amdal') ?>" class="text-xs font-semibold text-maritime-600 hover:underline"><?= $isEn ? 'Parameters & Protocols →' : 'Parameter & Prosedur →' ?></a>
             </div>
 
             <!-- Jasa 3 -->
@@ -241,17 +243,17 @@
                 <div class="w-10 h-10 rounded-lg bg-navy-800 text-gold-400 flex items-center justify-center text-lg mb-4">
                     <i class="fa-solid fa-map-location-dot"></i>
                 </div>
-                <h4 class="text-base font-bold text-navy-900 mb-2">Kajian RZWP-3-K & Tata Ruang Laut</h4>
+                <h4 class="text-base font-bold text-navy-900 mb-2"><?= lang('App.service_card_3_title') ?></h4>
                 <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                    Penyusunan dokumen Rencana Zonasi Wilayah Pesisir dan Pulau-Pulau Kecil, pemetaan batas maritim, serta mediasi konflik pemanfaatan ruang laut.
+                    <?= lang('App.service_card_3_desc') ?>
                 </p>
-                <a href="<?= base_url('layanan#zonasi') ?>" class="text-xs font-semibold text-maritime-600 hover:underline">Konsultasi Regulasi →</a>
+                <a href="<?= base_url('layanan#zonasi') ?>" class="text-xs font-semibold text-maritime-600 hover:underline"><?= $isEn ? 'Regulatory Advisory →' : 'Konsultasi Regulasi →' ?></a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Capaian & Statistik Angka (Maritime Metric Counter) -->
+<!-- Capaian & Statistik Angka -->
 <section class="py-14 bg-navy-900 text-white relative overflow-hidden">
     <div class="absolute inset-0 opacity-10 bg-pattern"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -273,7 +275,7 @@
     </div>
 </section>
 
-<!-- Galeri Dokumentasi Ekspedisi Maritim & Fasilitas Lab (Alpine.js Lightbox) -->
+<!-- Galeri Dokumentasi Ekspedisi Maritim & Fasilitas Lab -->
 <section id="galeri" class="py-16 bg-white border-b border-slate-200" x-data="galleryLightbox()" @keydown.escape.window="if (isOpen) close()" @keydown.arrow-right.window="if (isOpen) next()" @keydown.arrow-left.window="if (isOpen) prev()">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
@@ -281,13 +283,13 @@
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
             <div>
                 <span class="text-xs uppercase font-bold tracking-wider text-gold-600 flex items-center gap-1.5">
-                    <i class="fa-solid fa-camera text-gold-500"></i> Dokumentasi Lapangan & Laboratorium
+                    <i class="fa-solid fa-camera text-gold-500"></i> <?= lang('App.gallery_tag') ?>
                 </span>
                 <h3 class="text-2xl sm:text-3xl font-extrabold text-navy-950 mt-1">
-                    Galeri Ekspedisi Sains & Fasilitas Riset
+                    <?= lang('App.gallery_heading') ?>
                 </h3>
                 <p class="text-xs sm:text-sm text-slate-600 mt-1 max-w-2xl">
-                    Rekaman visual kegiatan pelayaran riset laut dalam, survei hidrografi perbatasan, konservasi pesisir, serta instrumen laboratorium terakreditasi di Kepulauan Riau.
+                    <?= lang('App.gallery_desc') ?>
                 </p>
             </div>
 
@@ -296,22 +298,22 @@
                 <button @click="setFilter('all')"
                         class="px-3.5 py-2 rounded-lg transition-all flex items-center gap-1.5 active:scale-[0.98]"
                         :class="activeFilter === 'all' ? 'bg-navy-900 text-gold-400 shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200 border border-slate-200'">
-                    <i class="fa-solid fa-border-all text-[11px]"></i> Semua (6)
+                    <i class="fa-solid fa-border-all text-[11px]"></i> <?= lang('App.gallery_filter_all') ?> (6)
                 </button>
                 <button @click="setFilter('ekspedisi')"
                         class="px-3.5 py-2 rounded-lg transition-all flex items-center gap-1.5 active:scale-[0.98]"
                         :class="activeFilter === 'ekspedisi' ? 'bg-navy-900 text-gold-400 shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200 border border-slate-200'">
-                    <i class="fa-solid fa-ship text-[11px]"></i> Ekspedisi
+                    <i class="fa-solid fa-ship text-[11px]"></i> <?= lang('App.gallery_filter_expedition') ?>
                 </button>
                 <button @click="setFilter('laboratorium')"
                         class="px-3.5 py-2 rounded-lg transition-all flex items-center gap-1.5 active:scale-[0.98]"
                         :class="activeFilter === 'laboratorium' ? 'bg-navy-900 text-gold-400 shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200 border border-slate-200'">
-                    <i class="fa-solid fa-flask text-[11px]"></i> Laboratorium
+                    <i class="fa-solid fa-flask text-[11px]"></i> <?= lang('App.gallery_filter_lab') ?>
                 </button>
                 <button @click="setFilter('blue-carbon')"
                         class="px-3.5 py-2 rounded-lg transition-all flex items-center gap-1.5 active:scale-[0.98]"
                         :class="activeFilter === 'blue-carbon' ? 'bg-navy-900 text-gold-400 shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200 border border-slate-200'">
-                    <i class="fa-solid fa-seedling text-[11px]"></i> Blue Carbon
+                    <i class="fa-solid fa-seedling text-[11px]"></i> <?= lang('App.gallery_filter_blue_carbon') ?>
                 </button>
             </div>
         </div>
@@ -361,7 +363,7 @@
                         <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
                             <span class="text-slate-500 text-[11px] truncate max-w-[170px]" x-text="item.vessel"></span>
                             <span class="inline-flex items-center gap-1 font-semibold text-maritime-600 group-hover:text-navy-900 transition-colors">
-                                Pratinjau <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                                <?= lang('App.gallery_preview') ?> <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
                             </span>
                         </div>
                     </div>
@@ -399,41 +401,40 @@
                               :class="currentItem.badgeClass"
                               x-text="currentItem.categoryLabel"></span>
                         <span class="text-xs text-slate-400 font-mono"
-                              x-text="'Foto ' + (currentIndex + 1) + ' dari ' + filteredItems.length"></span>
+                              x-text="'<?= lang('App.gallery_photo') ?> ' + (currentIndex + 1) + ' <?= lang('App.gallery_of') ?> ' + filteredItems.length"></span>
                     </div>
 
                     <!-- Controls: Prev, Next, Close -->
                     <div class="flex items-center gap-2">
                         <button @click="prev()"
                                 class="w-8 h-8 rounded-lg bg-navy-800 hover:bg-navy-700 text-slate-300 hover:text-white flex items-center justify-center transition-colors border border-navy-700 active:scale-[0.98]"
-                                aria-label="Foto Sebelumnya (Panah Kiri)">
+                                aria-label="Previous">
                             <i class="fa-solid fa-chevron-left text-xs"></i>
                         </button>
                         <button @click="next()"
                                 class="w-8 h-8 rounded-lg bg-navy-800 hover:bg-navy-700 text-slate-300 hover:text-white flex items-center justify-center transition-colors border border-navy-700 active:scale-[0.98]"
-                                aria-label="Foto Selanjutnya (Panah Kanan)">
+                                aria-label="Next">
                             <i class="fa-solid fa-chevron-right text-xs"></i>
                         </button>
                         <button @click="close()"
                                 class="w-8 h-8 rounded-lg bg-rose-900/40 hover:bg-rose-800 text-rose-300 hover:text-white flex items-center justify-center transition-colors border border-rose-700/50 ml-2 active:scale-[0.98]"
-                                aria-label="Tutup Pratinjau (Escape)">
+                                aria-label="Close">
                             <i class="fa-solid fa-xmark text-sm"></i>
                         </button>
                     </div>
                 </div>
 
-                <!-- Modal Main Content: Image & Metadata Drawer -->
+                <!-- Modal Main Content -->
                 <div class="grid grid-cols-1 lg:grid-cols-12">
                     
                     <!-- Left: High-Res Image Container -->
                     <div class="lg:col-span-7 bg-navy-950 flex items-center justify-center p-4 sm:p-6 relative min-h-[320px] max-h-[58vh]">
                         <img :src="currentItem.image" :alt="currentItem.title" class="max-h-[52vh] w-auto max-w-full object-contain rounded-xl shadow-2xl">
                         
-                        <!-- Prev / Next Floating Arrows over Image -->
-                        <button @click="prev()" class="absolute left-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-navy-950/70 hover:bg-navy-900 text-white flex items-center justify-center backdrop-blur-sm border border-navy-700 transition-all shadow-lg active:scale-95" aria-label="Foto sebelumnya">
+                        <button @click="prev()" class="absolute left-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-navy-950/70 hover:bg-navy-900 text-white flex items-center justify-center backdrop-blur-sm border border-navy-700 transition-all shadow-lg active:scale-95" aria-label="Previous photo">
                             <i class="fa-solid fa-chevron-left"></i>
                         </button>
-                        <button @click="next()" class="absolute right-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-navy-950/70 hover:bg-navy-900 text-white flex items-center justify-center backdrop-blur-sm border border-navy-700 transition-all shadow-lg active:scale-95" aria-label="Foto berikutnya">
+                        <button @click="next()" class="absolute right-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-navy-950/70 hover:bg-navy-900 text-white flex items-center justify-center backdrop-blur-sm border border-navy-700 transition-all shadow-lg active:scale-95" aria-label="Next photo">
                             <i class="fa-solid fa-chevron-right"></i>
                         </button>
                     </div>
@@ -448,21 +449,21 @@
                                 <div class="flex items-start gap-2.5 p-2.5 rounded-lg bg-navy-950/60 border border-navy-800">
                                     <i class="fa-solid fa-location-dot text-gold-400 mt-0.5 flex-shrink-0"></i>
                                     <div>
-                                        <span class="block text-[10px] uppercase text-slate-400 font-semibold">Lokasi / Wilayah Perairan:</span>
+                                        <span class="block text-[10px] uppercase text-slate-400 font-semibold"><?= lang('App.gallery_location') ?></span>
                                         <span class="font-medium text-slate-200" x-text="currentItem.location"></span>
                                     </div>
                                 </div>
                                 <div class="flex items-start gap-2.5 p-2.5 rounded-lg bg-navy-950/60 border border-navy-800">
                                     <i class="fa-solid fa-ship text-maritime-400 mt-0.5 flex-shrink-0"></i>
                                     <div>
-                                        <span class="block text-[10px] uppercase text-slate-400 font-semibold">Wahana / Unit Pelaksana:</span>
+                                        <span class="block text-[10px] uppercase text-slate-400 font-semibold"><?= lang('App.gallery_vessel') ?></span>
                                         <span class="font-medium text-slate-200" x-text="currentItem.vessel"></span>
                                     </div>
                                 </div>
                                 <div class="flex items-start gap-2.5 p-2.5 rounded-lg bg-navy-950/60 border border-navy-800">
                                     <i class="fa-solid fa-compass text-emerald-400 mt-0.5 flex-shrink-0"></i>
                                     <div>
-                                        <span class="block text-[10px] uppercase text-slate-400 font-semibold">Fokus Saintifik:</span>
+                                        <span class="block text-[10px] uppercase text-slate-400 font-semibold"><?= lang('App.gallery_focal') ?></span>
                                         <span class="font-medium text-slate-200" x-text="currentItem.focal"></span>
                                     </div>
                                 </div>
@@ -470,7 +471,7 @@
 
                             <!-- Narrative Description -->
                             <div class="space-y-1.5 pt-1">
-                                <span class="block text-[11px] uppercase tracking-wider text-slate-400 font-bold">Deskripsi Teknis:</span>
+                                <span class="block text-[11px] uppercase tracking-wider text-slate-400 font-bold"><?= lang('App.gallery_technical_desc') ?></span>
                                 <p class="text-xs text-slate-300 leading-relaxed" x-text="currentItem.desc"></p>
                             </div>
                         </div>
@@ -479,10 +480,10 @@
                         <div class="pt-4 border-t border-navy-800 flex items-center justify-between gap-3">
                             <a :href="currentItem.image" target="_blank" rel="noopener noreferrer"
                                class="inline-flex items-center gap-2 text-xs font-semibold text-gold-400 hover:text-gold-300 transition-colors">
-                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> Buka Resolusi Asli
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> <?= lang('App.gallery_open_original') ?>
                             </a>
                             <button @click="close()" class="px-4 py-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-xs font-semibold text-slate-200 transition-colors active:scale-[0.98]">
-                                Tutup
+                                <?= lang('App.btn_close') ?>
                             </button>
                         </div>
 
@@ -498,11 +499,91 @@
 
 <script>
 function galleryLightbox() {
+    const isEn = <?= $isEn ? 'true' : 'false' ?>;
     return {
         activeFilter: 'all',
         isOpen: false,
         currentIndex: 0,
-        items: [
+        items: isEn ? [
+            {
+                id: 1,
+                title: 'North Natuna Oceanographic Expedition',
+                category: 'ekspedisi',
+                categoryLabel: 'Sea Expedition',
+                badgeClass: 'bg-gold-500/20 text-gold-400 border-gold-500/30',
+                image: '<?= base_url('images/hero_ship.jpg') ?>',
+                date: '12 - 25 November 2025',
+                location: 'North Natuna Sea (Indonesian EEZ Zone)',
+                vessel: 'UMRAH - BRIN Collaborative Research Vessel',
+                focal: 'Thermocline Characteristics & Layer Current Dynamics',
+                desc: 'Deep-sea research cruise measuring temperature profiles, salinity, and underwater acoustic transmission layer by layer using ADCP sensors and CTD rosette down to 150 meters depth.'
+            },
+            {
+                id: 2,
+                title: 'Bathymetric & Underwater Acoustic Survey',
+                category: 'ekspedisi',
+                categoryLabel: 'Sea Expedition',
+                badgeClass: 'bg-gold-500/20 text-gold-400 border-gold-500/30',
+                image: '<?= base_url('images/batimetri_survey.jpg') ?>',
+                date: '14 - 22 January 2026',
+                location: 'Helen Mars Reef Navigation Route, Malacca Strait',
+                vessel: 'KM. Baruna Jaya IV & UMRAH Hydrography Team',
+                focal: 'IHO S-44 Standard Underwater Hazard Mapping',
+                desc: 'High-resolution seafloor depth sounding using Multibeam Echosounder (MBES) and marine RTK-DGPS to validate safe draft navigation depth limits for commercial tankers.'
+            },
+            {
+                id: 3,
+                title: 'Mangrove Ecology & Blue Carbon Bintan',
+                category: 'blue-carbon',
+                categoryLabel: 'Blue Carbon',
+                badgeClass: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
+                image: '<?= base_url('images/mangrove_research.jpg') ?>',
+                date: '03 - 10 February 2026',
+                location: 'Sebong Pereh Mangrove Forest Area, Bintan',
+                vessel: 'Mini Catamaran Coastal Ecology Division',
+                focal: 'Sediment Coring & Blue Carbon Stock Valuation',
+                desc: 'Mangrove sediment coring down to 1-meter depth and greenhouse gas flux measurement to calculate coastal blue carbon reserves for local community conservation incentives.'
+            },
+            {
+                id: 4,
+                title: 'Oceanography & Marine Instrumentation Laboratory',
+                category: 'laboratorium',
+                categoryLabel: 'Laboratory',
+                badgeClass: 'bg-maritime-500/20 text-maritime-300 border-maritime-500/30',
+                image: '<?= base_url('images/lab_oseanografi.jpg') ?>',
+                date: 'Routine Operations 2026',
+                location: 'Marine Laboratory Building, Dompak Campus',
+                vessel: 'LPPM Oceanographic Instrument Calibration Facility',
+                focal: 'Sensor Calibration for CTD, SVP & Sonar Acoustics',
+                desc: 'Calibration and testing center for physical oceanographic instruments prior to offshore deployment, equipped with hydro-acoustic sensor testing tanks and ISO 17025 compliant service stations.'
+            },
+            {
+                id: 5,
+                title: 'Coastal Water Quality & Sediment Analysis',
+                category: 'laboratorium',
+                categoryLabel: 'Laboratory',
+                badgeClass: 'bg-maritime-500/20 text-maritime-300 border-maritime-500/30',
+                image: '<?= base_url('images/kualitas_air_sedimen.jpg') ?>',
+                date: 'Routine Operations 2026',
+                location: 'UMRAH Integrated Chemistry Laboratory, Tanjungpinang',
+                vessel: 'Spectrophotometry & Granulometry Division',
+                focal: 'Marine Water Quality & Heavy Metal Parameters',
+                desc: 'Accredited testing for marine physical, chemical, and biological parameters: turbidity, TSS, chlorophyll-a, nutrients, and coastal sediment grain size fractionation.'
+            },
+            {
+                id: 6,
+                title: 'Tidal Observation & Marine Weather Station',
+                category: 'laboratorium',
+                categoryLabel: 'Laboratory',
+                badgeClass: 'bg-maritime-500/20 text-maritime-300 border-maritime-500/30',
+                image: '<?= base_url('images/stasiun_pasut_cuaca.jpg') ?>',
+                date: 'Real-time 24/7 Monitoring',
+                location: 'Dompak Pier Tide Station, Riau Strait',
+                vessel: 'AWLR Radar Telemetry & Automatic Weather Station (AWS)',
+                focal: '18.6-Year Tidal Harmonics & Coastal Meteorology',
+                desc: 'Automated observation station recording real-time sea level fluctuations, surface wind speed/direction, barometric pressure, and marine solar radiation for national datum hydrography.'
+            }
+        ] : [
             {
                 id: 1,
                 title: 'Ekspedisi Oseanografi Natuna Utara',
@@ -617,12 +698,12 @@ function galleryLightbox() {
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
             <div>
-                <span class="text-xs uppercase font-bold tracking-wider text-maritime-600">Publikasi & Diseminasi</span>
-                <h3 class="text-2xl sm:text-3xl font-extrabold text-navy-950 mt-1">Kabar & Kegiatan Terbaru</h3>
-                <p class="text-xs sm:text-sm text-slate-600 mt-1">Informasi terkini seputar riset kelautan, seminar maritim, dan agenda pengabdian sivitas.</p>
+                <span class="text-xs uppercase font-bold tracking-wider text-maritime-600"><?= lang('App.news_tag') ?></span>
+                <h3 class="text-2xl sm:text-3xl font-extrabold text-navy-950 mt-1"><?= lang('App.news_heading') ?></h3>
+                <p class="text-xs sm:text-sm text-slate-600 mt-1"><?= lang('App.news_desc') ?></p>
             </div>
             <a href="<?= base_url('berita') ?>" class="inline-flex items-center gap-2 text-xs font-bold text-maritime-600 hover:text-maritime-800">
-                Arsip Berita <i class="fa-solid fa-arrow-right"></i>
+                <?= lang('App.news_archive') ?> <i class="fa-solid fa-arrow-right"></i>
             </a>
         </div>
 
@@ -653,7 +734,7 @@ function galleryLightbox() {
                     </p>
                     <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
                         <span><i class="fa-solid fa-user-pen mr-1 text-slate-400"></i> <?= esc($news['author']) ?></span>
-                        <a href="<?= base_url('berita/' . $news['slug']) ?>" class="font-semibold text-maritime-600 hover:text-navy-900">Baca →</a>
+                        <a href="<?= base_url('berita/' . $news['slug']) ?>" class="font-semibold text-maritime-600 hover:text-navy-900"><?= lang('App.btn_read_more') ?> →</a>
                     </div>
                 </div>
             </article>
@@ -666,9 +747,9 @@ function galleryLightbox() {
 <section class="py-14 bg-white border-t border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div class="max-w-2xl mx-auto mb-8 space-y-1">
-            <span class="text-[11px] uppercase font-bold tracking-widest text-gold-600 block">Jejaring Kemitraan Strategis</span>
-            <h3 class="text-xl sm:text-2xl font-extrabold text-navy-950">Kolaborasi Kementerian, Pemda &amp; Lembaga Riset</h3>
-            <p class="text-slate-500 text-xs sm:text-sm">Didukung sinergi kelembagaan nasional dan internasional dalam penguatan sains kemaritiman.</p>
+            <span class="text-[11px] uppercase font-bold tracking-widest text-gold-600 block"><?= lang('App.partner_tag') ?></span>
+            <h3 class="text-xl sm:text-2xl font-extrabold text-navy-950"><?= lang('App.partner_heading') ?></h3>
+            <p class="text-slate-500 text-xs sm:text-sm"><?= lang('App.partner_desc') ?></p>
         </div>
 
         <!-- Partner Logos Grid -->

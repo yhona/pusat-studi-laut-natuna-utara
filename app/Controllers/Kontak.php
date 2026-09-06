@@ -15,8 +15,9 @@ class Kontak extends BaseController
 
     public function index(): string
     {
+        $isEn = (service('request')->getLocale() === 'en');
         $data = [
-            'title'   => 'Kontak & Kerjasama Riset - Pusat Studi Laut Natuna Utara UMRAH',
+            'title'   => $isEn ? 'Contact & Research Partnerships - NNSRC UMRAH' : 'Kontak & Kerjasama Riset - Pusat Studi Laut Natuna Utara UMRAH',
             'success' => session()->getFlashdata('success'),
             'error'   => session()->getFlashdata('error'),
         ];
@@ -26,6 +27,8 @@ class Kontak extends BaseController
 
     public function kirim()
     {
+        $isEn = (service('request')->getLocale() === 'en');
+
         $postData = [
             'nama'       => trim($this->request->getPost('nama') ?? ''),
             'instansi'   => trim($this->request->getPost('instansi') ?? ''),
@@ -38,12 +41,20 @@ class Kontak extends BaseController
         ];
 
         if (! $this->kontakModel->save($postData)) {
+            $errMsg = $isEn 
+                ? 'Failed to send message. Please check that all required fields are correctly completed.'
+                : 'Gagal mengirim pesan. Silakan periksa kembali kelengkapan data Anda.';
+
             return redirect()->to(base_url('kontak#kerjasama'))
                 ->withInput()
-                ->with('error', 'Gagal mengirim pesan. Silakan periksa kembali kelengkapan data Anda.');
+                ->with('error', $errMsg);
         }
 
+        $succMsg = $isEn
+            ? 'Your partnership inquiry has been successfully submitted to the NNSRC UMRAH Secretariat. Our team will contact you shortly.'
+            : 'Pesan / pengajuan kerjasama Anda telah berhasil dikirimkan ke Sekretariat Pusat Studi Laut Natuna Utara (North Natuna Sea Research Center) UMRAH. Tim kami akan segera menghubungi Anda.';
+
         return redirect()->to(base_url('kontak'))
-            ->with('success', 'Pesan / pengajuan kerjasama Anda telah berhasil dikirimkan ke Sekretariat Pusat Studi Laut Natuna Utara (North Natuna Sea Research Center) UMRAH. Tim kami akan segera menghubungi Anda.');
+            ->with('success', $succMsg);
     }
 }

@@ -1,19 +1,24 @@
 <?= $this->extend('layout/main') ?>
 
 <?= $this->section('content') ?>
+<?php $isEn = (service('request')->getLocale() === 'en'); ?>
 
 <!-- Page Header Banner -->
 <div class="bg-navy-950 text-white py-14 relative overflow-hidden border-b-2 border-gold-500">
     <div class="absolute inset-0 opacity-10 bg-pattern"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <nav class="flex items-center space-x-2 text-xs text-gold-400 mb-2 font-medium">
-            <a href="<?= base_url() ?>" class="hover:underline">Beranda</a>
+            <a href="<?= base_url() ?>" class="hover:underline"><?= lang('App.nav_home') ?></a>
             <span>/</span>
-            <span class="text-slate-300">Berita & Agenda</span>
+            <span class="text-slate-300"><?= lang('App.nav_news') ?></span>
         </nav>
-        <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">Berita, Agenda & Opini Kemaritiman</h1>
+        <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">
+            <?= $isEn ? 'News, Agenda & Maritime Perspectives' : 'Berita, Agenda & Opini Kemaritiman' ?>
+        </h1>
         <p class="text-slate-300 text-xs sm:text-sm mt-1 max-w-2xl">
-            Kumpulan berita penelitian, agenda seminar internasional, dan kabar pengabdian masyarakat pesisir UMRAH.
+            <?= $isEn 
+                ? 'Collection of maritime research updates, international scientific conferences, and coastal community empowerment initiatives of UMRAH.' 
+                : 'Kumpulan berita penelitian, agenda seminar internasional, dan kabar pengabdian masyarakat pesisir UMRAH.' ?>
         </p>
     </div>
 </div>
@@ -42,7 +47,9 @@
             <div class="flex flex-wrap items-center gap-2 text-xs font-semibold">
                 <button @click="filterCategory('all')"
                         class="px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
-                        :class="selectedCategory === 'all' ? 'bg-navy-900 text-gold-400 font-bold' : 'bg-slate-100 hover:bg-slate-200 text-slate-700'">Semua</button>
+                        :class="selectedCategory === 'all' ? 'bg-navy-900 text-gold-400 font-bold' : 'bg-slate-100 hover:bg-slate-200 text-slate-700'">
+                    <?= $isEn ? 'All' : 'Semua' ?>
+                </button>
                 <?php foreach (($categories ?? []) as $cat): ?>
                 <button @click="filterCategory('<?= esc($cat) ?>')"
                         class="px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
@@ -52,7 +59,7 @@
                 <?php endforeach; ?>
             </div>
             <div class="relative w-full sm:w-64">
-                <input x-model="search" type="text" id="search-berita" name="search-berita" aria-label="Cari berita atau agenda riset" placeholder="Cari berita/agenda..." class="w-full pl-9 pr-4 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:border-maritime-500">
+                <input x-model="search" type="text" id="search-berita" name="search-berita" aria-label="<?= $isEn ? 'Search news or research agenda' : 'Cari berita atau agenda riset' ?>" placeholder="<?= $isEn ? 'Search news or agenda...' : 'Cari berita/agenda...' ?>" class="w-full pl-9 pr-4 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:border-maritime-500">
                 <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-xs"></i>
             </div>
         </div>
@@ -97,7 +104,7 @@
                     </p>
                     <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
                         <span><i class="fa-solid fa-user-pen mr-1 text-slate-400"></i> <?= esc($art['author']) ?></span>
-                        <a href="<?= base_url('berita/' . $art['slug']) ?>" class="font-semibold text-maritime-600 hover:text-navy-950">Baca Selengkapnya →</a>
+                        <a href="<?= base_url('berita/' . $art['slug']) ?>" class="font-semibold text-maritime-600 hover:text-navy-950"><?= $isEn ? 'Read Full Article →' : 'Baca Selengkapnya →' ?></a>
                     </div>
                 </div>
             </article>

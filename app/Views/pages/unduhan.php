@@ -1,6 +1,7 @@
 <?= $this->extend('layout/main') ?>
 
 <?= $this->section('content') ?>
+<?php $isEn = (service('request')->getLocale() === 'en'); ?>
 
 <!-- Page Header Banner -->
 <div class="bg-navy-950 text-white py-14 relative overflow-hidden border-b-2 border-gold-500">
@@ -8,14 +9,18 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <nav class="flex items-center space-x-2 text-xs text-gold-400 mb-2 font-medium">
             <a href="<?= base_url() ?>" class="hover:underline flex items-center gap-1">
-                <i class="fa-solid fa-house text-[10px]"></i> Beranda
+                <i class="fa-solid fa-house text-[10px]"></i> <?= lang('App.nav_home') ?>
             </a>
             <span>/</span>
-            <span class="text-slate-300">Repositori & Unduhan</span>
+            <span class="text-slate-300"><?= lang('App.nav_downloads') ?></span>
         </nav>
-        <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">Repositori Dokumen & Pusat Unduhan</h1>
+        <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">
+            <?= $isEn ? 'Document Repository & Download Center' : 'Repositori Dokumen & Pusat Unduhan' ?>
+        </h1>
         <p class="text-slate-300 text-xs sm:text-sm mt-1 max-w-2xl leading-relaxed">
-            Akses terbuka ke naskah Standar Operasional Prosedur (SOP) laboratorium, policy brief kajian strategis kemaritiman, formulir kerjasama, dan panduan penelitian Universitas Maritim Raja Ali Haji.
+            <?= $isEn 
+                ? 'Open access to certified laboratory Standard Operating Procedures (SOP), strategic maritime policy briefs, partnership templates, and research safety guidelines of Universitas Maritim Raja Ali Haji.' 
+                : 'Akses terbuka ke naskah Standar Operasional Prosedur (SOP) laboratorium, policy brief kajian strategis kemaritiman, formulir kerjasama, dan panduan penelitian Universitas Maritim Raja Ali Haji.' ?>
         </p>
     </div>
 </div>
@@ -46,8 +51,8 @@
                     <i class="fa-solid fa-folder-open"></i>
                 </div>
                 <div>
-                    <span class="text-xs text-slate-500 font-medium block">Total Dokumen</span>
-                    <span class="text-xl sm:text-2xl font-extrabold text-navy-950"><?= esc($stats['total']) ?> Dokumen</span>
+                    <span class="text-xs text-slate-500 font-medium block"><?= $isEn ? 'Total Documents' : 'Total Dokumen' ?></span>
+                    <span class="text-xl sm:text-2xl font-extrabold text-navy-950"><?= esc($stats['total']) ?> <?= $isEn ? 'Files' : 'Dokumen' ?></span>
                 </div>
             </div>
 
@@ -56,8 +61,8 @@
                     <i class="fa-solid fa-flask-vial"></i>
                 </div>
                 <div>
-                    <span class="text-xs text-slate-500 font-medium block">SOP Terakreditasi</span>
-                    <span class="text-xl sm:text-2xl font-extrabold text-navy-950"><?= esc($stats['sop']) ?> Prosedur</span>
+                    <span class="text-xs text-slate-500 font-medium block"><?= $isEn ? 'Accredited SOPs' : 'SOP Terakreditasi' ?></span>
+                    <span class="text-xl sm:text-2xl font-extrabold text-navy-950"><?= esc($stats['sop']) ?> <?= $isEn ? 'Procedures' : 'Prosedur' ?></span>
                 </div>
             </div>
 
@@ -67,7 +72,7 @@
                 </div>
                 <div>
                     <span class="text-xs text-slate-500 font-medium block">Policy Brief</span>
-                    <span class="text-xl sm:text-2xl font-extrabold text-navy-950"><?= esc($stats['policy']) ?> Naskah</span>
+                    <span class="text-xl sm:text-2xl font-extrabold text-navy-950"><?= esc($stats['policy']) ?> <?= $isEn ? 'Papers' : 'Naskah' ?></span>
                 </div>
             </div>
 
@@ -76,7 +81,7 @@
                     <i class="fa-solid fa-cloud-arrow-down"></i>
                 </div>
                 <div>
-                    <span class="text-xs text-slate-500 font-medium block">Total Diunduh</span>
+                    <span class="text-xs text-slate-500 font-medium block"><?= $isEn ? 'Total Downloads' : 'Total Diunduh' ?></span>
                     <span class="text-xl sm:text-2xl font-extrabold text-navy-950"><?= number_format($stats['total_dl']) ?>+</span>
                 </div>
             </div>
@@ -91,13 +96,13 @@
                         @click="filterCategory('all')" 
                         :class="selectedCategory === 'all' ? 'bg-navy-900 text-gold-400 font-bold shadow-xs' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium'"
                         class="px-3.5 py-2 rounded-xl text-xs transition-all duration-200 cursor-pointer">
-                    Semua (<?= count($documents) ?>)
+                    <?= $isEn ? 'All' : 'Semua' ?> (<?= count($documents) ?>)
                 </button>
                 <button type="button" 
                         @click="filterCategory('sop')" 
                         :class="selectedCategory === 'sop' ? 'bg-navy-900 text-gold-400 font-bold shadow-xs' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium'"
                         class="px-3.5 py-2 rounded-xl text-xs transition-all duration-200 cursor-pointer">
-                    SOP Lab (<?= $stats['sop'] ?>)
+                    <?= $isEn ? 'Lab SOPs' : 'SOP Lab' ?> (<?= $stats['sop'] ?>)
                 </button>
                 <button type="button" 
                         @click="filterCategory('policy-brief')" 
@@ -109,13 +114,13 @@
                         @click="filterCategory('template')" 
                         :class="selectedCategory === 'template' ? 'bg-navy-900 text-gold-400 font-bold shadow-xs' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium'"
                         class="px-3.5 py-2 rounded-xl text-xs transition-all duration-200 cursor-pointer">
-                    Template Kerjasama (<?= $stats['template'] ?>)
+                    <?= $isEn ? 'Partnership Templates' : 'Template Kerjasama' ?> (<?= $stats['template'] ?>)
                 </button>
                 <button type="button" 
                         @click="filterCategory('panduan')" 
                         :class="selectedCategory === 'panduan' ? 'bg-navy-900 text-gold-400 font-bold shadow-xs' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium'"
                         class="px-3.5 py-2 rounded-xl text-xs transition-all duration-200 cursor-pointer">
-                    Panduan Riset (<?= $stats['panduan'] ?>)
+                    <?= $isEn ? 'Research Guidelines' : 'Panduan Riset' ?> (<?= $stats['panduan'] ?>)
                 </button>
             </div>
 
@@ -124,12 +129,12 @@
                 <input type="text" 
                        id="search-docs"
                        name="search"
-                       aria-label="Cari dokumen, SOP, atau kode"
+                       aria-label="<?= $isEn ? 'Search document name, SOP, or code' : 'Cari dokumen, SOP, atau kode' ?>"
                        x-model="search" 
-                       placeholder="Cari nama dokumen, SOP, atau kode..." 
+                       placeholder="<?= $isEn ? 'Search document name, SOP, or code...' : 'Cari nama dokumen, SOP, atau kode...' ?>" 
                        class="w-full pl-9 pr-4 py-2.5 text-xs border border-slate-200 rounded-xl focus:outline-none focus:border-maritime-600 focus:ring-1 focus:ring-maritime-600 bg-slate-50">
                 <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-slate-400 text-xs"></i>
-                <button x-show="search.length > 0" x-cloak @click="search = ''" class="absolute right-3 top-2.5 text-slate-400 hover:text-slate-600 text-xs" title="Hapus pencarian">
+                <button x-show="search.length > 0" x-cloak @click="search = ''" class="absolute right-3 top-2.5 text-slate-400 hover:text-slate-600 text-xs" title="<?= $isEn ? 'Clear search' : 'Hapus pencarian' ?>">
                     <i class="fa-solid fa-circle-xmark"></i>
                 </button>
             </div>
@@ -178,13 +183,13 @@
                 <div class="pt-4 border-t border-slate-100 flex items-center justify-between gap-3 text-xs">
                     <div class="text-slate-400 text-[11px] space-y-0.5">
                         <span class="block"><i class="fa-regular fa-hard-drive mr-1"></i> <?= esc($doc['file_size']) ?></span>
-                        <span class="block text-slate-500 font-medium"><i class="fa-solid fa-download mr-1 text-gold-500"></i> <?= number_format($doc['downloads']) ?> kali</span>
+                        <span class="block text-slate-500 font-medium"><i class="fa-solid fa-download mr-1 text-gold-500"></i> <?= number_format($doc['downloads']) ?> <?= $isEn ? 'times' : 'kali' ?></span>
                     </div>
 
                     <a href="<?= base_url('unduhan/unduh/' . $doc['slug']) ?>" 
                        class="inline-flex items-center gap-2 bg-navy-900 hover:bg-maritime-700 text-gold-400 hover:text-white px-4 py-2 rounded-xl font-bold text-xs shadow-xs transition-all duration-200 flex-shrink-0">
                         <i class="fa-solid fa-arrow-down-to-line"></i>
-                        <span>Unduh</span>
+                        <span><?= $isEn ? 'Download' : 'Unduh' ?></span>
                     </a>
                 </div>
 
@@ -197,15 +202,17 @@
             <div class="space-y-2 max-w-2xl">
                 <div class="flex items-center gap-2 text-gold-400 text-xs font-bold uppercase tracking-wider">
                     <i class="fa-solid fa-stamp"></i>
-                    <span>Kebutuhan Dokumen Resmi & Legalitas</span>
+                    <span><?= $isEn ? 'Official Documents & Legal Requests' : 'Kebutuhan Dokumen Resmi & Legalitas' ?></span>
                 </div>
-                <h4 class="text-base sm:text-lg font-bold text-white">Memerlukan Naskah Kerjasama Asli Bertanda Tangan Basah?</h4>
+                <h4 class="text-base sm:text-lg font-bold text-white"><?= $isEn ? 'Require Physical Certified Copies or Stamped MoU Agreements?' : 'Memerlukan Naskah Kerjasama Asli Bertanda Tangan Basah?' ?></h4>
                 <p class="text-xs text-slate-300 leading-relaxed">
-                    Untuk instansi pemerintah, BUMN, atau perguruan tinggi mitra yang membutuhkan naskah MoU bermaterai, dokumen KAK/TOR tender resmi, atau sertifikat pengujian laboratorium terakreditasi, silakan menghubungi Sekretariat PSK UMRAH.
+                    <?= $isEn 
+                        ? 'For government ministries, state-owned enterprises, or partner universities requiring stamped MoUs, formal tender ToRs, or accredited laboratory test certificates, please contact the NNSRC UMRAH Secretariat directly.' 
+                        : 'Untuk instansi pemerintah, BUMN, atau perguruan tinggi mitra yang membutuhkan naskah MoU bermaterai, dokumen KAK/TOR tender resmi, atau sertifikat pengujian laboratorium terakreditasi, silakan menghubungi Sekretariat PSK UMRAH.' ?>
                 </p>
             </div>
             <a href="<?= base_url('kontak#kerjasama') ?>" class="inline-flex items-center gap-2 bg-gold-500 hover:bg-gold-400 text-navy-950 px-5 py-3 rounded-xl font-bold text-xs shadow transition-colors flex-shrink-0">
-                <i class="fa-solid fa-paper-plane"></i> Hubungi Sekretariat
+                <i class="fa-solid fa-paper-plane"></i> <?= $isEn ? 'Contact Secretariat' : 'Hubungi Sekretariat' ?>
             </a>
         </div>
 
