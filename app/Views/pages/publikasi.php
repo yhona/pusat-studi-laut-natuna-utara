@@ -273,6 +273,7 @@ $metadataMap = $isEn ? [
 
                 <!-- Institutional Affiliation Form -->
                 <form @submit.prevent="submitDownload()" class="space-y-4 pt-1">
+                    <?= csrf_field() ?>
                     <div class="border-b border-slate-100 pb-2">
                         <span class="font-bold text-navy-950 text-xs sm:text-sm block"><?= $isEn ? 'Document Access Registration' : 'Formulir Registrasi Pengunduh Dokumen' ?></span>
                         <span class="text-[11px] text-slate-500"><?= $isEn ? 'Institutional affiliation data is collected for maritime research impact monitoring by LPPM UMRAH.' : 'Data institusi digunakan untuk keperluan statistik dampak hilirisasi riset kelautan LPPM UMRAH.' ?></span>

@@ -194,9 +194,13 @@
                     </div>
 
                     <div class="flex items-center gap-4">
-                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-navy-900 to-maritime-700 flex items-center justify-center text-gold-400 text-2xl font-bold shadow-md flex-shrink-0">
-                            <i class="fa-solid fa-user-graduate"></i>
-                        </div>
+                        <?php if (!empty($cluster['coordinator']['image'])): ?>
+                            <img src="<?= esc($cluster['coordinator']['image']) ?>" alt="<?= esc($cluster['coordinator']['name']) ?>" class="w-16 h-16 rounded-2xl object-cover border border-slate-200 shadow-md flex-shrink-0">
+                        <?php else: ?>
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-navy-900 to-maritime-700 flex items-center justify-center text-gold-400 text-2xl font-bold shadow-md flex-shrink-0">
+                                <i class="fa-solid fa-user-graduate"></i>
+                            </div>
+                        <?php endif; ?>
                         <div class="space-y-0.5 overflow-hidden">
                             <h4 class="text-sm font-bold text-navy-950 leading-tight truncate">
                                 <?= esc($cluster['coordinator']['name']) ?>

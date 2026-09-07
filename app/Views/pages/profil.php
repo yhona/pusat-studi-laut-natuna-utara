@@ -101,7 +101,7 @@
             <!-- Campus Waterfront Architectural Showcase -->
             <div class="relative rounded-2xl overflow-hidden shadow-xl border border-slate-200 group">
                 <div class="aspect-[21/9] w-full overflow-hidden bg-navy-950">
-                    <img src="<?= base_url('images/gedung_umrah.png') ?>" 
+                    <img src="<?= base_url('images/kampus_umrah_dompak.jpg') ?>" 
                          alt="Gedung Rektorat & Laboratorium Riset Maritim UMRAH Dompak" 
                          class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
                 </div>

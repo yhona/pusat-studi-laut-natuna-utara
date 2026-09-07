@@ -118,12 +118,21 @@ class Riset extends BaseController
         $isEn = ($locale === 'en');
 
         $aliases = [
-            'sosial-budaya'            => 'hukum-laut',
-            'hukum-laut-internasional' => 'hukum-laut',
-            'oseanografi'              => 'hukum-laut',
-            'oseanografi-iklim'        => 'hukum-laut',
-            'logistik-konektivitas'    => 'logistik',
-            'energi-terbarukan'        => 'energi',
+            'sosial-budaya'                               => 'hukum-laut',
+            'hukum-laut-internasional'                    => 'hukum-laut',
+            'hukum-laut'                                  => 'hukum-laut',
+            'oseanografi'                                 => 'hukum-laut',
+            'oseanografi-iklim'                           => 'hukum-laut',
+            'logistik'                                    => 'logistik',
+            'logistik-konektivitas'                       => 'logistik',
+            'logistik-dan-konektivitas-kepulauan'         => 'logistik',
+            'ekonomi-biru-dan-tata-kelola-maritim'        => 'logistik',
+            'ketahanan-digital'                           => 'ketahanan-digital',
+            'ketahanan-digital-kepulauan'                 => 'ketahanan-digital',
+            'energi'                                      => 'energi',
+            'energi-terbarukan'                           => 'energi',
+            'energi-terbarukan-di-wilayah-kepulauan'      => 'energi',
+            'energi-terbarukan-dan-keberlanjutan-pesisir' => 'energi',
         ];
 
         if (isset($aliases[$slug])) {
@@ -134,6 +143,15 @@ class Riset extends BaseController
 
         if (! $cluster) {
             throw PageNotFoundException::forPageNotFound('Klaster riset tidak ditemukan: ' . esc($slug));
+        }
+
+        $coordImages = [
+            'hukum-laut'        => base_url('images/peneliti_rachma.jpg'),
+            'logistik'          => base_url('images/peneliti_ady.jpg'),
+            'ketahanan-digital' => base_url('images/peneliti_dedy.jpg'),
+        ];
+        if (isset($coordImages[$cluster['slug']])) {
+            $cluster['coordinator']['image'] = $coordImages[$cluster['slug']];
         }
 
         if ($isEn) {

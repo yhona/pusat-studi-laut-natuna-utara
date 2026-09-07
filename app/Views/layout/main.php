@@ -3,8 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= esc($title ?? 'Beranda') ?> - <?= lang('App.dept_name') ?> UMRAH</title>
+    <?php
+        $siteTitle = (service('request')->getLocale() === 'en') ? 'NNSRC UMRAH' : (lang('App.dept_name') . ' UMRAH');
+        $rawTitle = trim($title ?? 'Beranda');
+        $fullTitle = (str_ends_with($rawTitle, 'UMRAH') || str_ends_with($rawTitle, 'NNSRC') || str_ends_with($rawTitle, lang('App.dept_name')))
+            ? $rawTitle 
+            : ($rawTitle . ' - ' . $siteTitle);
+    ?>
+    <title><?= esc($fullTitle) ?></title>
     <meta name="description" content="<?= lang('App.dept_name') ?> <?= lang('App.inst_name') ?> - Lembaga riset, kajian strategis, dan inovasi ilmu pengetahuan kelautan dan peradaban maritim di Laut Natuna Utara dan Kepulauan Riau.">
+    <meta property="og:title" content="<?= esc($fullTitle) ?>">
+    <meta property="og:description" content="<?= lang('App.dept_name') ?> <?= lang('App.inst_name') ?> - Inovasi riset kelautan, diplomasi perbatasan maritim, dan ketahanan kepulauan.">
+    <meta property="og:image" content="<?= base_url('images/hero_ship.jpg') ?>">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="<?= current_url() ?>">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<?= esc($fullTitle) ?>">
+    <meta name="twitter:image" content="<?= base_url('images/hero_ship.jpg') ?>">
 
     <!-- Favicon Logo Resmi UMRAH -->
     <link rel="shortcut icon" type="image/png" href="<?= base_url('images/logo_umrah.png') ?>">

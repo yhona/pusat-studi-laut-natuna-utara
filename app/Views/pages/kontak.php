@@ -125,6 +125,7 @@
                     </div>
 
                     <form action="<?= base_url('kontak/kirim') ?>" method="POST" class="space-y-4 text-xs sm:text-sm">
+                        <?= csrf_field() ?>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div class="space-y-1.5">
                                 <label class="block font-semibold text-slate-700"><?= $isEn ? 'Full Name & Degree' : 'Nama Lengkap & Gelar' ?> <span class="text-rose-500">*</span></label>

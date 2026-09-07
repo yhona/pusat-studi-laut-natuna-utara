@@ -101,6 +101,8 @@ class BeritaSeeder extends Seeder
                 'is_featured'    => 1,
                 'published_at'   => '2026-03-10 11:00:00',
                 'created_at'     => '2026-03-10 11:00:00',
+                'updated_at'     => '2026-03-10 11:00:00',
+            ],
         ];
 
         $builder = $this->db->table('berita');

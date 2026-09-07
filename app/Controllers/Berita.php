@@ -58,6 +58,18 @@ class Berita extends BaseController
     public function detail(string $slug): string
     {
         $isEn = (service('request')->getLocale() === 'en');
+
+        $aliases = [
+            'ekspedisi-maritim-natuna-utara-2026' => 'didukung-pendanaan-dari-pulitzer-center-umrah-dan-uns-kolaborasi-riset-internasional',
+            'pulitzer-center-umrah'               => 'didukung-pendanaan-dari-pulitzer-center-umrah-dan-uns-kolaborasi-riset-internasional',
+            'peluncuran-pusat-studi'              => 'umrah-luncurkan-pusat-studi-laut-natuna-utara-perkuat-kedaulatan-maritim-perbatasan',
+            'mou-bskln-kemlu'                     => 'bskln-kemlu-dan-umrah-resmi-jalin-kerjasama-strategis-pendirian-pusat-studi-laut-natuna-utara',
+        ];
+
+        if (isset($aliases[$slug])) {
+            $slug = $aliases[$slug];
+        }
+
         $article = $this->beritaModel->where('slug', $slug)->first();
 
         if (! $article) {
@@ -94,7 +106,7 @@ class Berita extends BaseController
         }
 
         $data = [
-            'title'   => $article['title'] . ($isEn ? ' - NNSRC UMRAH' : ' - Pusat Studi Laut Natuna Utara UMRAH'),
+            'title'   => $article['title'],
             'article' => $article,
             'related' => $related,
         ];
