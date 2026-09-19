@@ -44,12 +44,6 @@ class Unduhan extends BaseController
                 } elseif ($doc['slug'] === 'pb-diplomasi-perbatasan-natuna') {
                     $doc['title'] = 'Policy Brief: Border Area Management & Diplomatic Sovereignty Strategy in North Natuna Sea';
                     $doc['desc']  = 'Implementation of border management supporting diplomatic enforcement of territorial sovereignty in the North Natuna Sea by MoFA BSKLN and UMRAH.';
-                } elseif ($doc['slug'] === 'pb-kedaulatan-natuna-lcs') {
-                    $doc['title'] = 'Policy Brief: Archipelagic Maritime Governance & Natuna EEZ Sovereignty';
-                    $doc['desc']  = 'Strategic policy recommendations for integrated satellite monitoring and UNCLOS 1982 maritime border protection.';
-                } elseif ($doc['slug'] === 'pb-logistik-pesisir') {
-                    $doc['title'] = 'Policy Brief: Coastal Logistics Connectivity & Island Inflation Stabilization';
-                    $doc['desc']  = 'Pioneer sea transportation subsidy models and local feeder port optimization to reduce inter-island price disparities.';
                 } elseif ($doc['slug'] === 'tpl-mou-riset-kemaritiman') {
                     $doc['title'] = 'Standard MoU Template for Marine Research & Pentahelix Collaboration';
                     $doc['desc']  = 'Official draft agreement for joint research between UMRAH, regional governments, industries, and international universities.';

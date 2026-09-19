@@ -36,46 +36,6 @@ $metadataMap = $isEn ? [
             'Harmonizing cross-border security policies with socioeconomic welfare programs for outermost island communities.'
         ]
     ],
-    'PB-04/PSK-UMRAH/2026' => [
-        'slug'            => 'pb-kedaulatan-natuna-lcs',
-        'file_size'       => '4.1 MB',
-        'pages'           => 22,
-        'recommendations' => [
-            'Strengthening joint maritime patrols and coastal radar surveillance stations in North Natuna EEZ in synergy with Bakamla & Navy.',
-            'Empowering large-scale Indonesian-flagged commercial fishing fleets to actively assert sovereign economic rights across the 200nm EEZ.',
-            'Leveraging UNCLOS 1982 international legal instruments and the 2016 South China Sea Arbitral Award to fortify Indonesia\'s diplomatic standing.'
-        ]
-    ],
-    'PB-01/PSK-UMRAH/2026' => [
-        'slug'            => 'pb-logistik-pesisir',
-        'file_size'       => '3.2 MB',
-        'pages'           => 16,
-        'recommendations' => [
-            'Optimizing schedules and pioneer vessel fleets on Tanjungpinang - Natuna - Anambas routes based on seasonal monsoon patterns.',
-            'Implementing freight rate subsidy schemes for staple foodstuffs to outer islands via Kepri regional maritime SOE.',
-            'Establishing decentralized cold chain facilities at local feeder ports to curtail seafood and produce price disparities.'
-        ]
-    ],
-    'PB-03/PSK-UMRAH/2025' => [
-        'slug'            => 'pb-karbon-biru',
-        'file_size'       => '3.5 MB',
-        'pages'           => 18,
-        'recommendations' => [
-            'Integrating Bintan mangrove and seagrass carbon reserve data into the National Climate Change Registry (SRN-PPI).',
-            'Enacting regional regulations regarding carbon incentive revenue-sharing mechanisms for coastal villages.',
-            'Granting conservation stewardship rights grounded in indigenous Malay customary wisdom to artisanal fisherfolk.'
-        ]
-    ],
-    'PB-02/PSK-UMRAH/2025' => [
-        'slug'            => 'pb-tata-ruang-laut',
-        'file_size'       => '2.9 MB',
-        'pages'           => 14,
-        'recommendations' => [
-            'Designating a minimum 5-nautical-mile mining buffer zone from traditional artisanal fishing grounds.',
-            'Mandating comprehensive bathymetry assessments and Total Suspended Solids (TSS) dispersion modeling prior to concession permits.',
-            'Formulating measurable economic compensation frameworks for fishermen affected by catch declines near shipping lanes.'
-        ]
-    ]
 ] : [
     'PB-05/PSK-UMRAH/2026' => [
         'slug'            => 'pb-diplomasi-perbatasan-natuna',
@@ -87,46 +47,6 @@ $metadataMap = $isEn ? [
             'Harmonisasi regulasi keamanan laut dengan program penguatan ekonomi dan kesejahteraan masyarakat di pulau-pulau terluar Laut Natuna Utara.'
         ]
     ],
-    'PB-04/PSK-UMRAH/2026' => [
-        'slug'            => 'pb-kedaulatan-natuna-lcs',
-        'file_size'       => '4.1 MB',
-        'pages'           => 22,
-        'recommendations' => [
-            'Penguatan patroli terpadu dan stasiun radar pantai ZEE Laut Natuna Utara berkoordinasi dengan Bakamla & TNI AL.',
-            'Pemberdayaan armada kapal perikanan tangkap skala besar nasional berbendera Indonesia beroperasi aktif di perairan 200 mil ZEE.',
-            'Pemanfaatan instrumen hukum internasional UNCLOS 1982 dan Arbitrase Laut Cina Selatan 2016 dalam memperkokoh posisi diplomatik Indonesia.'
-        ]
-    ],
-    'PB-01/PSK-UMRAH/2026' => [
-        'slug'            => 'pb-logistik-pesisir',
-        'file_size'       => '3.2 MB',
-        'pages'           => 16,
-        'recommendations' => [
-            'Optimalisasi jadwal dan armada kapal perintis rute Tanjungpinang - Natuna - Anambas berbasis pola monsun.',
-            'Penerapan skema subsidi freight rate bahan pangan pokok antar-pulau terluar melalui BUMD maritim Kepri.',
-            'Pembangunan cold storage terdesentralisasi di pelabuhan pengumpan lokal guna menekan disparitas harga ikan dan pangan.'
-        ]
-    ],
-    'PB-03/PSK-UMRAH/2025' => [
-        'slug'            => 'pb-karbon-biru',
-        'file_size'       => '3.5 MB',
-        'pages'           => 18,
-        'recommendations' => [
-            'Integrasi data cadangan karbon mangrove dan lamun Bintan ke dalam Sistem Registri Nasional (SRN-PPI).',
-            'Penerbitan Peraturan Daerah tentang skema dana bagi hasil insentif karbon bagi desa-desa pesisir.',
-            'Pemberian hak kelola konservasi berbasis kearifan adat Melayu bagi kelompok masyarakat nelayan lokal.'
-        ]
-    ],
-    'PB-02/PSK-UMRAH/2025' => [
-        'slug'            => 'pb-tata-ruang-laut',
-        'file_size'       => '2.9 MB',
-        'pages'           => 14,
-        'recommendations' => [
-            'Penetapan zona penyangga bebas tambang minimum 5 mil laut dari wilayah tangkap nelayan tradisional.',
-            'Kewajiban kajian batimetri detail dan pemodelan dispersi sedimen tersuspensi (TSS) sebelum izin konsesi.',
-            'Mekanisme kompensasi ekonomi terukur bagi nelayan atas dampak penurunan hasil tangkapan di sekitar alur laut.'
-        ]
-    ]
 ];
 ?>
 
