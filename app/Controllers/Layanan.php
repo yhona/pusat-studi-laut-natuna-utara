@@ -108,6 +108,31 @@ class Layanan extends BaseController
                     ]
                 ]
             ],
+            [
+                'id'          => 'pelabuhan',
+                'icon'        => 'fa-anchor',
+                'title'       => 'Port Engineering & Maritime Infrastructure',
+                'desc'        => 'Technical design of jetties/piers, vessel berthing facilities, navigation channel maneuvering models, harbor basin sedimentation studies, and maritime structural integrity assessments.',
+                'instruments' => ['Delft3D & Mike21 Coastal Hydrodynamic Modeling', 'Sub-Bottom Profiler & Side Scan Sonar', 'Non-Destructive Testing (NDT) for Marine Concrete', 'Real-Time MetOcean Buoy Sensors'],
+                'deliverables'=> ['Detail Engineering Design (DED) for Jetties & Ports', 'Technical Feasibility Study (FS) Report', 'Harbor Basin Siltation & Vessel Maneuver Simulation'],
+                'spec'        => [
+                    'code'        => 'SOP-PRT-05',
+                    'standards'   => 'Ministry of Transportation Port Technical Guidelines (KP 432/2017) & PIANC Standards',
+                    'sopName'     => 'Standard Operating Procedure for Port Infrastructure Design & Jetty Feasibility Studies',
+                    'sopSlug'     => 'sop-survei-batimetri',
+                    'instruments' => [
+                        ['name' => 'Hydrodynamic & Wave Modeling Suite', 'param' => 'Delft3D Flow/Wave & Mike21 for wave reflection and calm basin analysis'],
+                        ['name' => 'Sub-Bottom Profiler (SBP)', 'param' => 'Seafloor strata penetrations up to 30 m for jetty piling assessment'],
+                        ['name' => 'Side Scan Sonar High-Res', 'param' => 'Dual frequency 100/400 kHz for seabed obstacle & mooring clearance'],
+                        ['name' => 'Rebound Hammer & Ultrasonic NDT', 'param' => 'Concrete strength & maritime rebar corrosion ultrasonic analysis']
+                    ],
+                    'deliverables' => [
+                        'Detail Engineering Design (DED) Architectural & Structural Port Blueprint',
+                        'Hydro-Oceanographic Feasibility Study Report for Berth & Pier Placement',
+                        'Vessel Berthing Energy & Channel Navigation Safety Risk Assessment'
+                    ]
+                ]
+            ],
         ] : [
             [
                 'id'          => 'batimetri',
@@ -204,6 +229,31 @@ class Layanan extends BaseController
                         'Sertifikat Kelulusan Resmi Terakreditasi LPPM UMRAH',
                         'Portofolio Hasil Karya Peta Tematik Kelautan Peserta',
                         'Akses Repositori Data Spasial Modul Pelatihan Berkelanjutan'
+                    ]
+                ]
+            ],
+            [
+                'id'          => 'pelabuhan',
+                'icon'        => 'fa-anchor',
+                'title'       => 'Perancangan & Jasa Kepelabuhanan',
+                'desc'        => 'Desain teknis dermaga perintis, fasilitas sandar kapal, pemodelan manuver kapal di alur pelabuhan, studi sedimentasi kolam labuh, dan inspeksi kelayakan struktur maritim.',
+                'instruments' => ['Software Pemodelan Hidrodinamika Pelabuhan (Delft3D/Mike21)', 'Sub-Bottom Profiler & Side Scan Sonar', 'Instrumen NDT Uji Beton & Korosi Dermaga', 'Sensor Telemetri MetOcean Real-Time'],
+                'deliverables'=> ['Detail Engineering Design (DED) Dermaga/Pelabuhan Rakyat', 'Laporan Studi Kelayakan Teknis (Feasibility Study)', 'Analisis Dinamika Manuver Olah Gerak Kapal & Sedimentasi'],
+                'spec'        => [
+                    'code'        => 'SOP-PRT-05',
+                    'standards'   => 'Standar Teknis Kepelabuhanan Kemenhub RI (KP 432/2017) & PIANC Guidelines',
+                    'sopName'     => 'SOP Perancangan Fasilitas Pelabuhan & Survei Kelayakan Teknis Dermaga',
+                    'sopSlug'     => 'sop-survei-batimetri',
+                    'instruments' => [
+                        ['name' => 'Suite Software Hidrodinamika & Gelombang', 'param' => 'Delft3D Flow/Wave & Mike21 analisis ketenangan kolam pelabuhan'],
+                        ['name' => 'Sub-Bottom Profiler (SBP)', 'param' => 'Penetrasi stratigrafi dasar laut hingga 30 m untuk pondasi tiang pancang'],
+                        ['name' => 'Side Scan Sonar Frekuensi Ganda', 'param' => '100/400 kHz deteksi rintangan navigasi dasar alur sandar'],
+                        ['name' => 'Ultrasonic Pulse Velocity & Schmidt Hammer', 'param' => 'Uji mutu beton struktur dermaga dan mitigasi korosi air laut']
+                    ],
+                    'deliverables' => [
+                        'Buku Gambar Rencana Detail Engineering Design (DED) Struktur Dermaga',
+                        'Laporan Kelayakan Hidro-Oseanografi dan Penempatan Sisi Sandar',
+                        'Kajian Energi Tumbukan Kapal (Berthing Energy) dan Mitigasi Sedimentasi'
                     ]
                 ]
             ],

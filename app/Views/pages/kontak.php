@@ -150,14 +150,16 @@
 
                         <div class="space-y-1.5">
                             <label class="block font-semibold text-slate-700"><?= $isEn ? 'Inquiry / Service Category' : 'Kategori Keperluan / Layanan' ?> <span class="text-rose-500">*</span></label>
+                            <?php $selectedKat = old('kategori') ?: service('request')->getGet('layanan'); ?>
                             <select name="kategori" required class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 focus:outline-none focus:border-maritime-600 text-xs sm:text-sm bg-white text-slate-700">
                                 <option value=""><?= $isEn ? '-- Select Service Category --' : '-- Pilih Kategori Layanan --' ?></option>
-                                <option value="kerjasama" <?= old('kategori') === 'kerjasama' ? 'selected' : '' ?>><?= $isEn ? 'MoU / Joint Research Collaboration Agreement' : 'Inisiasi MoU / Perjanjian Kerjasama Riset' ?></option>
-                                <option value="batimetri" <?= old('kategori') === 'batimetri' ? 'selected' : '' ?>><?= $isEn ? 'Bathymetry & Hydro-Oceanographic Survey Request' : 'Permohonan Jasa Survei Batimetri & Oseanografi' ?></option>
-                                <option value="amdal" <?= old('kategori') === 'amdal' ? 'selected' : '' ?>><?= $isEn ? 'Seawater Quality Testing & Coastal Environmental Impact Study' : 'Uji Kualitas Air Laut & Kajian AMDAL Pesisir' ?></option>
-                                <option value="zonasi" <?= old('kategori') === 'zonasi' ? 'selected' : '' ?>><?= $isEn ? 'Marine Spatial Planning & Coastal Zoning Advisory (RZWP-3-K)' : 'Konsultasi Regulasi Zonasi Ruang Laut (RZWP-3-K)' ?></option>
-                                <option value="pelatihan" <?= old('kategori') === 'pelatihan' ? 'selected' : '' ?>><?= $isEn ? 'Marine GIS & Acoustic Remote Sensing Training' : 'Pelatihan GIS & Remote Sensing Kelautan' ?></option>
-                                <option value="lainnya" <?= old('kategori') === 'lainnya' ? 'selected' : '' ?>><?= $isEn ? 'General Inquiry / Others' : 'Pertanyaan Umum / Lainnya' ?></option>
+                                <option value="kerjasama" <?= $selectedKat === 'kerjasama' ? 'selected' : '' ?>><?= $isEn ? 'MoU / Joint Research Collaboration Agreement' : 'Inisiasi MoU / Perjanjian Kerjasama Riset' ?></option>
+                                <option value="batimetri" <?= $selectedKat === 'batimetri' ? 'selected' : '' ?>><?= $isEn ? 'Bathymetry & Hydro-Oceanographic Survey Request' : 'Permohonan Jasa Survei Batimetri & Oseanografi' ?></option>
+                                <option value="amdal" <?= $selectedKat === 'amdal' ? 'selected' : '' ?>><?= $isEn ? 'Seawater Quality Testing & Coastal Environmental Impact Study' : 'Uji Kualitas Air Laut & Kajian AMDAL Pesisir' ?></option>
+                                <option value="zonasi" <?= $selectedKat === 'zonasi' ? 'selected' : '' ?>><?= $isEn ? 'Marine Spatial Planning & Coastal Zoning Advisory (RZWP-3-K)' : 'Konsultasi Regulasi Zonasi Ruang Laut (RZWP-3-K)' ?></option>
+                                <option value="pelabuhan" <?= $selectedKat === 'pelabuhan' ? 'selected' : '' ?>><?= $isEn ? 'Port Engineering & Maritime Infrastructure Consultation' : 'Perancangan & Jasa Kepelabuhanan (DED Dermaga)' ?></option>
+                                <option value="pelatihan" <?= $selectedKat === 'pelatihan' ? 'selected' : '' ?>><?= $isEn ? 'Marine GIS & Acoustic Remote Sensing Training' : 'Pelatihan GIS & Remote Sensing Kelautan' ?></option>
+                                <option value="lainnya" <?= $selectedKat === 'lainnya' ? 'selected' : '' ?>><?= $isEn ? 'General Inquiry / Others' : 'Pertanyaan Umum / Lainnya' ?></option>
                             </select>
                         </div>
 

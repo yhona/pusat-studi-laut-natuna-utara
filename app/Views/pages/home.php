@@ -308,13 +308,13 @@
             <!-- Jasa 3 -->
             <div class="border border-slate-200 rounded-xl p-6 hover:border-maritime-500 hover:shadow-lg transition-all bg-gradient-to-b from-white to-slate-50/50">
                 <div class="w-10 h-10 rounded-lg bg-navy-800 text-gold-400 flex items-center justify-center text-lg mb-4">
-                    <i class="fa-solid fa-map-location-dot"></i>
+                    <i class="fa-solid fa-anchor"></i>
                 </div>
                 <h4 class="text-base font-bold text-navy-900 mb-2"><?= lang('App.service_card_3_title') ?></h4>
                 <p class="text-xs text-slate-600 leading-relaxed mb-4">
                     <?= lang('App.service_card_3_desc') ?>
                 </p>
-                <a href="<?= base_url('layanan#zonasi') ?>" class="text-xs font-semibold text-maritime-600 hover:underline"><?= $isEn ? 'Regulatory Advisory →' : 'Konsultasi Regulasi →' ?></a>
+                <a href="<?= base_url('layanan#pelabuhan') ?>" class="text-xs font-semibold text-maritime-600 hover:underline"><?= $isEn ? 'Port Engineering & Specs →' : 'Spesifikasi & DED Dermaga →' ?></a>
             </div>
         </div>
     </div>
