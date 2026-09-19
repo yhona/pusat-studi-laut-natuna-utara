@@ -136,7 +136,7 @@ return [
     'service_desc'            => 'Didukung peralatan oseanografi modern dan dewan pakar lintas disiplin untuk melayani pemerintah daerah, BUMN, industri pelayaran, dan masyarakat pesisir.',
     'service_view_all'        => 'Lihat Semua Layanan',
     'service_card_1_title'    => 'Perancangan & Jasa Kepelabuhanan',
-    'service_card_1_desc'     => 'Desain teknis dermaga, fasilitas sandar kapal, pemodelan manuver kapal di alur pelabuhan, studi sedimentasi kolam labuh, dan inspeksi kelayakan struktur maritim.',
+    'service_card_1_desc'     => 'Feasibility Study (Studi Kelayakan) Pelabuhan dengan melakukan kajian Kebutuhan dan Kepatuhan, Kajian Hukum dan Kelembagaan, Analisa Permintaan dan Pasar, Kajian Teknis Pelabuhan, Kajian Aspek Keuangan dan Komersial, Kajian Lingkungan dan Sosial serta Kajian Kerjasama dan Resiko.',
     'service_card_2_title'    => 'Pemberdayaan Masyarakat Perbatasan & Kajian Potensi',
     'service_card_2_desc'     => 'Pendampingan sosial-ekonomi nelayan pesisir, kajian potensi sumber daya hayati laut, penguatan kelembagaan lokal masyarakat pulau kecil, serta pemetaan komoditas maritim unggulan.',
     'service_card_3_title'    => 'Pengembangan Tata Ruang Laut & Pulau-Pulau Kecil',

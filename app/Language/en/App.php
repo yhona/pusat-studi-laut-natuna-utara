@@ -136,7 +136,7 @@ return [
     'service_desc'            => 'Supported by modern oceanographic instrumentation and multidisciplinary expert boards to serve regional governments, SOEs, shipping industries, and coastal communities.',
     'service_view_all'        => 'View All Services',
     'service_card_1_title'    => 'Port Engineering & Maritime Infrastructure',
-    'service_card_1_desc'     => 'Technical design of jetties/piers, vessel berthing facilities, navigation basin sedimentation modeling, and structural integrity assessments for ports.',
+    'service_card_1_desc'     => 'Port Feasibility Study comprising Need & Compliance Assessments, Legal & Institutional Studies, Market Demand Analysis, Technical Port Studies, Financial & Commercial Feasibility, Environmental & Social Impact, and Partnership & Risk Governance.',
     'service_card_2_title'    => 'Border Community Empowerment & Maritime Potential Studies',
     'service_card_2_desc'     => 'Socio-economic assistance for border fishing communities, assessment of prime maritime commodities, local institutional capacity building, and economic downstreaming in small islands.',
     'service_card_3_title'    => 'Marine Spatial Planning & Small Islands Development',

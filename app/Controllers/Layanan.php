@@ -14,7 +14,7 @@ class Layanan extends BaseController
                 'id'          => 'pelabuhan',
                 'icon'        => 'fa-anchor',
                 'title'       => 'Port Engineering & Maritime Infrastructure',
-                'desc'        => 'Technical design of jetties/piers, vessel berthing facilities, navigation channel maneuvering models, harbor basin sedimentation studies, and maritime structural integrity assessments.',
+                'desc'        => 'Port Feasibility Study comprising Need & Compliance Assessments, Legal & Institutional Studies, Market Demand Analysis, Technical Port Studies, Financial & Commercial Feasibility, Environmental & Social Impact, and Partnership & Risk Governance.',
                 'instruments' => ['Delft3D & Mike21 Coastal Hydrodynamic Modeling', 'Sub-Bottom Profiler & Side Scan Sonar', 'Non-Destructive Testing (NDT) for Marine Concrete', 'Real-Time MetOcean Buoy Sensors'],
                 'deliverables'=> ['Detail Engineering Design (DED) for Jetties & Ports', 'Technical Feasibility Study (FS) Report', 'Harbor Basin Siltation & Vessel Maneuver Simulation'],
                 'spec'        => [
@@ -89,7 +89,7 @@ class Layanan extends BaseController
                 'id'          => 'pelabuhan',
                 'icon'        => 'fa-anchor',
                 'title'       => 'Perancangan & Jasa Kepelabuhanan',
-                'desc'        => 'Desain teknis dermaga perintis, fasilitas sandar kapal, pemodelan manuver kapal di alur pelabuhan, studi sedimentasi kolam labuh, dan inspeksi kelayakan struktur maritim.',
+                'desc'        => 'Feasibility Study (Studi Kelayakan) Pelabuhan dengan melakukan kajian Kebutuhan dan Kepatuhan, Kajian Hukum dan Kelembagaan, Analisa Permintaan dan Pasar, Kajian Teknis Pelabuhan, Kajian Aspek Keuangan dan Komersial, Kajian Lingkungan dan Sosial serta Kajian Kerjasama dan Resiko.',
                 'instruments' => ['Software Pemodelan Hidrodinamika Pelabuhan (Delft3D/Mike21)', 'Sub-Bottom Profiler & Side Scan Sonar', 'Instrumen NDT Uji Beton & Korosi Dermaga', 'Sensor Telemetri MetOcean Real-Time'],
                 'deliverables'=> ['Detail Engineering Design (DED) Dermaga/Pelabuhan Rakyat', 'Laporan Studi Kelayakan Teknis (Feasibility Study)', 'Analisis Dinamika Manuver Olah Gerak Kapal & Sedimentasi'],
                 'spec'        => [
