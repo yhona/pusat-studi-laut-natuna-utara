@@ -15,23 +15,32 @@ class Layanan extends BaseController
                 'icon'        => 'fa-anchor',
                 'title'       => 'Port Engineering & Maritime Infrastructure',
                 'desc'        => 'Port Feasibility Study comprising Need & Compliance Assessments, Legal & Institutional Studies, Market Demand Analysis, Technical Port Studies, Financial & Commercial Feasibility, Environmental & Social Impact, and Partnership & Risk Governance.',
-                'instruments' => ['Delft3D & Mike21 Coastal Hydrodynamic Modeling', 'Sub-Bottom Profiler & Side Scan Sonar', 'Non-Destructive Testing (NDT) for Marine Concrete', 'Real-Time MetOcean Buoy Sensors'],
-                'deliverables'=> ['Detail Engineering Design (DED) for Jetties & Ports', 'Technical Feasibility Study (FS) Report', 'Harbor Basin Siltation & Vessel Maneuver Simulation'],
+                'instruments' => [
+                    'Port Need, Regulatory Compliance & Institutional Assessment Toolkit',
+                    'Origin-Destination Cargo & Passenger Market Demand Forecasting Models',
+                    'Hydro-Oceanographic & Vessel Maneuver Simulation Software (Delft3D / Mike21)',
+                    'Financial Feasibility, Commercial Structuring & Risk Analytics Matrix'
+                ],
+                'deliverables'=> [
+                    'Comprehensive 7-Pillar Port Feasibility Study (FS) Master Report',
+                    'Technical Port Engineering, Basin Hydrodynamics & Berth Layout Blueprint',
+                    'Financial Model (IRR, NPV, Sensitivity) & Investment Risk Mitigation Framework'
+                ],
                 'spec'        => [
                     'code'        => 'SOP-PRT-05',
-                    'standards'   => 'Ministry of Transportation Port Technical Guidelines (KP 432/2017) & PIANC Standards',
-                    'sopName'     => 'Standard Operating Procedure for Port Infrastructure Design & Jetty Feasibility Studies',
+                    'standards'   => 'Ministry of Transportation Port Feasibility Guidelines (KP 432/2017 & Law No. 17/2008) & PIANC Standards',
+                    'sopName'     => 'Standard Operating Procedure for Port Feasibility Studies & Technical Maritime Design',
                     'sopSlug'     => 'sop-survei-batimetri',
                     'instruments' => [
-                        ['name' => 'Hydrodynamic & Wave Modeling Suite', 'param' => 'Delft3D Flow/Wave & Mike21 for wave reflection and calm basin analysis'],
-                        ['name' => 'Sub-Bottom Profiler (SBP)', 'param' => 'Seafloor strata penetrations up to 30 m for jetty piling assessment'],
-                        ['name' => 'Side Scan Sonar High-Res', 'param' => 'Dual frequency 100/400 kHz for seabed obstacle & mooring clearance'],
-                        ['name' => 'Rebound Hammer & Ultrasonic NDT', 'param' => 'Concrete strength & maritime rebar corrosion ultrasonic analysis']
+                        ['name' => 'Needs, Compliance & Institutional Studies', 'param' => 'Alignment with National Port Masterplan (RIPN), marine spatial zoning (RZWP-3-K), and port authority governance'],
+                        ['name' => 'Market Demand & Hinterland Analytics', 'param' => 'Inter-island cargo forecasting, vessel fleet sizing, and logistics competitiveness modeling'],
+                        ['name' => 'Technical & Hydrodynamic Assessments', 'param' => 'Delft3D/Mike21 basin calmness, sedimentation, bathymetric draft clearance, and pier structural design'],
+                        ['name' => 'Financial, Environmental & Risk Modeling', 'param' => 'CAPEX/OPEX viability, initial EIA/AMDAL criteria, public-private partnership (PPP/B2B) risk matrix']
                     ],
                     'deliverables' => [
-                        'Detail Engineering Design (DED) Architectural & Structural Port Blueprint',
-                        'Hydro-Oceanographic Feasibility Study Report for Berth & Pier Placement',
-                        'Vessel Berthing Energy & Channel Navigation Safety Risk Assessment'
+                        'Full Verified Port Feasibility Study (FS) Technical & Commercial Dossier',
+                        'Technical Engineering Recommendations, Berth Dimensions & Channel Navigation Guidelines',
+                        'Financial Sensitivity Spreadsheets & Multi-Risk Mitigation Strategic Plan'
                     ]
                 ]
             ],
@@ -90,23 +99,32 @@ class Layanan extends BaseController
                 'icon'        => 'fa-anchor',
                 'title'       => 'Perancangan & Jasa Kepelabuhanan',
                 'desc'        => 'Feasibility Study (Studi Kelayakan) Pelabuhan dengan melakukan kajian Kebutuhan dan Kepatuhan, Kajian Hukum dan Kelembagaan, Analisa Permintaan dan Pasar, Kajian Teknis Pelabuhan, Kajian Aspek Keuangan dan Komersial, Kajian Lingkungan dan Sosial serta Kajian Kerjasama dan Resiko.',
-                'instruments' => ['Software Pemodelan Hidrodinamika Pelabuhan (Delft3D/Mike21)', 'Sub-Bottom Profiler & Side Scan Sonar', 'Instrumen NDT Uji Beton & Korosi Dermaga', 'Sensor Telemetri MetOcean Real-Time'],
-                'deliverables'=> ['Detail Engineering Design (DED) Dermaga/Pelabuhan Rakyat', 'Laporan Studi Kelayakan Teknis (Feasibility Study)', 'Analisis Dinamika Manuver Olah Gerak Kapal & Sedimentasi'],
+                'instruments' => [
+                    'Toolkit Analisis Kebutuhan, Kepatuhan Regulasi & Kelembagaan Pelabuhan',
+                    'Pemodelan Permintaan & Pasar Kargo/Penumpang (Origin-Destination)',
+                    'Software Simulasi Hidro-Oseanografi & Manuver Kapal (Delft3D / Mike21)',
+                    'Instrumen Kelayakan Finansial, Analisis Resiko & Kerjasama (KPBU / B2B)'
+                ],
+                'deliverables'=> [
+                    'Laporan Feasibility Study (FS) Komprehensif 7 Pilar Kelayakan Pelabuhan',
+                    'Dokumen Analisis Teknis, Hidrodinamika Kolam Labuh & Rekomendasi Layout Dermaga',
+                    'Model Proyeksi Finansial (IRR, NPV, Payback) & Matriks Mitigasi Resiko Investasi'
+                ],
                 'spec'        => [
                     'code'        => 'SOP-PRT-05',
-                    'standards'   => 'Standar Teknis Kepelabuhanan Kemenhub RI (KP 432/2017) & PIANC Guidelines',
-                    'sopName'     => 'SOP Perancangan Fasilitas Pelabuhan & Survei Kelayakan Teknis Dermaga',
+                    'standards'   => 'Pedoman Studi Kelayakan Pelabuhan Kemenhub RI (KP 432/2017 & UU No. 17/2008) serta Standar PIANC',
+                    'sopName'     => 'SOP Penyusunan Studi Kelayakan (Feasibility Study) & Perancangan Teknis Pelabuhan',
                     'sopSlug'     => 'sop-survei-batimetri',
                     'instruments' => [
-                        ['name' => 'Suite Software Hidrodinamika & Gelombang', 'param' => 'Delft3D Flow/Wave & Mike21 analisis ketenangan kolam pelabuhan'],
-                        ['name' => 'Sub-Bottom Profiler (SBP)', 'param' => 'Penetrasi stratigrafi dasar laut hingga 30 m untuk pondasi tiang pancang'],
-                        ['name' => 'Side Scan Sonar Frekuensi Ganda', 'param' => '100/400 kHz deteksi rintangan navigasi dasar alur sandar'],
-                        ['name' => 'Ultrasonic Pulse Velocity & Schmidt Hammer', 'param' => 'Uji mutu beton struktur dermaga dan mitigasi korosi air laut']
+                        ['name' => 'Kajian Kebutuhan, Kepatuhan & Kelembagaan', 'param' => 'Evaluasi kepatuhan RIPN, tata ruang wilayah (RZWP-3-K), dan regulasi otoritas maritim'],
+                        ['name' => 'Analisa Permintaan, Pasar & Hinterland', 'param' => 'Model proyeksi arus barang, armada kapal feeder, dan daya saing logistik kepulauan'],
+                        ['name' => 'Kajian Teknis & Hidro-Oseanografi', 'param' => 'Simulasi Delft3D/Mike21 ketenangan kolam, bathymetry clearance, dan layout dermaga'],
+                        ['name' => 'Kelayakan Finansial, Lingkungan & Resiko', 'param' => 'Kalkulasi CAPEX/OPEX, kelayakan komersial, AMDAL awal, dan skema kemitraan investasi']
                     ],
                     'deliverables' => [
-                        'Buku Gambar Rencana Detail Engineering Design (DED) Struktur Dermaga',
-                        'Laporan Kelayakan Hidro-Oseanografi dan Penempatan Sisi Sandar',
-                        'Kajian Energi Tumbukan Kapal (Berthing Energy) dan Mitigasi Sedimentasi'
+                        'Dokumen Utama Feasibility Study (FS) Pelabuhan Lengkap Terverifikasi Ahli',
+                        'Buku Rekomendasi Desain Teknis, Dimensi Sandar & Karakteristik Alur Pelayaran',
+                        'Matriks Kelayakan Finansial, Analisis Sensitivitas & Rencana Mitigasi Resiko'
                     ]
                 ]
             ],
