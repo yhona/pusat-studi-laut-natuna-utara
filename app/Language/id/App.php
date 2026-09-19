@@ -93,6 +93,16 @@ return [
     'profile_title'           => 'Profil & Personalia Peneliti',
     'profile_subtitle'        => 'Mengenal lebih dekat visi, sejarah mandat kemaritiman, dan dewan pakar periset di Pusat Studi Laut Natuna Utara (North Natuna Sea Research Center) UMRAH.',
     'profile_motto'           => 'Satu Nusa, Satu Laut',
+
+    // Rector's Welcome Speech
+    'rector_speech_badge'     => 'Sambutan Rektor UMRAH',
+    'rector_speech_heading'   => 'Penguatan Sektor Kemaritiman & Riset Terapan di Wilayah Perbatasan',
+    'rector_speech_quote'     => 'Pusat Studi Laut Natuna Utara untuk memperkuat sektor kemaritiman di Kepulaun Riau, Riset yang dilakukan di Pusat Studi ini tidak hanya bersifat akademis, tetapi juga diarahkan untuk menjawab kebutuhan konkret di lapangan, khususnya dalam pengelolaan sumber daya laut dan pembangunan wilayah Perbatasan',
+    'rector_speech_p'         => 'Melalui sinergi riset multidisiplin dan hilirisasi saintifik, UMRAH berkomitmen menghadirkan solusi nyata bagi kedaulatan maritim, kesejahteraan masyarakat pesisir, serta ketahanan kawasan perbatasan terluar Indonesia di Laut Natuna Utara.',
+    'rector_name'             => 'Prof. Dr. Agung Dhamar Syakti, S.Pi., DEA',
+    'rector_title'            => 'Rektor Universitas Maritim Raja Ali Haji (UMRAH)',
+    'rector_btn_strategic'    => 'Lihat Renstra & Visi Misi',
+
     'profile_lead_intro'      => 'Pengantar Koordinator Pusat Studi',
     'profile_lead_heading'    => 'Mengokohkan Kedaulatan Bahari Melalui Riset Saintifik & Diplomasi Maritim Laut Natuna Utara',
     'profile_lead_quote'      => '"Kepulauan Riau dengan gugus kepulauan terluar Natuna-Anambas dan perairan Selat Malaka berhadapan langsung dengan episentrum dinamika geopolitik Laut Cina Selatan. Pusat Studi Laut Natuna Utara (North Natuna Sea Research Center) UMRAH memegang mandat moral dan akademis sebagai garda terdepan sains kebaharian, pemantauan oseanografi ZEE, serta penegakan hukum UNCLOS 1982 demi menjaga kedaulatan laut ibu pertiwi."',

@@ -96,6 +96,73 @@
     </div>
 </div>
 
+<!-- Sambutan Rektor Universitas Maritim Raja Ali Haji (UMRAH) -->
+<section id="sambutan-rektor" class="py-16 bg-gradient-to-br from-navy-950 via-navy-900 to-maritime-950 text-white relative overflow-hidden border-b border-navy-800">
+    <!-- Subtle Background Nautical / Wave Accents -->
+    <div class="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#d97706_1px,transparent_1px)] [background-size:24px_24px]"></div>
+    <div class="absolute -top-24 -right-24 w-96 h-96 bg-maritime-600/20 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            <!-- Foto Rektor UMRAH (Executive Portrait Frame) -->
+            <div class="lg:col-span-4 flex flex-col items-center text-center">
+                <div class="relative group">
+                    <div class="w-60 h-72 sm:w-68 sm:h-80 rounded-2xl bg-gradient-to-tr from-gold-500/40 via-maritime-600 to-navy-800 p-1.5 shadow-2xl relative overflow-hidden border border-gold-500/30">
+                        <div class="w-full h-full bg-gradient-to-b from-slate-100 via-slate-50 to-slate-200 rounded-[14px] flex flex-col items-center justify-end overflow-hidden relative">
+                            <img src="<?= base_url('images/rektor_umrah.png') ?>" 
+                                 alt="<?= lang('App.rector_name') ?>" 
+                                 class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500">
+                            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-navy-950 via-navy-950/85 to-transparent p-3.5 text-white text-center z-10">
+                                <h4 class="font-bold text-sm text-gold-400"><?= lang('App.rector_name') ?></h4>
+                                <p class="text-[11px] text-slate-300"><?= lang('App.rector_title') ?></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Decorative Crest Badge -->
+                    <div class="absolute -bottom-3 -right-3 bg-gold-500 text-navy-950 text-xs font-black px-3 py-1.5 rounded-lg shadow-xl border border-white/30 flex items-center gap-1.5">
+                        <i class="fa-solid fa-building-columns"></i> <?= $isEn ? 'Rector of UMRAH' : 'Rektor UMRAH' ?>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pesan Sambutan & Visi Strategis Rektor -->
+            <div class="lg:col-span-8 space-y-4">
+                <div class="flex items-center gap-2 text-gold-400 text-xs font-bold uppercase tracking-wider">
+                    <span class="w-8 h-0.5 bg-gold-400"></span>
+                    <span><?= lang('App.rector_speech_badge') ?></span>
+                </div>
+                
+                <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-snug">
+                    <?= lang('App.rector_speech_heading') ?>
+                </h3>
+
+                <blockquote class="border-l-4 border-gold-500 pl-4 py-2.5 text-slate-200 italic text-sm sm:text-base leading-relaxed bg-white/5 rounded-r-xl">
+                    "<?= lang('App.rector_speech_quote') ?>"
+                </blockquote>
+
+                <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                    <?= lang('App.rector_speech_p') ?>
+                </p>
+
+                <div class="pt-2 flex flex-wrap items-center gap-4">
+                    <a href="<?= base_url('profil#visi-misi') ?>" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-950 font-bold text-xs sm:text-sm transition-all shadow-md active:scale-[0.98]">
+                        <i class="fa-solid fa-compass"></i>
+                        <span><?= lang('App.rector_btn_strategic') ?></span>
+                        <i class="fa-solid fa-chevron-right text-xs ml-1"></i>
+                    </a>
+                    <a href="<?= base_url('riset') ?>" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs sm:text-sm border border-white/20 transition-all active:scale-[0.98]">
+                        <i class="fa-solid fa-microscope"></i>
+                        <span><?= $isEn ? 'Explore Research Clusters' : 'Jelajahi Klaster Riset' ?></span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
 <!-- Sambutan Koordinator Pusat Studi Laut Natuna Utara UMRAH -->
 <section id="sambutan" class="py-16 bg-white border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -93,6 +93,16 @@ return [
     'profile_title'           => 'Profile & Research Fellows',
     'profile_subtitle'        => 'Explore the strategic vision, maritime mandate, and faculty research fellows at North Natuna Sea Research Center (NNSRC) UMRAH.',
     'profile_motto'           => 'One Nation, One Sea',
+
+    // Rector's Welcome Speech
+    'rector_speech_badge'     => 'Rector\'s Welcome Address',
+    'rector_speech_heading'   => 'Strengthening the Maritime Sector & Applied Research in Border Regions',
+    'rector_speech_quote'     => 'The North Natuna Sea Research Center is established to strengthen the maritime sector in Riau Islands. Research conducted at this Center is not merely academic, but directly oriented towards answering concrete needs in the field, particularly in marine resource governance and border region development.',
+    'rector_speech_p'         => 'Through multidisciplinary scientific synergy and research downstreaming, UMRAH is committed to delivering tangible solutions for maritime sovereignty, coastal community prosperity, and border island resilience in the North Natuna Sea.',
+    'rector_name'             => 'Prof. Dr. Agung Dhamar Syakti, S.Pi., DEA',
+    'rector_title'            => 'Rector of Raja Ali Haji Maritime University (UMRAH)',
+    'rector_btn_strategic'    => 'Explore Strategic Plan & Vision',
+
     'profile_lead_intro'      => "Center Coordinator's Address",
     'profile_lead_heading'    => 'Strengthening Maritime Sovereignty Through Scientific Rigor & Ocean Diplomacy in the North Natuna Sea',
     'profile_lead_quote'      => '"Riau Islands with its outermost Natuna-Anambas archipelago and the Malacca Strait faces the epicenter of South China Sea geopolitics. North Natuna Sea Research Center UMRAH carries a moral and scientific mandate to safeguard sovereign waters through oceanographic monitoring and UNCLOS 1982 enforcement."',
