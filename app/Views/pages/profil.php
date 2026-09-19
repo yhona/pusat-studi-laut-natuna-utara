@@ -326,8 +326,7 @@
 
                         <div class="text-[11px] text-slate-600 pt-2.5 border-t border-slate-100 space-y-1.5">
                             <p class="leading-relaxed"><strong class="text-slate-800"><?= $isEn ? 'Focus:' : 'Fokus:' ?></strong> <?= esc($p['focus']) ?></p>
-                            <div class="space-y-0.5 text-[10px] text-slate-500 pt-1">
-                                <div class="truncate">NIP: <?= esc($p['nip']) ?></div>
+                            <div class="pt-1">
                                 <div class="text-maritime-700 font-mono font-semibold bg-slate-50 px-1.5 py-0.5 rounded border border-slate-200 inline-block text-[10px]"><?= esc($p['scopus']) ?></div>
                             </div>
                         </div>
