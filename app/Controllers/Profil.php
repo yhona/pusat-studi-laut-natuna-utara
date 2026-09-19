@@ -162,10 +162,25 @@ class Profil extends BaseController
             ],
         ];
 
+        // Peneliti Eksternal & Mitra Riset (External Research Fellows)
+        $externalResearchers = [
+            [
+                'name'        => 'Prof. Dr. Ir. Joko Santoso, M.Sc.',
+                'role'        => $isEn ? 'Visiting Senior Fellow' : 'Peneliti Senior Eksternal / Visiting Fellow',
+                'faculty'     => $isEn ? 'Faculty of Marine Technology - Institut Teknologi Sepuluh Nopember (ITS)' : 'Fakultas Teknologi Kelautan - Institut Teknologi Sepuluh Nopember (ITS)',
+                'focus'       => $isEn ? 'Naval Architecture, Ocean Engineering, Remote Island Transport Logistics & Marine Renewable Energy' : 'Teknik Kelautan, Logistik Transportasi Kepulauan Terpencil & Energi Baru Terbarukan Samudera',
+                'email'       => 'joko.santoso@its.ac.id',
+                'cluster'     => $isEn ? 'Ocean Engineering & Archipelagic Connectivity' : 'Teknik Kelautan & Konektivitas Kepulauan',
+                'initials'    => 'JS',
+                'bg_gradient' => 'linear-gradient(135deg, #0369a1, #0284c7)'
+            ],
+        ];
+
         $data = [
-            'title'            => $isEn ? 'Profile & Research Fellows - North Natuna Sea Research Center UMRAH' : 'Profil & Personalia - Pusat Studi Laut Natuna Utara UMRAH',
-            'researchers'      => $researchers,
-            'research_members' => $researchMembers,
+            'title'                => $isEn ? 'Profile & Research Fellows - North Natuna Sea Research Center UMRAH' : 'Profil & Personalia - Pusat Studi Laut Natuna Utara UMRAH',
+            'researchers'          => $researchers,
+            'research_members'     => $researchMembers,
+            'external_researchers' => $externalResearchers,
         ];
 
         return view('pages/profil', $data);

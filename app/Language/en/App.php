@@ -122,6 +122,8 @@ return [
     'structure_executives'    => 'Executive Leadership & Key Officers',
     'structure_researchers'   => 'Research Fellows (Anggota Dewan Peneliti)',
     'structure_researchers_desc' => 'Inter-faculty research fellows officially appointed under UMRAH LPPM Research Center Decree.',
+    'structure_external_researchers' => 'External Research Fellows & Visiting Scholars',
+    'structure_external_researchers_desc' => 'Distinguished scholars and experts from partner universities and research agencies collaborating on strategic maritime agendas.',
     'structure_pimpinan_utama'=> 'EXECUTIVE LEADERSHIP',
     'structure_sekretaris'    => 'SECRETARY OF RESEARCH CENTER',
     'structure_dept_riset'    => 'RESEARCH DEPARTMENT',

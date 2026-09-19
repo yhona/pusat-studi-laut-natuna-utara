@@ -122,6 +122,8 @@ return [
     'structure_executives'    => 'Pimpinan & Dewan Pengurus Inti',
     'structure_researchers'   => 'Anggota Dewan Peneliti (Research Fellows)',
     'structure_researchers_desc' => 'Dosen peneliti lintas fakultas yang terafiliasi resmi dalam Surat Keputusan (SK) Tim Riset Pusat Studi Laut Natuna Utara UMRAH.',
+    'structure_external_researchers' => 'Peneliti Eksternal & Mitra Riset (External Fellows)',
+    'structure_external_researchers_desc' => 'Pakar dan peneliti dari perguruan tinggi mitra serta lembaga riset eksternal yang berkolaborasi dalam agenda riset strategis.',
     'structure_pimpinan_utama'=> 'PIMPINAN UTAMA',
     'structure_sekretaris'    => 'SEKRETARIS PUSAT STUDI',
     'structure_dept_riset'    => 'RESEARCH DEPARTMENT',

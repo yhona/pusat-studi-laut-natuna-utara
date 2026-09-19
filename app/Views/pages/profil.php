@@ -403,6 +403,69 @@
                     <?php endif; ?>
                 </div>
             </div>
+
+            <!-- Section: Peneliti Eksternal & Mitra Riset (External Research Fellows) -->
+            <div class="pt-10 border-t border-slate-200 space-y-6">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-3">
+                    <div>
+                        <span class="text-maritime-600 uppercase text-xs font-bold tracking-wider block"><?= $isEn ? 'National & International Research Partners' : 'Mitra Riset Nasional & Internasional' ?></span>
+                        <h4 class="text-xl sm:text-2xl font-bold text-navy-950 mt-0.5"><?= lang('App.structure_external_researchers') ?></h4>
+                        <p class="text-slate-600 text-xs sm:text-sm mt-0.5"><?= lang('App.structure_external_researchers_desc') ?></p>
+                    </div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 text-navy-900 text-xs font-bold border border-slate-200 shadow-xs self-start md:self-auto">
+                        <i class="fa-solid fa-earth-asia text-maritime-600"></i> <?= $isEn ? 'External Research Fellows' : 'Peneliti Mitra Eksternal' ?>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                    <?php if (!empty($external_researchers)): ?>
+                    <?php foreach ($external_researchers as $em): ?>
+                    <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between space-y-3 group hover:-translate-y-1">
+                        <div class="space-y-3">
+                            <!-- Avatar / Badge Header -->
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white font-extrabold text-sm shadow-sm flex-shrink-0 group-hover:scale-105 transition-transform" style="background: <?= esc($em['bg_gradient']) ?>;">
+                                    <?= esc($em['initials']) ?>
+                                </div>
+                                <div class="overflow-hidden space-y-0.5">
+                                    <span class="inline-block px-1.5 py-0.5 rounded text-[9px] font-bold bg-amber-50 text-amber-800 border border-amber-200 truncate max-w-full">
+                                        <?= esc($em['faculty']) ?>
+                                    </span>
+                                    <span class="block text-[10px] text-maritime-600 font-semibold truncate">
+                                        <?= esc($em['cluster']) ?>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Name & Role -->
+                            <div>
+                                <h5 class="font-bold text-xs text-navy-950 group-hover:text-maritime-600 transition-colors leading-snug">
+                                    <?= esc($em['name']) ?>
+                                </h5>
+                                <p class="text-[10px] text-slate-500 font-medium mt-0.5">
+                                    <?= esc($em['role']) ?>
+                                </p>
+                            </div>
+
+                            <!-- Focus -->
+                            <div class="pt-2 border-t border-slate-100">
+                                <p class="text-[11px] text-slate-600 leading-relaxed line-clamp-3">
+                                    <strong class="text-slate-800 font-semibold"><?= $isEn ? 'Focus:' : 'Fokus:' ?></strong> <?= esc($em['focus']) ?>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Email Contact -->
+                        <div class="pt-2.5 border-t border-slate-100">
+                            <a href="mailto:<?= esc($em['email']) ?>" class="inline-flex items-center justify-center gap-1.5 text-[10px] font-semibold text-slate-600 hover:text-maritime-600 transition-colors w-full py-1 rounded-md hover:bg-slate-50 truncate">
+                                <i class="fa-solid fa-envelope text-gold-500 text-[10px]"></i> <?= esc($em['email']) ?>
+                            </a>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                    <?php endif; ?>
+                </div>
+            </div>
         </div>
 
     </div>
