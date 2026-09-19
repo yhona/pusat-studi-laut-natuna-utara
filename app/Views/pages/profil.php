@@ -188,9 +188,47 @@
         <!-- TAB 2: SEJARAH & MANDAT -->
         <div id="sejarah" x-show="activeTab === 'sejarah'" x-cloak class="bg-white rounded-2xl p-8 sm:p-10 border border-slate-200 shadow-sm space-y-6 text-slate-700 leading-relaxed text-xs sm:text-sm scroll-mt-28">
             <div class="border-b border-slate-100 pb-4">
-                <span class="text-gold-600 uppercase text-xs font-bold tracking-wider block"><?= $isEn ? 'Historical Background' : 'Latar Belakang Historis' ?></span>
-                <h3 class="text-xl sm:text-2xl font-bold text-navy-950 mt-1"><?= $isEn ? 'Maritime Mandate in the Heart of Malacca Strait Civilization' : 'Mandat Kemaritiman di Jantung Peradaban Selat Malaka' ?></h3>
+                <span class="text-gold-600 uppercase text-xs font-bold tracking-wider block"><?= $isEn ? 'Institutional History & Legal Mandate' : 'Latar Belakang Historis & Dasar Pendirian' ?></span>
+                <h3 class="text-xl sm:text-2xl font-bold text-navy-950 mt-1"><?= $isEn ? 'Establishment & Strategic Mandate in the North Natuna Sea' : 'Mandat Pendirian & Kerjasama Strategis Pusat Studi Laut Natuna Utara' ?></h3>
             </div>
+
+            <!-- Official Mandate & Foundation Statement -->
+            <div class="p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-navy-950 via-navy-900 to-maritime-950 text-white border border-gold-500/30 shadow-md relative overflow-hidden space-y-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gold-500/20 border border-gold-400/40 flex items-center justify-center text-gold-400 text-lg flex-shrink-0">
+                        <i class="fa-solid fa-landmark"></i>
+                    </div>
+                    <div>
+                        <span class="text-gold-400 uppercase text-[11px] font-bold tracking-widest block"><?= $isEn ? 'Official Institutional Foundation' : 'Dasar Filosofis & Mandat Hukum Pendirian' ?></span>
+                        <h4 class="text-base sm:text-lg font-bold text-white"><?= $isEn ? 'Tridharma Higher Education & National Strategic Mandate' : 'Panggilan Tanggung Jawab Tridharma & Mandat Pembangunan Nasional' ?></h4>
+                    </div>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-200 leading-relaxed font-medium">
+                    <?= $isEn 
+                        ? 'The North Natuna Sea Research Center was established to fulfill the institutional responsibility of higher education tridharma (education, research, and community service) through scientific advancement manifested in high-impact research outputs, particularly aligned with mainstreaming national development mandates based on the Memorandum of Understanding between Universitas Maritim Raja Ali Haji and the Foreign Policy Strategy Agency of the Ministry of Foreign Affairs of the Republic of Indonesia (Badan Strategi Kebijakan Luar Negeri Kementerian Luar Negeri Republik Indonesia - BSKLN Kemlu RI) concerning education, research, and community service cooperation in foreign policy strategy Number <strong>PRJ/SJ/00003/03/2023/76/12</strong> and Number <strong>1472/UN53.0/KS.00.00/2023</strong> with the specific scope of the Natuna Sea Research Center. Most fundamentally, the establishment of this Research Center serves as the optimization of collaborative studies between Universitas Maritim Raja Ali Haji and the Foreign Policy Strategy Agency of the Ministry of Foreign Affairs of the Republic of Indonesia.'
+                        : 'Pusat Studi Laut Natuna Utara didirikan untuk memenuhi panggilan tanggung jawab tridharma perguruan tinggi melalui pengembangan kelimuan yang diwujudkan dalam bentuk hasil-hasil penelitian, khususnya selaras dengan upaya mengarus-utamakan mandat pembangunan nasional yang belandaskan <strong>Nota Kesepahaman antara Universitas Maritim Raja Ali Haji dan Badan Strategi Kebijakan Luar Negeri Kementerian Luar Negeri Republik Indonesia</strong> tentang kerjasama pendidikan, penelitian dan pengabdian masyarakat di bidang strategi kebijakan luar negeri Nomor <strong>PRJ/SJ/00003/03/2023/76/12</strong> dan Nomor <strong>1472/UN53.0/KS.00.00/2023</strong> yang memiliki ruang lingkup Pusat Riset Laut Natuna. Dan yang paling utama, didirikannya Pusat Studi ini merupakan optimalisasi kajian bersama Universitas Maritim Raja Ali Haji dan Badan Strategi Kebijakan Luar Negeri Kementerian Luar Negeri Republik Indonesia.' 
+                    ?>
+                </p>
+
+                <!-- MoU Badges -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-white/10">
+                    <div class="flex items-start gap-2.5 bg-white/5 rounded-lg p-3 border border-white/10">
+                        <i class="fa-solid fa-file-contract text-gold-400 text-sm mt-0.5"></i>
+                        <div>
+                            <span class="text-[10px] uppercase font-bold text-gold-400 block tracking-wider">MoU BSKLN Kemlu RI</span>
+                            <span class="text-xs font-mono font-semibold text-slate-100">PRJ/SJ/00003/03/2023/76/12</span>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-2.5 bg-white/5 rounded-lg p-3 border border-white/10">
+                        <i class="fa-solid fa-file-signature text-gold-400 text-sm mt-0.5"></i>
+                        <div>
+                            <span class="text-[10px] uppercase font-bold text-gold-400 block tracking-wider">MoU UMRAH</span>
+                            <span class="text-xs font-mono font-semibold text-slate-100">1472/UN53.0/KS.00.00/2023</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <p>
                 <?= $isEn ? 'Universitas Maritim Raja Ali Haji (UMRAH) was established under a special mandate from the Government of Indonesia to become an epicenter of higher education and research defined by its maritime identity. The Riau Islands province, consisting of 96% open sea and over 2,408 islands, serves as an invaluable living laboratory for national marine sciences.' : 'Universitas Maritim Raja Ali Haji (UMRAH) didirikan dengan mandat khusus dari Pemerintah Republik Indonesia untuk menjadi episentrum pendidikan tinggi dan riset berkarakter kemaritiman. Kepulauan Riau yang terdiri atas 96% lautan dan memiliki lebih dari 2.408 pulau menjadi laboratorium hidup yang tidak ternilai bagi sains kebaharian nasional.' ?>
             </p>
