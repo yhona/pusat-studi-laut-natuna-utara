@@ -25,6 +25,7 @@ $routes->get('/berita/(:segment)', 'Berita::detail/$1');
 // Repositori Dokumen & Pusat Unduhan
 $routes->get('/unduhan', 'Unduhan::index');
 $routes->get('/unduhan/unduh/(:segment)', 'Unduhan::unduh/$1');
+$routes->post('/unduhan/mohon-unduh', 'Unduhan::mohonUnduh');
 
 // Multi-language switcher
 $routes->get('lang/(:segment)', 'Language::switch/$1');

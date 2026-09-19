@@ -259,34 +259,47 @@ $metadataMap = $isEn ? [
                                    class="w-full px-3 py-2 text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-maritime-500 focus:border-transparent">
                         </div>
                         <div>
+                            <label class="block text-[11px] font-semibold text-slate-700 mb-1"><?= $isEn ? 'WhatsApp / Phone Number' : 'Nomor WhatsApp / HP' ?></label>
+                            <input type="tel" x-model="form.phone" placeholder="08xxxxxxxxxx"
+                                   class="w-full px-3 py-2 text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-maritime-500 focus:border-transparent">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
                             <label class="block text-[11px] font-semibold text-slate-700 mb-1"><?= $isEn ? 'Organization Category' : 'Kategori Lembaga' ?></label>
                             <select x-model="form.category" class="w-full px-3 py-2 text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-maritime-500 focus:border-transparent bg-white">
-                                <option value="pemerintah"><?= $isEn ? 'Government Ministry / Regional Agency' : 'Pemerintah Daerah / Kementerian (KKP/BRIN)' ?></option>
-                                <option value="universitas"><?= $isEn ? 'University / Academic & Research Institute' : 'Perguruan Tinggi / Lembaga Penelitian' ?></option>
-                                <option value="industri"><?= $isEn ? 'Maritime Industry / Port & Shipping Corporation' : 'BUMN / Sektor Swasta Maritim & Pelayaran' ?></option>
-                                <option value="lsm"><?= $isEn ? 'Non-Governmental Organization / Coastal Community' : 'Lembaga Swadaya Masyarakat / Komunitas Bahari' ?></option>
-                                <option value="umum"><?= $isEn ? 'Independent Researcher & Public' : 'Masyarakat Umum & Praktisi' ?></option>
+                                <option value="Pemerintah"><?= $isEn ? 'Government Ministry / Regional Agency' : 'Pemerintah Daerah / Kementerian (KKP/BRIN/Kemlu)' ?></option>
+                                <option value="Universitas"><?= $isEn ? 'University / Academic & Research Institute' : 'Perguruan Tinggi / Lembaga Penelitian' ?></option>
+                                <option value="Industri"><?= $isEn ? 'Maritime Industry / Port & Shipping Corporation' : 'BUMN / Sektor Swasta Maritim & Pelayaran' ?></option>
+                                <option value="LSM"><?= $isEn ? 'Non-Governmental Organization / Coastal Community' : 'Lembaga Swadaya Masyarakat / Komunitas Bahari' ?></option>
+                                <option value="Umum"><?= $isEn ? 'Independent Researcher & Public' : 'Masyarakat Umum & Praktisi' ?></option>
                             </select>
                         </div>
+                        <div>
+                            <label class="block text-[11px] font-semibold text-slate-700 mb-1"><?= $isEn ? 'Purpose of Document Use *' : 'Keperluan Penggunaan Dokumen *' ?></label>
+                            <input type="text" x-model="form.purpose" required placeholder="<?= $isEn ? 'e.g., Policy formulation, academic paper, thesis' : 'Contoh: Telaah kebijakan, referensi skripsi, riset perbatasan' ?>"
+                                   class="w-full px-3 py-2 text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-maritime-500 focus:border-transparent">
+                        </div>
+                    </div>
+
+                    <!-- Alert Error -->
+                    <div x-show="errorMessage" x-cloak class="p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs flex items-start gap-2">
+                        <i class="fa-solid fa-circle-exclamation text-rose-600 mt-0.5"></i>
+                        <span x-text="errorMessage"></span>
                     </div>
 
                     <!-- Modal Actions -->
                     <div class="pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3">
-                        <a :href="'<?= base_url('unduhan/unduh/') ?>/' + selectedPb?.slug"
-                           class="text-xs font-semibold text-slate-500 hover:text-maritime-600 transition-colors flex items-center gap-1.5">
-                            <i class="fa-solid fa-arrow-down-long text-[10px]"></i> <?= $isEn ? 'Direct Download Without Form' : 'Unduh Langsung Tanpa Form' ?>
-                        </a>
-
-                        <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
-                            <button type="button" @click="closeDownloadModal()"
-                                    class="px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">
-                                <?= $isEn ? 'Cancel' : 'Batal' ?>
-                            </button>
-                            <button type="submit"
-                                    class="inline-flex items-center gap-2 bg-maritime-600 hover:bg-maritime-700 text-white text-xs font-semibold px-5 py-2.5 rounded-lg shadow-sm hover:shadow transition-all active:scale-[0.98]">
-                                <i class="fa-solid fa-download text-gold-400"></i> <?= $isEn ? 'Download Policy Brief PDF' : 'Unduh Dokumen PDF Lengkap' ?>
-                            </button>
-                        </div>
+                        <button type="button" @click="closeDownloadModal()"
+                                class="px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer">
+                            <?= $isEn ? 'Cancel' : 'Batal' ?>
+                        </button>
+                        <button type="submit" :disabled="isSubmitting"
+                                class="inline-flex items-center gap-2 bg-maritime-600 hover:bg-maritime-700 text-white text-xs font-semibold px-5 py-2.5 rounded-lg shadow-sm hover:shadow transition-all active:scale-[0.98] cursor-pointer disabled:opacity-60">
+                            <i class="fa-solid" :class="isSubmitting ? 'fa-spinner fa-spin' : 'fa-paper-plane'"></i>
+                            <span x-text="isSubmitting ? '<?= $isEn ? 'Submitting...' : 'Mengirimkan...' ?>' : '<?= $isEn ? 'Send to Author & Download' : 'Kirim ke Penyusun & Unduh' ?>'"></span>
+                        </button>
                     </div>
                 </form>
 
@@ -302,15 +315,23 @@ function policyBriefModal() {
         isOpen: false,
         selectedPb: null,
         downloadSuccess: false,
+        isSubmitting: false,
+        errorMessage: '',
+        successMessage: '',
+        downloadUrl: '',
         form: {
             name: '',
             email: '',
+            phone: '',
             institution: '',
-            category: 'pemerintah'
+            category: 'Pemerintah',
+            purpose: ''
         },
         openDownloadModal(pb) {
             this.selectedPb = pb;
             this.downloadSuccess = false;
+            this.errorMessage = '';
+            this.isSubmitting = false;
             this.isOpen = true;
             document.body.classList.add('overflow-hidden');
         },
@@ -318,16 +339,51 @@ function policyBriefModal() {
             this.isOpen = false;
             document.body.classList.remove('overflow-hidden');
         },
-        submitDownload() {
-            this.downloadSuccess = true;
-            // Trigger actual download via the official Unduhan controller endpoint
-            const downloadUrl = '<?= base_url('unduhan/unduh/') ?>/' + this.selectedPb.slug;
-            const a = document.createElement('a');
-            a.href = downloadUrl;
-            a.download = '';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
+        async submitDownload() {
+            this.isSubmitting = true;
+            this.errorMessage = '';
+
+            try {
+                const formData = new FormData();
+                formData.append('<?= csrf_token() ?>', '<?= csrf_hash() ?>');
+                formData.append('document_slug', this.selectedPb.slug);
+                formData.append('applicant_name', this.form.name);
+                formData.append('applicant_email', this.form.email);
+                formData.append('applicant_phone', this.form.phone || '');
+                formData.append('applicant_institution', this.form.institution);
+                formData.append('institution_category', this.form.category);
+                formData.append('purpose', this.form.purpose || 'Riset dan telaah kebijakan maritim');
+
+                const response = await fetch('<?= base_url('unduhan/mohon-unduh') ?>', {
+                    method: 'POST',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    this.downloadSuccess = true;
+                    this.successMessage = data.message;
+                    this.downloadUrl = data.download_url;
+
+                    // Trigger automatic browser download
+                    const a = document.createElement('a');
+                    a.href = data.download_url;
+                    a.download = '';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                } else {
+                    this.errorMessage = data.message || 'Gagal memproses permohonan unduhan.';
+                }
+            } catch (err) {
+                this.errorMessage = 'Terjadi kendala jaringan saat mengirimkan formulir.';
+            } finally {
+                this.isSubmitting = false;
+            }
         }
     };
 }

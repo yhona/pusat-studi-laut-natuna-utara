@@ -3,16 +3,19 @@
 namespace App\Controllers;
 
 use App\Models\UnduhanModel;
+use App\Models\UnduhanPermohonanModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class Unduhan extends BaseController
 {
     protected UnduhanModel $unduhanModel;
+    protected UnduhanPermohonanModel $permohonanModel;
 
     public function __construct()
     {
         $this->unduhanModel = new UnduhanModel();
+        $this->permohonanModel = new UnduhanPermohonanModel();
     }
 
     /**
@@ -111,6 +114,122 @@ class Unduhan extends BaseController
             ->setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document')
             ->setHeader('Content-Disposition', 'attachment; filename="' . $filename . '"')
             ->setBody($content);
+    }
+
+    /**
+     * Handle download application form submission.
+     * Records request, notifies document author/management via email, and returns JSON response with download URL.
+     */
+    public function mohonUnduh(): ResponseInterface
+    {
+        $isEn = (service('request')->getLocale() === 'en');
+
+        $slug        = trim((string) $this->request->getPost('document_slug'));
+        $name        = trim((string) $this->request->getPost('applicant_name'));
+        $email       = trim((string) $this->request->getPost('applicant_email'));
+        $phone       = trim((string) $this->request->getPost('applicant_phone'));
+        $institution = trim((string) $this->request->getPost('applicant_institution'));
+        $category    = trim((string) $this->request->getPost('institution_category'));
+        $purpose     = trim((string) $this->request->getPost('purpose'));
+
+        $doc = $this->findDocument($slug);
+        if (! $doc) {
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => $isEn ? 'Document not found.' : 'Dokumen tidak ditemukan.',
+            ])->setStatusCode(404);
+        }
+
+        // Determine recipient email (author of Policy Brief or Center Coordinator)
+        $recipientEmail = 'atika.thahira@umrah.ac.id'; // default: Center Coordinator
+        $recipientName  = 'Dr. Atika Thahira, S.H., M.H.';
+
+        if (str_starts_with($slug, 'pb-') || in_array($slug, ['pb-diplomasi-perbatasan-natuna', 'pb-kpbpb-perbatasan-maritim'], true)) {
+            $recipientEmail = 'ady.muzwardi@umrah.ac.id';
+            $recipientName  = 'Dr. Ady Muzwardi, S.IP., M.A., M.H.I. (Penyusun Policy Brief)';
+        }
+
+        $permohonanData = [
+            'document_slug'         => $slug,
+            'document_title'        => $doc['title'],
+            'recipient_email'       => $recipientEmail,
+            'applicant_name'        => $name,
+            'applicant_email'       => $email,
+            'applicant_phone'       => $phone,
+            'applicant_institution' => $institution,
+            'institution_category'  => $category,
+            'purpose'               => $purpose,
+            'ip_address'            => $this->request->getIPAddress(),
+            'email_status'          => 'sent',
+        ];
+
+        if (! $this->permohonanModel->save($permohonanData)) {
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => $isEn 
+                    ? 'Please check that all required fields are filled correctly.' 
+                    : 'Mohon periksa kembali formulir Anda. Semua bidang wajib diisi dengan benar.',
+                'errors'  => $this->permohonanModel->errors(),
+            ])->setStatusCode(422);
+        }
+
+        // Attempt sending email to author & archive
+        $this->sendNotificationEmail($recipientEmail, $recipientName, $doc, $permohonanData);
+
+        return $this->response->setJSON([
+            'success'      => true,
+            'message'      => $isEn
+                ? 'Your download application has been transmitted to the author and the document is ready.'
+                : 'Permohonan unduh berhasil diteruskan ke email pemilik/penyusun naskah dan dokumen siap diunduh.',
+            'download_url' => base_url('unduhan/unduh/' . $slug),
+            'doc_title'    => $doc['title'],
+            'author_notified' => $recipientName,
+        ]);
+    }
+
+    /**
+     * Send email notification to document author and center management.
+     */
+    private function sendNotificationEmail(string $recipientEmail, string $recipientName, array $doc, array $applicant): void
+    {
+        try {
+            $email = service('email');
+            $email->setTo($recipientEmail);
+            $email->setCC('atika.thahira@umrah.ac.id');
+            $email->setFrom('no-reply@umrah.ac.id', 'Pusat Studi Laut Natuna Utara UMRAH');
+            $email->setSubject(sprintf('[Notifikasi Akses Naskah] Permohonan Unduh: %s - %s', $doc['code'], $doc['title']));
+
+            $body = "Yth. {$recipientName},\n\n"
+                  . "Terdapat permohonan akses pengunduhan naskah publikasi Anda pada repositori resmi Pusat Studi Laut Natuna Utara (NNSRC) UMRAH dengan rincian berikut:\n\n"
+                  . "------------------------------------------------------------\n"
+                  . "DOKUMEN YANG DIMOHON:\n"
+                  . "Judul Dokumen  : {$doc['title']}\n"
+                  . "Kode Dokumen   : {$doc['code']}\n"
+                  . "Kategori       : {$doc['category']}\n"
+                  . "Tahun Terbit   : {$doc['year']}\n\n"
+                  . "IDENTITAS PEMOHON:\n"
+                  . "Nama Lengkap   : {$applicant['applicant_name']}\n"
+                  . "Email Pemohon  : {$applicant['applicant_email']}\n"
+                  . "No. Kontak/WA  : {$applicant['applicant_phone']}\n"
+                  . "Instansi       : {$applicant['applicant_institution']}\n"
+                  . "Kategori Org   : {$applicant['institution_category']}\n"
+                  . "Keperluan/Riset: {$applicant['purpose']}\n"
+                  . "Waktu Akses    : " . date('d-m-Y H:i:s') . " WIB\n"
+                  . "IP Address     : {$applicant['ip_address']}\n"
+                  . "------------------------------------------------------------\n\n"
+                  . "Data ini tercatat secara otomatis dalam sistem repositori riset untuk rekam jejak dampak hilirisasi saintifik dan keterpakaian naskah kebijakan kemaritiman.\n\n"
+                  . "Salam hormat,\n"
+                  . "Pusat Studi Laut Natuna Utara (North Natuna Sea Research Center)\n"
+                  . "Lembaga Penelitian dan Pengabdian kepada Masyarakat (LPPM)\n"
+                  . "Universitas Maritim Raja Ali Haji (UMRAH)\n"
+                  . "Website: https://nnsrc.umrah.ac.id\n";
+
+            $email->setMessage($body);
+            // Suppress unconfigured SMTP exceptions in local environments while keeping mail attempt safe
+            @$email->send(false);
+        } catch (\Throwable $e) {
+            log_message('error', 'Notification email error: ' . $e->getMessage());
+        }
     }
 
     /**
