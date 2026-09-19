@@ -30,22 +30,40 @@ class Publikasi extends BaseController
 
             'journals' => [
                 [
-                    'name'    => 'Jurnal Kemaritiman Nusantara (JKN)',
-                    'indexing'=> 'SINTA 2 / Crossref / DOAJ',
-                    'issn'    => 'e-ISSN: 2715-8921 | p-ISSN: 2355-6712',
+                    'name'    => 'Jurnal Akuatiklestari',
+                    'indexing'=> 'SINTA 3 / Crossref / Garuda',
+                    'issn'    => 'e-ISSN: 2598-8204',
                     'desc'    => $isEn
-                        ? 'Publishes peer-reviewed original research articles in physical oceanography, marine acoustics, capture fisheries, and coastal governance in the Natuna Sea and Malacca Strait.'
-                        : 'Memuat artikel hasil penelitian orisinal di bidang oseanografi, teknik kelautan, perikanan tangkap, dan tata kelola pesisir Laut Natuna dan Selat Malaka.',
-                    'link'    => 'https://journal.umrah.ac.id'
+                        ? 'Accredited SINTA 3 scholarly journal managed by Aquatic Resources Management, FIKP UMRAH. Focuses on marine ecology, tropical oceanography, marine water quality, conservation, and coastal ecosystem governance.'
+                        : 'Jurnal ilmiah terakreditasi SINTA 3 yang dikelola Program Studi Manajemen Sumberdaya Perairan, FIKP UMRAH. Memuat kajian ekologi laut tropis, oseanografi, mutu air laut, konservasi, dan tata kelola pesisir.',
+                    'link'    => 'https://ojs.umrah.ac.id/index.php/akuatiklestari'
                 ],
                 [
-                    'name'    => 'Maritime Policy & Archipelago Review (MPAR)',
-                    'indexing'=> 'Google Scholar / Garuda / Copernicus',
-                    'issn'    => 'e-ISSN: 2828-1120',
+                    'name'    => 'Khidmat: Journal of Community Service',
+                    'indexing'=> 'Google Scholar / Garuda / Crossref',
+                    'issn'    => 'e-ISSN: 2684-8244 | p-ISSN: 2598-5035',
                     'desc'    => $isEn
-                        ? 'International scholarly journal dedicated to strategic marine policies, island logistics, UNCLOS 1982 jurisprudence, and South China Sea regional geopolitics.'
-                        : 'Jurnal internasional yang mengulas kebijakan strategis kelautan, perbatasan maritim, hukum laut UNCLOS 1982, dan geopolitik Laut Cina Selatan.',
-                    'link'    => 'https://journal.umrah.ac.id'
+                        ? 'Official journal published by the Center for Maritime Policy and Governance Studies (CMPGS) / LPPM UMRAH. Dedicated to maritime community empowerment, coastal economics, and marine public policy dissemination.'
+                        : 'Jurnal resmi terbitan Pusat Studi Kebijakan dan Tata Kelola Kemaritiman / LPPM UMRAH. Memuat diseminasi riset pengabdian masyarakat pesisir, pemberdayaan ekonomi nelayan, dan advokasi kebijakan kelautan.',
+                    'link'    => 'https://ojs.umrah.ac.id/index.php/khidmat'
+                ],
+                [
+                    'name'    => 'Jurnal Marinade',
+                    'indexing'=> 'Google Scholar / Garuda / Crossref',
+                    'issn'    => 'e-ISSN: 2654-4415',
+                    'desc'    => $isEn
+                        ? 'Scientific journal managed by Marine Fisheries Product Technology, FIKP UMRAH. Covers marine biotechnology, post-harvest fishery processing, seafood food safety, and coastal marine bioproducts.'
+                        : 'Jurnal ilmiah kelautan yang dikelola Program Studi Teknologi Hasil Perikanan, FIKP UMRAH. Berfokus pada bioteknologi perikanan bahari, pascapanen tangkapan laut, diversifikasi pangan, dan bioproduk pesisir.',
+                    'link'    => 'https://ojs.umrah.ac.id/index.php/marinade'
+                ],
+                [
+                    'name'    => 'Intek Akuakultur',
+                    'indexing'=> 'Google Scholar / Garuda / Moraref',
+                    'issn'    => 'e-ISSN: 2579-6291',
+                    'desc'    => $isEn
+                        ? 'Peer-reviewed journal managed by Aquaculture Department, FIKP UMRAH. Publishes empirical investigations on tropical marine aquaculture, hatchery technology, marine feed formulation, and aquatic health.'
+                        : 'Jurnal telaah sejawat yang dikelola Program Studi Budidaya Perairan, FIKP UMRAH. Memuat artikel ilmiah teknologi budidaya laut tropis, rekayasa pembenihan biota laut, pakan maritim, dan kesehatan lingkungan perairan.',
+                    'link'    => 'https://ojs.umrah.ac.id/index.php/intek'
                 ],
             ]
         ];
