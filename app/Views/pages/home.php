@@ -281,40 +281,40 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Jasa 1 -->
+            <!-- Jasa 1: Perancangan & Jasa Kepelabuhanan -->
             <div class="border border-slate-200 rounded-xl p-6 hover:border-maritime-500 hover:shadow-lg transition-all bg-gradient-to-b from-white to-slate-50/50">
                 <div class="w-10 h-10 rounded-lg bg-navy-800 text-gold-400 flex items-center justify-center text-lg mb-4">
-                    <i class="fa-solid fa-water"></i>
+                    <i class="fa-solid fa-anchor"></i>
                 </div>
                 <h4 class="text-base font-bold text-navy-900 mb-2"><?= lang('App.service_card_1_title') ?></h4>
                 <p class="text-xs text-slate-600 leading-relaxed mb-4">
                     <?= lang('App.service_card_1_desc') ?>
                 </p>
-                <a href="<?= base_url('layanan#batimetri') ?>" class="text-xs font-semibold text-maritime-600 hover:underline"><?= $isEn ? 'Specifications & Instruments →' : 'Spesifikasi & Instrumen →' ?></a>
+                <a href="<?= base_url('layanan#pelabuhan') ?>" class="text-xs font-semibold text-maritime-600 hover:underline"><?= $isEn ? 'Port Engineering & Specs →' : 'Spesifikasi & DED Dermaga →' ?></a>
             </div>
 
-            <!-- Jasa 2 -->
+            <!-- Jasa 2: Pemberdayaan Masyarakat Perbatasan & Kajian Potensi -->
             <div class="border border-slate-200 rounded-xl p-6 hover:border-maritime-500 hover:shadow-lg transition-all bg-gradient-to-b from-white to-slate-50/50">
                 <div class="w-10 h-10 rounded-lg bg-navy-800 text-gold-400 flex items-center justify-center text-lg mb-4">
-                    <i class="fa-solid fa-flask"></i>
+                    <i class="fa-solid fa-users-gear"></i>
                 </div>
                 <h4 class="text-base font-bold text-navy-900 mb-2"><?= lang('App.service_card_2_title') ?></h4>
                 <p class="text-xs text-slate-600 leading-relaxed mb-4">
                     <?= lang('App.service_card_2_desc') ?>
                 </p>
-                <a href="<?= base_url('layanan#amdal') ?>" class="text-xs font-semibold text-maritime-600 hover:underline"><?= $isEn ? 'Parameters & Protocols →' : 'Parameter & Prosedur →' ?></a>
+                <a href="<?= base_url('layanan#pemberdayaan') ?>" class="text-xs font-semibold text-maritime-600 hover:underline"><?= $isEn ? 'Community Programs & Field Studies →' : 'Program & Kajian Pemberdayaan →' ?></a>
             </div>
 
-            <!-- Jasa 3 -->
+            <!-- Jasa 3: Pengembangan Tata Ruang Laut & Pulau-Pulau Kecil -->
             <div class="border border-slate-200 rounded-xl p-6 hover:border-maritime-500 hover:shadow-lg transition-all bg-gradient-to-b from-white to-slate-50/50">
                 <div class="w-10 h-10 rounded-lg bg-navy-800 text-gold-400 flex items-center justify-center text-lg mb-4">
-                    <i class="fa-solid fa-anchor"></i>
+                    <i class="fa-solid fa-map-location-dot"></i>
                 </div>
                 <h4 class="text-base font-bold text-navy-900 mb-2"><?= lang('App.service_card_3_title') ?></h4>
                 <p class="text-xs text-slate-600 leading-relaxed mb-4">
                     <?= lang('App.service_card_3_desc') ?>
                 </p>
-                <a href="<?= base_url('layanan#pelabuhan') ?>" class="text-xs font-semibold text-maritime-600 hover:underline"><?= $isEn ? 'Port Engineering & Specs →' : 'Spesifikasi & DED Dermaga →' ?></a>
+                <a href="<?= base_url('layanan#zonasi') ?>" class="text-xs font-semibold text-maritime-600 hover:underline"><?= $isEn ? 'Marine Spatial Specs →' : 'Spesifikasi & Tata Ruang →' ?></a>
             </div>
         </div>
     </div>

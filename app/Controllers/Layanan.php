@@ -63,7 +63,7 @@ class Layanan extends BaseController
             [
                 'id'          => 'zonasi',
                 'icon'        => 'fa-map-location-dot',
-                'title'       => 'Marine Spatial Planning & RZWP-3-K Advisory',
+                'title'       => 'Marine Spatial Planning & Small Islands Development',
                 'desc'        => 'Technical advisory and formulation of coastal zone and small island spatial plans, marine protected area delimitation, and marine spatial conflict resolution.',
                 'instruments' => ['Marine GIS & Spatial Geodatabases', 'High-Resolution Sentinel & Landsat Satellite Imagery', 'Coastal Surveillance Drone Fleet'],
                 'deliverables'=> ['National Geospatial Standard Thematic Maps', 'Academic Policy Papers on Coastal Zoning', 'Spatial Conflict Resolution Models'],
@@ -81,6 +81,31 @@ class Layanan extends BaseController
                         'Official Coastal Spatial Zoning Thematic Map Layers (Shapefile/GeoPackage)',
                         'Academic Manuscript & Regulatory Matrix Draft for Provincial Enactment',
                         'Marine Space Conflict Resolution & Multi-Stakeholder Conciliation Blueprint'
+                    ]
+                ]
+            ],
+            [
+                'id'          => 'pemberdayaan',
+                'icon'        => 'fa-users-gear',
+                'title'       => 'Border Community Empowerment & Maritime Potential Studies',
+                'desc'        => 'Socio-economic assistance for border fishing communities, assessment of prime maritime commodities, local institutional capacity building, and economic downstreaming in small islands.',
+                'instruments' => ['Participatory Rural Appraisal (PRA/RRA) Field Kits', 'Coastal Socio-Spatial GIS Geodatabase', 'Marine Resource Economic Valuation Toolkit', 'Fishermen Cooperative Business Incubation Modules'],
+                'deliverables'=> ['Border & Small Island Maritime Economic Potential Assessment', 'Masterplan for Coastal Community Empowerment & Livelihoods', 'Policy Brief on Border Fishermen Social Welfare & Market Access'],
+                'spec'        => [
+                    'code'        => 'SOP-COM-06',
+                    'standards'   => 'MMAF Guidelines for Coastal Community Empowerment & Bappenas Frontier Development Standards',
+                    'sopName'     => 'Standard Operating Procedure for Border Maritime Potential Studies & Community Outreach',
+                    'sopSlug'     => 'panduan-kerjasama-riset',
+                    'instruments' => [
+                        ['name' => 'Participatory Rural Appraisal (PRA/RRA)', 'param' => 'Community-based coastal assessment & sustainable livelihood mapping'],
+                        ['name' => 'Socio-Spatial Coastal GIS', 'param' => 'Integration of traditional fishing ground coordinates and spatial usage'],
+                        ['name' => 'Bioresource Economic Valuation Toolkit', 'param' => 'Travel Cost Method (TCM), CVM, and market proxy analysis'],
+                        ['name' => 'Coastal Enterprise Institutional Incubation', 'param' => 'Governance standard operating procedures for maritime cooperatives']
+                    ],
+                    'deliverables' => [
+                        'Comprehensive Border Maritime Potential Assessment Report',
+                        'Action Plan for Outermost Island Fishing Community Empowerment',
+                        'Strategic Policy Brief for Provincial & Central Affirmative Programs'
                     ]
                 ]
             ],
@@ -187,8 +212,8 @@ class Layanan extends BaseController
             [
                 'id'          => 'zonasi',
                 'icon'        => 'fa-map-location-dot',
-                'title'       => 'Kajian RZWP-3-K & Perencanaan Ruang Laut',
-                'desc'        => 'Konsultasi teknis dan pendampingan penyusunan rencana zonasi wilayah pesisir dan pulau-pulau kecil, penetapan kawasan konservasi daerah, dan analisis spasial tumpang tindih pemanfaatan ruang laut.',
+                'title'       => 'Pengembangan Tata Ruang Laut & Pulau-Pulau Kecil',
+                'desc'        => 'Konsultasi teknis dan pendampingan penyusunan rencana zonasi wilayah pesisir dan pulau-pulau kecil (RZWP-3-K), penetapan kawasan konservasi perairan, dan analisis spasial pencegahan konflik pemanfaatan ruang laut.',
                 'instruments' => ['Software GIS Kelautan & Geodatabase Spasial', 'Citra Satelit Sentinel & Landsat Resolusi Tinggi', 'Drone Surveillance Wilayah Pesisir'],
                 'deliverables'=> ['Peta Tematik Spasial Berstandar BIG', 'Naskah Akademis Kebijakan Zonasi Kelautan', 'Model Penyelesaian Konflik Ruang Pemanfaatan'],
                 'spec'        => [
@@ -205,6 +230,31 @@ class Layanan extends BaseController
                         'Lapisan Data Spasial Tematik Kelautan (Format Shapefile/GeoPackage)',
                         'Dokumen Naskah Akademis Usulan Peraturan Daerah Zonasi',
                         'Peta Matriks Kesesuaian Pemanfaatan Ruang Perairan Laut'
+                    ]
+                ]
+            ],
+            [
+                'id'          => 'pemberdayaan',
+                'icon'        => 'fa-users-gear',
+                'title'       => 'Pemberdayaan Masyarakat Perbatasan & Kajian Potensi',
+                'desc'        => 'Pendampingan kapasitas nelayan pesisir perbatasan, kajian valuasi ekonomi sumber daya hayati laut, penguatan kelembagaan lokal masyarakat pulau-pulau kecil, serta strategi hilirisasi produk perikanan.',
+                'instruments' => ['Metodologi Partisipatif PRA (Participatory Rural Appraisal)', 'Sistem Informasi Geografis Sosial-Spasial Pesisir', 'Instrumen Valuasi Ekonomi Sumber Daya Laut', 'Modul Inkubasi Koperasi Nelayan & UMKM Pesisir'],
+                'deliverables'=> ['Laporan Komprehensif Kajian Potensi Ekonomi Maritim Perbatasan', 'Masterplan Pemberdayaan Nelayan & Masyarakat Pulau Kecil', 'Naskah Kebijakan (Policy Brief) Kesejahteraan Sosial Pesisir'],
+                'spec'        => [
+                    'code'        => 'SOP-COM-06',
+                    'standards'   => 'Pedoman Pemberdayaan Masyarakat Pesisir KKP RI & Standar Perencanaan Wilayah Perbatasan Bappenas',
+                    'sopName'     => 'SOP Kajian Potensi Wilayah Maritim & Pendampingan Masyarakat Pesisir Perbatasan',
+                    'sopSlug'     => 'panduan-kerjasama-riset',
+                    'instruments' => [
+                        ['name' => 'Pendekatan Partisipatif PRA/RRA', 'param' => 'Pemetaan sosial desa pesisir terpadu dan asesmen mata pencaharian berkelanjutan'],
+                        ['name' => 'Pemetaan Sosial-Spasial Berbasis SIG', 'param' => 'Integrasi sebaran fishing ground nelayan tradisional dan wilayah tangkap adat'],
+                        ['name' => 'Valuasi Ekonomi Sumber Daya Hayati', 'param' => 'Travel Cost Method (TCM), Contingent Valuation (CVM), dan Market Price Proxy'],
+                        ['name' => 'Inkubasi Kelembagaan Usaha Pesisir', 'param' => 'Standardisasi tata kelola kelompok usaha perikanan dan sertifikasi produk olahan']
+                    ],
+                    'deliverables' => [
+                        'Dokumen Komprehensif Kajian Potensi Ekonomi Maritim Wilayah Perbatasan',
+                        'Rencana Aksi (Action Plan) Pemberdayaan Komunitas Nelayan Pulau Terluar',
+                        'Policy Brief Rekomendasi Alokasi Program Afirmasi Pemerintah Pusat/Daerah'
                     ]
                 ]
             ],

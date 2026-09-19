@@ -156,8 +156,9 @@
                                 <option value="kerjasama" <?= $selectedKat === 'kerjasama' ? 'selected' : '' ?>><?= $isEn ? 'MoU / Joint Research Collaboration Agreement' : 'Inisiasi MoU / Perjanjian Kerjasama Riset' ?></option>
                                 <option value="batimetri" <?= $selectedKat === 'batimetri' ? 'selected' : '' ?>><?= $isEn ? 'Bathymetry & Hydro-Oceanographic Survey Request' : 'Permohonan Jasa Survei Batimetri & Oseanografi' ?></option>
                                 <option value="amdal" <?= $selectedKat === 'amdal' ? 'selected' : '' ?>><?= $isEn ? 'Seawater Quality Testing & Coastal Environmental Impact Study' : 'Uji Kualitas Air Laut & Kajian AMDAL Pesisir' ?></option>
-                                <option value="zonasi" <?= $selectedKat === 'zonasi' ? 'selected' : '' ?>><?= $isEn ? 'Marine Spatial Planning & Coastal Zoning Advisory (RZWP-3-K)' : 'Konsultasi Regulasi Zonasi Ruang Laut (RZWP-3-K)' ?></option>
+                                <option value="zonasi" <?= $selectedKat === 'zonasi' ? 'selected' : '' ?>><?= $isEn ? 'Marine Spatial Planning & Small Islands Development (RZWP-3-K)' : 'Pengembangan Tata Ruang Laut & Pulau-Pulau Kecil (RZWP-3-K)' ?></option>
                                 <option value="pelabuhan" <?= $selectedKat === 'pelabuhan' ? 'selected' : '' ?>><?= $isEn ? 'Port Engineering & Maritime Infrastructure Consultation' : 'Perancangan & Jasa Kepelabuhanan (DED Dermaga)' ?></option>
+                                <option value="pemberdayaan" <?= $selectedKat === 'pemberdayaan' ? 'selected' : '' ?>><?= $isEn ? 'Border Community Empowerment & Maritime Potential Studies' : 'Pemberdayaan Masyarakat Perbatasan & Kajian Potensi' ?></option>
                                 <option value="pelatihan" <?= $selectedKat === 'pelatihan' ? 'selected' : '' ?>><?= $isEn ? 'Marine GIS & Acoustic Remote Sensing Training' : 'Pelatihan GIS & Remote Sensing Kelautan' ?></option>
                                 <option value="lainnya" <?= $selectedKat === 'lainnya' ? 'selected' : '' ?>><?= $isEn ? 'General Inquiry / Others' : 'Pertanyaan Umum / Lainnya' ?></option>
                             </select>
