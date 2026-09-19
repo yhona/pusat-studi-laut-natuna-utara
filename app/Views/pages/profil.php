@@ -98,6 +98,54 @@
                 </div>
             </div>
 
+            <!-- Landasan Falsafah: Gurindam Dua Belas Pasal yang Kelima -->
+            <div class="bg-gradient-to-br from-navy-950 via-slate-900 to-navy-900 rounded-2xl p-6 sm:p-8 text-white border border-gold-500/30 shadow-md relative overflow-hidden">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-white/10">
+                    <div class="space-y-1">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/20 text-gold-400 text-xs font-semibold border border-gold-500/30">
+                            <i class="fa-solid fa-feather-pointed"></i> <?= $isEn ? 'Malay Maritime Philosophical Foundation' : 'Landasan Falsafah Tamadun Bahari Melayu' ?>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold text-white"><?= $isEn ? 'Gurindam Dua Belas — The Fifth Article (Pasal ke-5)' : 'Gurindam Dua Belas — Pasal yang Kelima' ?></h3>
+                        <p class="text-xs text-slate-300"><?= $isEn ? 'Composed by Raja Ali Haji (National Hero & Scholar of Pulau Penyengat, Kepulauan Riau)' : 'Karya Pahlawan Nasional & Cendekiawan Pulau Penyengat, Raja Ali Haji' ?></p>
+                    </div>
+                    <div class="flex-shrink-0 text-right hidden md:block">
+                        <span class="text-[11px] font-mono text-gold-400 bg-navy-800/80 px-3 py-1.5 rounded-lg border border-gold-500/20">
+                            <i class="fa-solid fa-scroll mr-1"></i> Nilai Luhur Tridharma
+                        </span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6">
+                    <!-- Bait 1: Orang Berilmu -->
+                    <div class="bg-white/5 rounded-xl p-5 border border-white/10 space-y-2 hover:border-gold-500/50 transition-colors">
+                        <div class="flex items-center gap-2 text-gold-400 text-xs font-bold uppercase tracking-wider">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            <span><?= $isEn ? 'Verse on Scientific Tenacity' : 'Bait Insan Peneliti & Keilmuan' ?></span>
+                        </div>
+                        <blockquote class="text-sm sm:text-base font-serif italic text-gold-200 border-l-2 border-gold-400 pl-3 py-0.5">
+                            "Jika hendak mengenal orang yang berilmu,<br>bertanya dan belajar tiadalah jemu."
+                        </blockquote>
+                        <p class="text-xs text-slate-300 leading-relaxed pt-1">
+                            <?= $isEn ? 'Becomes the moral foundation for continuous oceanographic exploration, scientific rigor, and persistent inquiry in outermost border maritime dynamics.' : 'Menjadi ruh dan etos kerja saintifik dewan peneliti dalam melakukan eksplorasi oseanografi serta pemodelan sains perbatasan terluar tanpa kenal lelah.' ?>
+                        </p>
+                    </div>
+
+                    <!-- Bait 2: Orang Berakal -->
+                    <div class="bg-white/5 rounded-xl p-5 border border-white/10 space-y-2 hover:border-gold-500/50 transition-colors">
+                        <div class="flex items-center gap-2 text-gold-400 text-xs font-bold uppercase tracking-wider">
+                            <i class="fa-solid fa-lightbulb"></i>
+                            <span><?= $isEn ? 'Verse on Wisdom & Strategic Foresight' : 'Bait Kebijakan & Bekal Kemaslahatan' ?></span>
+                        </div>
+                        <blockquote class="text-sm sm:text-base font-serif italic text-gold-200 border-l-2 border-gold-400 pl-3 py-0.5">
+                            "Jika hendak mengenal orang yang berakal,<br>di dalam dunia mengambil bekal."
+                        </blockquote>
+                        <p class="text-xs text-slate-300 leading-relaxed pt-1">
+                            <?= $isEn ? 'Becomes the foundation for high-impact policy briefs, serving as strategic assets (bekal) for national diplomacy, maritime sovereignty, and coastal welfare.' : 'Menjadi pijakan lahirnya policy brief dan rekomendasi kebijakan strategis sebagai "bekal" diplomasi kedaulatan maritim bangsa dan keberdayaan nelayan perbatasan.' ?>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
             <!-- Campus Waterfront Architectural Showcase -->
             <div class="relative rounded-2xl overflow-hidden shadow-xl border border-slate-200 group">
                 <div class="aspect-[21/9] w-full overflow-hidden bg-navy-950">
@@ -115,33 +163,39 @@
             </div>
 
             <!-- Misi Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 rounded-xl bg-maritime-50 text-maritime-600 flex items-center justify-center text-xl mb-4">
-                        <i class="fa-solid fa-water"></i>
-                    </div>
-                    <h3 class="text-base sm:text-lg font-bold text-navy-950 mb-2"><?= $isEn ? '1. Oceanic Science Exploration' : '1. Eksplorasi Sains Bahari' ?></h3>
-                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                        <?= $isEn ? 'Conducting applied oceanographic surveys, tropical marine hydrodynamic modeling, and blue carbon ecosystem mapping (mangroves and seagrass beds) across the Riau Islands.' : 'Melakukan survei oseanografi terapan, pemodelan hidrodinamika laut tropis, dan pemetaan ekosistem blue carbon (mangrove dan padang lamun) di Kepulauan Riau.' ?>
-                    </p>
+            <div>
+                <div class="mb-6">
+                    <span class="text-maritime-600 uppercase text-xs font-bold tracking-wider block"><?= lang('App.mission_title') ?></span>
+                    <h3 class="text-xl sm:text-2xl font-bold text-navy-950 mt-1"><?= $isEn ? 'Strategic Tridharma Missions Guided by Gurindam 12' : 'Misi Strategis Tridharma Berlandaskan Falsafah Gurindam' ?></h3>
                 </div>
-                <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 rounded-xl bg-gold-50 text-gold-600 flex items-center justify-center text-xl mb-4">
-                        <i class="fa-solid fa-shield-halved"></i>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 rounded-xl bg-maritime-50 text-maritime-600 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-water"></i>
+                        </div>
+                        <h3 class="text-base sm:text-lg font-bold text-navy-950 mb-2"><?= $isEn ? '1. Oceanic Science Exploration' : '1. Eksplorasi Sains Bahari Berkelanjutan' ?></h3>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                            <?= $isEn ? 'Manifesting "tiadalah jemu bertanya dan belajar" through continuous applied oceanographic surveys, tropical marine hydrodynamic modeling, and blue carbon ecosystem mapping across border waters.' : 'Mengaktualisasikan falsafah "tiadalah jemu belajar" melalui riset oseanografi terapan, pemodelan hidrodinamika laut tropis, dan pemetaan ekosistem blue carbon secara konsisten di wilayah perbatasan.' ?>
+                        </p>
                     </div>
-                    <h3 class="text-base sm:text-lg font-bold text-navy-950 mb-2"><?= $isEn ? '2. Outermost Regions Advocacy' : '2. Advokasi Wilayah Terluar' ?></h3>
-                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                        <?= $isEn ? 'Producing strategic policy briefs and international law of the sea studies (UNCLOS 1982) to reinforce Indonesian sovereignty in the North Natuna Sea Exclusive Economic Zone (EEZ).' : 'Menghasilkan policy brief dan kajian hukum laut internasional (UNCLOS 1982) untuk memperkuat kedaulatan NKRI di kawasan Zona Ekonomi Eksklusif (ZEE) Natuna Utara.' ?>
-                    </p>
-                </div>
-                <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl mb-4">
-                        <i class="fa-solid fa-users"></i>
+                    <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 rounded-xl bg-gold-50 text-gold-600 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <h3 class="text-base sm:text-lg font-bold text-navy-950 mb-2"><?= $isEn ? '2. Outermost Sovereignty Advocacy' : '2. Penguatan Kedaulatan & Diplomasi ZEE' ?></h3>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                            <?= $isEn ? 'Producing authoritative policy briefs and UNCLOS 1982 studies as strategic national assets (bekal) to reinforce Indonesian sovereignty and maritime diplomacy in the North Natuna Sea.' : 'Menghasilkan policy brief dan kajian hukum laut internasional (UNCLOS 1982) sebagai "bekal strategis" diplomasi kedaulatan wilayah NKRI di kawasan Zona Ekonomi Eksklusif (ZEE) Natuna Utara.' ?>
+                        </p>
                     </div>
-                    <h3 class="text-base sm:text-lg font-bold text-navy-950 mb-2"><?= $isEn ? '3. Coastal Empowerment' : '3. Pemberdayaan Pesisir' ?></h3>
-                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                        <?= $isEn ? 'Empowering traditional fishermen communities through appropriate marine technology innovations, seafood product diversification, and socio-economic resilience in border islands.' : 'Mendukung masyarakat nelayan tradisional melalui inovasi teknologi tepat guna, diversifikasi produk olahan laut, dan ketahanan sosial-ekonomi pulau kecil terluar.' ?>
-                    </p>
+                    <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <h3 class="text-base sm:text-lg font-bold text-navy-950 mb-2"><?= $isEn ? '3. Community Empowerment & Wisdom' : '3. Hilirisasi & Pemberdayaan Masyarakat Pesisir' ?></h3>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                            <?= $isEn ? 'Empowering traditional border fishermen and small island communities through appropriate marine technology innovations, seafood processing, and sustainable coastal livelihoods.' : 'Menebarkan manfaat ilmu bagi masyarakat nelayan tradisional melalui alih teknologi tepat guna bahari, diversifikasi pangan laut, dan peningkatan ketahanan ekonomi pulau-pulau perbatasan.' ?>
+                        </p>
+                    </div>
                 </div>
             </div>
 
