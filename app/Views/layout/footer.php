@@ -23,7 +23,7 @@
                     </div>
                     <div class="flex items-center gap-2.5">
                         <i class="fa-solid fa-envelope text-gold-400 flex-shrink-0"></i>
-                        <span>psk@umrah.ac.id</span>
+                        <a href="mailto:pusatstudilautnatunautara@umrah.ac.id" class="hover:text-gold-400 transition-colors">pusatstudilautnatunautara@umrah.ac.id</a>
                     </div>
                     <div class="flex items-center gap-2.5">
                         <i class="fa-solid fa-phone text-gold-400 flex-shrink-0"></i>

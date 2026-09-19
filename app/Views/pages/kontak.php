@@ -73,7 +73,7 @@
                             </div>
                             <div>
                                 <strong class="text-navy-900 block"><?= $isEn ? 'Official Email:' : 'Email Resmi:' ?></strong>
-                                <span>psk@umrah.ac.id / lppm@umrah.ac.id</span>
+                                <span><a href="mailto:pusatstudilautnatunautara@umrah.ac.id" class="hover:text-gold-600 transition-colors font-medium">pusatstudilautnatunautara@umrah.ac.id</a> / lppm@umrah.ac.id</span>
                             </div>
                         </div>
 
