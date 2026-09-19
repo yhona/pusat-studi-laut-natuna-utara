@@ -36,6 +36,16 @@ $metadataMap = $isEn ? [
             'Harmonizing cross-border security policies with socioeconomic welfare programs for outermost island communities.'
         ]
     ],
+    'PB-06/PSK-UMRAH/2026' => [
+        'slug'            => 'pb-kpbpb-perbatasan-maritim',
+        'file_size'       => '3.6 MB',
+        'pages'           => 20,
+        'recommendations' => [
+            'Formulating dedicated fiscal incentives and streamlined customs regulations to accelerate investment in border Free Trade Zones.',
+            'Synergizing port logistics infrastructure with regional supply chains across Asia Pacific and African trade corridors.',
+            'Enhancing local workforce absorption and MSME integration within Free Trade Zone and Free Port ecosystems.'
+        ]
+    ],
 ] : [
     'PB-05/PSK-UMRAH/2026' => [
         'slug'            => 'pb-diplomasi-perbatasan-natuna',
@@ -45,6 +55,16 @@ $metadataMap = $isEn ? [
             'Penguatan koordinasi diplomasi terpadu antara Kementerian Luar Negeri (BSKLN), Pemerintah Pusat, dan Pemerintah Daerah kawasan perbatasan.',
             'Pembangunan dan optimalisasi infrastruktur maritim di beranda terluar guna memperkuat penegakan kedaulatan wilayah secara berkelanjutan.',
             'Harmonisasi regulasi keamanan laut dengan program penguatan ekonomi dan kesejahteraan masyarakat di pulau-pulau terluar Laut Natuna Utara.'
+        ]
+    ],
+    'PB-06/PSK-UMRAH/2026' => [
+        'slug'            => 'pb-kpbpb-perbatasan-maritim',
+        'file_size'       => '3.6 MB',
+        'pages'           => 20,
+        'recommendations' => [
+            'Penyusunan insentif fiskal khusus dan penyederhanaan tata kelola kepabeanan guna mengakselerasi investasi di Kawasan Bebas perbatasan.',
+            'Sinergi infrastruktur logistik kepelabuhanan dengan rantai pasok regional koridor perdagangan Asia Pasifik dan Afrika.',
+            'Penguatan penyerapan tenaga kerja lokal dan integrasi UMKM pesisir ke dalam rantai nilai ekosistem KPBPB.'
         ]
     ],
 ];

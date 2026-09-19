@@ -26,6 +26,20 @@ class Publikasi extends BaseController
                         : 'Implementasi pengelolaan kawasan perbatasan untuk mendukung strategi diplomasi menegakkan kedaulatan wilayah di perbatasan terluar Indonesia di Laut Natuna Utara didukung oleh beberapa kebijakan baik dari Kebijakan Pemerintah Pusat dan Pemerintah Daerah.',
                     'file'  => '#'
                 ],
+                [
+                    'number'=> 'PB-06/PSK-UMRAH/2026',
+                    'title' => $isEn 
+                        ? 'Optimization of Free Trade Zone and Free Port Development'
+                        : 'Optimalisasi Pengembangan Kawasan Perdagangan Bebas Dan Pelabuhan Bebas',
+                    'year'  => '2026',
+                    'author'=> $isEn 
+                        ? 'Dr. Ady Muzwardi and Center for Policy Strategy for Asia Pacific and Africa Region, Foreign Policy Strategy Agency (BSKLN)'
+                        : 'Dr. Ady Muzwardi dan Pusat Strategi Kebijakan Kawasan Asia Pasifik dan Afrika Badan Strategi Kebijakan Luar Negeri',
+                    'desc'  => $isEn
+                        ? 'Strategic zones to support regional and national economic development. Free Trade Zone and Free Port (KPBPB) is one of the models developed by the government in realizing development in border areas.'
+                        : 'Kawasan-kawasan strategis untuk menopang pembangunan ekonomi daerah dan nasional. Kawasan Perdagangan Bebas dan Pelabuhan Bebas (KPBPB) adalah salah satu model yang dikembangkan pemerintah dalam mewujudkan Pembangunan di wilayah perbatasan.',
+                    'file'  => '#'
+                ],
             ],
 
             'journals' => [

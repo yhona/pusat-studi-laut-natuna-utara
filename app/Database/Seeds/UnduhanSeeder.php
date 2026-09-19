@@ -67,7 +67,7 @@ class UnduhanSeeder extends Seeder
                 'updated_at'  => '2026-02-01 08:00:00',
             ],
 
-            // 2. Policy Brief & Publikasi (1 doc)
+            // 2. Policy Brief & Publikasi (2 docs)
             [
                 'code'        => 'PB-PSK-05',
                 'slug'        => 'pb-diplomasi-perbatasan-natuna',
@@ -81,6 +81,20 @@ class UnduhanSeeder extends Seeder
                 'desc'        => 'Implementasi pengelolaan kawasan perbatasan untuk mendukung strategi diplomasi menegakkan kedaulatan wilayah di perbatasan terluar Indonesia di Laut Natuna Utara didukung oleh beberapa kebijakan baik dari Kebijakan Pemerintah Pusat dan Pemerintah Daerah. Penyusun: Dr. Ady Muzwardi dan Tim BSKLN.',
                 'created_at'  => '2026-03-01 08:00:00',
                 'updated_at'  => '2026-03-01 08:00:00',
+            ],
+            [
+                'code'        => 'PB-PSK-06',
+                'slug'        => 'pb-kpbpb-perbatasan-maritim',
+                'title'       => 'Policy Brief: Optimalisasi Pengembangan Kawasan Perdagangan Bebas Dan Pelabuhan Bebas',
+                'category'    => 'Policy Brief & Publikasi',
+                'category_id' => 'policy-brief',
+                'file_type'   => 'PDF',
+                'file_size'   => '3.6 MB',
+                'year'        => '2026',
+                'downloads'   => 385,
+                'desc'        => 'Kawasan-kawasan strategis untuk menopang pembangunan ekonomi daerah dan nasional. Kawasan Perdagangan Bebas dan Pelabuhan Bebas (KPBPB) adalah salah satu model yang dikembangkan pemerintah dalam mewujudkan Pembangunan di wilayah perbatasan. Penyusun: Dr. Ady Muzwardi dan Pusat Strategi Kebijakan Kawasan Asia Pasifik dan Afrika BSKLN.',
+                'created_at'  => '2026-03-05 08:00:00',
+                'updated_at'  => '2026-03-05 08:00:00',
             ],
 
             // 3. Template & Kerjasama (3 docs)
