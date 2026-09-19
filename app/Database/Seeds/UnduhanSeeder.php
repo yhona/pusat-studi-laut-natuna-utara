@@ -67,7 +67,21 @@ class UnduhanSeeder extends Seeder
                 'updated_at'  => '2026-02-01 08:00:00',
             ],
 
-            // 2. Policy Brief & Publikasi (4 docs)
+            // 2. Policy Brief & Publikasi (5 docs)
+            [
+                'code'        => 'PB-PSK-05',
+                'slug'        => 'pb-diplomasi-perbatasan-natuna',
+                'title'       => 'Policy Brief: Upaya Pengelolaan Kawasan Perbatasan Untuk Mendukung Strategi Diplomasi Menegakkan Kedaulatan Wilayah Di Laut Natuna Utara',
+                'category'    => 'Policy Brief & Publikasi',
+                'category_id' => 'policy-brief',
+                'file_type'   => 'PDF',
+                'file_size'   => '3.8 MB',
+                'year'        => '2026',
+                'downloads'   => 412,
+                'desc'        => 'Implementasi pengelolaan kawasan perbatasan untuk mendukung strategi diplomasi menegakkan kedaulatan wilayah di perbatasan terluar Indonesia di Laut Natuna Utara didukung oleh beberapa kebijakan baik dari Kebijakan Pemerintah Pusat dan Pemerintah Daerah. Penyusun: Dr. Ady Muzwardi dan Tim BSKLN.',
+                'created_at'  => '2026-03-01 08:00:00',
+                'updated_at'  => '2026-03-01 08:00:00',
+            ],
             [
                 'code'        => 'PB-PSK-04',
                 'slug'        => 'pb-kedaulatan-natuna-lcs',

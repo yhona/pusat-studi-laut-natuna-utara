@@ -13,6 +13,20 @@ class Publikasi extends BaseController
             
             'policy_briefs' => [
                 [
+                    'number'=> 'PB-05/PSK-UMRAH/2026',
+                    'title' => $isEn 
+                        ? 'Border Area Management Efforts to Support Diplomatic Strategy in Enforcing Territorial Sovereignty in the North Natuna Sea'
+                        : 'Upaya Pengelolaan Kawasan Perbatasan Untuk Mendukung Strategi Diplomasi Menegakkan Kedaulatan Wilayah Di Laut Natuna Utara',
+                    'year'  => '2026',
+                    'author'=> $isEn 
+                        ? 'Dr. Ady Muzwardi and Team from Center for Policy Strategy on Special Issues and Data Analysis, Foreign Policy Strategy Agency (BSKLN)'
+                        : 'Dr. Ady Muzwardi dan Tim Pusat Strategi Kebijakan Isu Khusus Dan Analisis Data Badan Strategi Kebijakan Luar Negeri',
+                    'desc'  => $isEn
+                        ? 'Implementation of border area management to support diplomatic strategies for enforcing territorial sovereignty in Indonesia\'s outermost borders in the North Natuna Sea supported by policies from both Central and Regional Governments.'
+                        : 'Implementasi pengelolaan kawasan perbatasan untuk mendukung strategi diplomasi menegakkan kedaulatan wilayah di perbatasan terluar Indonesia di Laut Natuna Utara didukung oleh beberapa kebijakan baik dari Kebijakan Pemerintah Pusat dan Pemerintah Daerah.',
+                    'file'  => '#'
+                ],
+                [
                     'number'=> 'PB-04/PSK-UMRAH/2026',
                     'title' => $isEn 
                         ? 'Strengthening Sovereignty & EEZ Governance in North Natuna Sea Amidst South China Sea Geopolitics'

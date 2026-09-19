@@ -41,6 +41,9 @@ class Unduhan extends BaseController
                 } elseif ($doc['slug'] === 'sop-uji-kualitas-air') {
                     $doc['title'] = 'SOP Seawater Quality & Heavy Metal Spectrophotometry Testing';
                     $doc['desc']  = 'Accredited testing protocols for pH, salinity, DO, nitrate, phosphate, and heavy metals (Pb, Cd, Cu) in island waters.';
+                } elseif ($doc['slug'] === 'pb-diplomasi-perbatasan-natuna') {
+                    $doc['title'] = 'Policy Brief: Border Area Management & Diplomatic Sovereignty Strategy in North Natuna Sea';
+                    $doc['desc']  = 'Implementation of border management supporting diplomatic enforcement of territorial sovereignty in the North Natuna Sea by MoFA BSKLN and UMRAH.';
                 } elseif ($doc['slug'] === 'pb-kedaulatan-natuna-lcs') {
                     $doc['title'] = 'Policy Brief: Archipelagic Maritime Governance & Natuna EEZ Sovereignty';
                     $doc['desc']  = 'Strategic policy recommendations for integrated satellite monitoring and UNCLOS 1982 maritime border protection.';

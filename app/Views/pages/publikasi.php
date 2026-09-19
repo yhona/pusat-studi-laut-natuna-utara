@@ -26,6 +26,16 @@
 <?php
 // Enrich policy brief metadata with valid download repository slugs & recommendations
 $metadataMap = $isEn ? [
+    'PB-05/PSK-UMRAH/2026' => [
+        'slug'            => 'pb-diplomasi-perbatasan-natuna',
+        'file_size'       => '3.8 MB',
+        'pages'           => 24,
+        'recommendations' => [
+            'Strengthening multi-tier diplomatic coordination between Central Ministries (MoFA/BSKLN) and Regional Border Agencies.',
+            'Accelerating border maritime infrastructure development to support active presence and sovereign law enforcement.',
+            'Harmonizing cross-border security policies with socioeconomic welfare programs for outermost island communities.'
+        ]
+    ],
     'PB-04/PSK-UMRAH/2026' => [
         'slug'            => 'pb-kedaulatan-natuna-lcs',
         'file_size'       => '4.1 MB',
@@ -67,6 +77,16 @@ $metadataMap = $isEn ? [
         ]
     ]
 ] : [
+    'PB-05/PSK-UMRAH/2026' => [
+        'slug'            => 'pb-diplomasi-perbatasan-natuna',
+        'file_size'       => '3.8 MB',
+        'pages'           => 24,
+        'recommendations' => [
+            'Penguatan koordinasi diplomasi terpadu antara Kementerian Luar Negeri (BSKLN), Pemerintah Pusat, dan Pemerintah Daerah kawasan perbatasan.',
+            'Pembangunan dan optimalisasi infrastruktur maritim di beranda terluar guna memperkuat penegakan kedaulatan wilayah secara berkelanjutan.',
+            'Harmonisasi regulasi keamanan laut dengan program penguatan ekonomi dan kesejahteraan masyarakat di pulau-pulau terluar Laut Natuna Utara.'
+        ]
+    ],
     'PB-04/PSK-UMRAH/2026' => [
         'slug'            => 'pb-kedaulatan-natuna-lcs',
         'file_size'       => '4.1 MB',
