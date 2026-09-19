@@ -42,7 +42,7 @@
         <div x-data="serviceSpecModal()" @keydown.escape.window="if (isOpen) closeSpec()">
             
             <!-- Services Cards List -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <?php foreach ($services as $service): ?>
                 <div id="<?= esc($service['id']) ?>" class="scroll-mt-28 bg-white rounded-2xl p-7 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between space-y-6">
                     <div class="space-y-4">
@@ -207,215 +207,45 @@
 
         </div>
 
-        <!-- Section 2: Hydro-Oceanography Survey Simulator / Calculator -->
-        <section id="kalkulator" class="scroll-mt-28 bg-gradient-to-br from-navy-950 via-navy-900 to-maritime-950 text-white rounded-3xl p-6 sm:p-10 shadow-2xl border border-navy-800 relative overflow-hidden" x-data="surveyCalculator()">
+        <!-- Section 2: Consultation & Strategic Advisory -->
+        <section id="konsultasi" class="scroll-mt-28 bg-gradient-to-br from-navy-950 via-navy-900 to-maritime-950 text-white rounded-3xl p-8 sm:p-12 shadow-2xl border border-navy-800 relative overflow-hidden">
             <div class="absolute inset-0 opacity-10 bg-pattern pointer-events-none"></div>
 
-            <div class="relative z-10 space-y-8">
-                <!-- Calculator Header -->
-                <div class="max-w-3xl space-y-2">
-                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/20 border border-gold-500/40 text-gold-400 text-xs font-semibold uppercase tracking-wider">
-                        <i class="fa-solid fa-calculator text-[11px]"></i> <?= lang('App.service_calc_tag') ?>
+            <div class="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+                <div class="space-y-4 max-w-2xl">
+                    <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-500/20 border border-gold-500/40 text-gold-400 text-xs font-semibold uppercase tracking-wider">
+                        <i class="fa-solid fa-handshake text-[11px]"></i> <?= $isEn ? 'Government & Industry Partnerships' : 'Kemitraan Pemerintah & Industri Maritim' ?>
                     </span>
                     <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                        <?= lang('App.service_calc_title') ?>
+                        <?= $isEn ? 'Tailored Maritime Solutions for Frontier Regions' : 'Solusi Kemaritiman Terapan untuk Wilayah Perbatasan' ?>
                     </h3>
                     <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                        <?= lang('App.service_calc_desc') ?>
+                        <?= $isEn ? 'From port Detail Engineering Design (DED) and coastal spatial zoning (RZWP-3-K) to socio-economic community empowerment in outermost islands, our multidisciplinary team provides end-to-end technical assistance compliant with ministerial regulations.' : 'Mulai dari Detail Engineering Design (DED) fasilitas kepelabuhanan, penyusunan rencana tata ruang laut (RZWP-3-K), hingga pendampingan pemberdayaan masyarakat nelayan di pulau-pulau kecil terluar, dewan pakar kami siap mendampingi kebutuhan strategis Anda sesuai regulasi nasional.' ?>
                     </p>
+                    <div class="flex flex-wrap gap-4 pt-2 text-xs text-slate-300">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-circle-check text-gold-400"></i>
+                            <span><?= $isEn ? 'LPPM UMRAH Certified' : 'Terverifikasi LPPM UMRAH' ?></span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-circle-check text-gold-400"></i>
+                            <span><?= $isEn ? 'Ministerial Standards (KKP & Kemenhub)' : 'Standar Regulasi KKP & Kemenhub RI' ?></span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-circle-check text-gold-400"></i>
+                            <span><?= $isEn ? 'Rapid Field Deployment in Riau Islands' : 'Cakupan Lapangan Seluruh Kepri & Natuna' ?></span>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Calculator Form & Reactive Results Grid -->
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                    
-                    <!-- Left: Input Controls -->
-                    <div class="lg:col-span-5 bg-navy-900/90 border border-navy-700/80 rounded-2xl p-6 space-y-6 shadow-inner">
-                        
-                        <!-- Input 1: Water Body Type -->
-                        <div class="space-y-2">
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-300">
-                                1. <?= lang('App.calc_water_type') ?>:
-                            </label>
-                            <div class="space-y-2">
-                                <label class="flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-all"
-                                       :class="waterType === 'shallow' ? 'bg-navy-800 border-gold-500 text-white shadow-sm' : 'bg-navy-950/60 border-navy-700 text-slate-400 hover:border-slate-500'">
-                                    <input type="radio" name="waterType" value="shallow" x-model="waterType" class="text-gold-500 focus:ring-gold-500">
-                                    <div class="text-xs">
-                                        <span class="font-bold block text-white"><?= lang('App.calc_water_shallow') ?></span>
-                                        <span class="text-[11px] text-slate-400"><?= $isEn ? 'Depth 0 – 20 m, coastal estuaries & shallow passages' : 'Kedalaman 0 – 20 m, muara pesisir & alur dangkal' ?></span>
-                                    </div>
-                                </label>
-                                <label class="flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-all"
-                                       :class="waterType === 'strait' ? 'bg-navy-800 border-gold-500 text-white shadow-sm' : 'bg-navy-950/60 border-navy-700 text-slate-400 hover:border-slate-500'">
-                                    <input type="radio" name="waterType" value="strait" x-model="waterType" class="text-gold-500 focus:ring-gold-500">
-                                    <div class="text-xs">
-                                        <span class="font-bold block text-white"><?= lang('App.calc_water_strait') ?></span>
-                                        <span class="text-[11px] text-slate-400"><?= $isEn ? 'Depth 20 – 70 m, strong tidal currents in Malacca/Riau Straits' : 'Kedalaman 20 – 70 m, arus kuat Selat Malaka/Riau' ?></span>
-                                    </div>
-                                </label>
-                                <label class="flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-all"
-                                       :class="waterType === 'offshore' ? 'bg-navy-800 border-gold-500 text-white shadow-sm' : 'bg-navy-950/60 border-navy-700 text-slate-400 hover:border-slate-500'">
-                                    <input type="radio" name="waterType" value="offshore" x-model="waterType" class="text-gold-500 focus:ring-gold-500">
-                                    <div class="text-xs">
-                                        <span class="font-bold block text-white"><?= lang('App.calc_water_deep') ?></span>
-                                        <span class="text-[11px] text-slate-400"><?= $isEn ? 'Depth > 70 m, outermost open sea & frontier EEZ' : 'Kedalaman > 70 m, laut terbuka perbatasan' ?></span>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-
-                        <!-- Input 2: Survey Area (Nm²) -->
-                        <div class="space-y-3 pt-4 border-t border-navy-800">
-                            <div class="flex items-center justify-between">
-                                <label class="text-xs font-bold uppercase tracking-wider text-slate-300">
-                                    2. <?= lang('App.calc_area_label') ?>:
-                                </label>
-                                <div class="flex items-baseline gap-1">
-                                    <span class="text-xl font-extrabold text-gold-400 font-mono" x-text="surveyArea"></span>
-                                    <span class="text-xs text-slate-400 font-semibold">Nm²</span>
-                                </div>
-                            </div>
-                            <input type="range" min="1" max="100" step="1" x-model.number="surveyArea"
-                                   class="w-full accent-gold-500 bg-navy-950 h-2 rounded-lg cursor-pointer">
-                            <div class="flex justify-between text-[10px] text-slate-400 font-mono">
-                                <span>1 Nm²</span>
-                                <span>25 Nm²</span>
-                                <span>50 Nm²</span>
-                                <span>75 Nm²</span>
-                                <span>100 Nm²</span>
-                            </div>
-                        </div>
-
-                        <!-- Input 3: IHO S-44 Survey Order -->
-                        <div class="space-y-2 pt-4 border-t border-navy-800">
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-300">
-                                3. <?= lang('App.calc_order_label') ?>:
-                            </label>
-                            <div class="grid grid-cols-3 gap-2 text-center text-xs">
-                                <button type="button" @click="surveyOrder = 'special'"
-                                        class="p-2.5 rounded-xl border transition-all"
-                                        :class="surveyOrder === 'special' ? 'bg-gold-500 text-navy-950 font-bold border-gold-400 shadow' : 'bg-navy-950/60 border-navy-700 text-slate-300 hover:border-slate-500'">
-                                    <span class="block text-xs font-bold">Special Order</span>
-                                    <span class="text-[10px] opacity-80"><?= $isEn ? 'Piers & Berths' : 'Alur Pelabuhan' ?></span>
-                                </button>
-                                <button type="button" @click="surveyOrder = 'order1a'"
-                                        class="p-2.5 rounded-xl border transition-all"
-                                        :class="surveyOrder === 'order1a' ? 'bg-gold-500 text-navy-950 font-bold border-gold-400 shadow' : 'bg-navy-950/60 border-navy-700 text-slate-300 hover:border-slate-500'">
-                                    <span class="block text-xs font-bold">Order 1a</span>
-                                    <span class="text-[10px] opacity-80"><?= $isEn ? 'Depth &lt;100m' : 'Kedalaman &lt;100m' ?></span>
-                                </button>
-                                <button type="button" @click="surveyOrder = 'order1b'"
-                                        class="p-2.5 rounded-xl border transition-all"
-                                        :class="surveyOrder === 'order1b' ? 'bg-gold-500 text-navy-950 font-bold border-gold-400 shadow' : 'bg-navy-950/60 border-navy-700 text-slate-300 hover:border-slate-500'">
-                                    <span class="block text-xs font-bold">Order 1b</span>
-                                    <span class="text-[10px] opacity-80"><?= $isEn ? 'General Survey' : 'Studi Umum' ?></span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Input 4: Lab Testing Checkboxes -->
-                        <div class="space-y-2 pt-4 border-t border-navy-800">
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-300">
-                                4. <?= lang('App.calc_tests_label') ?>:
-                            </label>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                                <label class="flex items-center gap-2 p-2.5 rounded-lg bg-navy-950/50 border border-navy-700 cursor-pointer hover:border-slate-500">
-                                    <input type="checkbox" x-model="tests.ctd" class="rounded text-gold-500 focus:ring-gold-500 bg-navy-800">
-                                    <span><?= lang('App.calc_test_ctd') ?></span>
-                                </label>
-                                <label class="flex items-center gap-2 p-2.5 rounded-lg bg-navy-950/50 border border-navy-700 cursor-pointer hover:border-slate-500">
-                                    <input type="checkbox" x-model="tests.turbidity" class="rounded text-gold-500 focus:ring-gold-500 bg-navy-800">
-                                    <span><?= lang('App.calc_test_turbidity') ?></span>
-                                </label>
-                                <label class="flex items-center gap-2 p-2.5 rounded-lg bg-navy-950/50 border border-navy-700 cursor-pointer hover:border-slate-500">
-                                    <input type="checkbox" x-model="tests.sediment" class="rounded text-gold-500 focus:ring-gold-500 bg-navy-800">
-                                    <span><?= lang('App.calc_test_sediment') ?></span>
-                                </label>
-                                <label class="flex items-center gap-2 p-2.5 rounded-lg bg-navy-950/50 border border-navy-700 cursor-pointer hover:border-slate-500">
-                                    <input type="checkbox" x-model="tests.metals" class="rounded text-gold-500 focus:ring-gold-500 bg-navy-800">
-                                    <span><?= lang('App.calc_test_metals') ?></span>
-                                </label>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- Right: Engine Feedback -->
-                    <div class="lg:col-span-7 space-y-6">
-                        
-                        <!-- Reactive Metric Cards -->
-                        <div class="grid grid-cols-3 gap-3">
-                            <div class="p-4 rounded-2xl bg-navy-900/90 border border-navy-700 text-center space-y-1">
-                                <span class="text-[10px] uppercase font-bold text-slate-400 block tracking-wider"><?= $isEn ? 'Field Survey' : 'Survei Lapangan' ?></span>
-                                <div class="text-2xl sm:text-3xl font-extrabold text-gold-400 font-mono" x-text="estimatedFieldDays"></div>
-                                <span class="text-[11px] text-slate-300"><?= $isEn ? 'Sea Operating Days' : 'Hari Kerja Laut' ?></span>
-                            </div>
-                            <div class="p-4 rounded-2xl bg-navy-900/90 border border-navy-700 text-center space-y-1">
-                                <span class="text-[10px] uppercase font-bold text-slate-400 block tracking-wider"><?= $isEn ? 'Data Processing' : 'Olah Data & Model' ?></span>
-                                <div class="text-2xl sm:text-3xl font-extrabold text-maritime-400 font-mono" x-text="estimatedProcessingDays"></div>
-                                <span class="text-[11px] text-slate-300"><?= $isEn ? 'GIS Analysis Days' : 'Hari Analisis GIS' ?></span>
-                            </div>
-                            <div class="p-4 rounded-2xl bg-gradient-to-br from-navy-800 to-maritime-800 border border-maritime-600/50 text-center space-y-1 shadow-lg">
-                                <span class="text-[10px] uppercase font-bold text-gold-400 block tracking-wider"><?= $isEn ? 'Total Duration' : 'Total Durasi' ?></span>
-                                <div class="text-2xl sm:text-3xl font-extrabold text-white font-mono" x-text="totalDays"></div>
-                                <span class="text-[11px] text-slate-200"><?= $isEn ? 'Estimated Days' : 'Hari Estimasi' ?></span>
-                            </div>
-                        </div>
-
-                        <!-- Recommended Vessel Card -->
-                        <div class="p-5 rounded-2xl bg-navy-900/90 border border-navy-700 space-y-2">
-                            <div class="flex items-center gap-2 text-xs font-bold text-gold-400 uppercase tracking-wider">
-                                <i class="fa-solid fa-ship text-sm"></i>
-                                <span><?= $isEn ? 'Recommended Survey Vessel & Fleet:' : 'Rekomendasi Wahana & Armada Kapal Survei:' ?></span>
-                            </div>
-                            <p class="text-sm font-semibold text-white leading-relaxed" x-text="recommendedVessel"></p>
-                            <p class="text-[11px] text-slate-400"><?= $isEn ? 'Verified for depth limits, Malacca/Natuna wave stability, and daily sounding coverage.' : 'Diverifikasi sesuai batas kedalaman laut, stabilitas gelombang Selat Malaka/Natuna, dan durasi sounding harian.' ?></p>
-                        </div>
-
-                        <!-- Recommended Multidisciplinary Expert Team -->
-                        <div class="p-5 rounded-2xl bg-navy-900/90 border border-navy-700 space-y-3">
-                            <div class="flex items-center gap-2 text-xs font-bold text-maritime-400 uppercase tracking-wider">
-                                <i class="fa-solid fa-users-gear text-sm"></i>
-                                <span><?= $isEn ? 'Assigned Expert Team Composition (UMRAH Fellows):' : 'Komposisi Tim Ahli Ditugaskan (Pakar UMRAH):' ?></span>
-                            </div>
-                            <div class="flex flex-wrap gap-2">
-                                <template x-for="(member, mIdx) in recommendedTeam" :key="mIdx">
-                                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-navy-800 border border-navy-700 text-slate-200 text-xs">
-                                        <i class="fa-solid fa-user-check text-emerald-400 text-[10px]"></i>
-                                        <span x-text="member"></span>
-                                    </span>
-                                </template>
-                            </div>
-                        </div>
-
-                        <!-- Instruments Checklist -->
-                        <div class="p-5 rounded-2xl bg-navy-900/90 border border-navy-700 space-y-3">
-                            <div class="flex items-center gap-2 text-xs font-bold text-slate-300 uppercase tracking-wider">
-                                <i class="fa-solid fa-toolbox text-gold-400 text-sm"></i>
-                                <span><?= $isEn ? 'Instrument & Sensor Configuration:' : 'Konfigurasi Instrumen & Sensor:' ?></span>
-                            </div>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-300">
-                                <template x-for="(inst, iIdx) in recommendedInstruments" :key="iIdx">
-                                    <div class="flex items-start gap-2 bg-navy-950/40 p-2 rounded-lg border border-navy-800">
-                                        <i class="fa-solid fa-circle-check text-gold-400 text-[10px] mt-0.5 shrink-0"></i>
-                                        <span x-text="inst"></span>
-                                    </div>
-                                </template>
-                            </div>
-                        </div>
-
-                        <!-- Action Button -->
-                        <div class="pt-2">
-                            <a :href="consultationUrl" class="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-gold-500 to-amber-500 hover:from-gold-400 hover:to-amber-400 text-navy-950 font-bold text-sm px-6 py-3.5 rounded-xl shadow-lg transition-all active:scale-[0.99]">
-                                <span><?= lang('App.calc_consult_btn') ?></span>
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </a>
-                        </div>
-
-                    </div>
-
+                <div class="flex flex-col sm:flex-row lg:flex-col gap-3.5 w-full lg:w-auto flex-shrink-0">
+                    <a href="<?= base_url('kontak') ?>" class="inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-950 font-bold text-xs sm:text-sm shadow-xl transition-all active:scale-[0.98]">
+                        <i class="fa-solid fa-file-signature"></i> <?= $isEn ? 'Initiate Partnership / Proposal' : 'Ajukan Permohonan Kerjasama' ?>
+                    </a>
+                    <a href="<?= base_url('unduhan') ?>" class="inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl bg-navy-800/80 hover:bg-navy-800 text-white font-semibold text-xs sm:text-sm border border-navy-700 shadow transition-all active:scale-[0.98]">
+                        <i class="fa-solid fa-book-bookmark text-gold-400"></i> <?= $isEn ? 'Browse Document Repository' : 'Buka Repositori Dokumen & SOP' ?>
+                    </a>
                 </div>
-
             </div>
         </section>
 
@@ -427,130 +257,16 @@ function serviceSpecModal() {
     return {
         isOpen: false,
         activeService: null,
+
         openSpec(service) {
             this.activeService = service;
             this.isOpen = true;
-            document.body.classList.add('overflow-hidden');
+            document.body.style.overflow = 'hidden';
         },
+
         closeSpec() {
             this.isOpen = false;
-            document.body.classList.remove('overflow-hidden');
-        }
-    };
-}
-
-function surveyCalculator() {
-    const isEn = <?= $isEn ? 'true' : 'false' ?>;
-    return {
-        waterType: 'shallow',
-        surveyArea: 10,
-        surveyOrder: 'order1a',
-        tests: {
-            ctd: true,
-            turbidity: false,
-            sediment: false,
-            metals: false
-        },
-
-        get estimatedFieldDays() {
-            let rate = (this.waterType === 'shallow') ? 1.4 : (this.waterType === 'strait' ? 2.2 : 3.5);
-            let multiplier = (this.surveyOrder === 'special') ? 1.6 : (this.surveyOrder === 'order1a' ? 1.1 : 0.8);
-            let days = Math.ceil((this.surveyArea * multiplier) / rate);
-            
-            let extra = 0;
-            if (this.tests.sediment) extra += 1;
-            if (this.tests.metals) extra += 1;
-            
-            return Math.max(days + extra, 3);
-        },
-
-        get estimatedProcessingDays() {
-            let base = Math.ceil(this.estimatedFieldDays * 0.7);
-            let extra = 0;
-            if (this.tests.ctd) extra += 1;
-            if (this.tests.turbidity) extra += 1;
-            if (this.tests.sediment) extra += 2;
-            if (this.tests.metals) extra += 3;
-            return Math.max(base + extra, 4);
-        },
-
-        get totalDays() {
-            return this.estimatedFieldDays + this.estimatedProcessingDays;
-        },
-
-        get recommendedVessel() {
-            if (this.waterType === 'shallow') {
-                return isEn ? 'Class III Catamaran Survey Vessel (Draft < 1.2 m, Estuarine Maneuver)' : 'Kapal Survei Katamaran Kelas III (Draft < 1.2 m, Manuver Estuari)';
-            }
-            if (this.waterType === 'strait') {
-                return isEn ? 'Class II Hydrographic Survey Vessel (18m Length, Twin Engines & Stabilizer)' : 'Kapal Survei Hidrografi Kelas II (Panjang 18 m, Dual Engine & Stabilizer)';
-            }
-            return isEn ? 'Class II/III Open Ocean Research Vessel (20 Crew Capacity, >14 Days Endurance)' : 'Kapal Riset Laut Lepas Kelas II/III (Kapasitas Awak 20 Org, Endurance > 14 Hari)';
-        },
-
-        get recommendedTeam() {
-            let team = isEn ? [
-                'Lead Hydrographic Surveyor (IHO Cat-A Certified)',
-                'Physical Oceanographer & Tidal Current Analyst',
-                'Marine GIS & Spatial Data Processing Specialist',
-                'Marine Electronics & Sonar Systems Technician'
-            ] : [
-                'Lead Hydrographic Surveyor (IHO Cat-A Certified)',
-                'Oseanografer Fisika & Analisis Arus Pasut',
-                'Marine GIS & Data Processing Specialist',
-                'Teknisi Elektronika & Instrumentasi Sonar'
-            ];
-            if (this.tests.sediment || this.tests.metals || this.tests.turbidity) {
-                team.push(isEn ? 'Marine Geochemist & Water Quality Analyst (ISO 17025)' : 'Ahli Geokimia Laut & Analis Mutu Air (ISO 17025)');
-            }
-            return team;
-        },
-
-        get recommendedInstruments() {
-            let list = [];
-            if (this.surveyOrder === 'special' || this.waterType === 'strait') {
-                list.push('Multibeam Echo Sounder (MBES) High-Resolution Sonar');
-                list.push('Inertial Motion Reference Unit (MRU) 5-Axis & Gyrocompass');
-            } else if (this.surveyOrder === 'order1a') {
-                list.push('High-Frequency Multibeam Echo Sounder / Dual-Beam Hydrographic Sounder');
-                list.push('Motion Reference Unit (MRU) & Dual-Antenna GNSS Heading');
-            } else {
-                list.push('Dual Frequency Singlebeam Hydrographic Echosounder (24/200 kHz)');
-            }
-
-            list.push('Dual-Frequency RTK-DGPS Marine GNSS Positioning System');
-            list.push('Sound Velocity Profiler (SVP) Sonar Calibration Probe');
-            list.push('Automatic Tide Gauge (AWLR) Real-time Station');
-
-            if (this.waterType === 'strait' || this.waterType === 'offshore') {
-                list.push('Acoustic Doppler Current Profiler (ADCP) 600 kHz / 300 kHz');
-            }
-
-            if (this.tests.ctd) {
-                list.push('CTD Oceanographic Multiparameter Probe (Conductivity, Temp, Depth)');
-            }
-            if (this.tests.turbidity) {
-                list.push('Portable Turbidimeter & Niskin 5-Liter Water Sampler');
-            }
-            if (this.tests.sediment) {
-                list.push('Van Veen Bottom Sediment Grab & Sieve Granulometry');
-            }
-            if (this.tests.metals) {
-                list.push('Accredited Laboratory UV-Vis & AAS Heavy Metals Testing');
-            }
-
-            return list;
-        },
-
-        get consultationUrl() {
-            let params = new URLSearchParams({
-                layanan: 'batimetri',
-                perairan: this.waterType,
-                luas: this.surveyArea + ' Nm2',
-                order: this.surveyOrder,
-                durasi: this.estimatedFieldDays + (isEn ? ' field days + ' : ' hari lapangan + ') + this.estimatedProcessingDays + (isEn ? ' processing days' : ' hari olah data')
-            });
-            return '<?= base_url('kontak#kerjasama') ?>?' + params.toString();
+            document.body.style.overflow = '';
         }
     };
 }
