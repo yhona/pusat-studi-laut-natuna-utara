@@ -165,14 +165,14 @@ class Profil extends BaseController
         // Peneliti Eksternal & Mitra Riset (External Research Fellows)
         $externalResearchers = [
             [
-                'name'        => 'Prof. Dr. Ir. Joko Santoso, M.Sc.',
-                'role'        => $isEn ? 'Visiting Senior Fellow' : 'Peneliti Senior Eksternal / Visiting Fellow',
-                'faculty'     => $isEn ? 'Faculty of Marine Technology - Institut Teknologi Sepuluh Nopember (ITS)' : 'Fakultas Teknologi Kelautan - Institut Teknologi Sepuluh Nopember (ITS)',
-                'focus'       => $isEn ? 'Naval Architecture, Ocean Engineering, Remote Island Transport Logistics & Marine Renewable Energy' : 'Teknik Kelautan, Logistik Transportasi Kepulauan Terpencil & Energi Baru Terbarukan Samudera',
-                'email'       => 'joko.santoso@its.ac.id',
-                'cluster'     => $isEn ? 'Ocean Engineering & Archipelagic Connectivity' : 'Teknik Kelautan & Konektivitas Kepulauan',
-                'initials'    => 'JS',
-                'bg_gradient' => 'linear-gradient(135deg, #0369a1, #0284c7)'
+                'name'        => 'Dr. Joshua Gebert',
+                'role'        => $isEn ? 'External Research Fellow / Visiting Scholar' : 'Peneliti Eksternal / Visiting Scholar',
+                'faculty'     => $isEn ? 'Climate Transformation Programme (CTP) / Nanyang Technological University (NTU)' : 'Climate Transformation Programme (CTP) / Nanyang Technological University (NTU)',
+                'focus'       => 'Urban Planning dan Spatial Analysis Fokus Climate Transformation',
+                'email'       => 'joshua.gebert@ntu.edu.sg',
+                'cluster'     => $isEn ? 'Urban Planning & Climate Transformation' : 'Perencanaan Wilayah & Transformasi Iklim',
+                'initials'    => 'JG',
+                'bg_gradient' => 'linear-gradient(135deg, #0284c7, #0d9488)'
             ],
         ];
 
