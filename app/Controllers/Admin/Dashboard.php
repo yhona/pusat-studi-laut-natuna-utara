@@ -17,8 +17,11 @@ class Dashboard extends BaseController
         $permohonanModel = new UnduhanPermohonanModel();
         $kontakModel     = new KontakPesanModel();
 
+        $klasterModel    = new \App\Models\KlasterRisetModel();
+
         $stats = [
             'total_berita'     => $beritaModel->countAllResults(),
+            'total_klaster'    => $klasterModel->countAllResults(),
             'total_unduhan'    => $unduhanModel->countAllResults(),
             'total_permohonan' => $permohonanModel->countAllResults(),
             'total_kontak'     => $kontakModel->countAllResults(),

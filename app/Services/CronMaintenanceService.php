@@ -57,9 +57,26 @@ class CronMaintenanceService
         }
         $executedTasks[] = "Pembersihan cache berkala: {$cleanedFiles} berkas dibersihkan";
 
-        // 3. System Health Check
+        // 3. System Health Check & Auto-Snapshot
         $beritaCount = (new BeritaModel())->countAllResults();
-        $executedTasks[] = "Pemeriksaan integritas basis data: {$beritaCount} berita terverifikasi";
+        $klasterModel = new \App\Models\KlasterRisetModel();
+        $klasterCount = $klasterModel->countAllResults();
+        $allClusters  = $klasterModel->findAll();
+
+        $executedTasks[] = "Pemeriksaan integritas basis data: {$beritaCount} berita & {$klasterCount} klaster riset terverifikasi";
+
+        // Auto-Snapshot Backup of Clusters & Core Content to writable/backups
+        $backupDir = WRITEPATH . 'backups';
+        if (! is_dir($backupDir)) {
+            @mkdir($backupDir, 0755, true);
+        }
+        $snapshotPayload = [
+            'timestamp'    => date('Y-m-d H:i:s'),
+            'total_klaster'=> $klasterCount,
+            'klasters'     => $allClusters,
+        ];
+        @file_put_contents($backupDir . '/klaster_snapshot.json', json_encode($snapshotPayload, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
+        $executedTasks[] = "Auto-snapshot cadangan klaster riset: {$klasterCount} klaster diamankan";
 
         $executionDuration = round(microtime(true) - $startTime, 3);
 

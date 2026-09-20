@@ -32,8 +32,20 @@
     </div>
 
     <!-- Stat Metrics Cards -->
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
         
+        <!-- Total Klaster Riset -->
+        <div class="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200 shadow-xs flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-teal-50 text-teal-700 flex items-center justify-center text-xl shrink-0">
+                <i class="fa-solid fa-atom"></i>
+            </div>
+            <div>
+                <span class="text-xs text-slate-500 font-semibold block">Klaster Riset</span>
+                <span class="text-xl sm:text-2xl font-extrabold text-navy-950"><?= esc($stats['total_klaster'] ?? '0') ?></span>
+                <a href="<?= base_url('admin/klaster') ?>" class="text-[11px] text-maritime-700 hover:underline block font-medium mt-0.5">Kelola &rarr;</a>
+            </div>
+        </div>
+
         <!-- Total Berita -->
         <div class="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200 shadow-xs flex items-center gap-4">
             <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center text-xl shrink-0">
@@ -92,7 +104,18 @@
                 <p class="text-xs text-slate-500">Pintasan praktis untuk memperbarui atau melengkapi informasi portal</p>
             </div>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            <a href="<?= base_url('admin/klaster/create') ?>" 
+               class="p-4 rounded-2xl border border-slate-200 hover:border-maritime-500 hover:shadow-md transition-all group flex items-start gap-3 bg-slate-50/50">
+                <div class="w-9 h-9 rounded-xl bg-teal-100 text-teal-700 flex items-center justify-center text-sm shrink-0 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-atom"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xs text-navy-950">Tambah Klaster</h4>
+                    <p class="text-[11px] text-slate-500 mt-0.5">Buat klaster riset baru</p>
+                </div>
+            </a>
+
             <a href="<?= base_url('admin/berita/create') ?>" 
                class="p-4 rounded-2xl border border-slate-200 hover:border-maritime-500 hover:shadow-md transition-all group flex items-start gap-3 bg-slate-50/50">
                 <div class="w-9 h-9 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center text-sm shrink-0 group-hover:scale-110 transition-transform">
@@ -111,7 +134,7 @@
                 </div>
                 <div>
                     <h4 class="font-bold text-xs text-navy-950">Update Policy Brief</h4>
-                    <p class="text-[11px] text-slate-500 mt-0.5">Perbarui naskah Dr. Ady Muzwardi</p>
+                    <p class="text-[11px] text-slate-500 mt-0.5">Perbarui naskah Dr. Ady</p>
                 </div>
             </a>
 
@@ -122,7 +145,7 @@
                 </div>
                 <div>
                     <h4 class="font-bold text-xs text-navy-950">Tambah SOP / Unduhan</h4>
-                    <p class="text-[11px] text-slate-500 mt-0.5">Unggah berkas panduan & MoU</p>
+                    <p class="text-[11px] text-slate-500 mt-0.5">Unggah berkas panduan</p>
                 </div>
             </a>
 
@@ -132,7 +155,7 @@
                     <i class="fa-solid fa-users-viewfinder"></i>
                 </div>
                 <div>
-                    <h4 class="font-bold text-xs text-navy-950">Data Pemohon Naskah</h4>
+                    <h4 class="font-bold text-xs text-navy-950">Data Pemohon</h4>
                     <p class="text-[11px] text-slate-500 mt-0.5">Daftar instansi pengunduh</p>
                 </div>
             </a>

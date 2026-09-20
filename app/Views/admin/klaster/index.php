@@ -8,14 +8,21 @@
         <div>
             <h2 class="text-xl font-extrabold text-navy-950">Kelola Klaster Riset Kemaritiman</h2>
             <p class="text-xs text-slate-500 mt-1">
-                Kelola 4 klaster riset strategis Laut Natuna Utara, mandat saintifik, dewan koordinator, area fokus, serta proyek unggulan.
+                Kelola klaster riset strategis Laut Natuna Utara, mandat saintifik, dewan koordinator, area fokus, serta proyek unggulan.
             </p>
         </div>
-        <a href="<?= base_url('riset') ?>" target="_blank"
-           class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors shrink-0">
-            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            <span>Lihat Roadmap Publik</span>
-        </a>
+        <div class="flex items-center gap-2.5">
+            <a href="<?= base_url('riset') ?>" target="_blank"
+               class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors shrink-0">
+                <i class="fa-solid fa-arrow-up-right-from-square text-[11px]"></i>
+                <span>Lihat Roadmap Publik</span>
+            </a>
+            <a href="<?= base_url('admin/klaster/create') ?>"
+               class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-950 text-xs font-bold shadow-sm transition-all active:scale-[0.98] shrink-0">
+                <i class="fa-solid fa-plus"></i>
+                <span>Tambah Klaster Baru</span>
+            </a>
+        </div>
     </div>
 
     <!-- Cluster Cards Grid -->
@@ -50,17 +57,30 @@
                     </div>
                 </div>
 
-                <div class="pt-5 mt-4 border-t border-slate-100 flex items-center justify-between">
+                <div class="pt-5 mt-4 border-t border-slate-100 flex items-center justify-between gap-2">
                     <a href="<?= base_url('riset/' . $c['slug']) ?>" target="_blank" 
                        class="text-xs text-slate-500 hover:text-maritime-700 font-medium inline-flex items-center gap-1.5">
                         <i class="fa-solid fa-external-link-alt text-[10px]"></i>
                         <span>Lihat Publik</span>
                     </a>
-                    <a href="<?= base_url('admin/klaster/edit/' . $c['id']) ?>" 
-                       class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-950 font-bold text-xs shadow-xs transition-colors">
-                        <i class="fa-solid fa-pen-to-square"></i>
-                        <span>Edit Klaster</span>
-                    </a>
+                    
+                    <div class="flex items-center gap-2">
+                        <form action="<?= base_url('admin/klaster/delete/' . $c['id']) ?>" method="POST"
+                              onsubmit="return confirm('Apakah Anda yakin ingin menghapus klaster riset <?= esc($c['short_title'] ?? $c['title']) ?>?')">
+                            <?= csrf_field() ?>
+                            <button type="submit" 
+                                    class="p-2 rounded-xl text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors"
+                                    title="Hapus Klaster">
+                                <i class="fa-regular fa-trash-can text-sm"></i>
+                            </button>
+                        </form>
+
+                        <a href="<?= base_url('admin/klaster/edit/' . $c['id']) ?>" 
+                           class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-950 font-bold text-xs shadow-xs transition-colors">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            <span>Edit</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         <?php endforeach; ?>
