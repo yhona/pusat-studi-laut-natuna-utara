@@ -165,25 +165,16 @@
 
             <!-- Card Footer -->
             <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
+                <a href="<?= base_url() ?>" class="hover:text-maritime-700 flex items-center gap-1.5 font-medium transition-colors">
+                    <i class="fa-solid fa-arrow-left text-[10px]"></i>
+                    <span>Kembali ke Beranda</span>
+                </a>
                 <span class="inline-flex items-center gap-1.5 font-medium text-emerald-600">
                     <i class="fa-solid fa-shield-halved text-xs"></i>
                     <span>Terkoneksi Aman</span>
                 </span>
-                <span class="font-mono text-[11px] bg-slate-100 px-2 py-0.5 rounded text-slate-500">
-                    Cron 20m Aktif
-                </span>
             </div>
 
-        </div>
-
-        <!-- Hint Card for Admin -->
-        <div class="mt-4 p-4 rounded-2xl bg-white/5 border border-white/10 text-slate-300 text-xs text-center space-y-1">
-            <div class="text-gold-400 font-bold text-[11px] uppercase tracking-wider">
-                <i class="fa-solid fa-circle-info mr-1"></i> Informasi Akses Administrator
-            </div>
-            <p class="text-[11px] text-slate-400">
-                Gunakan akun resmi LPPM / Pusat Studi Laut Natuna Utara UMRAH.
-            </p>
         </div>
 
     </main>
