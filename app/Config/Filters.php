@@ -35,6 +35,7 @@ class Filters extends BaseFilters
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
         'locale'        => \App\Filters\LocaleFilter::class,
+        'adminAuth'     => \App\Filters\AdminAuthFilter::class,
     ];
 
     /**

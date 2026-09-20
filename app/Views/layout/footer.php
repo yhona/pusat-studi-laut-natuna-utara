@@ -103,6 +103,10 @@
                 <a href="<?= base_url('kontak') ?>" class="hover:text-slate-300 transition-colors"><?= lang('App.footer_privacy') ?></a>
                 <span>•</span>
                 <a href="<?= base_url('kontak') ?>" class="hover:text-slate-300 transition-colors"><?= lang('App.footer_a11y') ?></a>
+                <span>•</span>
+                <a href="<?= base_url('admin/login') ?>" class="text-slate-600 hover:text-gold-400 transition-colors flex items-center gap-1" title="Login Admin Portal">
+                    <i class="fa-solid fa-lock text-[10px]"></i> <span>Admin</span>
+                </a>
             </div>
         </div>
     </div>

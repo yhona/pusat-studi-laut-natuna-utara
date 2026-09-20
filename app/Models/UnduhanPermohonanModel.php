@@ -42,3 +42,4 @@ class UnduhanPermohonanModel extends Model
         'purpose'               => 'required|min_length[5]',
     ];
 }
+
