@@ -16,7 +16,7 @@
 
         <div class="relative z-10 bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/15 space-y-3 shrink-0">
             <div class="flex items-center justify-between gap-4 text-xs">
-                <span class="text-slate-300"><i class="fa-solid fa-clock-rotate-left text-gold-400 mr-1.5"></i> Cron 15 Menit:</span>
+                <span class="text-slate-300"><i class="fa-solid fa-clock-rotate-left text-gold-400 mr-1.5"></i> Cron 20 Menit:</span>
                 <span class="font-mono text-white font-bold"><?= $cronStatus ? esc($cronStatus['last_run_human']) : 'Belum pernah' ?></span>
             </div>
 
@@ -25,7 +25,7 @@
                 <button type="submit" 
                         class="w-full inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-950 font-bold text-xs shadow-md transition-all active:scale-[0.98] cursor-pointer">
                     <i class="fa-solid fa-arrows-rotate"></i>
-                    <span>Jalankan Cron Sekarang</span>
+                    <span>Jalankan Cron (20m) Sekarang</span>
                 </button>
             </form>
         </div>

@@ -258,10 +258,14 @@
                     </div>
                 </div>
                 <p class="text-xs sm:text-sm text-slate-200 leading-relaxed font-medium">
-                    <?= $isEn 
-                        ? 'The North Natuna Sea Research Center was established to fulfill the institutional responsibility of higher education tridharma (education, research, and community service) through scientific advancement manifested in high-impact research outputs, particularly aligned with mainstreaming national development mandates based on the Memorandum of Understanding between Universitas Maritim Raja Ali Haji and the Foreign Policy Strategy Agency of the Ministry of Foreign Affairs of the Republic of Indonesia (Badan Strategi Kebijakan Luar Negeri Kementerian Luar Negeri Republik Indonesia - BSKLN Kemlu RI) concerning education, research, and community service cooperation in foreign policy strategy Number <strong>PRJ/SJ/00003/03/2023/76/12</strong> and Number <strong>1472/UN53.0/KS.00.00/2023</strong> with the specific scope of the Natuna Sea Research Center. Most fundamentally, the establishment of this Research Center serves as the optimization of collaborative studies between Universitas Maritim Raja Ali Haji and the Foreign Policy Strategy Agency of the Ministry of Foreign Affairs of the Republic of Indonesia.'
-                        : 'Pusat Studi Laut Natuna Utara didirikan untuk memenuhi panggilan tanggung jawab tridharma perguruan tinggi melalui pengembangan kelimuan yang diwujudkan dalam bentuk hasil-hasil penelitian, khususnya selaras dengan upaya mengarus-utamakan mandat pembangunan nasional yang belandaskan <strong>Nota Kesepahaman antara Universitas Maritim Raja Ali Haji dan Badan Strategi Kebijakan Luar Negeri Kementerian Luar Negeri Republik Indonesia</strong> tentang kerjasama pendidikan, penelitian dan pengabdian masyarakat di bidang strategi kebijakan luar negeri Nomor <strong>PRJ/SJ/00003/03/2023/76/12</strong> dan Nomor <strong>1472/UN53.0/KS.00.00/2023</strong> yang memiliki ruang lingkup Pusat Riset Laut Natuna. Dan yang paling utama, didirikannya Pusat Studi ini merupakan optimalisasi kajian bersama Universitas Maritim Raja Ali Haji dan Badan Strategi Kebijakan Luar Negeri Kementerian Luar Negeri Republik Indonesia.' 
-                    ?>
+                    <?php if (!empty($customProfile['mandat_id']) && ! $isEn): ?>
+                        <?= nl2br(esc($customProfile['mandat_id'])) ?>
+                    <?php else: ?>
+                        <?= $isEn 
+                            ? 'The North Natuna Sea Research Center was established to fulfill the institutional responsibility of higher education tridharma (education, research, and community service) through scientific advancement manifested in high-impact research outputs, particularly aligned with mainstreaming national development mandates based on the Memorandum of Understanding between Universitas Maritim Raja Ali Haji and the Foreign Policy Strategy Agency of the Ministry of Foreign Affairs of the Republic of Indonesia (Badan Strategi Kebijakan Luar Negeri Kementerian Luar Negeri Republik Indonesia - BSKLN Kemlu RI) concerning education, research, and community service cooperation in foreign policy strategy Number <strong>PRJ/SJ/00003/03/2023/76/12</strong> and Number <strong>1472/UN53.0/KS.00.00/2023</strong> with the specific scope of the Natuna Sea Research Center. Most fundamentally, the establishment of this Research Center serves as the optimization of collaborative studies between Universitas Maritim Raja Ali Haji and the Foreign Policy Strategy Agency of the Ministry of Foreign Affairs of the Republic of Indonesia.'
+                            : 'Pusat Studi Laut Natuna Utara didirikan untuk memenuhi panggilan tanggung jawab tridharma perguruan tinggi melalui pengembangan kelimuan yang diwujudkan dalam bentuk hasil-hasil penelitian, khususnya selaras dengan upaya mengarus-utamakan mandat pembangunan nasional yang belandaskan <strong>Nota Kesepahaman antara Universitas Maritim Raja Ali Haji dan Badan Strategi Kebijakan Luar Negeri Kementerian Luar Negeri Republik Indonesia</strong> tentang kerjasama pendidikan, penelitian dan pengabdian masyarakat di bidang strategi kebijakan luar negeri Nomor <strong>PRJ/SJ/00003/03/2023/76/12</strong> dan Nomor <strong>1472/UN53.0/KS.00.00/2023</strong> yang memiliki ruang lingkup Pusat Riset Laut Natuna. Dan yang paling utama, didirikannya Pusat Studi ini merupakan optimalisasi kajian bersama Universitas Maritim Raja Ali Haji dan Badan Strategi Kebijakan Luar Negeri Kementerian Luar Negeri Republik Indonesia.' 
+                        ?>
+                    <?php endif; ?>
                 </p>
 
                 <!-- MoU Badges -->
@@ -270,14 +274,14 @@
                         <i class="fa-solid fa-file-contract text-gold-400 text-sm mt-0.5"></i>
                         <div>
                             <span class="text-[10px] uppercase font-bold text-gold-400 block tracking-wider">MoU BSKLN Kemlu RI</span>
-                            <span class="text-xs font-mono font-semibold text-slate-100">PRJ/SJ/00003/03/2023/76/12</span>
+                            <span class="text-xs font-mono font-semibold text-slate-100"><?= esc($customProfile['mou_kemenlu'] ?? 'PRJ/SJ/00003/03/2023/76/12') ?></span>
                         </div>
                     </div>
                     <div class="flex items-start gap-2.5 bg-white/5 rounded-lg p-3 border border-white/10">
                         <i class="fa-solid fa-file-signature text-gold-400 text-sm mt-0.5"></i>
                         <div>
                             <span class="text-[10px] uppercase font-bold text-gold-400 block tracking-wider">MoU UMRAH</span>
-                            <span class="text-xs font-mono font-semibold text-slate-100">1472/UN53.0/KS.00.00/2023</span>
+                            <span class="text-xs font-mono font-semibold text-slate-100"><?= esc($customProfile['mou_umrah'] ?? '1472/UN53.0/KS.00.00/2023') ?></span>
                         </div>
                     </div>
                 </div>

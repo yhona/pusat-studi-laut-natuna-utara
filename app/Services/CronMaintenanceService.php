@@ -66,6 +66,7 @@ class CronMaintenanceService
         // 4. Record status to WRITEPATH/cron_status.json
         $status = [
             'status'         => 'SUCCESS',
+            'interval'       => '20 Menit',
             'last_run'       => date('Y-m-d H:i:s'),
             'last_run_human' => date('d F Y, H:i:s') . ' WIB',
             'duration_sec'   => $executionDuration,
@@ -74,6 +75,10 @@ class CronMaintenanceService
         ];
 
         file_put_contents(WRITEPATH . 'cron_status.json', json_encode($status, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+
+        // Also append to rotating log file
+        $logLine = '[' . date('Y-m-d H:i:s') . '] [20-MIN CRON] ' . implode(' | ', $executedTasks) . "\n";
+        @file_put_contents(WRITEPATH . 'logs/cron_maintenance.log', $logLine, FILE_APPEND);
 
         return $status;
     }

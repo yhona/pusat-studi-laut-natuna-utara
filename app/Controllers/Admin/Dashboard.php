@@ -59,7 +59,7 @@ class Dashboard extends BaseController
             $result = $cronService->execute();
 
             return redirect()->to(base_url('admin/dashboard'))
-                ->with('success', 'Cronjob pemeliharaan berkala 15 menit berhasil dijalankan! ' . esc($result['message']));
+                ->with('success', 'Cronjob pemeliharaan berkala 20 menit berhasil dijalankan! ' . esc($result['message']));
         } catch (\Throwable $e) {
             return redirect()->to(base_url('admin/dashboard'))
                 ->with('error', 'Gagal menjalankan cronjob: ' . esc($e->getMessage()));

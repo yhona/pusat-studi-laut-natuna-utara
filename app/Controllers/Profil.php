@@ -9,6 +9,13 @@ class Profil extends BaseController
         $locale = service('request')->getLocale();
         $isEn = ($locale === 'en');
 
+        // Check for customized profile data overrides from Admin CMS
+        $customProfile = null;
+        $profileFile = WRITEPATH . 'site_profile.json';
+        if (file_exists($profileFile)) {
+            $customProfile = json_decode(file_get_contents($profileFile), true);
+        }
+
         // Executive leadership (5 pimpinan inti)
         $researchers = [
             [
@@ -181,6 +188,7 @@ class Profil extends BaseController
             'researchers'          => $researchers,
             'research_members'     => $researchMembers,
             'external_researchers' => $externalResearchers,
+            'customProfile'        => $customProfile,
         ];
 
         return view('pages/profil', $data);

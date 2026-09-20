@@ -72,4 +72,22 @@ $routes->group('admin', ['filter' => 'adminAuth'], static function ($routes) {
     $routes->post('permohonan/delete/(:num)', 'Admin\Permohonan::delete/$1');
     $routes->get('kontak', 'Admin\Kontak::index');
     $routes->post('kontak/update-status/(:num)', 'Admin\Kontak::updateStatus/$1');
+
+    // Profil & Visi Misi
+    $routes->get('profil', 'Admin\Profil::index');
+    $routes->post('profil/update', 'Admin\Profil::update');
+
+    // Klaster Riset
+    $routes->get('klaster', 'Admin\Klaster::index');
+    $routes->get('klaster/edit/(:num)', 'Admin\Klaster::edit/$1');
+    $routes->post('klaster/update/(:num)', 'Admin\Klaster::update/$1');
+
+    // Pengaturan Akun & Keamanan
+    $routes->get('pengaturan', 'Admin\Pengaturan::index');
+    $routes->post('pengaturan/update', 'Admin\Pengaturan::updateProfile');
+
+    // Status Sistem & Cache
+    $routes->get('sistem', 'Admin\Sistem::index');
+    $routes->post('sistem/clear-cache', 'Admin\Sistem::clearCache');
 });
+

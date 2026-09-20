@@ -1,0 +1,13 @@
+{
+    "status": "SUCCESS",
+    "interval": "20 Menit",
+    "last_run": "2026-09-20 14:20:12",
+    "last_run_human": "20 September 2026, 14:20:12 WIB",
+    "duration_sec": 0.008,
+    "tasks": [
+        "Antrean email diproses: 0 data",
+        "Pembersihan cache berkala: 0 berkas dibersihkan",
+        "Pemeriksaan integritas basis data: 3 berita terverifikasi"
+    ],
+    "message": "Eksekusi selesai dalam 0.008 detik."
+}

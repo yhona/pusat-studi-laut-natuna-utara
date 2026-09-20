@@ -59,6 +59,18 @@
                 <span>Ringkasan & Statistik</span>
             </a>
 
+            <a href="<?= base_url('admin/profil') ?>" 
+               class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'profil' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+                <i class="fa-solid fa-landmark text-sm w-5 text-center"></i>
+                <span>Profil, MoU & Visi Misi</span>
+            </a>
+
+            <a href="<?= base_url('admin/klaster') ?>" 
+               class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'klaster' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+                <i class="fa-solid fa-compass text-sm w-5 text-center"></i>
+                <span>Klaster Riset Kemaritiman</span>
+            </a>
+
             <a href="<?= base_url('admin/berita') ?>" 
                class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'berita' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
                 <i class="fa-regular fa-newspaper text-sm w-5 text-center"></i>
@@ -95,6 +107,22 @@
                     <i class="fa-solid fa-handshake-angle text-sm w-5 text-center"></i>
                     <span>Pesan Kerjasama</span>
                 </div>
+            </a>
+
+            <div class="pt-3 pb-1 px-3.5">
+                <span class="text-[10px] uppercase font-bold tracking-wider text-slate-500">Sistem & Keamanan</span>
+            </div>
+
+            <a href="<?= base_url('admin/pengaturan') ?>" 
+               class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'pengaturan' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+                <i class="fa-solid fa-user-gear text-sm w-5 text-center"></i>
+                <span>Pengaturan Akun</span>
+            </a>
+
+            <a href="<?= base_url('admin/sistem') ?>" 
+               class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'sistem' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+                <i class="fa-solid fa-server text-sm w-5 text-center"></i>
+                <span>Status Sistem & Cron (20m)</span>
             </a>
 
             <div class="pt-3 pb-1 px-3.5">

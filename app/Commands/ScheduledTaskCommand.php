@@ -20,21 +20,21 @@ class ScheduledTaskCommand extends BaseCommand
      *
      * @var string
      */
-    protected $name = 'task:run-15min';
+    protected $name = 'task:run-20min';
 
     /**
      * The Command's Description
      *
      * @var string
      */
-    protected $description = 'Executes periodic 15-minute maintenance, email queue dispatch, and cache warmup.';
+    protected $description = 'Executes periodic 20-minute maintenance, email queue dispatch, and cache warmup.';
 
     /**
      * The Command's Usage
      *
      * @var string
      */
-    protected $usage = 'task:run-15min';
+    protected $usage = 'task:run-20min';
 
     /**
      * Actually run the command.
@@ -43,7 +43,7 @@ class ScheduledTaskCommand extends BaseCommand
      */
     public function run(array $params)
     {
-        CLI::write('[CRON 15-MIN] Memulai rutinitas otomatisasi pemeliharaan...', 'yellow');
+        CLI::write('[CRON 20-MIN] Memulai rutinitas otomatisasi pemeliharaan 20 menit...', 'yellow');
 
         try {
             $service = new CronMaintenanceService();
@@ -53,10 +53,10 @@ class ScheduledTaskCommand extends BaseCommand
                 CLI::write("  -> {$t}", 'green');
             }
 
-            CLI::write("[CRON 15-MIN] " . $result['message'], 'light_cyan');
-            CLI::write('[CRON 15-MIN] Selesai pada: ' . $result['last_run_human'], 'green');
+            CLI::write("[CRON 20-MIN] " . $result['message'], 'light_cyan');
+            CLI::write('[CRON 20-MIN] Selesai pada: ' . $result['last_run_human'], 'green');
         } catch (\Throwable $e) {
-            CLI::error('[CRON 15-MIN ERROR] ' . $e->getMessage());
+            CLI::error('[CRON 20-MIN ERROR] ' . $e->getMessage());
         }
     }
 }
