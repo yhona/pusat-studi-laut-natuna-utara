@@ -365,7 +365,7 @@
                 <button @click="setFilter('all')"
                         class="px-3.5 py-2 rounded-lg transition-all flex items-center gap-1.5 active:scale-[0.98]"
                         :class="activeFilter === 'all' ? 'bg-navy-900 text-gold-400 shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200 border border-slate-200'">
-                    <i class="fa-solid fa-border-all text-[11px]"></i> <?= lang('App.gallery_filter_all') ?> (6)
+                    <i class="fa-solid fa-border-all text-[11px]"></i> <?= lang('App.gallery_filter_all') ?> (<span x-text="items.length"></span>)
                 </button>
                 <button @click="setFilter('ekspedisi')"
                         class="px-3.5 py-2 rounded-lg transition-all flex items-center gap-1.5 active:scale-[0.98]"
@@ -566,170 +566,11 @@
 
 <script>
 function galleryLightbox() {
-    const isEn = <?= $isEn ? 'true' : 'false' ?>;
     return {
         activeFilter: 'all',
         isOpen: false,
         currentIndex: 0,
-        items: isEn ? [
-            {
-                id: 1,
-                title: 'North Natuna Oceanographic Expedition',
-                category: 'ekspedisi',
-                categoryLabel: 'Sea Expedition',
-                badgeClass: 'bg-gold-500/20 text-gold-400 border-gold-500/30',
-                image: '<?= base_url('images/hero_ship.jpg') ?>',
-                date: '12 - 25 November 2025',
-                location: 'North Natuna Sea (Indonesian EEZ Zone)',
-                vessel: 'UMRAH - BRIN Collaborative Research Vessel',
-                focal: 'Thermocline Characteristics & Layer Current Dynamics',
-                desc: 'Deep-sea research cruise measuring temperature profiles, salinity, and underwater acoustic transmission layer by layer using ADCP sensors and CTD rosette down to 150 meters depth.'
-            },
-            {
-                id: 2,
-                title: 'Bathymetric & Underwater Acoustic Survey',
-                category: 'ekspedisi',
-                categoryLabel: 'Sea Expedition',
-                badgeClass: 'bg-gold-500/20 text-gold-400 border-gold-500/30',
-                image: '<?= base_url('images/batimetri_survey.jpg') ?>',
-                date: '14 - 22 January 2026',
-                location: 'Helen Mars Reef Navigation Route, Malacca Strait',
-                vessel: 'KM. Baruna Jaya IV & UMRAH Hydrography Team',
-                focal: 'IHO S-44 Standard Underwater Hazard Mapping',
-                desc: 'High-resolution seafloor depth sounding using Multibeam Echosounder (MBES) and marine RTK-DGPS to validate safe draft navigation depth limits for commercial tankers.'
-            },
-            {
-                id: 3,
-                title: 'Mangrove Ecology & Blue Carbon Bintan',
-                category: 'blue-carbon',
-                categoryLabel: 'Blue Carbon',
-                badgeClass: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
-                image: '<?= base_url('images/mangrove_research.jpg') ?>',
-                date: '03 - 10 February 2026',
-                location: 'Sebong Pereh Mangrove Forest Area, Bintan',
-                vessel: 'Mini Catamaran Coastal Ecology Division',
-                focal: 'Sediment Coring & Blue Carbon Stock Valuation',
-                desc: 'Mangrove sediment coring down to 1-meter depth and greenhouse gas flux measurement to calculate coastal blue carbon reserves for local community conservation incentives.'
-            },
-            {
-                id: 4,
-                title: 'Oceanography & Marine Instrumentation Laboratory',
-                category: 'laboratorium',
-                categoryLabel: 'Laboratory',
-                badgeClass: 'bg-maritime-500/20 text-maritime-300 border-maritime-500/30',
-                image: '<?= base_url('images/lab_oseanografi.jpg') ?>',
-                date: 'Routine Operations 2026',
-                location: 'Marine Laboratory Building, Dompak Campus',
-                vessel: 'LPPM Oceanographic Instrument Calibration Facility',
-                focal: 'Sensor Calibration for CTD, SVP & Sonar Acoustics',
-                desc: 'Calibration and testing center for physical oceanographic instruments prior to offshore deployment, equipped with hydro-acoustic sensor testing tanks and ISO 17025 compliant service stations.'
-            },
-            {
-                id: 5,
-                title: 'Coastal Water Quality & Sediment Analysis',
-                category: 'laboratorium',
-                categoryLabel: 'Laboratory',
-                badgeClass: 'bg-maritime-500/20 text-maritime-300 border-maritime-500/30',
-                image: '<?= base_url('images/kualitas_air_sedimen.jpg') ?>',
-                date: 'Routine Operations 2026',
-                location: 'UMRAH Integrated Chemistry Laboratory, Tanjungpinang',
-                vessel: 'Spectrophotometry & Granulometry Division',
-                focal: 'Marine Water Quality & Heavy Metal Parameters',
-                desc: 'Accredited testing for marine physical, chemical, and biological parameters: turbidity, TSS, chlorophyll-a, nutrients, and coastal sediment grain size fractionation.'
-            },
-            {
-                id: 6,
-                title: 'Tidal Observation & Marine Weather Station',
-                category: 'laboratorium',
-                categoryLabel: 'Laboratory',
-                badgeClass: 'bg-maritime-500/20 text-maritime-300 border-maritime-500/30',
-                image: '<?= base_url('images/stasiun_pasut_cuaca.jpg') ?>',
-                date: 'Real-time 24/7 Monitoring',
-                location: 'Dompak Pier Tide Station, Riau Strait',
-                vessel: 'AWLR Radar Telemetry & Automatic Weather Station (AWS)',
-                focal: '18.6-Year Tidal Harmonics & Coastal Meteorology',
-                desc: 'Automated observation station recording real-time sea level fluctuations, surface wind speed/direction, barometric pressure, and marine solar radiation for national datum hydrography.'
-            }
-        ] : [
-            {
-                id: 1,
-                title: 'Ekspedisi Oseanografi Natuna Utara',
-                category: 'ekspedisi',
-                categoryLabel: 'Ekspedisi Laut',
-                badgeClass: 'bg-gold-500/20 text-gold-400 border-gold-500/30',
-                image: '<?= base_url('images/hero_ship.jpg') ?>',
-                date: '12 - 25 November 2025',
-                location: 'Laut Natuna Utara (Wilayah ZEE Indonesia)',
-                vessel: 'Kapal Riset Kolaboratif UMRAH - BRIN',
-                focal: 'Karakteristik Termoklin & Dinamika Arus Lapisan',
-                desc: 'Pelayaran riset laut dalam untuk mengukur profil suhu, salinitas, dan transmisi akustik bawah air lapis demi lapis menggunakan sensor Acoustic Doppler Current Profiler (ADCP) dan CTD rosette hingga kedalaman 150 meter.'
-            },
-            {
-                id: 2,
-                title: 'Survei Batimetri & Akustik Bawah Air',
-                category: 'ekspedisi',
-                categoryLabel: 'Ekspedisi Laut',
-                badgeClass: 'bg-gold-500/20 text-gold-400 border-gold-500/30',
-                image: '<?= base_url('images/batimetri_survey.jpg') ?>',
-                date: '14 - 22 Januari 2026',
-                location: 'Alur Pelayaran Karang Helen Mars, Selat Malaka',
-                vessel: 'KM. Baruna Jaya IV & Tim Hidrografi UMRAH',
-                focal: 'Pemetaan Hazard Bawah Air Standar IHO S-44',
-                desc: 'Pemeruman kedalaman laut resolusi tinggi menggunakan Multibeam Echosounder (MBES) dan RTK-DGPS maritim untuk memvalidasi batas aman kedalaman draft kapal tanker komersial internasional yang melintasi Selat Malaka.'
-            },
-            {
-                id: 3,
-                title: 'Ekologi Mangrove & Blue Carbon Bintan',
-                category: 'blue-carbon',
-                categoryLabel: 'Blue Carbon',
-                badgeClass: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
-                image: '<?= base_url('images/mangrove_research.jpg') ?>',
-                date: '03 - 10 Februari 2026',
-                location: 'Kawasan Hutan Mangrove Sebong Pereh, Bintan',
-                vessel: 'Wahana Katamaran Mini Divisi Ekologi Pesisir',
-                focal: 'Sediment Coring & Valuasi Stok Karbon Biru',
-                desc: 'Pengambilan sampel inti sedimen (sediment coring) tanah mangrove hingga kedalaman 1 meter dan pengukuran fluks gas rumah kaca guna menghitung cadangan karbon biru untuk skema insentif konservasi masyarakat adat.'
-            },
-            {
-                id: 4,
-                title: 'Laboratorium Oseanografi & Instrumentasi Kelautan',
-                category: 'laboratorium',
-                categoryLabel: 'Laboratorium',
-                badgeClass: 'bg-maritime-500/20 text-maritime-300 border-maritime-500/30',
-                image: '<?= base_url('images/lab_oseanografi.jpg') ?>',
-                date: 'Operasional Rutin 2026',
-                location: 'Gedung Laboratorium Kelautan Kampus Dompak',
-                vessel: 'Fasilitas Kalibrasi Instrumen Oseanografi LPPM',
-                focal: 'Kalibrasi Sensor CTD, SVP & Sonar Akustik',
-                desc: 'Pusat kalibrasi dan pengujian perangkat oseanografi fisik sebelum diterjunkan ke laut lepas. Dilengkapi bak uji sensor hidro-akustik, meja kalibrasi geodetik, serta stasiun servis elektronik perkapalan berstandar ISO 17025.'
-            },
-            {
-                id: 5,
-                title: 'Analisis Kualitas Air & Sedimen Pantai',
-                category: 'laboratorium',
-                categoryLabel: 'Laboratorium',
-                badgeClass: 'bg-maritime-500/20 text-maritime-300 border-maritime-500/30',
-                image: '<?= base_url('images/kualitas_air_sedimen.jpg') ?>',
-                date: 'Operasional Rutin 2026',
-                location: 'Laboratorium Kimia Terpadu UMRAH, Tanjungpinang',
-                vessel: 'Divisi Instrumentasi Spektrofotometri & Granulometri',
-                focal: 'Baku Mutu Air Laut & Logam Berat PP 22/2021',
-                desc: 'Pengujian terakreditasi untuk parameter fisika, kimia, dan biologi laut: turbiditas, TSS, klorofil-a, nutrien (nitrat/fosfat), serta fraksionasi ukuran butir sedimen pantai guna keperluan AMDAL proyek pelabuhan dan kawasan industri.'
-            },
-            {
-                id: 6,
-                title: 'Stasiun Pengamatan Pasang Surut & Cuaca Maritim',
-                category: 'laboratorium',
-                categoryLabel: 'Laboratorium',
-                badgeClass: 'bg-maritime-500/20 text-maritime-300 border-maritime-500/30',
-                image: '<?= base_url('images/stasiun_pasut_cuaca.jpg') ?>',
-                date: 'Pemantauan Real-time 24/7',
-                location: 'Stasiun Pengamat Pasut Dermaga Dompak, Selat Riau',
-                vessel: 'Stasiun Telemetri AWLR Radar & Automatic Weather Station (AWS)',
-                focal: 'Harmonik Pasut 18.6 Tahun & Meteorologi Pesisir',
-                desc: 'Stasiun observasi otomatis terintegrasi telemetri seluler/satelit yang merekam fluktuasi pasang surut air laut real-time, kecepatan/arah angin permukaan, tekanan udara, serta radiasi surya maritim untuk referensi datum hidrografi nasional.'
-            }
-        ],
+        items: <?= json_encode($gallery_items ?? [], JSON_HEX_TAG) ?>,
         get filteredItems() {
             if (this.activeFilter === 'all') return this.items;
             return this.items.filter(item => item.category === this.activeFilter);
@@ -748,13 +589,15 @@ function galleryLightbox() {
             document.body.classList.remove('overflow-hidden');
         },
         next() {
+            if (this.filteredItems.length === 0) return;
             this.currentIndex = (this.currentIndex + 1) % this.filteredItems.length;
         },
         prev() {
+            if (this.filteredItems.length === 0) return;
             this.currentIndex = (this.currentIndex - 1 + this.filteredItems.length) % this.filteredItems.length;
         },
         get currentItem() {
-            return this.filteredItems[this.currentIndex] || this.items[0];
+            return this.filteredItems[this.currentIndex] || this.items[0] || {};
         }
     };
 }
@@ -822,13 +665,13 @@ function galleryLightbox() {
         <!-- Partner Logos Grid -->
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 items-center">
             <?php foreach ($partners as $partner): ?>
-            <div class="group p-4 sm:p-5 rounded-2xl border border-slate-200/80 bg-slate-50/60 hover:bg-white hover:border-maritime-300 hover:shadow-md transition-all duration-300 flex flex-col items-center justify-center h-28 relative">
+            <a href="<?= esc($partner['url'] ?? '#') ?>" target="_blank" rel="noopener noreferrer" class="group p-4 sm:p-5 rounded-2xl border border-slate-200/80 bg-slate-50/60 hover:bg-white hover:border-maritime-300 hover:shadow-md transition-all duration-300 flex flex-col items-center justify-center h-28 relative">
                 <img src="<?= esc($partner['logo']) ?>" 
                      alt="<?= esc($partner['name']) ?>" 
                      title="<?= esc($partner['name']) ?>"
                      class="h-10 sm:h-12 w-auto max-w-[170px] object-contain filter grayscale opacity-75 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300">
                 <span class="sr-only"><?= esc($partner['name']) ?></span>
-            </div>
+            </a>
             <?php endforeach; ?>
         </div>
     </div>

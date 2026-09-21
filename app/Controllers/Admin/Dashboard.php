@@ -21,6 +21,9 @@ class Dashboard extends BaseController
         $penelitiModel   = new \App\Models\PenelitiModel();
         $publikasiModel  = new \App\Models\PublikasiBriefModel();
         $layananModel    = new \App\Models\LayananKonsultasiModel();
+        $bannerModel     = new \App\Models\HeroBannerModel();
+        $mitraModel      = new \App\Models\MitraModel();
+        $galeriModel     = new \App\Models\GaleriRisetModel();
 
         $stats = [
             'total_berita'     => $beritaModel->countAllResults(),
@@ -31,6 +34,9 @@ class Dashboard extends BaseController
             'total_unduhan'    => $unduhanModel->countAllResults(),
             'total_permohonan' => $permohonanModel->countAllResults(),
             'total_kontak'     => $kontakModel->countAllResults(),
+            'total_banners'    => $bannerModel->countAllResults(),
+            'total_mitra'      => $mitraModel->countAllResults(),
+            'total_galeri'     => $galeriModel->countAllResults(),
             'total_downloads'  => (int) ($unduhanModel->selectSum('downloads')->first()['downloads'] ?? 0),
         ];
 

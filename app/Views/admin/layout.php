@@ -101,6 +101,24 @@
                 <span>Repositori & SOP Unduhan</span>
             </a>
 
+            <a href="<?= base_url('admin/banners') ?>" 
+               class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'banners' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+                <i class="fa-solid fa-sliders text-sm w-5 text-center"></i>
+                <span>Banner & Slider Beranda</span>
+            </a>
+
+            <a href="<?= base_url('admin/mitra') ?>" 
+               class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'mitra' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+                <i class="fa-solid fa-handshake-simple text-sm w-5 text-center"></i>
+                <span>Mitra Kerjasama</span>
+            </a>
+
+            <a href="<?= base_url('admin/galeri') ?>" 
+               class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'galeri' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+                <i class="fa-solid fa-camera-retro text-sm w-5 text-center"></i>
+                <span>Galeri Riset & Ekspedisi</span>
+            </a>
+
             <div class="pt-3 pb-1 px-3.5">
                 <span class="text-[10px] uppercase font-bold tracking-wider text-slate-500">Aktivitas & Interaksi</span>
             </div>

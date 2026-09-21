@@ -105,6 +105,30 @@ $routes->group('admin', ['filter' => 'adminAuth'], static function ($routes) {
     $routes->post('klaster/update/(:num)', 'Admin\Klaster::update/$1');
     $routes->post('klaster/delete/(:num)', 'Admin\Klaster::delete/$1');
 
+    // Banner & Slider Beranda
+    $routes->get('banners', 'Admin\Banner::index');
+    $routes->get('banners/create', 'Admin\Banner::create');
+    $routes->post('banners/store', 'Admin\Banner::store');
+    $routes->get('banners/edit/(:num)', 'Admin\Banner::edit/$1');
+    $routes->post('banners/update/(:num)', 'Admin\Banner::update/$1');
+    $routes->post('banners/delete/(:num)', 'Admin\Banner::delete/$1');
+
+    // Mitra Kerjasama Strategis
+    $routes->get('mitra', 'Admin\Mitra::index');
+    $routes->get('mitra/create', 'Admin\Mitra::create');
+    $routes->post('mitra/store', 'Admin\Mitra::store');
+    $routes->get('mitra/edit/(:num)', 'Admin\Mitra::edit/$1');
+    $routes->post('mitra/update/(:num)', 'Admin\Mitra::update/$1');
+    $routes->post('mitra/delete/(:num)', 'Admin\Mitra::delete/$1');
+
+    // Galeri Riset & Ekspedisi
+    $routes->get('galeri', 'Admin\Galeri::index');
+    $routes->get('galeri/create', 'Admin\Galeri::create');
+    $routes->post('galeri/store', 'Admin\Galeri::store');
+    $routes->get('galeri/edit/(:num)', 'Admin\Galeri::edit/$1');
+    $routes->post('galeri/update/(:num)', 'Admin\Galeri::update/$1');
+    $routes->post('galeri/delete/(:num)', 'Admin\Galeri::delete/$1');
+
     // Pengaturan Akun & Keamanan
     $routes->get('pengaturan', 'Admin\Pengaturan::index');
     $routes->post('pengaturan/update', 'Admin\Pengaturan::updateProfile');

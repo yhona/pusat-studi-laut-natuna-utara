@@ -119,6 +119,42 @@
             </div>
         </div>
 
+        <!-- Total Banner Slider -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex items-center gap-3.5">
+            <div class="w-11 h-11 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center text-lg shrink-0">
+                <i class="fa-solid fa-sliders"></i>
+            </div>
+            <div>
+                <span class="text-[11px] text-slate-500 font-semibold block">Banner Slider</span>
+                <span class="text-xl font-extrabold text-navy-950"><?= esc($stats['total_banners'] ?? '0') ?></span>
+                <a href="<?= base_url('admin/banners') ?>" class="text-[11px] text-maritime-700 hover:underline block font-medium mt-0.5">Kelola &rarr;</a>
+            </div>
+        </div>
+
+        <!-- Total Mitra Kerjasama -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex items-center gap-3.5">
+            <div class="w-11 h-11 rounded-xl bg-orange-50 text-orange-700 flex items-center justify-center text-lg shrink-0">
+                <i class="fa-solid fa-handshake-simple"></i>
+            </div>
+            <div>
+                <span class="text-[11px] text-slate-500 font-semibold block">Mitra Riset</span>
+                <span class="text-xl font-extrabold text-navy-950"><?= esc($stats['total_mitra'] ?? '0') ?></span>
+                <a href="<?= base_url('admin/mitra') ?>" class="text-[11px] text-maritime-700 hover:underline block font-medium mt-0.5">Kelola &rarr;</a>
+            </div>
+        </div>
+
+        <!-- Total Galeri Riset -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex items-center gap-3.5">
+            <div class="w-11 h-11 rounded-xl bg-sky-50 text-sky-700 flex items-center justify-center text-lg shrink-0">
+                <i class="fa-solid fa-camera-retro"></i>
+            </div>
+            <div>
+                <span class="text-[11px] text-slate-500 font-semibold block">Galeri Riset</span>
+                <span class="text-xl font-extrabold text-navy-950"><?= esc($stats['total_galeri'] ?? '0') ?></span>
+                <a href="<?= base_url('admin/galeri') ?>" class="text-[11px] text-maritime-700 hover:underline block font-medium mt-0.5">Kelola &rarr;</a>
+            </div>
+        </div>
+
     </div>
 
     <!-- Quick Management Action Hub -->
@@ -130,6 +166,39 @@
             </div>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3.5">
+            <a href="<?= base_url('admin/banners/create') ?>" 
+               class="p-4 rounded-2xl border border-slate-200 hover:border-maritime-500 hover:shadow-md transition-all group flex items-start gap-3 bg-slate-50/50">
+                <div class="w-9 h-9 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-sm shrink-0 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-sliders"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xs text-navy-950">Tambah Banner</h4>
+                    <p class="text-[11px] text-slate-500 mt-0.5">Sorotan beranda baru</p>
+                </div>
+            </a>
+
+            <a href="<?= base_url('admin/mitra/create') ?>" 
+               class="p-4 rounded-2xl border border-slate-200 hover:border-maritime-500 hover:shadow-md transition-all group flex items-start gap-3 bg-slate-50/50">
+                <div class="w-9 h-9 rounded-xl bg-orange-100 text-orange-700 flex items-center justify-center text-sm shrink-0 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-handshake-simple"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xs text-navy-950">Tambah Mitra</h4>
+                    <p class="text-[11px] text-slate-500 mt-0.5">Kemitraan strategis baru</p>
+                </div>
+            </a>
+
+            <a href="<?= base_url('admin/galeri/create') ?>" 
+               class="p-4 rounded-2xl border border-slate-200 hover:border-maritime-500 hover:shadow-md transition-all group flex items-start gap-3 bg-slate-50/50">
+                <div class="w-9 h-9 rounded-xl bg-sky-100 text-sky-700 flex items-center justify-center text-sm shrink-0 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-camera"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xs text-navy-950">Dokumentasi Galeri</h4>
+                    <p class="text-[11px] text-slate-500 mt-0.5">Foto ekspedisi baru</p>
+                </div>
+            </a>
+
             <a href="<?= base_url('admin/peneliti/create') ?>" 
                class="p-4 rounded-2xl border border-slate-200 hover:border-maritime-500 hover:shadow-md transition-all group flex items-start gap-3 bg-slate-50/50">
                 <div class="w-9 h-9 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center text-sm shrink-0 group-hover:scale-110 transition-transform">
