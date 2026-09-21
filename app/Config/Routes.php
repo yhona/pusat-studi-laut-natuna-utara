@@ -56,7 +56,27 @@ $routes->group('admin', ['filter' => 'adminAuth'], static function ($routes) {
 
     // Policy Brief & Publikasi
     $routes->get('publikasi', 'Admin\Publikasi::index');
-    $routes->post('publikasi/update-brief', 'Admin\Publikasi::updateBrief');
+    $routes->get('publikasi/create', 'Admin\Publikasi::create');
+    $routes->post('publikasi/store', 'Admin\Publikasi::store');
+    $routes->get('publikasi/edit/(:num)', 'Admin\Publikasi::edit/$1');
+    $routes->post('publikasi/update/(:num)', 'Admin\Publikasi::update/$1');
+    $routes->post('publikasi/delete/(:num)', 'Admin\Publikasi::delete/$1');
+
+    // Personalia & Dewan Peneliti
+    $routes->get('peneliti', 'Admin\Peneliti::index');
+    $routes->get('peneliti/create', 'Admin\Peneliti::create');
+    $routes->post('peneliti/store', 'Admin\Peneliti::store');
+    $routes->get('peneliti/edit/(:num)', 'Admin\Peneliti::edit/$1');
+    $routes->post('peneliti/update/(:num)', 'Admin\Peneliti::update/$1');
+    $routes->post('peneliti/delete/(:num)', 'Admin\Peneliti::delete/$1');
+
+    // Layanan & Jasa Konsultasi
+    $routes->get('layanan', 'Admin\Layanan::index');
+    $routes->get('layanan/create', 'Admin\Layanan::create');
+    $routes->post('layanan/store', 'Admin\Layanan::store');
+    $routes->get('layanan/edit/(:num)', 'Admin\Layanan::edit/$1');
+    $routes->post('layanan/update/(:num)', 'Admin\Layanan::update/$1');
+    $routes->post('layanan/delete/(:num)', 'Admin\Layanan::delete/$1');
 
     // Unduhan & SOP Management
     $routes->get('unduhan', 'Admin\Unduhan::index');

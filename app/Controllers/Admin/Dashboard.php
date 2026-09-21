@@ -18,10 +18,16 @@ class Dashboard extends BaseController
         $kontakModel     = new KontakPesanModel();
 
         $klasterModel    = new \App\Models\KlasterRisetModel();
+        $penelitiModel   = new \App\Models\PenelitiModel();
+        $publikasiModel  = new \App\Models\PublikasiBriefModel();
+        $layananModel    = new \App\Models\LayananKonsultasiModel();
 
         $stats = [
             'total_berita'     => $beritaModel->countAllResults(),
             'total_klaster'    => $klasterModel->countAllResults(),
+            'total_peneliti'   => $penelitiModel->countAllResults(),
+            'total_publikasi'  => $publikasiModel->countAllResults(),
+            'total_layanan'    => $layananModel->countAllResults(),
             'total_unduhan'    => $unduhanModel->countAllResults(),
             'total_permohonan' => $permohonanModel->countAllResults(),
             'total_kontak'     => $kontakModel->countAllResults(),

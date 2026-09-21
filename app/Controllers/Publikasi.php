@@ -8,53 +8,53 @@ class Publikasi extends BaseController
     {
         $isEn = (service('request')->getLocale() === 'en');
 
-        $defaultBriefs = [
-            [
-                'number'=> 'PB-05/PSK-UMRAH/2026',
-                'title' => $isEn 
-                    ? 'Border Area Management Efforts to Support Diplomatic Strategy in Enforcing Territorial Sovereignty in the North Natuna Sea'
-                    : 'Upaya Pengelolaan Kawasan Perbatasan Untuk Mendukung Strategi Diplomasi Menegakkan Kedaulatan Wilayah Di Laut Natuna Utara',
-                'year'  => '2026',
-                'author'=> $isEn 
-                    ? 'Dr. Ady Muzwardi and Team from Center for Policy Strategy on Special Issues and Data Analysis, Foreign Policy Strategy Agency, Ministry of Foreign Affairs of the Republic of Indonesia'
-                    : 'Dr. Ady Muzwardi dan Tim Pusat Strategi Kebijakan Isu Khusus Dan Analisis Data Badan Strategi Kebijakan Luar Negeri Kementerian Luar Negeri RI',
-                'desc'  => $isEn
-                    ? 'Implementation of border area management to support diplomatic strategies for enforcing territorial sovereignty in Indonesia\'s outermost borders in the North Natuna Sea supported by policies from both Central and Regional Governments.'
-                    : 'Implementasi pengelolaan kawasan perbatasan untuk mendukung strategi diplomasi menegakkan kedaulatan wilayah di perbatasan terluar Indonesia di Laut Natuna Utara didukung oleh beberapa kebijakan baik dari Kebijakan Pemerintah Pusat dan Pemerintah Daerah.',
-                'file'  => '#'
-            ],
-            [
-                'number'=> 'PB-06/PSK-UMRAH/2026',
-                'title' => $isEn 
-                    ? 'Optimization of Free Trade Zone and Free Port Development'
-                    : 'Optimalisasi Pengembangan Kawasan Perdagangan Bebas Dan Pelabuhan Bebas',
-                'year'  => '2026',
-                'author'=> $isEn 
-                    ? 'Dr. Ady Muzwardi and Center for Policy Strategy for Asia Pacific and Africa Region, Foreign Policy Strategy Agency, Ministry of Foreign Affairs of the Republic of Indonesia'
-                    : 'Dr. Ady Muzwardi dan Pusat Strategi Kebijakan Kawasan Asia Pasifik dan Afrika Badan Strategi Kebijakan Luar Negeri Kementerian Luar Negeri RI',
-                'desc'  => $isEn
-                    ? 'Strategic zones to support regional and national economic development. Free Trade Zone and Free Port (KPBPB) is one of the models developed by the government in realizing development in border areas.'
-                    : 'Kawasan-kawasan strategis untuk menopang pembangunan ekonomi daerah dan nasional. Kawasan Perdagangan Bebas dan Pelabuhan Bebas (KPBPB) adalah salah satu model yang dikembangkan pemerintah dalam mewujudkan Pembangunan di wilayah perbatasan.',
-                'file'  => '#'
-            ],
-        ];
+        $briefModel = new \App\Models\PublikasiBriefModel();
+        $dbBriefs = $briefModel->where('is_published', 1)->orderBy('year', 'DESC')->findAll();
 
-        $customBriefsFile = WRITEPATH . 'custom_policy_briefs.json';
-        if (file_exists($customBriefsFile)) {
-            $custom = json_decode(file_get_contents($customBriefsFile), true);
-            if (is_array($custom) && !empty($custom)) {
-                foreach ($custom as $k => $cBrief) {
-                    if (isset($defaultBriefs[$k])) {
-                        $defaultBriefs[$k]['title']  = $cBrief['title'];
-                        $defaultBriefs[$k]['author'] = $cBrief['author'];
-                        $defaultBriefs[$k]['desc']   = $cBrief['desc'];
-                        $defaultBriefs[$k]['year']   = $cBrief['year'];
-                    } else {
-                        $cBrief['file'] = '#';
-                        $defaultBriefs[] = $cBrief;
-                    }
-                }
+        $defaultBriefs = [];
+        if (!empty($dbBriefs)) {
+            foreach ($dbBriefs as $b) {
+                $defaultBriefs[] = [
+                    'id'        => $b['id'],
+                    'number'    => $b['number'],
+                    'title'     => ($isEn && !empty($b['title_en'])) ? $b['title_en'] : $b['title'],
+                    'year'      => $b['year'],
+                    'author'    => ($isEn && !empty($b['author_en'])) ? $b['author_en'] : $b['author'],
+                    'desc'      => ($isEn && !empty($b['desc_en'])) ? $b['desc_en'] : $b['desc'],
+                    'file'      => !empty($b['file_path']) ? base_url($b['file_path']) : '#',
+                ];
             }
+        } else {
+            $defaultBriefs = [
+                [
+                    'number'=> 'PB-05/PSK-UMRAH/2026',
+                    'title' => $isEn 
+                        ? 'Border Area Management Efforts to Support Diplomatic Strategy in Enforcing Territorial Sovereignty in the North Natuna Sea'
+                        : 'Upaya Pengelolaan Kawasan Perbatasan Untuk Mendukung Strategi Diplomasi Menegakkan Kedaulatan Wilayah Di Laut Natuna Utara',
+                    'year'  => '2026',
+                    'author'=> $isEn 
+                        ? 'Dr. Ady Muzwardi and Team from Center for Policy Strategy on Special Issues and Data Analysis, Foreign Policy Strategy Agency, Ministry of Foreign Affairs of the Republic of Indonesia'
+                        : 'Dr. Ady Muzwardi dan Tim Pusat Strategi Kebijakan Isu Khusus Dan Analisis Data Badan Strategi Kebijakan Luar Negeri Kementerian Luar Negeri RI',
+                    'desc'  => $isEn
+                        ? 'Implementation of border area management to support diplomatic strategies for enforcing territorial sovereignty in Indonesia\'s outermost borders in the North Natuna Sea supported by policies from both Central and Regional Governments.'
+                        : 'Implementasi pengelolaan kawasan perbatasan untuk mendukung strategi diplomasi menegakkan kedaulatan wilayah di perbatasan terluar Indonesia di Laut Natuna Utara didukung oleh beberapa kebijakan baik dari Kebijakan Pemerintah Pusat dan Pemerintah Daerah.',
+                    'file'  => '#'
+                ],
+                [
+                    'number'=> 'PB-06/PSK-UMRAH/2026',
+                    'title' => $isEn 
+                        ? 'Optimization of Free Trade Zone and Free Port Development'
+                        : 'Optimalisasi Pengembangan Kawasan Perdagangan Bebas Dan Pelabuhan Bebas',
+                    'year'  => '2026',
+                    'author'=> $isEn 
+                        ? 'Dr. Ady Muzwardi and Center for Policy Strategy for Asia Pacific and Africa Region, Foreign Policy Strategy Agency, Ministry of Foreign Affairs of the Republic of Indonesia'
+                        : 'Dr. Ady Muzwardi dan Pusat Strategi Kebijakan Kawasan Asia Pasifik dan Afrika Badan Strategi Kebijakan Luar Negeri Kementerian Luar Negeri RI',
+                    'desc'  => $isEn
+                        ? 'Strategic zones to support regional and national economic development. Free Trade Zone and Free Port (KPBPB) is one of the models developed by the government in realizing development in border areas.'
+                        : 'Kawasan-kawasan strategis untuk menopang pembangunan ekonomi daerah dan nasional. Kawasan Perdagangan Bebas dan Pelabuhan Bebas (KPBPB) adalah salah satu model yang dikembangkan pemerintah dalam mewujudkan Pembangunan di wilayah perbatasan.',
+                    'file'  => '#'
+                ],
+            ];
         }
 
         $data = [

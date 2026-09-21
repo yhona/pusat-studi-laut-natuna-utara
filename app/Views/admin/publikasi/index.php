@@ -2,73 +2,82 @@
 
 <?= $this->section('content') ?>
 
-<div class="space-y-6 max-w-5xl">
-    
-    <div class="flex items-center justify-between">
+<div class="space-y-6">
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-            <h2 class="text-xl font-bold text-navy-950">Kelola Policy Brief & Publikasi Kemaritiman</h2>
-            <p class="text-xs text-slate-500 mt-0.5">Perbarui rilis ringkasan eksekutif, susunan penyusun, dan rekomendasi kebijakan maritim</p>
+            <h2 class="text-xl font-extrabold text-navy-950">Kelola Policy Brief & Publikasi Kemaritiman</h2>
+            <p class="text-xs text-slate-500 mt-1">
+                Kelola rilis naskah policy brief, jurnal kajian luar negeri, serta dokumen rekomendasi kebijakan maritim.
+            </p>
         </div>
-        <a href="<?= base_url('publikasi') ?>" target="_blank" class="text-xs text-maritime-700 hover:underline font-semibold flex items-center gap-1">
-            <span>Lihat Halaman Publikasi</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-        </a>
+        <div class="flex items-center gap-2.5">
+            <a href="<?= base_url('publikasi') ?>" target="_blank"
+               class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors shrink-0">
+                <i class="fa-solid fa-arrow-up-right-from-square text-[11px]"></i>
+                <span>Lihat Halaman Publik</span>
+            </a>
+            <a href="<?= base_url('admin/publikasi/create') ?>"
+               class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-950 text-xs font-bold shadow-sm transition-all active:scale-[0.98] shrink-0">
+                <i class="fa-solid fa-file-circle-plus"></i>
+                <span>Tambah Naskah Baru</span>
+            </a>
+        </div>
     </div>
 
-    <form action="<?= base_url('admin/publikasi/update-brief') ?>" method="POST" class="space-y-6">
-        <?= csrf_field() ?>
+    <!-- Briefs List -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <?php foreach ($briefs as $b): ?>
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs flex flex-col justify-between hover:border-maritime-500 hover:shadow-md transition-all">
+            <div class="space-y-4">
+                <div class="flex items-start justify-between gap-3">
+                    <span class="font-mono text-xs font-bold text-maritime-700 bg-maritime-50 px-2.5 py-1 rounded-lg border border-maritime-200">
+                        <?= esc($b['number']) ?>
+                    </span>
+                    <span class="text-xs font-bold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-lg">
+                        Tahun <?= esc($b['year']) ?>
+                    </span>
+                </div>
 
-        <?php foreach ($briefs as $index => $b): ?>
-        <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-4">
-            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                <h3 class="text-base font-bold text-navy-950 leading-snug">
+                    <?= esc($b['title']) ?>
+                </h3>
+
+                <div class="space-y-1.5 text-xs">
+                    <div class="text-slate-500"><strong class="text-slate-700">Penyusun:</strong> <?= esc($b['author']) ?></div>
+                    <p class="text-slate-600 line-clamp-3 leading-relaxed"><?= esc($b['desc']) ?></p>
+                </div>
+
+                <?php if (!empty($b['file_path'])): ?>
+                    <div class="pt-2">
+                        <a href="<?= base_url($b['file_path']) ?>" target="_blank" class="inline-flex items-center gap-1.5 text-xs text-emerald-700 font-semibold bg-emerald-50 px-3 py-1 rounded-lg border border-emerald-200 hover:bg-emerald-100">
+                            <i class="fa-solid fa-file-pdf text-rose-600"></i>
+                            <span>Lihat Berkas Dokumen PDF</span>
+                        </a>
+                    </div>
+                <?php endif; ?>
+            </div>
+
+            <div class="pt-5 mt-4 border-t border-slate-100 flex items-center justify-between gap-2">
+                <span class="text-[11px] font-mono text-slate-400">
+                    <i class="fa-solid fa-download mr-1"></i> <?= esc($b['downloads_count'] ?? 0) ?> kali diunduh
+                </span>
                 <div class="flex items-center gap-2">
-                    <span class="w-6 h-6 rounded-full bg-navy-900 text-gold-400 flex items-center justify-center font-bold text-xs"><?= $index + 1 ?></span>
-                    <h3 class="font-bold text-sm text-navy-950">Naskah Policy Brief #<?= $index + 1 ?></h3>
+                    <a href="<?= base_url('admin/publikasi/edit/' . $b['id']) ?>" 
+                       class="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors">
+                        <i class="fa-solid fa-pen-to-square mr-1"></i> Edit
+                    </a>
+                    <form action="<?= base_url('admin/publikasi/delete/' . $b['id']) ?>" method="POST" onsubmit="return confirm('Hapus naskah policy brief ini?');">
+                        <?= csrf_field() ?>
+                        <button type="submit" class="px-3 py-1.5 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 text-xs font-semibold transition-colors">
+                            <i class="fa-regular fa-trash-can mr-1"></i> Hapus
+                        </button>
+                    </form>
                 </div>
-                <span class="font-mono text-xs font-bold text-maritime-700 bg-maritime-50 px-2.5 py-0.5 rounded border border-maritime-200"><?= esc($b['number']) ?></span>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div class="space-y-1 sm:col-span-2">
-                    <label class="block text-[11px] font-bold text-slate-700">Nomor Publikasi Naskah *</label>
-                    <input type="text" name="number[]" required value="<?= esc($b['number']) ?>"
-                           class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-maritime-600 focus:border-transparent bg-white">
-                </div>
-                <div class="space-y-1">
-                    <label class="block text-[11px] font-bold text-slate-700">Tahun Terbit *</label>
-                    <input type="text" name="year[]" required value="<?= esc($b['year']) ?>"
-                           class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-maritime-600 focus:border-transparent bg-white">
-                </div>
-            </div>
-
-            <div class="space-y-1">
-                <label class="block text-[11px] font-bold text-slate-700">Judul Policy Brief *</label>
-                <input type="text" name="title[]" required value="<?= esc($b['title']) ?>"
-                       class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-maritime-600 focus:border-transparent bg-white">
-            </div>
-
-            <div class="space-y-1">
-                <label class="block text-[11px] font-bold text-slate-700">Penyusun & Afiliasi Badan Riset *</label>
-                <input type="text" name="author[]" required value="<?= esc($b['author']) ?>"
-                       class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-maritime-600 focus:border-transparent bg-white">
-            </div>
-
-            <div class="space-y-1">
-                <label class="block text-[11px] font-bold text-slate-700">Ringkasan Eksekutif & Kebijakan *</label>
-                <textarea name="desc[]" required rows="3"
-                          class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-maritime-600 focus:border-transparent bg-white"><?= esc($b['desc']) ?></textarea>
             </div>
         </div>
         <?php endforeach; ?>
-
-        <div class="flex items-center justify-end gap-3 pt-2">
-            <button type="submit" 
-                    class="px-6 py-2.5 bg-navy-950 hover:bg-maritime-700 text-gold-400 hover:text-white rounded-xl font-bold text-xs shadow-md transition-all active:scale-[0.98] cursor-pointer flex items-center gap-2">
-                <i class="fa-solid fa-check"></i>
-                <span>Simpan Seluruh Perubahan Policy Brief</span>
-            </button>
-        </div>
-    </form>
-
+    </div>
 </div>
 
 <?= $this->endSection() ?>

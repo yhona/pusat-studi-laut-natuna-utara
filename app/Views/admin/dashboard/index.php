@@ -32,65 +32,90 @@
     </div>
 
     <!-- Stat Metrics Cards -->
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
+    <!-- Stat Metrics Cards -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4 sm:gap-6">
         
+        <!-- Total Dewan Peneliti -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex items-center gap-3.5">
+            <div class="w-11 h-11 rounded-xl bg-indigo-50 text-indigo-700 flex items-center justify-center text-lg shrink-0">
+                <i class="fa-solid fa-user-graduate"></i>
+            </div>
+            <div>
+                <span class="text-[11px] text-slate-500 font-semibold block">Dewan Peneliti</span>
+                <span class="text-xl font-extrabold text-navy-950"><?= esc($stats['total_peneliti'] ?? '0') ?></span>
+                <a href="<?= base_url('admin/peneliti') ?>" class="text-[11px] text-maritime-700 hover:underline block font-medium mt-0.5">Kelola &rarr;</a>
+            </div>
+        </div>
+
         <!-- Total Klaster Riset -->
-        <div class="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200 shadow-xs flex items-center gap-4">
-            <div class="w-12 h-12 rounded-xl bg-teal-50 text-teal-700 flex items-center justify-center text-xl shrink-0">
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex items-center gap-3.5">
+            <div class="w-11 h-11 rounded-xl bg-teal-50 text-teal-700 flex items-center justify-center text-lg shrink-0">
                 <i class="fa-solid fa-atom"></i>
             </div>
             <div>
-                <span class="text-xs text-slate-500 font-semibold block">Klaster Riset</span>
-                <span class="text-xl sm:text-2xl font-extrabold text-navy-950"><?= esc($stats['total_klaster'] ?? '0') ?></span>
+                <span class="text-[11px] text-slate-500 font-semibold block">Klaster Riset</span>
+                <span class="text-xl font-extrabold text-navy-950"><?= esc($stats['total_klaster'] ?? '0') ?></span>
                 <a href="<?= base_url('admin/klaster') ?>" class="text-[11px] text-maritime-700 hover:underline block font-medium mt-0.5">Kelola &rarr;</a>
             </div>
         </div>
 
+        <!-- Total Policy Brief & Publikasi -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex items-center gap-3.5">
+            <div class="w-11 h-11 rounded-xl bg-rose-50 text-rose-700 flex items-center justify-center text-lg shrink-0">
+                <i class="fa-solid fa-file-shield"></i>
+            </div>
+            <div>
+                <span class="text-[11px] text-slate-500 font-semibold block">Policy Brief</span>
+                <span class="text-xl font-extrabold text-navy-950"><?= esc($stats['total_publikasi'] ?? '0') ?></span>
+                <a href="<?= base_url('admin/publikasi') ?>" class="text-[11px] text-maritime-700 hover:underline block font-medium mt-0.5">Kelola &rarr;</a>
+            </div>
+        </div>
+
+        <!-- Total Layanan & Lab -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex items-center gap-3.5">
+            <div class="w-11 h-11 rounded-xl bg-cyan-50 text-cyan-700 flex items-center justify-center text-lg shrink-0">
+                <i class="fa-solid fa-microchip"></i>
+            </div>
+            <div>
+                <span class="text-[11px] text-slate-500 font-semibold block">Layanan & Lab</span>
+                <span class="text-xl font-extrabold text-navy-950"><?= esc($stats['total_layanan'] ?? '0') ?></span>
+                <a href="<?= base_url('admin/layanan') ?>" class="text-[11px] text-maritime-700 hover:underline block font-medium mt-0.5">Kelola &rarr;</a>
+            </div>
+        </div>
+
         <!-- Total Berita -->
-        <div class="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200 shadow-xs flex items-center gap-4">
-            <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center text-xl shrink-0">
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex items-center gap-3.5">
+            <div class="w-11 h-11 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center text-lg shrink-0">
                 <i class="fa-regular fa-newspaper"></i>
             </div>
             <div>
-                <span class="text-xs text-slate-500 font-semibold block">Total Berita</span>
-                <span class="text-xl sm:text-2xl font-extrabold text-navy-950"><?= esc($stats['total_berita']) ?></span>
+                <span class="text-[11px] text-slate-500 font-semibold block">Total Berita</span>
+                <span class="text-xl font-extrabold text-navy-950"><?= esc($stats['total_berita']) ?></span>
                 <a href="<?= base_url('admin/berita') ?>" class="text-[11px] text-maritime-700 hover:underline block font-medium mt-0.5">Kelola &rarr;</a>
             </div>
         </div>
 
         <!-- Total Unduhan -->
-        <div class="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200 shadow-xs flex items-center gap-4">
-            <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-700 flex items-center justify-center text-xl shrink-0">
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex items-center gap-3.5">
+            <div class="w-11 h-11 rounded-xl bg-purple-50 text-purple-700 flex items-center justify-center text-lg shrink-0">
                 <i class="fa-solid fa-folder-open"></i>
             </div>
             <div>
-                <span class="text-xs text-slate-500 font-semibold block">Dokumen Unduhan</span>
-                <span class="text-xl sm:text-2xl font-extrabold text-navy-950"><?= esc($stats['total_unduhan']) ?></span>
+                <span class="text-[11px] text-slate-500 font-semibold block">Dokumen SOP</span>
+                <span class="text-xl font-extrabold text-navy-950"><?= esc($stats['total_unduhan']) ?></span>
                 <a href="<?= base_url('admin/unduhan') ?>" class="text-[11px] text-maritime-700 hover:underline block font-medium mt-0.5">Kelola &rarr;</a>
             </div>
         </div>
 
         <!-- Total Permohonan Unduh -->
-        <div class="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200 shadow-xs flex items-center gap-4">
-            <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center text-xl shrink-0">
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex items-center gap-3.5">
+            <div class="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center text-lg shrink-0">
                 <i class="fa-solid fa-envelope-open-text"></i>
             </div>
             <div>
-                <span class="text-xs text-slate-500 font-semibold block">Permohonan Unduh</span>
-                <span class="text-xl sm:text-2xl font-extrabold text-navy-950"><?= esc($stats['total_permohonan']) ?></span>
+                <span class="text-[11px] text-slate-500 font-semibold block">Permohonan</span>
+                <span class="text-xl font-extrabold text-navy-950"><?= esc($stats['total_permohonan']) ?></span>
                 <a href="<?= base_url('admin/permohonan') ?>" class="text-[11px] text-maritime-700 hover:underline block font-medium mt-0.5">Tinjau &rarr;</a>
-            </div>
-        </div>
-
-        <!-- Pesan Kerjasama -->
-        <div class="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200 shadow-xs flex items-center gap-4">
-            <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center text-xl shrink-0">
-                <i class="fa-solid fa-handshake-angle"></i>
-            </div>
-            <div>
-                <span class="text-xs text-slate-500 font-semibold block">Pesan Masuk</span>
-                <span class="text-xl sm:text-2xl font-extrabold text-navy-950"><?= esc($stats['total_kontak']) ?></span>
-                <a href="<?= base_url('admin/kontak') ?>" class="text-[11px] text-maritime-700 hover:underline block font-medium mt-0.5">Lihat &rarr;</a>
             </div>
         </div>
 
@@ -104,7 +129,40 @@
                 <p class="text-xs text-slate-500">Pintasan praktis untuk memperbarui atau melengkapi informasi portal</p>
             </div>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3.5">
+            <a href="<?= base_url('admin/peneliti/create') ?>" 
+               class="p-4 rounded-2xl border border-slate-200 hover:border-maritime-500 hover:shadow-md transition-all group flex items-start gap-3 bg-slate-50/50">
+                <div class="w-9 h-9 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center text-sm shrink-0 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-user-plus"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xs text-navy-950">Tambah Peneliti</h4>
+                    <p class="text-[11px] text-slate-500 mt-0.5">Daftarkan profil dewan pakar</p>
+                </div>
+            </a>
+
+            <a href="<?= base_url('admin/publikasi/create') ?>" 
+               class="p-4 rounded-2xl border border-slate-200 hover:border-maritime-500 hover:shadow-md transition-all group flex items-start gap-3 bg-slate-50/50">
+                <div class="w-9 h-9 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center text-sm shrink-0 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-file-circle-plus"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xs text-navy-950">Tambah Policy Brief</h4>
+                    <p class="text-[11px] text-slate-500 mt-0.5">Rilis naskah kebijakan baru</p>
+                </div>
+            </a>
+
+            <a href="<?= base_url('admin/layanan/create') ?>" 
+               class="p-4 rounded-2xl border border-slate-200 hover:border-maritime-500 hover:shadow-md transition-all group flex items-start gap-3 bg-slate-50/50">
+                <div class="w-9 h-9 rounded-xl bg-cyan-100 text-cyan-700 flex items-center justify-center text-sm shrink-0 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-microchip"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xs text-navy-950">Tambah Layanan</h4>
+                    <p class="text-[11px] text-slate-500 mt-0.5">Buka paket jasa lab baru</p>
+                </div>
+            </a>
+
             <a href="<?= base_url('admin/klaster/create') ?>" 
                class="p-4 rounded-2xl border border-slate-200 hover:border-maritime-500 hover:shadow-md transition-all group flex items-start gap-3 bg-slate-50/50">
                 <div class="w-9 h-9 rounded-xl bg-teal-100 text-teal-700 flex items-center justify-center text-sm shrink-0 group-hover:scale-110 transition-transform">
@@ -122,19 +180,8 @@
                     <i class="fa-solid fa-plus"></i>
                 </div>
                 <div>
-                    <h4 class="font-bold text-xs text-navy-950">Tambah Berita Baru</h4>
+                    <h4 class="font-bold text-xs text-navy-950">Tambah Berita</h4>
                     <p class="text-[11px] text-slate-500 mt-0.5">Rilis kegiatan riset & agenda</p>
-                </div>
-            </a>
-
-            <a href="<?= base_url('admin/publikasi') ?>" 
-               class="p-4 rounded-2xl border border-slate-200 hover:border-maritime-500 hover:shadow-md transition-all group flex items-start gap-3 bg-slate-50/50">
-                <div class="w-9 h-9 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center text-sm shrink-0 group-hover:scale-110 transition-transform">
-                    <i class="fa-solid fa-file-signature"></i>
-                </div>
-                <div>
-                    <h4 class="font-bold text-xs text-navy-950">Update Policy Brief</h4>
-                    <p class="text-[11px] text-slate-500 mt-0.5">Perbarui naskah Dr. Ady</p>
                 </div>
             </a>
 
@@ -144,19 +191,8 @@
                     <i class="fa-solid fa-upload"></i>
                 </div>
                 <div>
-                    <h4 class="font-bold text-xs text-navy-950">Tambah SOP / Unduhan</h4>
+                    <h4 class="font-bold text-xs text-navy-950">Tambah SOP</h4>
                     <p class="text-[11px] text-slate-500 mt-0.5">Unggah berkas panduan</p>
-                </div>
-            </a>
-
-            <a href="<?= base_url('admin/permohonan') ?>" 
-               class="p-4 rounded-2xl border border-slate-200 hover:border-maritime-500 hover:shadow-md transition-all group flex items-start gap-3 bg-slate-50/50">
-                <div class="w-9 h-9 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-sm shrink-0 group-hover:scale-110 transition-transform">
-                    <i class="fa-solid fa-users-viewfinder"></i>
-                </div>
-                <div>
-                    <h4 class="font-bold text-xs text-navy-950">Data Pemohon</h4>
-                    <p class="text-[11px] text-slate-500 mt-0.5">Daftar instansi pengunduh</p>
                 </div>
             </a>
         </div>
