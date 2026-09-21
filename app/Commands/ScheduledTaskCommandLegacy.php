@@ -7,9 +7,9 @@ use CodeIgniter\CLI\BaseCommand;
 class ScheduledTaskCommandLegacy extends BaseCommand
 {
     protected $group = 'Automation';
-    protected $name = 'task:run-15min';
-    protected $description = 'Legacy alias for task:run-20min';
-    protected $usage = 'task:run-15min';
+    protected $name = 'task:run-20min';
+    protected $description = 'Alias for task:run-15min';
+    protected $usage = 'task:run-20min';
 
     public function run(array $params)
     {

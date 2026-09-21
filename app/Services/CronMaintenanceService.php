@@ -78,12 +78,30 @@ class CronMaintenanceService
         @file_put_contents($backupDir . '/klaster_snapshot.json', json_encode($snapshotPayload, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
         $executedTasks[] = "Auto-snapshot cadangan klaster riset: {$klasterCount} klaster diamankan";
 
+        // 4. Playwright Headless Verification of Dynamic Logic & Frontend
+        $playwrightScript = ROOTPATH . 'playwright_check.js';
+        $playwrightSummary = 'Playwright dilewati (berkas tidak ditemukan)';
+        if (file_exists($playwrightScript)) {
+            $nodeBinary = trim((string) shell_exec('which node 2>/dev/null')) ?: 'node';
+            $cmd = escapeshellcmd("{$nodeBinary} " . escapeshellarg($playwrightScript)) . ' 2>&1';
+            $pwOutput = shell_exec($cmd);
+            $pwStatusFile = WRITEPATH . 'playwright_status.json';
+            if (file_exists($pwStatusFile)) {
+                $pwData = json_decode(file_get_contents($pwStatusFile), true);
+                $isHealthy = ($pwData['status'] ?? '') === 'HEALTHY';
+                $playwrightSummary = $isHealthy ? 'Playwright UI/UX verifikasi sukses (Semua halaman & klaster dinamis OK)' : 'Playwright mendeteksi isu frontend';
+            } else {
+                $playwrightSummary = 'Playwright selesai dijalankan';
+            }
+        }
+        $executedTasks[] = $playwrightSummary;
+
         $executionDuration = round(microtime(true) - $startTime, 3);
 
-        // 4. Record status to WRITEPATH/cron_status.json
+        // 5. Record status to WRITEPATH/cron_status.json
         $status = [
             'status'         => 'SUCCESS',
-            'interval'       => '20 Menit',
+            'interval'       => '15 Menit',
             'last_run'       => date('Y-m-d H:i:s'),
             'last_run_human' => date('d F Y, H:i:s') . ' WIB',
             'duration_sec'   => $executionDuration,
