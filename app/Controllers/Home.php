@@ -207,24 +207,88 @@ class Home extends BaseController
             }
         }
 
-        // Counter Statistik Capaian Riset (Bilingual)
-        $stats = $isEn ? [
-            ['number' => '142+', 'label' => 'Reputable Scopus / SINTA Publications', 'icon' => 'fa-book-open-reader'],
-            ['number' => '28',   'label' => 'Intellectual Property Rights & Maritime Patents', 'icon' => 'fa-certificate'],
-            ['number' => '35',   'label' => 'Strategic National & International Partners', 'icon' => 'fa-handshake-angle'],
-            ['number' => '21',   'label' => 'Fostered Outermost Small Islands (PPKT) in Natuna-Kepri', 'icon' => 'fa-anchor-circle-check'],
-        ] : [
-            ['number' => '142+', 'label' => 'Publikasi Scopus / SINTA Bereputasi', 'icon' => 'fa-book-open-reader'],
-            ['number' => '28',   'label' => 'Hak Kekayaan Intelektual & Paten Maritim', 'icon' => 'fa-certificate'],
-            ['number' => '35',   'label' => 'Mitra Kerjasama Strategis Dalam & Luar Negeri', 'icon' => 'fa-handshake-angle'],
-            ['number' => '21',   'label' => 'Pulau-Pulau Kecil Terluar (PPKT) Binaan di Natuna-Kepri', 'icon' => 'fa-anchor-circle-check'],
-        ];
+        // Counter Statistik Capaian Riset (Dynamic from DB with bilingual fallback)
+        $stats = [];
+        try {
+            $statistikModel = new \App\Models\CapaianStatistikModel();
+            $hasTableRecords = ($statistikModel->countAllResults() > 0);
+
+            if ($hasTableRecords) {
+                $dbStats = $statistikModel->getActiveStats();
+                if (!empty($dbStats)) {
+                    foreach ($dbStats as $s) {
+                        $stats[] = [
+                            'number' => $s['number'],
+                            'label'  => ($isEn && !empty($s['label_en'])) ? $s['label_en'] : $s['label'],
+                            'icon'   => $s['icon'],
+                        ];
+                    }
+                }
+            } else {
+                $stats = $isEn ? [
+                    ['number' => '142+', 'label' => 'Reputable Scopus / SINTA Publications', 'icon' => 'fa-book-open-reader'],
+                    ['number' => '28',   'label' => 'Intellectual Property Rights & Maritime Patents', 'icon' => 'fa-certificate'],
+                    ['number' => '35',   'label' => 'Strategic National & International Partners', 'icon' => 'fa-handshake-angle'],
+                    ['number' => '21',   'label' => 'Fostered Outermost Small Islands (PPKT) in Natuna-Kepri', 'icon' => 'fa-anchor-circle-check'],
+                ] : [
+                    ['number' => '142+', 'label' => 'Publikasi Scopus / SINTA Bereputasi', 'icon' => 'fa-book-open-reader'],
+                    ['number' => '28',   'label' => 'Hak Kekayaan Intelektual & Paten Maritim', 'icon' => 'fa-certificate'],
+                    ['number' => '35',   'label' => 'Mitra Kerjasama Strategis Dalam & Luar Negeri', 'icon' => 'fa-handshake-angle'],
+                    ['number' => '21',   'label' => 'Pulau-Pulau Kecil Terluar (PPKT) Binaan di Natuna-Kepri', 'icon' => 'fa-anchor-circle-check'],
+                ];
+            }
+        } catch (\Throwable $e) {
+            $stats = $isEn ? [
+                ['number' => '142+', 'label' => 'Reputable Scopus / SINTA Publications', 'icon' => 'fa-book-open-reader'],
+                ['number' => '28',   'label' => 'Intellectual Property Rights & Maritime Patents', 'icon' => 'fa-certificate'],
+                ['number' => '35',   'label' => 'Strategic National & International Partners', 'icon' => 'fa-handshake-angle'],
+                ['number' => '21',   'label' => 'Fostered Outermost Small Islands (PPKT) in Natuna-Kepri', 'icon' => 'fa-anchor-circle-check'],
+            ] : [
+                ['number' => '142+', 'label' => 'Publikasi Scopus / SINTA Bereputasi', 'icon' => 'fa-book-open-reader'],
+                ['number' => '28',   'label' => 'Hak Kekayaan Intelektual & Paten Maritim', 'icon' => 'fa-certificate'],
+                ['number' => '35',   'label' => 'Mitra Kerjasama Strategis Dalam & Luar Negeri', 'icon' => 'fa-handshake-angle'],
+                ['number' => '21',   'label' => 'Pulau-Pulau Kecil Terluar (PPKT) Binaan di Natuna-Kepri', 'icon' => 'fa-anchor-circle-check'],
+            ];
+        }
+
+        // Sambutan Pimpinan / Koordinator (Dynamic from DB with fallback)
+        $sambutan = null;
+        try {
+            $sambutanModel = new \App\Models\SambutanPimpinanModel();
+            $leader = $sambutanModel->first();
+            if ($leader) {
+                $sambutan = [
+                    'name'       => $leader['name'],
+                    'title'      => ($isEn && !empty($leader['title_en'])) ? $leader['title_en'] : $leader['title'],
+                    'heading'    => ($isEn && !empty($leader['heading_en'])) ? $leader['heading_en'] : (!empty($leader['heading']) ? $leader['heading'] : lang('App.profile_lead_heading')),
+                    'quote'      => ($isEn && !empty($leader['quote_en'])) ? $leader['quote_en'] : $leader['quote'],
+                    'content'    => ($isEn && !empty($leader['content_en'])) ? $leader['content_en'] : $leader['content'],
+                    'image'      => !empty($leader['image']) ? $leader['image'] : 'images/kepala_pusat.jpg',
+                    'is_active'  => (bool) ($leader['is_active'] ?? true),
+                ];
+            }
+        } catch (\Throwable $e) {
+            $sambutan = null;
+        }
+
+        if ($sambutan === null) {
+            $sambutan = [
+                'name'       => 'Dr. Atika Thahira, S.H., M.H.',
+                'title'      => $isEn ? 'Center Coordinator of North Natuna Sea Research Center UMRAH' : 'Koordinator Pusat Studi Laut Natuna Utara UMRAH',
+                'heading'    => lang('App.profile_lead_heading'),
+                'quote'      => lang('App.profile_lead_quote'),
+                'content'    => lang('App.profile_lead_p'),
+                'image'      => 'images/kepala_pusat.jpg',
+                'is_active'  => true,
+            ];
+        }
 
         $data = [
             'title'         => $isEn ? 'Home - North Natuna Sea Research Center UMRAH' : 'Beranda - Pusat Studi Laut Natuna Utara UMRAH',
             'banners'       => $banners,
             'clusters'      => $clusters,
             'stats'         => $stats,
+            'sambutan'      => $sambutan,
             'latest_news'   => $latestNews,
             'partners'      => $partners,
             'gallery_items' => $galleryItems,

@@ -63,10 +63,11 @@
         </div>
 
         <!-- Roadmap Riset 2025-2030 -->
+        <?php if (!empty($roadmap)): ?>
         <div class="bg-white rounded-2xl p-8 sm:p-10 border border-slate-200 shadow-sm space-y-8">
             <div>
                 <span class="text-gold-600 uppercase text-xs font-bold tracking-wider block"><?= $isEn ? 'Strategic Roadmap' : 'Rencana Jangka Panjang' ?></span>
-                <h3 class="text-xl sm:text-2xl font-bold text-navy-950 mt-1"><?= $isEn ? 'Maritime Research Roadmap (2025 – 2030)' : 'Roadmap Riset Kemaritiman (2025 – 2030)' ?></h3>
+                <h3 class="text-xl sm:text-2xl font-bold text-navy-950 mt-1"><?= $isEn ? 'Maritime Research Roadmap' : 'Roadmap Riset Kemaritiman' ?></h3>
             </div>
 
             <div class="space-y-6 relative before:absolute before:inset-0 before:left-3.5 before:w-0.5 before:bg-slate-200">
@@ -85,6 +86,7 @@
                 <?php endforeach; ?>
             </div>
         </div>
+        <?php endif; ?>
 
     </div>
 </div>

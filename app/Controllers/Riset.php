@@ -55,45 +55,129 @@ class Riset extends BaseController
             $clusters[$c['slug']] = $c;
         }
 
-        $roadmap = $isEn ? [
-            [
-                'phase' => '2025 - 2026',
-                'title' => 'Phase 1: Oceanographic Baseline Data Consolidation & Resource Mapping',
-                'desc'  => 'Detailed bathymetric mapping of Riau Strait and Natuna Sea, establishing mangrove blue carbon databases, and inventorying Malay customary maritime law.',
-                'status'=> 'In Progress'
-            ],
-            [
-                'phase' => '2027 - 2028',
-                'title' => 'Phase 2: Applied Research Commercialization & Marine Energy Innovation',
-                'desc'  => 'Pilot testing ocean current turbine prototypes for remote islands, formulating local microalgae-based feeds, and modeling sea-tollway supply chains.',
-                'status'=> 'Strategic Plan'
-            ],
-            [
-                'phase' => '2029 - 2030',
-                'title' => 'Phase 3: Southeast Asian International Maritime Research Epicenter',
-                'desc'  => 'Global research consortium for Malacca Strait - North Natuna Sea, tropical satellite oceanography hub, and policy advisory for international ocean law.',
-                'status'=> 'Long-Term Vision'
-            ],
-        ] : [
-            [
-                'phase' => '2025 - 2026',
-                'title' => 'Fase 1: Konsolidasi Baseline Data Oseanografi & Pemetaan Potensi',
-                'desc'  => 'Pemetaan batimetri detail Selat Riau dan Natuna, pembentukan basis data blue carbon mangrove, dan inventarisasi hukum adat laut Melayu.',
-                'status'=> 'Sedang Berjalan'
-            ],
-            [
-                'phase' => '2027 - 2028',
-                'title' => 'Fase 2: Hilirisasi Riset Terapan & Inovasi Energi Kelautan',
-                'desc'  => 'Uji coba prototipe turbin arus laut untuk pulau terpencil, formulasi pakan ikan berbasis mikroalga lokal, serta pemodelan rantai pasok tol laut.',
-                'status'=> 'Rencana Strategis'
-            ],
-            [
-                'phase' => '2029 - 2030',
-                'title' => 'Fase 3: Episentrum Riset Kemaritiman Internasional Asia Tenggara',
-                'desc'  => 'Kemitraan riset global Selat Malaka - Laut Natuna Utara, pusat data satelit oseanografi tropis, dan rujukan kebijakan hukum laut internasional.',
-                'status'=> 'Rencana Jangka Panjang'
-            ],
-        ];
+        $roadmap = [];
+        try {
+            $roadmapModel = new \App\Models\RoadmapRisetModel();
+            $hasTableRecords = ($roadmapModel->countAllResults() > 0);
+
+            if ($hasTableRecords) {
+                $dbRoadmap = $roadmapModel->getActiveRoadmap();
+                if (!empty($dbRoadmap)) {
+                    foreach ($dbRoadmap as $r) {
+                        $roadmap[] = [
+                            'phase'  => $r['phase'],
+                            'title'  => ($isEn && !empty($r['title_en'])) ? $r['title_en'] : $r['title'],
+                            'desc'   => ($isEn && !empty($r['desc_en'])) ? $r['desc_en'] : $r['desc'],
+                            'status' => ($isEn && !empty($r['status_en'])) ? $r['status_en'] : $r['status'],
+                        ];
+                    }
+                }
+            } else {
+                $roadmap = $isEn ? [
+                    [
+                        'phase'  => '2025 - 2026',
+                        'title'  => 'Phase 1: Oceanographic Baseline Data Consolidation & Resource Mapping',
+                        'desc'   => 'Detailed bathymetric mapping of Riau Strait and Natuna Sea, establishing mangrove blue carbon databases, and inventorying Malay customary maritime law.',
+                        'status' => 'In Progress',
+                    ],
+                    [
+                        'phase'  => '2027 - 2028',
+                        'title'  => 'Phase 2: Applied Research Commercialization & Marine Energy Innovation',
+                        'desc'   => 'Pilot testing ocean current turbine prototypes for remote islands, formulating local microalgae-based feeds, and modeling sea-tollway supply chains.',
+                        'status' => 'Strategic Plan',
+                    ],
+                    [
+                        'phase'  => '2029 - 2030',
+                        'title'  => 'Phase 3: Southeast Asian International Maritime Research Epicenter',
+                        'desc'   => 'Global research consortium for Malacca Strait - North Natuna Sea, tropical satellite oceanography hub, and policy advisory for international ocean law.',
+                        'status' => 'Long-Term Vision',
+                    ],
+                    [
+                        'phase'  => '2031 - 2035',
+                        'title'  => 'Phase 4: Global Maritime Technology Autonomy & Indo-Pacific Diplomatic Leadership',
+                        'desc'   => 'Full implementation of AI/IoT-driven autonomous border surveillance, complete renewable ocean energy independence for small islands, and foremost multilateral maritime diplomacy.',
+                        'status' => 'Future Horizon',
+                    ],
+                ] : [
+                    [
+                        'phase'  => '2025 - 2026',
+                        'title'  => 'Fase 1: Konsolidasi Baseline Data Oseanografi & Pemetaan Potensi',
+                        'desc'   => 'Pemetaan batimetri detail Selat Riau dan Natuna, pembentukan basis data blue carbon mangrove, dan inventarisasi hukum adat laut Melayu.',
+                        'status' => 'Sedang Berjalan',
+                    ],
+                    [
+                        'phase'  => '2027 - 2028',
+                        'title'  => 'Fase 2: Hilirisasi Riset Terapan & Inovasi Energi Kelautan',
+                        'desc'   => 'Uji coba prototipe turbin arus laut untuk pulau terpencil, formulasi pakan ikan berbasis mikroalga lokal, serta pemodelan rantai pasok tol laut.',
+                        'status' => 'Rencana Strategis',
+                    ],
+                    [
+                        'phase'  => '2029 - 2030',
+                        'title'  => 'Fase 3: Episentrum Riset Kemaritiman Internasional Asia Tenggara',
+                        'desc'   => 'Kemitraan riset global Selat Malaka - Laut Natuna Utara, pusat data satelit oseanografi tropis, dan rujukan kebijakan hukum laut internasional.',
+                        'status' => 'Rencana Jangka Panjang',
+                    ],
+                    [
+                        'phase'  => '2031 - 2035',
+                        'title'  => 'Fase 4: Kemandirian Teknologi & Diplomasi Maritim Global Kawasan Indo-Pasifik',
+                        'desc'   => 'Penerapan penuh sistem pemantauan otonom perbatasan maritim cerdas berbasis AI/IoT, kemandirian industri energi laut terbarukan kepulauan, dan diplomasi maritim multilateral terdepan.',
+                        'status' => 'Visi Jangka Panjang',
+                    ],
+                ];
+            }
+        } catch (\Throwable $e) {
+            $roadmap = $isEn ? [
+                [
+                    'phase'  => '2025 - 2026',
+                    'title'  => 'Phase 1: Oceanographic Baseline Data Consolidation & Resource Mapping',
+                    'desc'   => 'Detailed bathymetric mapping of Riau Strait and Natuna Sea, establishing mangrove blue carbon databases, and inventorying Malay customary maritime law.',
+                    'status' => 'In Progress',
+                ],
+                [
+                    'phase'  => '2027 - 2028',
+                    'title'  => 'Phase 2: Applied Research Commercialization & Marine Energy Innovation',
+                    'desc'   => 'Pilot testing ocean current turbine prototypes for remote islands, formulating local microalgae-based feeds, and modeling sea-tollway supply chains.',
+                    'status' => 'Strategic Plan',
+                ],
+                [
+                    'phase'  => '2029 - 2030',
+                    'title'  => 'Phase 3: Southeast Asian International Maritime Research Epicenter',
+                    'desc'   => 'Global research consortium for Malacca Strait - North Natuna Sea, tropical satellite oceanography hub, and policy advisory for international ocean law.',
+                    'status' => 'Long-Term Vision',
+                ],
+                [
+                    'phase'  => '2031 - 2035',
+                    'title'  => 'Phase 4: Global Maritime Technology Autonomy & Indo-Pacific Diplomatic Leadership',
+                    'desc'   => 'Full implementation of AI/IoT-driven autonomous border surveillance, complete renewable ocean energy independence for small islands, and foremost multilateral maritime diplomacy.',
+                    'status' => 'Future Horizon',
+                ],
+            ] : [
+                [
+                    'phase'  => '2025 - 2026',
+                    'title'  => 'Fase 1: Konsolidasi Baseline Data Oseanografi & Pemetaan Potensi',
+                    'desc'   => 'Pemetaan batimetri detail Selat Riau dan Natuna, pembentukan basis data blue carbon mangrove, dan inventarisasi hukum adat laut Melayu.',
+                    'status' => 'Sedang Berjalan',
+                ],
+                [
+                    'phase'  => '2027 - 2028',
+                    'title'  => 'Fase 2: Hilirisasi Riset Terapan & Inovasi Energi Kelautan',
+                    'desc'   => 'Uji coba prototipe turbin arus laut untuk pulau terpencil, formulasi pakan ikan berbasis mikroalga lokal, serta pemodelan rantai pasok tol laut.',
+                    'status' => 'Rencana Strategis',
+                ],
+                [
+                    'phase'  => '2029 - 2030',
+                    'title'  => 'Fase 3: Episentrum Riset Kemaritiman Internasional Asia Tenggara',
+                    'desc'   => 'Kemitraan riset global Selat Malaka - Laut Natuna Utara, pusat data satelit oseanografi tropis, dan rujukan kebijakan hukum laut internasional.',
+                    'status' => 'Rencana Jangka Panjang',
+                ],
+                [
+                    'phase'  => '2031 - 2035',
+                    'title'  => 'Fase 4: Kemandirian Teknologi & Diplomasi Maritim Global Kawasan Indo-Pasifik',
+                    'desc'   => 'Penerapan penuh sistem pemantauan otonom perbatasan maritim cerdas berbasis AI/IoT, kemandirian industri energi laut terbarukan kepulauan, dan diplomasi maritim multilateral terdepan.',
+                    'status' => 'Visi Jangka Panjang',
+                ],
+            ];
+        }
 
         $data = [
             'title'        => $isEn ? 'Research Clusters & Roadmap - NNSRC UMRAH' : 'Klaster & Roadmap Riset Kemaritiman - UMRAH',

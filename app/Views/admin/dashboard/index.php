@@ -155,6 +155,30 @@
             </div>
         </div>
 
+        <!-- Total Roadmap Riset -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex items-center gap-3.5">
+            <div class="w-11 h-11 rounded-xl bg-violet-50 text-violet-700 flex items-center justify-center text-lg shrink-0">
+                <i class="fa-solid fa-timeline"></i>
+            </div>
+            <div>
+                <span class="text-[11px] text-slate-500 font-semibold block">Roadmap Riset</span>
+                <span class="text-xl font-extrabold text-navy-950"><?= esc($stats['total_roadmap'] ?? '0') ?></span>
+                <a href="<?= base_url('admin/roadmap') ?>" class="text-[11px] text-maritime-700 hover:underline block font-medium mt-0.5">Kelola &rarr;</a>
+            </div>
+        </div>
+
+        <!-- Total Capaian Statistik & KPI -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex items-center gap-3.5">
+            <div class="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center text-lg shrink-0">
+                <i class="fa-solid fa-chart-simple"></i>
+            </div>
+            <div>
+                <span class="text-[11px] text-slate-500 font-semibold block">KPI & Statistik</span>
+                <span class="text-xl font-extrabold text-navy-950"><?= esc($stats['total_statistik'] ?? '0') ?></span>
+                <a href="<?= base_url('admin/statistik') ?>" class="text-[11px] text-maritime-700 hover:underline block font-medium mt-0.5">Kelola &rarr;</a>
+            </div>
+        </div>
+
     </div>
 
     <!-- Quick Management Action Hub -->
@@ -165,7 +189,40 @@
                 <p class="text-xs text-slate-500">Pintasan praktis untuk memperbarui atau melengkapi informasi portal</p>
             </div>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3.5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+            <a href="<?= base_url('admin/sambutan') ?>" 
+               class="p-4 rounded-2xl border border-slate-200 hover:border-maritime-500 hover:shadow-md transition-all group flex items-start gap-3 bg-slate-50/50">
+                <div class="w-9 h-9 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-sm shrink-0 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-bullhorn"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xs text-navy-950">Sambutan Pimpinan</h4>
+                    <p class="text-[11px] text-slate-500 mt-0.5">Edit pengantar & visi</p>
+                </div>
+            </a>
+
+            <a href="<?= base_url('admin/roadmap/create') ?>" 
+               class="p-4 rounded-2xl border border-slate-200 hover:border-maritime-500 hover:shadow-md transition-all group flex items-start gap-3 bg-slate-50/50">
+                <div class="w-9 h-9 rounded-xl bg-violet-100 text-violet-700 flex items-center justify-center text-sm shrink-0 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-timeline"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xs text-navy-950">Tambah Roadmap</h4>
+                    <p class="text-[11px] text-slate-500 mt-0.5">Fase riset kemaritiman</p>
+                </div>
+            </a>
+
+            <a href="<?= base_url('admin/statistik/create') ?>" 
+               class="p-4 rounded-2xl border border-slate-200 hover:border-maritime-500 hover:shadow-md transition-all group flex items-start gap-3 bg-slate-50/50">
+                <div class="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-sm shrink-0 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-chart-simple"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xs text-navy-950">Tambah Statistik</h4>
+                    <p class="text-[11px] text-slate-500 mt-0.5">Metrik capaian riset</p>
+                </div>
+            </a>
+
             <a href="<?= base_url('admin/banners/create') ?>" 
                class="p-4 rounded-2xl border border-slate-200 hover:border-maritime-500 hover:shadow-md transition-all group flex items-start gap-3 bg-slate-50/50">
                 <div class="w-9 h-9 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-sm shrink-0 group-hover:scale-110 transition-transform">

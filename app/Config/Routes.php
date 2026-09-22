@@ -93,6 +93,10 @@ $routes->group('admin', ['filter' => 'adminAuth'], static function ($routes) {
     $routes->get('kontak', 'Admin\Kontak::index');
     $routes->post('kontak/update-status/(:num)', 'Admin\Kontak::updateStatus/$1');
 
+    // Sambutan Pimpinan / Koordinator
+    $routes->get('sambutan', 'Admin\Sambutan::index');
+    $routes->post('sambutan/update', 'Admin\Sambutan::update');
+
     // Profil & Visi Misi
     $routes->get('profil', 'Admin\Profil::index');
     $routes->post('profil/update', 'Admin\Profil::update');
@@ -104,6 +108,22 @@ $routes->group('admin', ['filter' => 'adminAuth'], static function ($routes) {
     $routes->get('klaster/edit/(:num)', 'Admin\Klaster::edit/$1');
     $routes->post('klaster/update/(:num)', 'Admin\Klaster::update/$1');
     $routes->post('klaster/delete/(:num)', 'Admin\Klaster::delete/$1');
+
+    // Roadmap Riset Kemaritiman
+    $routes->get('roadmap', 'Admin\Roadmap::index');
+    $routes->get('roadmap/create', 'Admin\Roadmap::create');
+    $routes->post('roadmap/store', 'Admin\Roadmap::store');
+    $routes->get('roadmap/edit/(:num)', 'Admin\Roadmap::edit/$1');
+    $routes->post('roadmap/update/(:num)', 'Admin\Roadmap::update/$1');
+    $routes->post('roadmap/delete/(:num)', 'Admin\Roadmap::delete/$1');
+
+    // Counter Capaian Statistik & KPI
+    $routes->get('statistik', 'Admin\Statistik::index');
+    $routes->get('statistik/create', 'Admin\Statistik::create');
+    $routes->post('statistik/store', 'Admin\Statistik::store');
+    $routes->get('statistik/edit/(:num)', 'Admin\Statistik::edit/$1');
+    $routes->post('statistik/update/(:num)', 'Admin\Statistik::update/$1');
+    $routes->post('statistik/delete/(:num)', 'Admin\Statistik::delete/$1');
 
     // Banner & Slider Beranda
     $routes->get('banners', 'Admin\Banner::index');

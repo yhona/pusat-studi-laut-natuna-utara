@@ -164,6 +164,7 @@
 </section>
 
 <!-- Sambutan Koordinator Pusat Studi Laut Natuna Utara UMRAH -->
+<?php if (!empty($sambutan) && !empty($sambutan['is_active'])): ?>
 <section id="sambutan" class="py-16 bg-white border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
@@ -173,10 +174,10 @@
                 <div class="relative group">
                     <div class="w-56 h-64 sm:w-64 sm:h-72 rounded-2xl bg-gradient-to-tr from-navy-900 to-maritime-700 p-1.5 shadow-xl relative overflow-hidden">
                         <div class="w-full h-full bg-slate-100 rounded-[14px] flex flex-col items-center justify-end overflow-hidden relative">
-                            <img src="<?= base_url('images/kepala_pusat.jpg') ?>" alt="Dr. Atika Thahira, S.H., M.H." class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500">
+                            <img src="<?= base_url(esc($sambutan['image'] ?? 'images/kepala_pusat.jpg')) ?>" alt="<?= esc($sambutan['name'] ?? 'Dr. Atika Thahira, S.H., M.H.') ?>" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500">
                             <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-navy-950 via-navy-900/80 to-transparent p-4 text-white text-center z-10">
-                                <h4 class="font-bold text-sm text-gold-400">Dr. Atika Thahira, S.H., M.H.</h4>
-                                <p class="text-[11px] text-slate-300"><?= $isEn ? 'Center Coordinator of North Natuna Sea Research Center UMRAH' : 'Koordinator Pusat Studi Laut Natuna Utara UMRAH' ?></p>
+                                <h4 class="font-bold text-sm text-gold-400"><?= esc($sambutan['name'] ?? 'Dr. Atika Thahira, S.H., M.H.') ?></h4>
+                                <p class="text-[11px] text-slate-300"><?= esc($sambutan['title'] ?? ($isEn ? 'Center Coordinator of North Natuna Sea Research Center UMRAH' : 'Koordinator Pusat Studi Laut Natuna Utara UMRAH')) ?></p>
                             </div>
                         </div>
                     </div>
@@ -194,13 +195,13 @@
                     <span><?= lang('App.profile_lead_intro') ?></span>
                 </div>
                 <h3 class="text-2xl sm:text-3xl font-bold text-navy-950 tracking-tight leading-snug">
-                    <?= lang('App.profile_lead_heading') ?>
+                    <?= esc($sambutan['heading'] ?? lang('App.profile_lead_heading')) ?>
                 </h3>
                 <blockquote class="border-l-4 border-gold-500 pl-4 py-1 text-slate-600 italic text-sm sm:text-base leading-relaxed">
-                    <?= lang('App.profile_lead_quote') ?>
+                    <?= esc($sambutan['quote'] ?? lang('App.profile_lead_quote')) ?>
                 </blockquote>
                 <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                    <?= lang('App.profile_lead_p') ?>
+                    <?= nl2br(esc($sambutan['content'] ?? lang('App.profile_lead_p'))) ?>
                 </p>
                 <div class="pt-3 flex flex-wrap items-center gap-4">
                     <a href="<?= base_url('profil') ?>" class="inline-flex items-center gap-2 text-maritime-700 hover:text-maritime-900 font-semibold text-xs sm:text-sm">
@@ -213,6 +214,7 @@
         </div>
     </div>
 </section>
+<?php endif; ?>
 
 <!-- 4 Klaster Riset Utama (The Core Research Hub) -->
 <section class="py-16 bg-slate-50 relative">
@@ -321,6 +323,7 @@
 </section>
 
 <!-- Capaian & Statistik Angka -->
+<?php if (!empty($stats)): ?>
 <section class="py-14 bg-navy-900 text-white relative overflow-hidden">
     <div class="absolute inset-0 opacity-10 bg-pattern"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -341,6 +344,7 @@
         </div>
     </div>
 </section>
+<?php endif; ?>
 
 <!-- Galeri Dokumentasi Ekspedisi Maritim & Fasilitas Lab -->
 <section id="galeri" class="py-16 bg-white border-b border-slate-200" x-data="galleryLightbox()" @keydown.escape.window="if (isOpen) close()" @keydown.arrow-right.window="if (isOpen) next()" @keydown.arrow-left.window="if (isOpen) prev()">

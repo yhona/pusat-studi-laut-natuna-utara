@@ -24,6 +24,8 @@ class Dashboard extends BaseController
         $bannerModel     = new \App\Models\HeroBannerModel();
         $mitraModel      = new \App\Models\MitraModel();
         $galeriModel     = new \App\Models\GaleriRisetModel();
+        $roadmapModel    = new \App\Models\RoadmapRisetModel();
+        $statistikModel  = new \App\Models\CapaianStatistikModel();
 
         $stats = [
             'total_berita'     => $beritaModel->countAllResults(),
@@ -37,6 +39,8 @@ class Dashboard extends BaseController
             'total_banners'    => $bannerModel->countAllResults(),
             'total_mitra'      => $mitraModel->countAllResults(),
             'total_galeri'     => $galeriModel->countAllResults(),
+            'total_roadmap'    => $roadmapModel->countAllResults(),
+            'total_statistik'  => $statistikModel->countAllResults(),
             'total_downloads'  => (int) ($unduhanModel->selectSum('downloads')->first()['downloads'] ?? 0),
         ];
 

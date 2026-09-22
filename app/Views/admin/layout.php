@@ -65,6 +65,12 @@
                 <span>Profil, MoU & Visi Misi</span>
             </a>
 
+            <a href="<?= base_url('admin/sambutan') ?>" 
+               class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'sambutan' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+                <i class="fa-solid fa-bullhorn text-sm w-5 text-center"></i>
+                <span>Sambutan Pimpinan</span>
+            </a>
+
             <a href="<?= base_url('admin/peneliti') ?>" 
                class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'peneliti' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
                 <i class="fa-solid fa-user-graduate text-sm w-5 text-center"></i>
@@ -75,6 +81,12 @@
                class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'klaster' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
                 <i class="fa-solid fa-compass text-sm w-5 text-center"></i>
                 <span>Klaster Riset Kemaritiman</span>
+            </a>
+
+            <a href="<?= base_url('admin/roadmap') ?>" 
+               class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'roadmap' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+                <i class="fa-solid fa-timeline text-sm w-5 text-center"></i>
+                <span>Roadmap Riset</span>
             </a>
 
             <a href="<?= base_url('admin/berita') ?>" 
@@ -117,6 +129,12 @@
                class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'galeri' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
                 <i class="fa-solid fa-camera-retro text-sm w-5 text-center"></i>
                 <span>Galeri Riset & Ekspedisi</span>
+            </a>
+
+            <a href="<?= base_url('admin/statistik') ?>" 
+               class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'statistik' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+                <i class="fa-solid fa-chart-simple text-sm w-5 text-center"></i>
+                <span>Counter Metrik & KPI</span>
             </a>
 
             <div class="pt-3 pb-1 px-3.5">
