@@ -6,6 +6,7 @@ use CodeIgniter\Model;
 
 class AdminActivityLogModel extends Model
 {
+    protected $DBGroup          = 'default';
     protected $table            = 'admin_activity_logs';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
@@ -30,19 +31,23 @@ class AdminActivityLogModel extends Model
     public static function record(string $action, string $description, ?int $adminId = null, ?string $adminName = null): bool
     {
         try {
-            $request = service('request');
-            $session = session();
-
-            $adminId   = $adminId ?? (int) ($session->get('admin_id') ?? 0);
-            $adminName = $adminName ?? (string) ($session->get('admin_name') ?? 'System');
-
-            $ipAddress = '';
-            if ($request instanceof \CodeIgniter\HTTP\RequestInterface) {
-                $ipAddress = $request->getIPAddress();
+            if ($adminId === null || $adminName === null) {
+                try {
+                    $session   = session();
+                    $adminId   = $adminId ?? (int) ($session->get('admin_id') ?? 0);
+                    $adminName = $adminName ?? (string) ($session->get('admin_name') ?? 'System');
+                } catch (\Throwable $se) {
+                    $adminId   = $adminId ?? 0;
+                    $adminName = $adminName ?? 'System';
+                }
             }
 
-            $userAgent = '';
-            if ($request instanceof \CodeIgniter\HTTP\RequestInterface) {
+            $ipAddress = '127.0.0.1';
+            $userAgent = 'CLI';
+
+            $request = service('request');
+            if ($request instanceof \CodeIgniter\HTTP\IncomingRequest) {
+                $ipAddress = $request->getIPAddress();
                 $ua = $request->getUserAgent();
                 $userAgent = $ua ? (string) $ua->getAgentString() : '';
             }

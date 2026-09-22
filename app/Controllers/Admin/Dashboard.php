@@ -26,6 +26,8 @@ class Dashboard extends BaseController
         $galeriModel     = new \App\Models\GaleriRisetModel();
         $roadmapModel    = new \App\Models\RoadmapRisetModel();
         $statistikModel  = new \App\Models\CapaianStatistikModel();
+        $userModel       = new \App\Models\AdminUserModel();
+        $logModel        = new \App\Models\AdminActivityLogModel();
 
         $stats = [
             'total_berita'     => $beritaModel->countAllResults(),
@@ -41,6 +43,8 @@ class Dashboard extends BaseController
             'total_galeri'     => $galeriModel->countAllResults(),
             'total_roadmap'    => $roadmapModel->countAllResults(),
             'total_statistik'  => $statistikModel->countAllResults(),
+            'total_users'      => $userModel->countAllResults(),
+            'total_logs'       => $logModel->countAllResults(),
             'total_downloads'  => (int) ($unduhanModel->selectSum('downloads')->first()['downloads'] ?? 0),
         ];
 
@@ -49,6 +53,9 @@ class Dashboard extends BaseController
 
         // Recent kontak pesan
         $recentKontak = $kontakModel->orderBy('id', 'DESC')->findAll(5);
+
+        // Recent activity logs
+        $recentLogs = $logModel->orderBy('id', 'DESC')->findAll(5);
 
         // Cron status file
         $cronStatusFile = WRITEPATH . 'cron_status.json';
@@ -62,6 +69,7 @@ class Dashboard extends BaseController
             'stats'            => $stats,
             'recentPermohonan' => $recentPermohonan,
             'recentKontak'     => $recentKontak,
+            'recentLogs'       => $recentLogs,
             'cronStatus'       => $cronStatus,
         ];
 

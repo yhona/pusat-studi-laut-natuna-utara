@@ -179,17 +179,74 @@
             </div>
         </div>
 
+        <!-- Total Admin Users -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex items-center gap-3.5">
+            <div class="w-11 h-11 rounded-xl bg-purple-50 text-purple-700 flex items-center justify-center text-lg shrink-0">
+                <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <div>
+                <span class="text-[11px] text-slate-500 font-semibold block">Pengguna Admin</span>
+                <span class="text-xl font-extrabold text-navy-950"><?= esc($stats['total_users'] ?? '1') ?></span>
+                <a href="<?= base_url('admin/users') ?>" class="text-[11px] text-maritime-700 hover:underline block font-medium mt-0.5">Kelola &rarr;</a>
+            </div>
+        </div>
+
+        <!-- Total Activity Logs -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex items-center gap-3.5">
+            <div class="w-11 h-11 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center text-lg shrink-0">
+                <i class="fa-solid fa-list-check"></i>
+            </div>
+            <div>
+                <span class="text-[11px] text-slate-500 font-semibold block">Audit Trail Log</span>
+                <span class="text-xl font-extrabold text-navy-950"><?= esc($stats['total_logs'] ?? '0') ?></span>
+                <a href="<?= base_url('admin/logs') ?>" class="text-[11px] text-maritime-700 hover:underline block font-medium mt-0.5">Tinjau &rarr;</a>
+            </div>
+        </div>
+
     </div>
 
     <!-- Quick Management Action Hub -->
     <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-4">
         <div class="border-b border-slate-100 pb-3 flex items-center justify-between">
             <div>
-                <h3 class="text-base font-bold text-navy-950">Aksi Cepat Pengaturan Konten</h3>
-                <p class="text-xs text-slate-500">Pintasan praktis untuk memperbarui atau melengkapi informasi portal</p>
+                <h3 class="text-base font-bold text-navy-950">Aksi Cepat Pengaturan Konten & Akses</h3>
+                <p class="text-xs text-slate-500">Pintasan praktis untuk memperbarui informasi portal, identitas institusi, dan hak akses</p>
             </div>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+            <a href="<?= base_url('admin/identitas') ?>" 
+               class="p-4 rounded-2xl border border-slate-200 hover:border-maritime-500 hover:shadow-md transition-all group flex items-start gap-3 bg-slate-50/50">
+                <div class="w-9 h-9 rounded-xl bg-teal-100 text-teal-700 flex items-center justify-center text-sm shrink-0 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-address-card"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xs text-navy-950">Identitas & Kontak</h4>
+                    <p class="text-[11px] text-slate-500 mt-0.5">Alamat, jam & medsos</p>
+                </div>
+            </a>
+
+            <a href="<?= base_url('admin/users') ?>" 
+               class="p-4 rounded-2xl border border-slate-200 hover:border-maritime-500 hover:shadow-md transition-all group flex items-start gap-3 bg-slate-50/50">
+                <div class="w-9 h-9 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center text-sm shrink-0 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-users-gear"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xs text-navy-950">Kelola Pengguna</h4>
+                    <p class="text-[11px] text-slate-500 mt-0.5">Akun & hak akses admin</p>
+                </div>
+            </a>
+
+            <a href="<?= base_url('admin/logs') ?>" 
+               class="p-4 rounded-2xl border border-slate-200 hover:border-maritime-500 hover:shadow-md transition-all group flex items-start gap-3 bg-slate-50/50">
+                <div class="w-9 h-9 rounded-xl bg-slate-200 text-slate-800 flex items-center justify-center text-sm shrink-0 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-list-check"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xs text-navy-950">Audit Trail Log</h4>
+                    <p class="text-[11px] text-slate-500 mt-0.5">Rekam jejak sistem</p>
+                </div>
+            </a>
+
             <a href="<?= base_url('admin/sambutan') ?>" 
                class="p-4 rounded-2xl border border-slate-200 hover:border-maritime-500 hover:shadow-md transition-all group flex items-start gap-3 bg-slate-50/50">
                 <div class="w-9 h-9 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-sm shrink-0 group-hover:scale-110 transition-transform">
@@ -393,6 +450,44 @@
             <?php endif; ?>
         </div>
 
+    </div>
+
+    <!-- Audit Trail & Log Aktivitas Terbaru -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div>
+                <h3 class="text-sm font-bold text-navy-950 flex items-center gap-2">
+                    <i class="fa-solid fa-list-check text-maritime-600"></i>
+                    <span>Log Aktivitas & Audit Trail Terbaru</span>
+                </h3>
+                <span class="text-[11px] text-slate-400">Rekam autentikasi dan modifikasi konfigurasi sistem terbaru</span>
+            </div>
+            <a href="<?= base_url('admin/logs') ?>" class="text-xs text-maritime-700 font-bold hover:underline">Lihat Semua Log</a>
+        </div>
+
+        <?php if (empty($recentLogs)): ?>
+        <p class="text-xs text-slate-400 py-6 text-center italic">Belum ada catatan aktivitas admin yang terekam.</p>
+        <?php else: ?>
+        <div class="divide-y divide-slate-100 text-xs">
+            <?php foreach ($recentLogs as $log): ?>
+            <div class="py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div class="space-y-1 min-w-0">
+                    <div class="flex items-center gap-2">
+                        <span class="font-bold text-navy-950"><?= esc($log['admin_name'] ?? 'System') ?></span>
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-700 font-mono">
+                            <?= esc($log['action']) ?>
+                        </span>
+                    </div>
+                    <div class="text-[11px] text-slate-600 truncate"><?= esc($log['description']) ?></div>
+                </div>
+                <div class="text-[10px] text-slate-400 sm:text-right shrink-0 font-mono">
+                    <div><?= date('d M Y, H:i', strtotime($log['created_at'])) ?> WIB</div>
+                    <div>IP: <?= esc($log['ip_address'] ?? '127.0.0.1') ?></div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+        <?php endif; ?>
     </div>
 
 </div>
