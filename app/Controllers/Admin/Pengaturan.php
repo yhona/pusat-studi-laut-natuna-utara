@@ -35,13 +35,27 @@ class Pengaturan extends BaseController
             return redirect()->to(base_url('admin/pengaturan'))->with('error', 'Pengguna tidak ditemukan.');
         }
 
-        $name     = trim($this->request->getPost('name') ?? '');
-        $email    = trim($this->request->getPost('email') ?? '');
-        $username = trim($this->request->getPost('username') ?? '');
+        $rules = [
+            'name'     => 'required|min_length[2]|max_length[150]',
+            'username' => "required|min_length[3]|max_length[100]|alpha_dash|is_unique[admin_users.username,id,{$adminId}]",
+            'email'    => "required|valid_email|max_length[150]|is_unique[admin_users.email,id,{$adminId}]",
+        ];
 
-        if ($name === '' || $email === '' || $username === '') {
-            return redirect()->back()->with('error', 'Nama, email, dan username tidak boleh kosong.');
+        $newPassword = trim((string) $this->request->getPost('new_password'));
+        if (! empty($newPassword)) {
+            $rules['new_password']     = 'min_length[8]';
+            $rules['confirm_password'] = 'required|matches[new_password]';
         }
+
+        if (! $this->validate($rules)) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', implode('<br>', $this->validator->getErrors()));
+        }
+
+        $name     = trim((string) $this->request->getPost('name'));
+        $email    = trim((string) $this->request->getPost('email'));
+        $username = trim((string) $this->request->getPost('username'));
 
         $updateData = [
             'name'     => $name,
@@ -49,17 +63,7 @@ class Pengaturan extends BaseController
             'username' => $username,
         ];
 
-        // If changing password
-        $newPassword     = $this->request->getPost('new_password');
-        $confirmPassword = $this->request->getPost('confirm_password');
-
         if (! empty($newPassword)) {
-            if (strlen($newPassword) < 8) {
-                return redirect()->back()->with('error', 'Kata sandi baru minimal harus 8 karakter.');
-            }
-            if ($newPassword !== $confirmPassword) {
-                return redirect()->back()->with('error', 'Konfirmasi kata sandi baru tidak cocok.');
-            }
             $updateData['password_hash'] = password_hash($newPassword, PASSWORD_BCRYPT);
         }
 
@@ -71,6 +75,11 @@ class Pengaturan extends BaseController
             'admin_username' => $username,
             'admin_email'    => $email,
         ]);
+
+        \App\Models\AdminActivityLogModel::record(
+            'USER_UPDATE',
+            "Memperbarui profil akun sendiri via Pengaturan Akun: {$name} (@{$username})" . (! empty($newPassword) ? ' [Password diubah]' : '')
+        );
 
         return redirect()->to(base_url('admin/pengaturan'))
             ->with('success', 'Profil dan kredensial administrator berhasil diperbarui!');

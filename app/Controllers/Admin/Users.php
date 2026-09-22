@@ -49,7 +49,7 @@ class Users extends BaseController
     {
         $rules = [
             'name'             => 'required|min_length[2]|max_length[150]',
-            'username'         => 'required|min_length[3]|max_length[100]|is_unique[admin_users.username]',
+            'username'         => 'required|min_length[3]|max_length[100]|alpha_dash|is_unique[admin_users.username]',
             'email'            => 'required|valid_email|max_length[150]|is_unique[admin_users.email]',
             'password'         => 'required|min_length[8]',
             'confirm_password' => 'required|matches[password]',
@@ -121,12 +121,12 @@ class Users extends BaseController
 
         $rules = [
             'name'     => 'required|min_length[2]|max_length[150]',
-            'username' => "required|min_length[3]|max_length[100]|is_unique[admin_users.username,id,{$id}]",
+            'username' => "required|min_length[3]|max_length[100]|alpha_dash|is_unique[admin_users.username,id,{$id}]",
             'email'    => "required|valid_email|max_length[150]|is_unique[admin_users.email,id,{$id}]",
             'role'     => 'required|in_list[administrator,superadmin,editor]',
         ];
 
-        $newPassword = (string) $this->request->getPost('new_password');
+        $newPassword = trim((string) $this->request->getPost('new_password'));
         if (! empty($newPassword)) {
             $rules['new_password']     = 'min_length[8]';
             $rules['confirm_password'] = 'required|matches[new_password]';
@@ -139,6 +139,7 @@ class Users extends BaseController
         }
 
         $isActive = $this->request->getPost('is_active') ? 1 : 0;
+        $newRole  = (string) $this->request->getPost('role');
 
         // Protection Rule: Cannot deactivate own logged-in account
         if ($id === $currentAdminId && $isActive === 0) {
@@ -147,11 +148,27 @@ class Users extends BaseController
                 ->with('error', 'Keamanan Sistem: Anda tidak dapat menonaktifkan akun Anda sendiri yang sedang aktif digunakan.');
         }
 
+        // Protection Rule: Cannot deactivate or demote the last remaining active administrator/superadmin
+        if (in_array($user['role'], ['administrator', 'superadmin'], true)) {
+            if ($isActive === 0 || $newRole === 'editor') {
+                $privilegedCount = (new AdminUserModel())
+                    ->whereIn('role', ['administrator', 'superadmin'])
+                    ->where('is_active', 1)
+                    ->countAllResults();
+
+                if ($privilegedCount <= 1 && (int) ($user['is_active'] ?? 1) === 1) {
+                    return redirect()->back()
+                        ->withInput()
+                        ->with('error', 'Keamanan Sistem: Tidak dapat menonaktifkan atau menurunkan hak akses satu-satunya administrator/superadmin aktif di sistem.');
+                }
+            }
+        }
+
         $updateData = [
             'name'      => trim((string) $this->request->getPost('name')),
             'username'  => trim((string) $this->request->getPost('username')),
             'email'     => trim((string) $this->request->getPost('email')),
-            'role'      => (string) $this->request->getPost('role'),
+            'role'      => $newRole,
             'is_active' => $isActive,
         ];
 
@@ -203,6 +220,19 @@ class Users extends BaseController
         if ($this->userModel->countAllResults() <= 1) {
             return redirect()->to(base_url('admin/users'))
                 ->with('error', 'Keamanan Sistem: Tidak dapat menghapus satu-satunya akun administrator yang tersisa di sistem.');
+        }
+
+        // Protection Rule: Cannot delete the last active administrator/superadmin
+        if (in_array($user['role'], ['administrator', 'superadmin'], true)) {
+            $privilegedCount = (new AdminUserModel())
+                ->whereIn('role', ['administrator', 'superadmin'])
+                ->where('is_active', 1)
+                ->countAllResults();
+
+            if ($privilegedCount <= 1 && (int) ($user['is_active'] ?? 1) === 1) {
+                return redirect()->to(base_url('admin/users'))
+                    ->with('error', 'Keamanan Sistem: Tidak dapat menghapus satu-satunya akun administrator/superadmin aktif yang tersisa di sistem.');
+            }
         }
 
         $this->userModel->delete($id);

@@ -50,6 +50,11 @@ class Auth extends BaseController
         $user = $this->userModel->verifyCredentials($username, $password);
 
         if (! $user) {
+            \App\Models\AdminActivityLogModel::record(
+                'LOGIN_FAILED',
+                "Percobaan login gagal untuk identitas: '{$username}'. Kredensial tidak cocok atau akun dinonaktifkan."
+            );
+
             return redirect()->back()
                 ->withInput()
                 ->with('error', 'Kombinasi nama pengguna/email dan kata sandi tidak cocok, atau akun dinonaktifkan.');

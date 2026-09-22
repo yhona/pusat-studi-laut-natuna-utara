@@ -42,6 +42,7 @@ class Logs extends BaseController
         // Action categories for filter
         $availableActions = [
             'LOGIN'           => 'Masuk Sistem (Login)',
+            'LOGIN_FAILED'    => 'Gagal Masuk (Login Failed)',
             'LOGOUT'          => 'Keluar Sistem (Logout)',
             'USER_CREATE'     => 'Tambah Pengguna',
             'USER_UPDATE'     => 'Ubah Pengguna',
@@ -50,10 +51,10 @@ class Logs extends BaseController
             'LOGS_CLEANUP'    => 'Pembersihan Log',
         ];
 
-        // Stats
-        $totalLogs    = $this->logModel->countAllResults();
+        // Stats (using fresh instances to prevent builder condition leakage)
+        $totalLogs     = (new AdminActivityLogModel())->countAllResults();
         $thirtyDaysAgo = date('Y-m-d H:i:s', strtotime('-30 days'));
-        $oldLogsCount = $this->logModel->where('created_at <', $thirtyDaysAgo)->countAllResults();
+        $oldLogsCount  = (new AdminActivityLogModel())->where('created_at <', $thirtyDaysAgo)->countAllResults();
 
         $data = [
             'title'            => 'Audit Trail & Log Aktivitas Admin - NNSRC UMRAH',

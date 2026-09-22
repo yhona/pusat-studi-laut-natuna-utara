@@ -60,9 +60,6 @@
                         $contactAddress = $isEn ? (!empty($siteSettings['address_en']) ? $siteSettings['address_en'] : 'LPPM UMRAH Building, 2nd Floor, Dompak Main Campus, Jl. Politeknik, Tanjungpinang City, Riau Islands 29111, Indonesia') : (!empty($siteSettings['address']) ? $siteSettings['address'] : 'Gedung LPPM UMRAH Lantai 2, Kampus Terpadu Dompak, Jl. Politeknik, Kota Tanjungpinang, Kepulauan Riau 29111');
                         $contactEmail = !empty($siteSettings['email']) ? $siteSettings['email'] : 'pusatstudilautnatunautara@umrah.ac.id';
                         $contactPhone = !empty($siteSettings['phone']) ? $siteSettings['phone'] : '(0771) 4500089 | WhatsApp: 0812-7000-8991';
-                        $contactHours = $isEn 
-                            ? 'Monday – Friday: ' . (!empty($siteSettings['hours_weekday']) ? $siteSettings['hours_weekday'] : '08:00 – 16:00 WIB') . ' (UTC+7)'
-                            : 'Senin – Jumat: ' . (!empty($siteSettings['hours_weekday']) ? $siteSettings['hours_weekday'] : '08.00 – 16.00 WIB');
                         ?>
                         <div class="flex items-start gap-3">
                             <div class="w-9 h-9 rounded-lg bg-navy-900 text-gold-400 flex items-center justify-center flex-shrink-0 text-sm mt-0.5">
@@ -98,11 +95,37 @@
                             <div class="w-9 h-9 rounded-lg bg-navy-900 text-gold-400 flex items-center justify-center flex-shrink-0 text-sm mt-0.5">
                                 <i class="fa-solid fa-clock"></i>
                             </div>
-                            <div>
+                            <div class="space-y-1">
                                 <strong class="text-navy-900 block"><?= $isEn ? 'Service Hours:' : 'Waktu Layanan:' ?></strong>
-                                <span><?= esc($contactHours) ?></span>
+                                <div class="text-xs space-y-0.5 text-slate-600">
+                                    <div><span class="font-medium text-slate-700"><?= $isEn ? 'Mon – Thu:' : 'Senin – Kamis:' ?></span> <?= esc(!empty($siteSettings['hours_weekday']) ? $siteSettings['hours_weekday'] : '08.00 – 16.00 WIB') ?></div>
+                                    <div><span class="font-medium text-slate-700"><?= $isEn ? 'Friday:' : 'Jumat:' ?></span> <?= esc(!empty($siteSettings['hours_friday']) ? $siteSettings['hours_friday'] : '08.00 – 16.30 WIB') ?></div>
+                                    <div><span class="font-medium text-slate-700"><?= $isEn ? 'Sat – Sun:' : 'Sabtu & Minggu:' ?></span> <span class="text-rose-500 font-medium"><?= esc(!empty($siteSettings['hours_weekend']) ? $siteSettings['hours_weekend'] : ($isEn ? 'Closed' : 'Tutup')) ?></span></div>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Social Media Channels Card -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs space-y-3">
+                    <h4 class="text-xs font-bold text-navy-950 uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-share-nodes text-maritime-600"></i> <?= $isEn ? 'Official Social Media' : 'Media Sosial Resmi' ?>
+                    </h4>
+                    <p class="text-xs text-slate-500"><?= $isEn ? 'Connect with NNSRC UMRAH through our official channels:' : 'Terhubung dengan Pusat Studi Laut Natuna Utara melalui kanal resmi kami:' ?></p>
+                    <div class="flex items-center gap-3 pt-1">
+                        <a href="<?= esc(!empty($siteSettings['youtube_url']) ? $siteSettings['youtube_url'] : 'https://youtube.com/@umrah') ?>" target="_blank" rel="noopener noreferrer" aria-label="YouTube NNSRC UMRAH" class="w-9 h-9 rounded-xl bg-navy-900 border border-slate-200 flex items-center justify-center text-slate-300 hover:text-red-500 hover:border-red-500 transition-colors shadow-xs">
+                            <i class="fa-brands fa-youtube text-sm"></i>
+                        </a>
+                        <a href="<?= esc(!empty($siteSettings['instagram_url']) ? $siteSettings['instagram_url'] : 'https://instagram.com/umrah.ac.id') ?>" target="_blank" rel="noopener noreferrer" aria-label="Instagram NNSRC UMRAH" class="w-9 h-9 rounded-xl bg-navy-900 border border-slate-200 flex items-center justify-center text-slate-300 hover:text-pink-500 hover:border-pink-500 transition-colors shadow-xs">
+                            <i class="fa-brands fa-instagram text-sm"></i>
+                        </a>
+                        <a href="<?= esc(!empty($siteSettings['twitter_url']) ? $siteSettings['twitter_url'] : 'https://x.com/umrah_official') ?>" target="_blank" rel="noopener noreferrer" aria-label="X Twitter NNSRC UMRAH" class="w-9 h-9 rounded-xl bg-navy-900 border border-slate-200 flex items-center justify-center text-slate-300 hover:text-sky-400 hover:border-sky-400 transition-colors shadow-xs">
+                            <i class="fa-brands fa-x-twitter text-sm"></i>
+                        </a>
+                        <a href="<?= esc(!empty($siteSettings['linkedin_url']) ? $siteSettings['linkedin_url'] : 'https://linkedin.com/school/umrah') ?>" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn NNSRC UMRAH" class="w-9 h-9 rounded-xl bg-navy-900 border border-slate-200 flex items-center justify-center text-slate-300 hover:text-blue-500 hover:border-blue-500 transition-colors shadow-xs">
+                            <i class="fa-brands fa-linkedin-in text-sm"></i>
+                        </a>
                     </div>
                 </div>
 

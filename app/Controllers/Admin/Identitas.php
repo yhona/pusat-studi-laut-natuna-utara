@@ -43,6 +43,10 @@ class Identitas extends BaseController
             'hours_weekday' => 'required',
             'hours_friday'  => 'required',
             'hours_weekend' => 'required',
+            'youtube_url'   => 'permit_empty|valid_url',
+            'instagram_url' => 'permit_empty|valid_url',
+            'twitter_url'   => 'permit_empty|valid_url',
+            'linkedin_url'  => 'permit_empty|valid_url',
         ];
 
         if (! $this->validate($rules)) {

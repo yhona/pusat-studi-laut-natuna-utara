@@ -62,7 +62,13 @@ class SiteSettingModel extends Model
             $model = new self();
             $row = $model->first();
             if ($row && is_array($row)) {
-                self::$cachedSettings = array_merge($default, $row);
+                $merged = array_merge($default, $row);
+                foreach ($default as $key => $defaultVal) {
+                    if (! isset($merged[$key]) || trim((string) $merged[$key]) === '') {
+                        $merged[$key] = $defaultVal;
+                    }
+                }
+                self::$cachedSettings = $merged;
                 return self::$cachedSettings;
             }
         } catch (\Throwable $e) {
