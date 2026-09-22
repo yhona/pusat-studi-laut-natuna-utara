@@ -101,6 +101,12 @@
                 <span>Policy Brief & Publikasi</span>
             </a>
 
+            <a href="<?= base_url('admin/jurnal') ?>" 
+               class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'jurnal' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+                <i class="fa-solid fa-book-bookmark text-sm w-5 text-center"></i>
+                <span>Jurnal Ilmiah Kemaritiman</span>
+            </a>
+
             <a href="<?= base_url('admin/layanan') ?>" 
                class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'layanan' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
                 <i class="fa-solid fa-microchip text-sm w-5 text-center"></i>

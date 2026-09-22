@@ -99,7 +99,7 @@ $metadataMap = $isEn ? [
                         <a href="<?= esc($j['link']) ?>" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-bold text-maritime-600 hover:text-navy-950 transition-colors">
                             <?= $isEn ? 'Visit OJS Portal' : 'Kunjungi Portal OJS' ?> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                         </a>
-                        <span class="text-[11px] text-slate-400"><?= $isEn ? 'Biannual Publication' : 'Terbit 2x Setahun' ?></span>
+                        <span class="text-[11px] text-slate-400"><?= esc($j['frequency'] ?? ($isEn ? 'Biannual Publication' : 'Terbit 2x Setahun')) ?></span>
                     </div>
                 </div>
                 <?php endforeach; ?>

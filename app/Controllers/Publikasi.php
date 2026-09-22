@@ -57,48 +57,86 @@ class Publikasi extends BaseController
             ];
         }
 
-        $data = [
-            'title' => $isEn ? 'Publications & Maritime Policy Briefs - UMRAH' : 'Publikasi & Policy Brief Kemaritiman - UMRAH',
-            'policy_briefs' => $defaultBriefs,
+        // Dynamic Scientific Journals with Safe Fallback
+        $journals = [];
+        try {
+            $jurnalModel = new \App\Models\JurnalIlmiahModel();
+            if ($jurnalModel->countAllResults() > 0) {
+                $rawJournals = $jurnalModel->where('is_active', 1)
+                                           ->orderBy('order_num', 'ASC')
+                                           ->orderBy('id', 'ASC')
+                                           ->findAll();
+                foreach ($rawJournals as $j) {
+                    $journals[] = [
+                        'name'      => ($isEn && ! empty($j['name_en'])) ? $j['name_en'] : $j['name'],
+                        'indexing'  => $j['indexing'],
+                        'issn'      => $j['issn'],
+                        'desc'      => ($isEn && ! empty($j['description_en'])) ? $j['description_en'] : $j['description'],
+                        'link'      => $j['journal_url'],
+                        'frequency' => ($isEn && ! empty($j['frequency_en'])) ? $j['frequency_en'] : ($j['frequency'] ?? ($isEn ? 'Biannual Publication' : 'Terbit 2x Setahun')),
+                        'cover'     => $j['cover_image'] ?? null,
+                    ];
+                }
+            }
+        } catch (\Throwable $e) {
+            // Fail-safe fallback if table does not exist or database error occurs
+            $journals = [];
+        }
 
-            'journals' => [
+        // Default fallback if database is empty or error caught
+        if (empty($journals)) {
+            $journals = [
                 [
-                    'name'    => 'Jurnal Akuatiklestari',
-                    'indexing'=> 'SINTA 3 / Crossref / Garuda',
-                    'issn'    => 'e-ISSN: 2598-8204',
-                    'desc'    => $isEn
+                    'name'      => 'Jurnal Akuatiklestari',
+                    'indexing'  => 'SINTA 3 / Crossref / Garuda',
+                    'issn'      => 'e-ISSN: 2598-8204',
+                    'desc'      => $isEn
                         ? 'Accredited SINTA 3 scholarly journal managed by Aquatic Resources Management, FIKP UMRAH. Focuses on marine ecology, tropical oceanography, marine water quality, conservation, and coastal ecosystem governance.'
                         : 'Jurnal ilmiah terakreditasi SINTA 3 yang dikelola Program Studi Manajemen Sumberdaya Perairan, FIKP UMRAH. Memuat kajian ekologi laut tropis, oseanografi, mutu air laut, konservasi, dan tata kelola pesisir.',
-                    'link'    => 'https://ojs.umrah.ac.id/index.php/akuatiklestari'
+                    'link'      => 'https://ojs.umrah.ac.id/index.php/akuatiklestari',
+                    'frequency' => $isEn ? 'Biannual Publication' : 'Terbit 2x Setahun',
+                    'cover'     => null,
                 ],
                 [
-                    'name'    => 'Khidmat: Journal of Community Service',
-                    'indexing'=> 'Google Scholar / Garuda / Crossref',
-                    'issn'    => 'e-ISSN: 2684-8244 | p-ISSN: 2598-5035',
-                    'desc'    => $isEn
+                    'name'      => 'Khidmat: Journal of Community Service',
+                    'indexing'  => 'Google Scholar / Garuda / Crossref',
+                    'issn'      => 'e-ISSN: 2684-8244 | p-ISSN: 2598-5035',
+                    'desc'      => $isEn
                         ? 'Official journal published by the Center for Maritime Policy and Governance Studies (CMPGS) / LPPM UMRAH. Dedicated to maritime community empowerment, coastal economics, and marine public policy dissemination.'
                         : 'Jurnal resmi terbitan Pusat Studi Kebijakan dan Tata Kelola Kemaritiman / LPPM UMRAH. Memuat diseminasi riset pengabdian masyarakat pesisir, pemberdayaan ekonomi nelayan, dan advokasi kebijakan kelautan.',
-                    'link'    => 'https://ojs.umrah.ac.id/index.php/khidmat'
+                    'link'      => 'https://ojs.umrah.ac.id/index.php/khidmat',
+                    'frequency' => $isEn ? 'Biannual Publication' : 'Terbit 2x Setahun',
+                    'cover'     => null,
                 ],
                 [
-                    'name'    => 'Jurnal Marinade',
-                    'indexing'=> 'Google Scholar / Garuda / Crossref',
-                    'issn'    => 'e-ISSN: 2654-4415',
-                    'desc'    => $isEn
+                    'name'      => 'Jurnal Marinade',
+                    'indexing'  => 'Google Scholar / Garuda / Crossref',
+                    'issn'      => 'e-ISSN: 2654-4415',
+                    'desc'      => $isEn
                         ? 'Scientific journal managed by Marine Fisheries Product Technology, FIKP UMRAH. Covers marine biotechnology, post-harvest fishery processing, seafood food safety, and coastal marine bioproducts.'
                         : 'Jurnal ilmiah kelautan yang dikelola Program Studi Teknologi Hasil Perikanan, FIKP UMRAH. Berfokus pada bioteknologi perikanan bahari, pascapanen tangkapan laut, diversifikasi pangan, dan bioproduk pesisir.',
-                    'link'    => 'https://ojs.umrah.ac.id/index.php/marinade'
+                    'link'      => 'https://ojs.umrah.ac.id/index.php/marinade',
+                    'frequency' => $isEn ? 'Biannual Publication' : 'Terbit 2x Setahun',
+                    'cover'     => null,
                 ],
                 [
-                    'name'    => 'Intek Akuakultur',
-                    'indexing'=> 'Google Scholar / Garuda / Moraref',
-                    'issn'    => 'e-ISSN: 2579-6291',
-                    'desc'    => $isEn
+                    'name'      => 'Intek Akuakultur',
+                    'indexing'  => 'Google Scholar / Garuda / Moraref',
+                    'issn'      => 'e-ISSN: 2579-6291',
+                    'desc'      => $isEn
                         ? 'Peer-reviewed journal managed by Aquaculture Department, FIKP UMRAH. Publishes empirical investigations on tropical marine aquaculture, hatchery technology, marine feed formulation, and aquatic health.'
                         : 'Jurnal telaah sejawat yang dikelola Program Studi Budidaya Perairan, FIKP UMRAH. Memuat artikel ilmiah teknologi budidaya laut tropis, rekayasa pembenihan biota laut, pakan maritim, dan kesehatan lingkungan perairan.',
-                    'link'    => 'https://ojs.umrah.ac.id/index.php/intek'
+                    'link'      => 'https://ojs.umrah.ac.id/index.php/intek',
+                    'frequency' => $isEn ? 'Biannual Publication' : 'Terbit 2x Setahun',
+                    'cover'     => null,
                 ],
-            ]
+            ];
+        }
+
+        $data = [
+            'title'         => $isEn ? 'Publications & Maritime Policy Briefs - UMRAH' : 'Publikasi & Policy Brief Kemaritiman - UMRAH',
+            'policy_briefs' => $defaultBriefs,
+            'journals'      => $journals,
         ];
 
         return view('pages/publikasi', $data);

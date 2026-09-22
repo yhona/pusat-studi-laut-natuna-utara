@@ -62,6 +62,14 @@ $routes->group('admin', ['filter' => 'adminAuth'], static function ($routes) {
     $routes->post('publikasi/update/(:num)', 'Admin\Publikasi::update/$1');
     $routes->post('publikasi/delete/(:num)', 'Admin\Publikasi::delete/$1');
 
+    // Jurnal Ilmiah Kemaritiman
+    $routes->get('jurnal', 'Admin\Jurnal::index');
+    $routes->get('jurnal/create', 'Admin\Jurnal::create');
+    $routes->post('jurnal/store', 'Admin\Jurnal::store');
+    $routes->get('jurnal/edit/(:num)', 'Admin\Jurnal::edit/$1');
+    $routes->post('jurnal/update/(:num)', 'Admin\Jurnal::update/$1');
+    $routes->post('jurnal/delete/(:num)', 'Admin\Jurnal::delete/$1');
+
     // Personalia & Dewan Peneliti
     $routes->get('peneliti', 'Admin\Peneliti::index');
     $routes->get('peneliti/create', 'Admin\Peneliti::create');
