@@ -55,15 +55,22 @@
                     </div>
 
                     <div class="space-y-4 text-xs sm:text-sm text-slate-600">
+                        <?php 
+                        $siteSettings = \App\Models\SiteSettingModel::getSettings();
+                        $contactAddress = $isEn ? (!empty($siteSettings['address_en']) ? $siteSettings['address_en'] : 'LPPM UMRAH Building, 2nd Floor, Dompak Main Campus, Jl. Politeknik, Tanjungpinang City, Riau Islands 29111, Indonesia') : (!empty($siteSettings['address']) ? $siteSettings['address'] : 'Gedung LPPM UMRAH Lantai 2, Kampus Terpadu Dompak, Jl. Politeknik, Kota Tanjungpinang, Kepulauan Riau 29111');
+                        $contactEmail = !empty($siteSettings['email']) ? $siteSettings['email'] : 'pusatstudilautnatunautara@umrah.ac.id';
+                        $contactPhone = !empty($siteSettings['phone']) ? $siteSettings['phone'] : '(0771) 4500089 | WhatsApp: 0812-7000-8991';
+                        $contactHours = $isEn 
+                            ? 'Monday – Friday: ' . (!empty($siteSettings['hours_weekday']) ? $siteSettings['hours_weekday'] : '08:00 – 16:00 WIB') . ' (UTC+7)'
+                            : 'Senin – Jumat: ' . (!empty($siteSettings['hours_weekday']) ? $siteSettings['hours_weekday'] : '08.00 – 16.00 WIB');
+                        ?>
                         <div class="flex items-start gap-3">
                             <div class="w-9 h-9 rounded-lg bg-navy-900 text-gold-400 flex items-center justify-center flex-shrink-0 text-sm mt-0.5">
                                 <i class="fa-solid fa-location-dot"></i>
                             </div>
                             <div>
                                 <strong class="text-navy-900 block"><?= $isEn ? 'Office Address:' : 'Alamat Kantor:' ?></strong>
-                                <span><?= $isEn 
-                                    ? 'LPPM UMRAH Building, 2nd Floor, Dompak Main Campus, Jl. Politeknik, Tanjungpinang City, Riau Islands 29111, Indonesia' 
-                                    : 'Gedung LPPM UMRAH Lantai 2, Kampus Terpadu Dompak, Jl. Politeknik, Kota Tanjungpinang, Kepulauan Riau 29111' ?></span>
+                                <span><?= esc($contactAddress) ?></span>
                             </div>
                         </div>
 
@@ -73,7 +80,7 @@
                             </div>
                             <div>
                                 <strong class="text-navy-900 block"><?= $isEn ? 'Official Email:' : 'Email Resmi:' ?></strong>
-                                <span><a href="mailto:pusatstudilautnatunautara@umrah.ac.id" class="hover:text-gold-600 transition-colors font-medium">pusatstudilautnatunautara@umrah.ac.id</a> / lppm@umrah.ac.id</span>
+                                <span><a href="mailto:<?= esc($contactEmail) ?>" class="hover:text-gold-600 transition-colors font-medium"><?= esc($contactEmail) ?></a></span>
                             </div>
                         </div>
 
@@ -83,7 +90,7 @@
                             </div>
                             <div>
                                 <strong class="text-navy-900 block"><?= $isEn ? 'Phone / Contact Persons:' : 'Telepon / Narahubung:' ?></strong>
-                                <span>(0771) 4500089 | WhatsApp: 0812-7000-8991</span>
+                                <span><?= esc($contactPhone) ?></span>
                             </div>
                         </div>
 
@@ -93,7 +100,7 @@
                             </div>
                             <div>
                                 <strong class="text-navy-900 block"><?= $isEn ? 'Service Hours:' : 'Waktu Layanan:' ?></strong>
-                                <span><?= $isEn ? 'Monday – Friday: 08:00 – 16:00 WIB (UTC+7)' : 'Senin – Jumat: 08.00 – 16.00 WIB' ?></span>
+                                <span><?= esc($contactHours) ?></span>
                             </div>
                         </div>
                     </div>

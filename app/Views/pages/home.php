@@ -657,28 +657,4 @@ function galleryLightbox() {
     </div>
 </section>
 
-<!-- Mitra Kerjasama Strategis -->
-<section class="py-14 bg-white border-t border-slate-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div class="max-w-2xl mx-auto mb-8 space-y-1">
-            <span class="text-[11px] uppercase font-bold tracking-widest text-gold-600 block"><?= lang('App.partner_tag') ?></span>
-            <h3 class="text-xl sm:text-2xl font-extrabold text-navy-950"><?= lang('App.partner_heading') ?></h3>
-            <p class="text-slate-500 text-xs sm:text-sm"><?= lang('App.partner_desc') ?></p>
-        </div>
-
-        <!-- Partner Logos Grid -->
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 items-center">
-            <?php foreach ($partners as $partner): ?>
-            <a href="<?= esc($partner['url'] ?? '#') ?>" target="_blank" rel="noopener noreferrer" class="group p-4 sm:p-5 rounded-2xl border border-slate-200/80 bg-slate-50/60 hover:bg-white hover:border-maritime-300 hover:shadow-md transition-all duration-300 flex flex-col items-center justify-center h-28 relative">
-                <img src="<?= esc($partner['logo']) ?>" 
-                     alt="<?= esc($partner['name']) ?>" 
-                     title="<?= esc($partner['name']) ?>"
-                     class="h-10 sm:h-12 w-auto max-w-[170px] object-contain filter grayscale opacity-75 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300">
-                <span class="sr-only"><?= esc($partner['name']) ?></span>
-            </a>
-            <?php endforeach; ?>
-        </div>
-    </div>
-</section>
-
 <?= $this->endSection() ?>

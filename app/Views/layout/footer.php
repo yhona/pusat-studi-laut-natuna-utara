@@ -1,3 +1,17 @@
+<?php
+$siteSettings = \App\Models\SiteSettingModel::getSettings();
+$locale = service('request')->getLocale();
+$footerAddress = ($locale === 'en' && !empty($siteSettings['address_en'])) ? $siteSettings['address_en'] : (!empty($siteSettings['address']) ? $siteSettings['address'] : lang('App.footer_address'));
+$footerEmail = !empty($siteSettings['email']) ? $siteSettings['email'] : 'pusatstudilautnatunautara@umrah.ac.id';
+$footerPhone = !empty($siteSettings['phone']) ? $siteSettings['phone'] : '(0771) 4500089 / 4500090';
+$footerWeekday = !empty($siteSettings['hours_weekday']) ? $siteSettings['hours_weekday'] : '08.00 – 16.00 WIB';
+$footerFriday = !empty($siteSettings['hours_friday']) ? $siteSettings['hours_friday'] : '08.00 – 16.30 WIB';
+$footerWeekend = !empty($siteSettings['hours_weekend']) ? $siteSettings['hours_weekend'] : lang('App.footer_closed');
+$ytUrl = !empty($siteSettings['youtube_url']) ? $siteSettings['youtube_url'] : 'https://youtube.com/@umrah';
+$igUrl = !empty($siteSettings['instagram_url']) ? $siteSettings['instagram_url'] : 'https://instagram.com/umrah.ac.id';
+$twUrl = !empty($siteSettings['twitter_url']) ? $siteSettings['twitter_url'] : 'https://x.com/umrah_official';
+$liUrl = !empty($siteSettings['linkedin_url']) ? $siteSettings['linkedin_url'] : 'https://linkedin.com/school/umrah';
+?>
 <footer class="bg-navy-950 text-slate-300 pt-16 pb-8 border-t-4 border-gold-500">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-navy-800">
@@ -19,15 +33,15 @@
                 <div class="space-y-2 text-xs text-slate-300 pt-2">
                     <div class="flex items-start gap-2.5">
                         <i class="fa-solid fa-location-dot text-gold-400 mt-1 flex-shrink-0"></i>
-                        <span><?= lang('App.footer_address') ?></span>
+                        <span><?= esc($footerAddress) ?></span>
                     </div>
                     <div class="flex items-center gap-2.5">
                         <i class="fa-solid fa-envelope text-gold-400 flex-shrink-0"></i>
-                        <a href="mailto:pusatstudilautnatunautara@umrah.ac.id" class="hover:text-gold-400 transition-colors">pusatstudilautnatunautara@umrah.ac.id</a>
+                        <a href="mailto:<?= esc($footerEmail) ?>" class="hover:text-gold-400 transition-colors"><?= esc($footerEmail) ?></a>
                     </div>
                     <div class="flex items-center gap-2.5">
                         <i class="fa-solid fa-phone text-gold-400 flex-shrink-0"></i>
-                        <span>(0771) 4500089 / 4500090</span>
+                        <span><?= esc($footerPhone) ?></span>
                     </div>
                 </div>
             </div>
@@ -69,25 +83,25 @@
                 <div class="text-xs text-slate-400 space-y-2">
                     <p class="flex justify-between">
                         <span><?= lang('App.footer_mon_thu') ?></span>
-                        <span class="text-slate-200 font-medium">08.00 – 16.00 WIB</span>
+                        <span class="text-slate-200 font-medium"><?= esc($footerWeekday) ?></span>
                     </p>
                     <p class="flex justify-between">
                         <span><?= lang('App.footer_fri') ?></span>
-                        <span class="text-slate-200 font-medium">08.00 – 16.30 WIB</span>
+                        <span class="text-slate-200 font-medium"><?= esc($footerFriday) ?></span>
                     </p>
                     <p class="flex justify-between">
                         <span><?= lang('App.footer_sat_sun') ?></span>
-                        <span class="text-rose-400 font-medium"><?= lang('App.footer_closed') ?></span>
+                        <span class="text-rose-400 font-medium"><?= esc($footerWeekend) ?></span>
                     </p>
                 </div>
 
                 <div class="mt-6 pt-4 border-t border-navy-800">
                     <span class="block text-xs font-semibold text-white mb-2.5"><?= lang('App.footer_social') ?></span>
                     <div class="flex items-center gap-2">
-                        <a href="https://youtube.com/@umrah" target="_blank" rel="noopener noreferrer" aria-label="YouTube UMRAH" class="w-8 h-8 rounded bg-navy-900 border border-navy-700 flex items-center justify-center text-slate-400 hover:text-gold-400 hover:border-gold-500 transition-colors"><i class="fa-brands fa-youtube"></i></a>
-                        <a href="https://instagram.com/umrah.ac.id" target="_blank" rel="noopener noreferrer" aria-label="Instagram UMRAH" class="w-8 h-8 rounded bg-navy-900 border border-navy-700 flex items-center justify-center text-slate-400 hover:text-gold-400 hover:border-gold-500 transition-colors"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://x.com/umrah_official" target="_blank" rel="noopener noreferrer" aria-label="X Twitter UMRAH" class="w-8 h-8 rounded bg-navy-900 border border-navy-700 flex items-center justify-center text-slate-400 hover:text-gold-400 hover:border-gold-500 transition-colors"><i class="fa-brands fa-x-twitter"></i></a>
-                        <a href="https://linkedin.com/school/umrah" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn UMRAH" class="w-8 h-8 rounded bg-navy-900 border border-navy-700 flex items-center justify-center text-slate-400 hover:text-gold-400 hover:border-gold-500 transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="<?= esc($ytUrl) ?>" target="_blank" rel="noopener noreferrer" aria-label="YouTube UMRAH" class="w-8 h-8 rounded bg-navy-900 border border-navy-700 flex items-center justify-center text-slate-400 hover:text-gold-400 hover:border-gold-500 transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="<?= esc($igUrl) ?>" target="_blank" rel="noopener noreferrer" aria-label="Instagram UMRAH" class="w-8 h-8 rounded bg-navy-900 border border-navy-700 flex items-center justify-center text-slate-400 hover:text-gold-400 hover:border-gold-500 transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="<?= esc($twUrl) ?>" target="_blank" rel="noopener noreferrer" aria-label="X Twitter UMRAH" class="w-8 h-8 rounded bg-navy-900 border border-navy-700 flex items-center justify-center text-slate-400 hover:text-gold-400 hover:border-gold-500 transition-colors"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="<?= esc($liUrl) ?>" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn UMRAH" class="w-8 h-8 rounded bg-navy-900 border border-navy-700 flex items-center justify-center text-slate-400 hover:text-gold-400 hover:border-gold-500 transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </div>

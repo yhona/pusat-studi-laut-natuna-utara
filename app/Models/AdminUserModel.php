@@ -18,6 +18,7 @@ class AdminUserModel extends Model
         'password_hash',
         'name',
         'role',
+        'is_active',
         'last_login',
     ];
 
@@ -46,6 +47,11 @@ class AdminUserModel extends Model
             ->first();
 
         if (! $user) {
+            return null;
+        }
+
+        // Inactive accounts cannot log in
+        if (isset($user['is_active']) && (int) $user['is_active'] !== 1) {
             return null;
         }
 

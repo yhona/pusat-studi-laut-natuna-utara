@@ -52,7 +52,7 @@ class Auth extends BaseController
         if (! $user) {
             return redirect()->back()
                 ->withInput()
-                ->with('error', 'Kombinasi nama pengguna/email dan kata sandi tidak cocok.');
+                ->with('error', 'Kombinasi nama pengguna/email dan kata sandi tidak cocok, atau akun dinonaktifkan.');
         }
 
         // Set session
@@ -65,6 +65,13 @@ class Auth extends BaseController
             'admin_role'      => $user['role'],
         ]);
 
+        \App\Models\AdminActivityLogModel::record(
+            'LOGIN',
+            'Berhasil masuk ke sesi panel administrasi.',
+            (int) $user['id'],
+            $user['name']
+        );
+
         return redirect()->to(base_url('admin'))
             ->with('success', 'Selamat datang kembali, ' . esc($user['name']) . '!');
     }
@@ -74,6 +81,18 @@ class Auth extends BaseController
      */
     public function logout()
     {
+        $adminId   = (int) (session('admin_id') ?? 0);
+        $adminName = (string) (session('admin_name') ?? 'Admin');
+
+        if ($adminId > 0) {
+            \App\Models\AdminActivityLogModel::record(
+                'LOGOUT',
+                'Keluar dari sesi panel administrasi.',
+                $adminId,
+                $adminName
+            );
+        }
+
         session()->destroy();
         return redirect()->to(base_url('admin/login'))
             ->with('success', 'Anda telah berhasil keluar dari sistem.');

@@ -153,6 +153,22 @@ $routes->group('admin', ['filter' => 'adminAuth'], static function ($routes) {
     $routes->get('pengaturan', 'Admin\Pengaturan::index');
     $routes->post('pengaturan/update', 'Admin\Pengaturan::updateProfile');
 
+    // Manajemen Pengguna Admin
+    $routes->get('users', 'Admin\Users::index');
+    $routes->get('users/create', 'Admin\Users::create');
+    $routes->post('users/store', 'Admin\Users::store');
+    $routes->get('users/edit/(:num)', 'Admin\Users::edit/$1');
+    $routes->post('users/update/(:num)', 'Admin\Users::update/$1');
+    $routes->post('users/delete/(:num)', 'Admin\Users::delete/$1');
+
+    // Pengaturan Identitas Situs, Kontak Institusi & Media Sosial
+    $routes->get('identitas', 'Admin\Identitas::index');
+    $routes->post('identitas/update', 'Admin\Identitas::update');
+
+    // Audit Trail & Log Aktivitas Admin
+    $routes->get('logs', 'Admin\Logs::index');
+    $routes->post('logs/clear', 'Admin\Logs::clearOlder');
+
     // Status Sistem & Cache
     $routes->get('sistem', 'Admin\Sistem::index');
     $routes->post('sistem/clear-cache', 'Admin\Sistem::clearCache');

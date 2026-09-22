@@ -161,10 +161,28 @@
                 <span class="text-[10px] uppercase font-bold tracking-wider text-slate-500">Sistem & Keamanan</span>
             </div>
 
+            <a href="<?= base_url('admin/identitas') ?>" 
+               class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'identitas' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+                <i class="fa-solid fa-address-card text-sm w-5 text-center"></i>
+                <span>Identitas & Kontak Situs</span>
+            </a>
+
+            <a href="<?= base_url('admin/users') ?>" 
+               class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'users' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+                <i class="fa-solid fa-users-gear text-sm w-5 text-center"></i>
+                <span>Pengguna Administrator</span>
+            </a>
+
+            <a href="<?= base_url('admin/logs') ?>" 
+               class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'logs' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+                <i class="fa-solid fa-list-check text-sm w-5 text-center"></i>
+                <span>Audit Trail & Log Aktivitas</span>
+            </a>
+
             <a href="<?= base_url('admin/pengaturan') ?>" 
                class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'pengaturan' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
                 <i class="fa-solid fa-user-gear text-sm w-5 text-center"></i>
-                <span>Pengaturan Akun</span>
+                <span>Pengaturan Profil Akun</span>
             </a>
 
             <a href="<?= base_url('admin/sistem') ?>" 
