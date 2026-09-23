@@ -78,6 +78,78 @@
                     <?= esc($article['excerpt']) ?>
                 </div>
 
+                <?php 
+                $showPulitzerVideo = ($article['slug'] === 'didukung-pendanaan-dari-pulitzer-center-umrah-dan-uns-kolaborasi-riset-internasional' 
+                    || str_contains($article['slug'], 'pulitzer') 
+                    || str_contains($article['slug'], 'ekspedisi-maritim-natuna-utara-2026'));
+                ?>
+                <?php if ($showPulitzerVideo): ?>
+                <!-- Investigative Research Documentary Video Player -->
+                <div class="my-6 rounded-2xl overflow-hidden border border-slate-700/80 bg-gradient-to-b from-navy-950 to-slate-950 text-white shadow-xl not-prose">
+                    <!-- Player Header Bar -->
+                    <div class="px-4 sm:px-6 py-3.5 bg-slate-900/90 border-b border-slate-800 flex flex-wrap items-center justify-between gap-3">
+                        <div class="flex items-center gap-2.5">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-red-600 text-white uppercase tracking-wider shadow-sm">
+                                <i class="fa-solid fa-circle-play text-xs animate-pulse"></i>
+                                <?= $isEn ? 'Official Documentary' : 'Dokumenter Resmi' ?>
+                            </span>
+                            <span class="text-xs sm:text-sm font-bold text-slate-200">
+                                Regulatory Blind Spots (2026)
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-slate-400">
+                            <span class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 font-mono text-[11px] text-gold-400 font-medium">1080p FHD</span>
+                            <span class="flex items-center gap-1"><i class="fa-regular fa-clock text-gold-400"></i> 2:16</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Video Embed -->
+                    <div class="relative aspect-video bg-black flex items-center justify-center">
+                        <video 
+                            id="pulitzerDocVideo"
+                            controls 
+                            preload="metadata" 
+                            poster="<?= base_url('videos/regulatory_blind_spots_poster.jpg') ?>" 
+                            class="w-full h-full object-contain focus:outline-none"
+                            playsinline
+                        >
+                            <source src="<?= base_url('videos/regulatory_blind_spots.mp4') ?>" type="video/mp4">
+                            <?= $isEn 
+                                ? 'Your browser does not support the video tag. Please download the video using the link below.' 
+                                : 'Peramban Anda tidak mendukung pemutar video HTML5. Silakan unduh video melalui tombol di bawah.' ?>
+                        </video>
+                    </div>
+
+                    <!-- Player Footer & Metadata -->
+                    <div class="p-4 sm:p-5 bg-slate-900/95 border-t border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs">
+                        <div class="space-y-1.5 text-slate-300 max-w-xl">
+                            <p class="font-semibold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-film text-gold-400"></i>
+                                <?= $isEn 
+                                    ? 'Research Documentary: Beneficial Ownership & Illegal Fishing in Natuna Waters' 
+                                    : 'Dokumenter Riset: Beneficial Ownership & Celah Hukum Illegal Fishing di Laut Natuna' ?>
+                            </p>
+                            <p class="text-slate-400 leading-relaxed text-[11px] sm:text-xs">
+                                <?= $isEn 
+                                    ? 'Investigative documentary produced under the Pulitzer Center Washington DC international grant, examining law enforcement gaps and beneficial ownership tracking of foreign fishing vessels in Natuna.' 
+                                    : 'Video dokumenter hasil riset kolaborasi internasional UMRAH dan UNS yang didanai Pulitzer Center Washington DC, merekam langsung investigasi empiris pengawasan celah hukum dan pemilik manfaat (beneficial ownership) kapal perikanan di Natuna.' ?>
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-2 flex-shrink-0 w-full sm:w-auto justify-end">
+                            <a 
+                                href="<?= base_url('videos/regulatory_blind_spots.mp4') ?>" 
+                                download="Regulatory_Blind_Spots_UMRAH_UNS_Pulitzer.mp4" 
+                                class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-slate-800 hover:bg-maritime-700 text-white text-xs font-semibold border border-slate-700 hover:border-maritime-500 transition shadow-sm"
+                                title="<?= $isEn ? 'Download Full HD Video' : 'Unduh Video Kualitas Penuh HD' ?>"
+                            >
+                                <i class="fa-solid fa-download text-gold-400"></i>
+                                <span><?= $isEn ? 'Download Video (64 MB)' : 'Unduh Video (64 MB)' ?></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <?php endif; ?>
+
                 <!-- Main Narrative Content -->
                 <div class="space-y-5 text-slate-700 text-sm sm:text-base leading-relaxed text-justify">
                     <?php foreach ($article['content'] as $idx => $para): ?>
