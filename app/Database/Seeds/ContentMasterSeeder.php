@@ -304,6 +304,27 @@ class ContentMasterSeeder extends Seeder
                 'created_at'  => date('Y-m-d H:i:s'),
                 'updated_at'  => date('Y-m-d H:i:s'),
             ],
+
+            // --- Mitra Riset Eksternal / External Research Fellows ---
+            [
+                'category'    => 'eksternal',
+                'name'        => 'Dr. Joshua Gebert',
+                'role'        => 'Peneliti Eksternal / Visiting Scholar',
+                'role_en'     => 'External Research Fellow / Visiting Scholar',
+                'faculty'     => 'Climate Transformation Programme (CTP) / Nanyang Technological University (NTU)',
+                'faculty_en'  => 'Climate Transformation Programme (CTP) / Nanyang Technological University (NTU)',
+                'focus'       => 'Urban Planning dan Spatial Analysis Fokus Climate Transformation',
+                'focus_en'    => 'Urban Planning & Spatial Analysis focused on Climate Transformation',
+                'cluster'     => 'Perencanaan Wilayah & Transformasi Iklim',
+                'nip'         => null,
+                'scopus'      => 'NTU CTP Fellow',
+                'email'       => 'joshua.gebert@ntu.edu.sg',
+                'image'       => null,
+                'order_num'   => 16,
+                'is_active'   => 1,
+                'created_at'  => date('Y-m-d H:i:s'),
+                'updated_at'  => date('Y-m-d H:i:s'),
+            ],
         ];
 
         $db->table('peneliti')->insertBatch($penelitiData);

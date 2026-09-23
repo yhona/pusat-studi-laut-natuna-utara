@@ -71,6 +71,22 @@ class Profil extends BaseController
 
         // Peneliti Eksternal & Mitra Riset (External Research Fellows)
         $dbEksternal = $penelitiModel->getByCategory('eksternal');
+        if (empty($dbEksternal)) {
+            $dbEksternal = [
+                [
+                    'name'        => 'Dr. Joshua Gebert',
+                    'role'        => 'Peneliti Eksternal / Visiting Scholar',
+                    'role_en'     => 'External Research Fellow / Visiting Scholar',
+                    'faculty'     => 'Climate Transformation Programme (CTP) / Nanyang Technological University (NTU)',
+                    'faculty_en'  => 'Climate Transformation Programme (CTP) / Nanyang Technological University (NTU)',
+                    'focus'       => 'Urban Planning dan Spatial Analysis Fokus Climate Transformation',
+                    'focus_en'    => 'Urban Planning & Spatial Analysis focused on Climate Transformation',
+                    'email'       => 'joshua.gebert@ntu.edu.sg',
+                    'cluster'     => $isEn ? 'Urban Planning & Climate Transformation' : 'Perencanaan Wilayah & Transformasi Iklim',
+                ],
+            ];
+        }
+
         $externalResearchers = [];
         foreach ($dbEksternal as $idx => $em) {
             $parts = explode(' ', trim(str_replace(['Dr.', 'Prof.', ','], '', $em['name'])));
@@ -81,12 +97,12 @@ class Profil extends BaseController
 
             $externalResearchers[] = [
                 'name'        => $em['name'],
-                'role'        => $isEn ? ($em['role_en'] ?: $em['role']) : $em['role'],
-                'faculty'     => $isEn ? ($em['faculty_en'] ?: $em['faculty']) : $em['faculty'],
-                'focus'       => $isEn ? ($em['focus_en'] ?: $em['focus']) : $em['focus'],
+                'role'        => $isEn ? (($em['role_en'] ?? null) ?: $em['role']) : $em['role'],
+                'faculty'     => $isEn ? (($em['faculty_en'] ?? null) ?: $em['faculty']) : $em['faculty'],
+                'focus'       => $isEn ? (($em['focus_en'] ?? null) ?: $em['focus']) : $em['focus'],
                 'email'       => $em['email'],
                 'cluster'     => $em['cluster'] ?? '-',
-                'initials'    => $initials ?: 'EX',
+                'initials'    => $initials ?: 'JG',
                 'bg_gradient' => 'linear-gradient(135deg, #0284c7, #0d9488)',
             ];
         }
