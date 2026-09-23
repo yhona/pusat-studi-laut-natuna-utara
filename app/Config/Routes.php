@@ -176,9 +176,6 @@ $routes->group('admin', ['filter' => 'adminAuth'], static function ($routes) {
     // Audit Trail & Log Aktivitas Admin
     $routes->get('logs', 'Admin\Logs::index');
     $routes->post('logs/clear', 'Admin\Logs::clearOlder');
-
-    // Status Sistem & Cache
-    $routes->get('sistem', 'Admin\Sistem::index');
-    $routes->post('sistem/clear-cache', 'Admin\Sistem::clearCache');
 });
+
 
