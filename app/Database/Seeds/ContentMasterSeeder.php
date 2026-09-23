@@ -325,6 +325,25 @@ class ContentMasterSeeder extends Seeder
                 'created_at'  => date('Y-m-d H:i:s'),
                 'updated_at'  => date('Y-m-d H:i:s'),
             ],
+            [
+                'category'    => 'eksternal',
+                'name'        => 'Prof. Dr. Sidik Jatmika, M.Si.',
+                'role'        => 'Peneliti Senior Eksternal / Guru Besar HI UMY',
+                'role_en'     => 'Senior External Fellow / Professor of International Relations',
+                'faculty'     => 'Departemen Hubungan Internasional, Universitas Muhammadiyah Yogyakarta (UMY)',
+                'faculty_en'  => 'Department of International Relations, Universitas Muhammadiyah Yogyakarta (UMY)',
+                'focus'       => 'Human Security, Islam dan Politik Global, Futures Studies',
+                'focus_en'    => 'Human Security, Islam and Global Politics, Futures Studies',
+                'cluster'     => 'Diplomasi Maritim & Hubungan Internasional',
+                'nip'         => null,
+                'scopus'      => 'UMY Professor',
+                'email'       => 'sidikjatmika@umy.ac.id',
+                'image'       => null,
+                'order_num'   => 17,
+                'is_active'   => 1,
+                'created_at'  => date('Y-m-d H:i:s'),
+                'updated_at'  => date('Y-m-d H:i:s'),
+            ],
         ];
 
         $db->table('peneliti')->insertBatch($penelitiData);

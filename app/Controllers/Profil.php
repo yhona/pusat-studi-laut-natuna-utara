@@ -84,14 +84,34 @@ class Profil extends BaseController
                     'email'       => 'joshua.gebert@ntu.edu.sg',
                     'cluster'     => $isEn ? 'Urban Planning & Climate Transformation' : 'Perencanaan Wilayah & Transformasi Iklim',
                 ],
+                [
+                    'name'        => 'Prof. Dr. Sidik Jatmika, M.Si.',
+                    'role'        => 'Peneliti Senior Eksternal / Guru Besar HI UMY',
+                    'role_en'     => 'Senior External Fellow / Professor of International Relations',
+                    'faculty'     => 'Departemen Hubungan Internasional, Universitas Muhammadiyah Yogyakarta (UMY)',
+                    'faculty_en'  => 'Department of International Relations, Universitas Muhammadiyah Yogyakarta (UMY)',
+                    'focus'       => 'Human Security, Islam dan Politik Global, Futures Studies',
+                    'focus_en'    => 'Human Security, Islam and Global Politics, Futures Studies',
+                    'email'       => 'sidikjatmika@umy.ac.id',
+                    'cluster'     => $isEn ? 'Maritime Diplomacy & International Relations' : 'Diplomasi Maritim & Hubungan Internasional',
+                ],
             ];
         }
 
+        $extGradients = [
+            'linear-gradient(135deg, #0284c7, #0d9488)',
+            'linear-gradient(135deg, #4338ca, #6366f1)',
+            'linear-gradient(135deg, #0f766e, #0369a1)',
+            'linear-gradient(135deg, #b45309, #d97706)',
+        ];
+
         $externalResearchers = [];
+        $titlesToRemove = ['Dr.', 'Prof.', 'Ir.', 'M.Si.', 'M.Si', 'M.Sc.', 'M.Sc', 'Ph.D.', 'Ph.D', 'S.H.', 'S.Sos.', 'S.T.', 'S.Kel.', 'S.IP.', 'M.T.', 'M.H.', 'M.I.P.', 'DEA', ','];
         foreach ($dbEksternal as $idx => $em) {
-            $parts = explode(' ', trim(str_replace(['Dr.', 'Prof.', ','], '', $em['name'])));
+            $cleanName = trim(str_replace($titlesToRemove, '', $em['name']));
+            $parts = array_values(array_filter(explode(' ', $cleanName)));
             $initials = '';
-            foreach (array_slice(array_filter($parts), 0, 2) as $pt) {
+            foreach (array_slice($parts, 0, 2) as $pt) {
                 $initials .= mb_strtoupper(mb_substr($pt, 0, 1));
             }
 
@@ -102,8 +122,8 @@ class Profil extends BaseController
                 'focus'       => $isEn ? (($em['focus_en'] ?? null) ?: $em['focus']) : $em['focus'],
                 'email'       => $em['email'],
                 'cluster'     => $em['cluster'] ?? '-',
-                'initials'    => $initials ?: 'JG',
-                'bg_gradient' => 'linear-gradient(135deg, #0284c7, #0d9488)',
+                'initials'    => $initials ?: 'EX',
+                'bg_gradient' => $extGradients[$idx % count($extGradients)],
             ];
         }
 
