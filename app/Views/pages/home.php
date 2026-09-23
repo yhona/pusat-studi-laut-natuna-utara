@@ -147,6 +147,11 @@
             <div class="lg:col-span-4 flex flex-col items-center text-center">
                 <div class="relative group">
                     <div class="w-52 h-64 sm:w-64 sm:h-76 rounded-2xl bg-gradient-to-tr from-gold-500/40 via-maritime-600 to-navy-800 p-1.5 shadow-2xl relative overflow-hidden border border-gold-500/30">
+                        <!-- Top Floating Role Pill -->
+                        <div class="absolute top-3 right-3 z-20 bg-navy-950/85 backdrop-blur-md text-gold-400 text-[10px] sm:text-[11px] font-bold px-2.5 py-1 rounded-full shadow-lg border border-gold-500/40 flex items-center gap-1.5">
+                            <i class="fa-solid fa-building-columns"></i> <?= $isEn ? 'Rector' : 'Rektor UMRAH' ?>
+                        </div>
+
                         <div class="w-full h-full bg-gradient-to-b from-slate-100 via-slate-50 to-slate-200 rounded-[14px] flex flex-col items-center justify-end overflow-hidden relative">
                             <img src="<?= base_url('images/rektor_umrah.png') ?>" 
                                  alt="<?= lang('App.rector_name') ?>" 
@@ -156,10 +161,6 @@
                                 <p class="text-[10px] sm:text-[11px] text-slate-300"><?= lang('App.rector_title') ?></p>
                             </div>
                         </div>
-                    </div>
-                    <!-- Decorative Crest Badge -->
-                    <div class="absolute -bottom-2.5 -right-2.5 bg-gold-500 text-navy-950 text-[11px] sm:text-xs font-black px-2.5 py-1 rounded-lg shadow-xl border border-white/30 flex items-center gap-1.5">
-                        <i class="fa-solid fa-building-columns"></i> <?= $isEn ? 'Rector of UMRAH' : 'Rektor UMRAH' ?>
                     </div>
                 </div>
             </div>
@@ -210,6 +211,11 @@
             <div class="lg:col-span-4 flex flex-col items-center text-center">
                 <div class="relative group">
                     <div class="w-52 h-64 sm:w-64 sm:h-76 rounded-2xl bg-gradient-to-tr from-navy-800 to-maritime-600 p-1.5 shadow-2xl relative overflow-hidden border border-gold-500/30">
+                        <!-- Top Floating Role Pill -->
+                        <div class="absolute top-3 right-3 z-20 bg-navy-950/85 backdrop-blur-md text-gold-400 text-[10px] sm:text-[11px] font-bold px-2.5 py-1 rounded-full shadow-lg border border-gold-500/40 flex items-center gap-1.5">
+                            <i class="fa-solid fa-shield-halved"></i> <?= lang('App.profile_stamp') ?>
+                        </div>
+
                         <div class="w-full h-full bg-slate-100 rounded-[14px] flex flex-col items-center justify-end overflow-hidden relative">
                             <img src="<?= base_url(esc($sambutan['image'] ?? 'images/kepala_pusat.jpg')) ?>" 
                                  alt="<?= esc($sambutan['name'] ?? 'Dr. Atika Thahira, S.H., M.H.') ?>" 
@@ -219,10 +225,6 @@
                                 <p class="text-[10px] sm:text-[11px] text-slate-300"><?= esc($sambutan['title'] ?? ($isEn ? 'Center Coordinator of North Natuna Sea Research Center UMRAH' : 'Koordinator Pusat Studi Laut Natuna Utara UMRAH')) ?></p>
                             </div>
                         </div>
-                    </div>
-                    <!-- Decorative Maritime Stamp -->
-                    <div class="absolute -bottom-2.5 -right-2.5 bg-navy-900 text-gold-400 text-[11px] sm:text-xs font-bold px-2.5 py-1 rounded-lg shadow-lg border border-gold-500/30 flex items-center gap-1.5">
-                        <i class="fa-solid fa-shield-halved"></i> <?= lang('App.profile_stamp') ?>
                     </div>
                 </div>
             </div>
