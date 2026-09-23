@@ -97,8 +97,51 @@
 </div>
 
 <!-- Sambutan Pimpinan Institusi & Pusat Studi (Executive Leadership Greetings) -->
+<?php $hasKoordinator = (!empty($sambutan) && !empty($sambutan['is_active'])); ?>
 <section id="sambutan" class="py-12 sm:py-16 bg-gradient-to-br from-navy-950 via-navy-900 to-maritime-950 text-white relative overflow-hidden border-b border-navy-800" 
-         x-data="{ activeTab: 'rektor' }">
+         x-data="{ 
+             activeTab: 'rektor',
+             hasKoordinator: <?= $hasKoordinator ? 'true' : 'false' ?>,
+             isPaused: false,
+             duration: 7500,
+             progress: 0,
+             timer: null,
+             init() {
+                 if (this.hasKoordinator) {
+                     this.startTimer();
+                 }
+             },
+             startTimer() {
+                 this.stopTimer();
+                 const step = 50;
+                 this.timer = setInterval(() => {
+                     if (!this.isPaused) {
+                         this.progress += (step / this.duration) * 100;
+                         if (this.progress >= 100) {
+                             this.progress = 0;
+                             this.activeTab = (this.activeTab === 'rektor') ? 'koordinator' : 'rektor';
+                         }
+                     }
+                 }, step);
+             },
+             stopTimer() {
+                 if (this.timer) {
+                     clearInterval(this.timer);
+                     this.timer = null;
+                 }
+             },
+             selectTab(tab) {
+                 this.activeTab = tab;
+                 this.progress = 0;
+             },
+             togglePause() {
+                 this.isPaused = !this.isPaused;
+             }
+         }"
+         @mouseenter="isPaused = true"
+         @mouseleave="isPaused = false"
+         @focusin="isPaused = true"
+         @focusout="isPaused = false">
     <!-- Subtle Background Nautical / Wave Accents -->
     <div class="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#d97706_1px,transparent_1px)] [background-size:24px_24px]"></div>
     <div class="absolute -top-24 -right-24 w-96 h-96 bg-maritime-600/20 rounded-full blur-3xl pointer-events-none"></div>
@@ -117,22 +160,47 @@
                 </h3>
             </div>
 
-            <!-- Tab Pills Selector -->
-            <div class="inline-flex p-1 rounded-xl bg-navy-900/90 border border-navy-700/80 shadow-inner text-xs font-semibold w-full sm:w-auto">
-                <button @click="activeTab = 'rektor'" 
-                        type="button"
-                        class="flex-1 sm:flex-initial px-4 py-2.5 rounded-lg transition-all flex items-center justify-center gap-2 cursor-pointer text-center"
-                        :class="activeTab === 'rektor' ? 'bg-gold-500 text-navy-950 font-bold shadow-md' : 'text-slate-300 hover:text-white hover:bg-white/5'">
-                    <i class="fa-solid fa-graduation-cap text-xs"></i>
-                    <span><?= $isEn ? 'Rector of UMRAH' : 'Rektor UMRAH' ?></span>
+            <!-- Tab Pills Selector with Auto-play Progress & Controls -->
+            <div class="flex items-center gap-2 w-full sm:w-auto">
+                <div class="inline-flex p-1 rounded-xl bg-navy-900/90 border border-navy-700/80 shadow-inner text-xs font-semibold flex-1 sm:flex-initial">
+                    <button @click="selectTab('rektor')" 
+                            type="button"
+                            class="relative overflow-hidden flex-1 sm:flex-initial px-3.5 sm:px-4 py-2.5 rounded-lg transition-all flex items-center justify-center gap-1.5 sm:gap-2 cursor-pointer text-center"
+                            :class="activeTab === 'rektor' ? 'bg-gold-500 text-navy-950 font-bold shadow-md' : 'text-slate-300 hover:text-white hover:bg-white/5'">
+                        <i class="fa-solid fa-graduation-cap text-xs"></i>
+                        <span><?= $isEn ? 'Rector' : 'Rektor' ?></span>
+                        <span class="hidden xs:inline sm:inline"><?= $isEn ? 'of UMRAH' : 'UMRAH' ?></span>
+                        <!-- Visual Progress Indicator on active tab -->
+                        <span x-show="activeTab === 'rektor' && hasKoordinator" 
+                              class="absolute bottom-0 left-0 h-[2.5px] bg-navy-950/70 transition-all duration-75"
+                              :style="'width: ' + progress + '%'"></span>
+                    </button>
+                    <?php if ($hasKoordinator): ?>
+                    <button @click="selectTab('koordinator')" 
+                            type="button"
+                            class="relative overflow-hidden flex-1 sm:flex-initial px-3.5 sm:px-4 py-2.5 rounded-lg transition-all flex items-center justify-center gap-1.5 sm:gap-2 cursor-pointer text-center"
+                            :class="activeTab === 'koordinator' ? 'bg-gold-500 text-navy-950 font-bold shadow-md' : 'text-slate-300 hover:text-white hover:bg-white/5'">
+                        <i class="fa-solid fa-compass text-xs"></i>
+                        <span><?= $isEn ? 'Coordinator' : 'Koordinator' ?></span>
+                        <span class="hidden sm:inline"><?= $isEn ? 'of NNSRC' : 'Pusat Studi' ?></span>
+                        <!-- Visual Progress Indicator on active tab -->
+                        <span x-show="activeTab === 'koordinator' && hasKoordinator" 
+                              class="absolute bottom-0 left-0 h-[2.5px] bg-navy-950/70 transition-all duration-75"
+                              :style="'width: ' + progress + '%'"></span>
+                    </button>
+                    <?php endif; ?>
+                </div>
+
+                <?php if ($hasKoordinator): ?>
+                <!-- Accessibility Play/Pause Button (WCAG 2.2.2) -->
+                <button type="button" 
+                        @click="togglePause()" 
+                        class="p-2.5 rounded-xl bg-navy-900/90 border border-navy-700/80 text-slate-300 hover:text-gold-400 hover:border-gold-500/40 transition-all cursor-pointer shadow-inner flex items-center justify-center shrink-0"
+                        :title="isPaused ? '<?= $isEn ? 'Resume automatic rotation' : 'Lanjutkan pergantian otomatis' ?>' : '<?= $isEn ? 'Pause automatic rotation' : 'Jeda pergantian otomatis' ?>'"
+                        :aria-label="isPaused ? 'Resume auto rotation' : 'Pause auto rotation'">
+                    <i class="fa-solid text-xs w-3 text-center" :class="isPaused ? 'fa-play text-gold-400' : 'fa-pause'"></i>
                 </button>
-                <button @click="activeTab = 'koordinator'" 
-                        type="button"
-                        class="flex-1 sm:flex-initial px-4 py-2.5 rounded-lg transition-all flex items-center justify-center gap-2 cursor-pointer text-center"
-                        :class="activeTab === 'koordinator' ? 'bg-gold-500 text-navy-950 font-bold shadow-md' : 'text-slate-300 hover:text-white hover:bg-white/5'">
-                    <i class="fa-solid fa-compass text-xs"></i>
-                    <span><?= $isEn ? 'Center Coordinator' : 'Koordinator Pusat Studi' ?></span>
-                </button>
+                <?php endif; ?>
             </div>
         </div>
 
