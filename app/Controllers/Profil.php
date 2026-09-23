@@ -47,6 +47,25 @@ class Profil extends BaseController
             'linear-gradient(135deg, #1e293b, #64748b)',
             'linear-gradient(135deg, #047857, #34d399)'
         ];
+        $clusterTranslations = [
+            'Hukum Laut Internasional'                     => 'International Law of the Sea',
+            'Logistik dan Konektivitas Kepulauan'          => 'Archipelagic Logistics & Connectivity',
+            'Tata Kelola Maritim & Kebijakan Publik'       => 'Maritime Governance & Public Policy',
+            'Ketahanan Digital Kepulauan'                  => 'Archipelagic Digital Resilience',
+            'Ekologi & Sumber Daya Hayati Laut'            => 'Marine Ecology & Living Resources',
+            'Sejarah & Budaya Bahari Perbatasan'           => 'Maritime History & Border Heritage',
+            'Sosiologi Lingkungan & Hukum Adat Pesisir'    => 'Environmental Sociology & Customary Law',
+            'Geopolitik & Keamanan Laut Natuna'            => 'Natuna Sea Geopolitics & Security',
+            'SDGs Kemaritiman & Konservasi Tropis'         => 'Maritime SDGs & Tropical Conservation',
+            'Instrumentasi & Tenaga Listrik Maritim'       => 'Maritime Instrumentation & Electric Power',
+            'Energi Terbarukan di Wilayah Kepulauan'       => 'Renewable Energy in Island Regions',
+            'Keamanan & Diplomasi Maritim'                 => 'Maritime Security & Diplomacy',
+            'Penegakan Hukum Laut & Yurisdiksi Perbatasan' => 'Law Enforcement & Border Jurisdiction',
+            'Oseanografi Fisika & Akustik Bawah Air'       => 'Physical Oceanography & Underwater Acoustics',
+            'Perencanaan Wilayah & Transformasi Iklim'     => 'Urban Planning & Climate Transformation',
+            'Diplomasi Maritim & Hubungan Internasional'   => 'Maritime Diplomacy & International Relations',
+        ];
+
         foreach ($dbDewan as $idx => $m) {
             $parts = explode(' ', trim(str_replace(['Dr.', 'Dra.', 'S.Pd.', 'M.Sc.', 'M.A.', 'S.H.', 'S.Sos.', 'IMAS', 'S.Kel.', 'M.Si.', 'S.T.', 'M.T.', 'S.IP.', 'M.Hub.Int.', 'S.Pi.', ','], '', $m['name'])));
             $initials = '';
@@ -57,13 +76,18 @@ class Profil extends BaseController
                 $initials = 'NN';
             }
 
+            $clusterName = $m['cluster'] ?? '-';
+            if ($isEn && isset($clusterTranslations[$clusterName])) {
+                $clusterName = $clusterTranslations[$clusterName];
+            }
+
             $researchMembers[] = [
                 'name'        => $m['name'],
                 'role'        => $isEn ? ($m['role_en'] ?: $m['role']) : $m['role'],
                 'faculty'     => $isEn ? ($m['faculty_en'] ?: $m['faculty']) : $m['faculty'],
                 'focus'       => $isEn ? ($m['focus_en'] ?: $m['focus']) : $m['focus'],
                 'email'       => $m['email'],
-                'cluster'     => $m['cluster'] ?? '-',
+                'cluster'     => $clusterName,
                 'initials'    => $initials,
                 'bg_gradient' => $gradients[$idx % count($gradients)],
             ];
@@ -82,7 +106,7 @@ class Profil extends BaseController
                     'focus'       => 'Urban Planning dan Spatial Analysis Fokus Climate Transformation',
                     'focus_en'    => 'Urban Planning & Spatial Analysis focused on Climate Transformation',
                     'email'       => 'joshua.gebert@ntu.edu.sg',
-                    'cluster'     => $isEn ? 'Urban Planning & Climate Transformation' : 'Perencanaan Wilayah & Transformasi Iklim',
+                    'cluster'     => 'Perencanaan Wilayah & Transformasi Iklim',
                 ],
                 [
                     'name'        => 'Prof. Dr. Sidik Jatmika, M.Si.',
@@ -93,7 +117,7 @@ class Profil extends BaseController
                     'focus'       => 'Human Security, Islam dan Politik Global, Futures Studies',
                     'focus_en'    => 'Human Security, Islam and Global Politics, Futures Studies',
                     'email'       => 'sidikjatmika@umy.ac.id',
-                    'cluster'     => $isEn ? 'Maritime Diplomacy & International Relations' : 'Diplomasi Maritim & Hubungan Internasional',
+                    'cluster'     => 'Diplomasi Maritim & Hubungan Internasional',
                 ],
             ];
         }
@@ -115,13 +139,18 @@ class Profil extends BaseController
                 $initials .= mb_strtoupper(mb_substr($pt, 0, 1));
             }
 
+            $extClusterName = $em['cluster'] ?? '-';
+            if ($isEn && isset($clusterTranslations[$extClusterName])) {
+                $extClusterName = $clusterTranslations[$extClusterName];
+            }
+
             $externalResearchers[] = [
                 'name'        => $em['name'],
                 'role'        => $isEn ? (($em['role_en'] ?? null) ?: $em['role']) : $em['role'],
                 'faculty'     => $isEn ? (($em['faculty_en'] ?? null) ?: $em['faculty']) : $em['faculty'],
                 'focus'       => $isEn ? (($em['focus_en'] ?? null) ?: $em['focus']) : $em['focus'],
                 'email'       => $em['email'],
-                'cluster'     => $em['cluster'] ?? '-',
+                'cluster'     => $extClusterName,
                 'initials'    => $initials ?: 'EX',
                 'bg_gradient' => $extGradients[$idx % count($extGradients)],
             ];
