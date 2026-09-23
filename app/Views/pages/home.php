@@ -96,49 +96,86 @@
     </div>
 </div>
 
-<!-- Sambutan Rektor Universitas Maritim Raja Ali Haji (UMRAH) -->
-<section id="sambutan-rektor" class="py-16 bg-gradient-to-br from-navy-950 via-navy-900 to-maritime-950 text-white relative overflow-hidden border-b border-navy-800">
+<!-- Sambutan Pimpinan Institusi & Pusat Studi (Executive Leadership Greetings) -->
+<section id="sambutan" class="py-12 sm:py-16 bg-gradient-to-br from-navy-950 via-navy-900 to-maritime-950 text-white relative overflow-hidden border-b border-navy-800" 
+         x-data="{ activeTab: 'rektor' }">
     <!-- Subtle Background Nautical / Wave Accents -->
     <div class="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#d97706_1px,transparent_1px)] [background-size:24px_24px]"></div>
     <div class="absolute -top-24 -right-24 w-96 h-96 bg-maritime-600/20 rounded-full blur-3xl pointer-events-none"></div>
     <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-6 sm:space-y-8">
+        
+        <!-- Tab Switcher Navigation Bar -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 sm:pb-6 border-b border-navy-800">
+            <div>
+                <span class="text-xs uppercase font-bold tracking-wider text-gold-400 flex items-center gap-1.5">
+                    <i class="fa-solid fa-building-columns"></i> <?= $isEn ? 'Institutional Leadership' : 'Kepemimpinan Institusi' ?>
+                </span>
+                <h3 class="text-xl sm:text-2xl font-extrabold text-white mt-1">
+                    <?= $isEn ? 'Executive Greetings & Strategic Direction' : 'Arah Kebijakan & Sambutan Pimpinan' ?>
+                </h3>
+            </div>
+
+            <!-- Tab Pills Selector -->
+            <div class="inline-flex p-1 rounded-xl bg-navy-900/90 border border-navy-700/80 shadow-inner text-xs font-semibold w-full sm:w-auto">
+                <button @click="activeTab = 'rektor'" 
+                        type="button"
+                        class="flex-1 sm:flex-initial px-4 py-2.5 rounded-lg transition-all flex items-center justify-center gap-2 cursor-pointer text-center"
+                        :class="activeTab === 'rektor' ? 'bg-gold-500 text-navy-950 font-bold shadow-md' : 'text-slate-300 hover:text-white hover:bg-white/5'">
+                    <i class="fa-solid fa-graduation-cap text-xs"></i>
+                    <span><?= $isEn ? 'Rector of UMRAH' : 'Rektor UMRAH' ?></span>
+                </button>
+                <button @click="activeTab = 'koordinator'" 
+                        type="button"
+                        class="flex-1 sm:flex-initial px-4 py-2.5 rounded-lg transition-all flex items-center justify-center gap-2 cursor-pointer text-center"
+                        :class="activeTab === 'koordinator' ? 'bg-gold-500 text-navy-950 font-bold shadow-md' : 'text-slate-300 hover:text-white hover:bg-white/5'">
+                    <i class="fa-solid fa-compass text-xs"></i>
+                    <span><?= $isEn ? 'Center Coordinator' : 'Koordinator Pusat Studi' ?></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Panel 1: Sambutan Rektor UMRAH -->
+        <div x-show="activeTab === 'rektor'" 
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0 translate-y-2"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
             
-            <!-- Foto Rektor UMRAH (Executive Portrait Frame) -->
+            <!-- Foto Rektor UMRAH -->
             <div class="lg:col-span-4 flex flex-col items-center text-center">
                 <div class="relative group">
-                    <div class="w-60 h-72 sm:w-68 sm:h-80 rounded-2xl bg-gradient-to-tr from-gold-500/40 via-maritime-600 to-navy-800 p-1.5 shadow-2xl relative overflow-hidden border border-gold-500/30">
+                    <div class="w-52 h-64 sm:w-64 sm:h-76 rounded-2xl bg-gradient-to-tr from-gold-500/40 via-maritime-600 to-navy-800 p-1.5 shadow-2xl relative overflow-hidden border border-gold-500/30">
                         <div class="w-full h-full bg-gradient-to-b from-slate-100 via-slate-50 to-slate-200 rounded-[14px] flex flex-col items-center justify-end overflow-hidden relative">
                             <img src="<?= base_url('images/rektor_umrah.png') ?>" 
                                  alt="<?= lang('App.rector_name') ?>" 
                                  class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500">
-                            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-navy-950 via-navy-950/85 to-transparent p-3.5 text-white text-center z-10">
-                                <h4 class="font-bold text-sm text-gold-400"><?= lang('App.rector_name') ?></h4>
-                                <p class="text-[11px] text-slate-300"><?= lang('App.rector_title') ?></p>
+                            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-navy-950 via-navy-950/85 to-transparent p-3 text-white text-center z-10">
+                                <h4 class="font-bold text-xs sm:text-sm text-gold-400"><?= lang('App.rector_name') ?></h4>
+                                <p class="text-[10px] sm:text-[11px] text-slate-300"><?= lang('App.rector_title') ?></p>
                             </div>
                         </div>
                     </div>
                     <!-- Decorative Crest Badge -->
-                    <div class="absolute -bottom-3 -right-3 bg-gold-500 text-navy-950 text-xs font-black px-3 py-1.5 rounded-lg shadow-xl border border-white/30 flex items-center gap-1.5">
+                    <div class="absolute -bottom-2.5 -right-2.5 bg-gold-500 text-navy-950 text-[11px] sm:text-xs font-black px-2.5 py-1 rounded-lg shadow-xl border border-white/30 flex items-center gap-1.5">
                         <i class="fa-solid fa-building-columns"></i> <?= $isEn ? 'Rector of UMRAH' : 'Rektor UMRAH' ?>
                     </div>
                 </div>
             </div>
 
             <!-- Pesan Sambutan & Visi Strategis Rektor -->
-            <div class="lg:col-span-8 space-y-4">
+            <div class="lg:col-span-8 space-y-3.5 sm:space-y-4">
                 <div class="flex items-center gap-2 text-gold-400 text-xs font-bold uppercase tracking-wider">
-                    <span class="w-8 h-0.5 bg-gold-400"></span>
+                    <span class="w-6 h-0.5 bg-gold-400"></span>
                     <span><?= lang('App.rector_speech_badge') ?></span>
                 </div>
                 
-                <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-snug">
+                <h3 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white tracking-tight leading-snug">
                     <?= lang('App.rector_speech_heading') ?>
                 </h3>
 
-                <blockquote class="border-l-4 border-gold-500 pl-4 py-2.5 text-slate-200 italic text-sm sm:text-base leading-relaxed bg-white/5 rounded-r-xl">
+                <blockquote class="border-l-4 border-gold-500 pl-4 py-2 text-slate-200 italic text-xs sm:text-sm md:text-base leading-relaxed bg-white/5 rounded-r-xl">
                     "<?= lang('App.rector_speech_quote') ?>"
                 </blockquote>
 
@@ -146,13 +183,13 @@
                     <?= lang('App.rector_speech_p') ?>
                 </p>
 
-                <div class="pt-2 flex flex-wrap items-center gap-4">
-                    <a href="<?= base_url('profil#visi-misi') ?>" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-950 font-bold text-xs sm:text-sm transition-all shadow-md active:scale-[0.98]">
+                <div class="pt-2 flex flex-wrap items-center gap-3">
+                    <a href="<?= base_url('profil#visi-misi') ?>" class="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-950 font-bold text-xs sm:text-sm transition-all shadow-md active:scale-[0.98]">
                         <i class="fa-solid fa-compass"></i>
                         <span><?= lang('App.rector_btn_strategic') ?></span>
-                        <i class="fa-solid fa-chevron-right text-xs ml-1"></i>
+                        <i class="fa-solid fa-chevron-right text-xs ml-0.5"></i>
                     </a>
-                    <a href="<?= base_url('riset') ?>" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs sm:text-sm border border-white/20 transition-all active:scale-[0.98]">
+                    <a href="<?= base_url('riset') ?>" class="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs sm:text-sm border border-white/20 transition-all active:scale-[0.98]">
                         <i class="fa-solid fa-microscope"></i>
                         <span><?= $isEn ? 'Explore Research Clusters' : 'Jelajahi Klaster Riset' ?></span>
                     </a>
@@ -160,61 +197,69 @@
             </div>
 
         </div>
-    </div>
-</section>
 
-<!-- Sambutan Koordinator Pusat Studi Laut Natuna Utara UMRAH -->
-<?php if (!empty($sambutan) && !empty($sambutan['is_active'])): ?>
-<section id="sambutan" class="py-16 bg-white border-b border-slate-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <!-- Panel 2: Sambutan Koordinator Pusat Studi -->
+        <?php if (!empty($sambutan) && !empty($sambutan['is_active'])): ?>
+        <div x-show="activeTab === 'koordinator'" 
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0 translate-y-2"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
             
-            <!-- Foto Pimpinan / Badge Profil -->
+            <!-- Foto Pimpinan Koordinator -->
             <div class="lg:col-span-4 flex flex-col items-center text-center">
                 <div class="relative group">
-                    <div class="w-56 h-64 sm:w-64 sm:h-72 rounded-2xl bg-gradient-to-tr from-navy-900 to-maritime-700 p-1.5 shadow-xl relative overflow-hidden">
+                    <div class="w-52 h-64 sm:w-64 sm:h-76 rounded-2xl bg-gradient-to-tr from-navy-800 to-maritime-600 p-1.5 shadow-2xl relative overflow-hidden border border-gold-500/30">
                         <div class="w-full h-full bg-slate-100 rounded-[14px] flex flex-col items-center justify-end overflow-hidden relative">
-                            <img src="<?= base_url(esc($sambutan['image'] ?? 'images/kepala_pusat.jpg')) ?>" alt="<?= esc($sambutan['name'] ?? 'Dr. Atika Thahira, S.H., M.H.') ?>" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500">
-                            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-navy-950 via-navy-900/80 to-transparent p-4 text-white text-center z-10">
-                                <h4 class="font-bold text-sm text-gold-400"><?= esc($sambutan['name'] ?? 'Dr. Atika Thahira, S.H., M.H.') ?></h4>
-                                <p class="text-[11px] text-slate-300"><?= esc($sambutan['title'] ?? ($isEn ? 'Center Coordinator of North Natuna Sea Research Center UMRAH' : 'Koordinator Pusat Studi Laut Natuna Utara UMRAH')) ?></p>
+                            <img src="<?= base_url(esc($sambutan['image'] ?? 'images/kepala_pusat.jpg')) ?>" 
+                                 alt="<?= esc($sambutan['name'] ?? 'Dr. Atika Thahira, S.H., M.H.') ?>" 
+                                 class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500">
+                            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-navy-950 via-navy-900/85 to-transparent p-3 text-white text-center z-10">
+                                <h4 class="font-bold text-xs sm:text-sm text-gold-400"><?= esc($sambutan['name'] ?? 'Dr. Atika Thahira, S.H., M.H.') ?></h4>
+                                <p class="text-[10px] sm:text-[11px] text-slate-300"><?= esc($sambutan['title'] ?? ($isEn ? 'Center Coordinator of North Natuna Sea Research Center UMRAH' : 'Koordinator Pusat Studi Laut Natuna Utara UMRAH')) ?></p>
                             </div>
                         </div>
                     </div>
                     <!-- Decorative Maritime Stamp -->
-                    <div class="absolute -bottom-3 -right-3 bg-navy-900 text-gold-400 text-xs font-bold px-3 py-1.5 rounded-lg shadow-lg border border-gold-500/30 flex items-center gap-1.5">
+                    <div class="absolute -bottom-2.5 -right-2.5 bg-navy-900 text-gold-400 text-[11px] sm:text-xs font-bold px-2.5 py-1 rounded-lg shadow-lg border border-gold-500/30 flex items-center gap-1.5">
                         <i class="fa-solid fa-shield-halved"></i> <?= lang('App.profile_stamp') ?>
                     </div>
                 </div>
             </div>
 
-            <!-- Sambutan & Visi -->
-            <div class="lg:col-span-8 space-y-4">
-                <div class="flex items-center gap-2 text-maritime-600 text-xs font-bold uppercase tracking-wider">
-                    <span class="w-6 h-0.5 bg-maritime-600"></span>
+            <!-- Sambutan & Visi Koordinator -->
+            <div class="lg:col-span-8 space-y-3.5 sm:space-y-4">
+                <div class="flex items-center gap-2 text-gold-400 text-xs font-bold uppercase tracking-wider">
+                    <span class="w-6 h-0.5 bg-gold-400"></span>
                     <span><?= lang('App.profile_lead_intro') ?></span>
                 </div>
-                <h3 class="text-2xl sm:text-3xl font-bold text-navy-950 tracking-tight leading-snug">
+                
+                <h3 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white tracking-tight leading-snug">
                     <?= esc($sambutan['heading'] ?? lang('App.profile_lead_heading')) ?>
                 </h3>
-                <blockquote class="border-l-4 border-gold-500 pl-4 py-1 text-slate-600 italic text-sm sm:text-base leading-relaxed">
-                    <?= esc($sambutan['quote'] ?? lang('App.profile_lead_quote')) ?>
+
+                <blockquote class="border-l-4 border-gold-500 pl-4 py-2 text-slate-200 italic text-xs sm:text-sm md:text-base leading-relaxed bg-white/5 rounded-r-xl">
+                    "<?= esc($sambutan['quote'] ?? lang('App.profile_lead_quote')) ?>"
                 </blockquote>
-                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+
+                <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
                     <?= nl2br(esc($sambutan['content'] ?? lang('App.profile_lead_p'))) ?>
                 </p>
-                <div class="pt-3 flex flex-wrap items-center gap-4">
-                    <a href="<?= base_url('profil') ?>" class="inline-flex items-center gap-2 text-maritime-700 hover:text-maritime-900 font-semibold text-xs sm:text-sm">
+
+                <div class="pt-2 flex flex-wrap items-center gap-3">
+                    <a href="<?= base_url('profil') ?>" class="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-950 font-bold text-xs sm:text-sm transition-all shadow-md active:scale-[0.98]">
+                        <i class="fa-solid fa-users"></i>
                         <span><?= lang('App.profile_read_more') ?></span>
-                        <i class="fa-solid fa-chevron-right text-xs"></i>
+                        <i class="fa-solid fa-chevron-right text-xs ml-0.5"></i>
                     </a>
                 </div>
             </div>
 
         </div>
+        <?php endif; ?>
+
     </div>
 </section>
-<?php endif; ?>
 
 <!-- 4 Klaster Riset Utama (The Core Research Hub) -->
 <section class="py-16 bg-slate-50 relative">
@@ -226,9 +271,20 @@
             <p class="text-slate-600 text-xs sm:text-sm"><?= lang('App.cluster_heading_desc') ?></p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Mobile Swipe Hint -->
+        <div class="sm:hidden flex items-center justify-between text-xs text-slate-500 mb-3 px-1">
+            <span class="flex items-center gap-1.5 font-medium">
+                <i class="fa-solid fa-arrows-left-right text-maritime-600"></i>
+                <?= $isEn ? 'Swipe to explore all research clusters' : 'Geser untuk melihat 4 klaster riset' ?>
+            </span>
+            <a href="<?= base_url('riset') ?>" class="font-bold text-maritime-600 text-xs flex items-center gap-1">
+                <?= $isEn ? 'Roadmap' : 'Roadmap' ?> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </a>
+        </div>
+
+        <div class="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-6 sm:overflow-visible no-scrollbar">
             <?php foreach ($clusters as $cluster): ?>
-            <div class="bg-white rounded-xl p-6 shadow-sm hover:shadow-xl border border-slate-200/80 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1.5">
+            <div class="w-[84vw] max-w-[300px] sm:w-auto sm:max-w-none snap-center shrink-0 sm:shrink bg-white rounded-xl p-6 shadow-sm hover:shadow-xl border border-slate-200/80 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1.5">
                 <div class="space-y-4">
                     <!-- Icon Box -->
                     <div class="w-12 h-12 rounded-xl bg-maritime-50 group-hover:bg-navy-900 text-maritime-600 group-hover:text-gold-400 flex items-center justify-center transition-colors duration-300 text-xl">
@@ -282,9 +338,20 @@
             </a>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Mobile Swipe Hint -->
+        <div class="sm:hidden flex items-center justify-between text-xs text-slate-500 mb-3 px-1">
+            <span class="flex items-center gap-1.5 font-medium">
+                <i class="fa-solid fa-arrows-left-right text-maritime-600"></i>
+                <?= $isEn ? 'Swipe for more maritime services' : 'Geser untuk layanan lainnya' ?>
+            </span>
+            <a href="<?= base_url('layanan') ?>" class="font-bold text-maritime-600 text-xs flex items-center gap-1">
+                <?= $isEn ? 'All Services' : 'Semua Layanan' ?> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </a>
+        </div>
+
+        <div class="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-3 sm:gap-6 sm:overflow-visible no-scrollbar">
             <!-- Jasa 1: Perancangan & Jasa Kepelabuhanan -->
-            <div class="border border-slate-200 rounded-xl p-6 hover:border-maritime-500 hover:shadow-lg transition-all bg-gradient-to-b from-white to-slate-50/50">
+            <div class="w-[84vw] max-w-[320px] sm:w-auto sm:max-w-none snap-center shrink-0 sm:shrink border border-slate-200 rounded-xl p-6 hover:border-maritime-500 hover:shadow-lg transition-all bg-gradient-to-b from-white to-slate-50/50 flex flex-col justify-between">
                 <div class="w-10 h-10 rounded-lg bg-navy-800 text-gold-400 flex items-center justify-center text-lg mb-4">
                     <i class="fa-solid fa-anchor"></i>
                 </div>
@@ -296,7 +363,7 @@
             </div>
 
             <!-- Jasa 2: Pemberdayaan Masyarakat Perbatasan & Kajian Potensi -->
-            <div class="border border-slate-200 rounded-xl p-6 hover:border-maritime-500 hover:shadow-lg transition-all bg-gradient-to-b from-white to-slate-50/50">
+            <div class="w-[84vw] max-w-[320px] sm:w-auto sm:max-w-none snap-center shrink-0 sm:shrink border border-slate-200 rounded-xl p-6 hover:border-maritime-500 hover:shadow-lg transition-all bg-gradient-to-b from-white to-slate-50/50 flex flex-col justify-between">
                 <div class="w-10 h-10 rounded-lg bg-navy-800 text-gold-400 flex items-center justify-center text-lg mb-4">
                     <i class="fa-solid fa-users-gear"></i>
                 </div>
@@ -308,7 +375,7 @@
             </div>
 
             <!-- Jasa 3: Pengembangan Tata Ruang Laut & Pulau-Pulau Kecil -->
-            <div class="border border-slate-200 rounded-xl p-6 hover:border-maritime-500 hover:shadow-lg transition-all bg-gradient-to-b from-white to-slate-50/50">
+            <div class="w-[84vw] max-w-[320px] sm:w-auto sm:max-w-none snap-center shrink-0 sm:shrink border border-slate-200 rounded-xl p-6 hover:border-maritime-500 hover:shadow-lg transition-all bg-gradient-to-b from-white to-slate-50/50 flex flex-col justify-between">
                 <div class="w-10 h-10 rounded-lg bg-navy-800 text-gold-400 flex items-center justify-center text-lg mb-4">
                     <i class="fa-solid fa-map-location-dot"></i>
                 </div>
@@ -389,10 +456,19 @@
             </div>
         </div>
 
-        <!-- Gallery Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Mobile Swipe Hint -->
+        <div class="sm:hidden flex items-center justify-between text-xs text-slate-500 mb-3 px-1">
+            <span class="flex items-center gap-1.5 font-medium">
+                <i class="fa-solid fa-arrows-left-right text-maritime-600"></i>
+                <?= $isEn ? 'Swipe horizontally to view all photos' : 'Geser ke samping untuk melihat foto' ?>
+            </span>
+            <span class="font-mono text-gold-600 font-bold bg-gold-50 px-2 py-0.5 rounded text-[11px]" x-text="filteredItems.length + ' Foto'"></span>
+        </div>
+
+        <!-- Gallery Grid (Desktop 3-cols / Mobile Smooth Horizontal Snap Carousel) -->
+        <div class="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-6 sm:overflow-visible no-scrollbar">
             <template x-for="(item, idx) in filteredItems" :key="item.id">
-                <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1 cursor-pointer"
+                <div class="w-[84vw] max-w-[320px] sm:w-auto sm:max-w-none snap-center shrink-0 sm:shrink bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1 cursor-pointer"
                      @click="open(idx)">
                     
                     <!-- Image Card Container -->
@@ -621,9 +697,20 @@ function galleryLightbox() {
             </a>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Mobile Swipe Hint -->
+        <div class="sm:hidden flex items-center justify-between text-xs text-slate-500 mb-3 px-1">
+            <span class="flex items-center gap-1.5 font-medium">
+                <i class="fa-solid fa-arrows-left-right text-maritime-600"></i>
+                <?= $isEn ? 'Swipe horizontally for more news' : 'Geser ke samping untuk berita lainnya' ?>
+            </span>
+            <a href="<?= base_url('berita') ?>" class="font-bold text-maritime-600 text-xs flex items-center gap-1">
+                <?= $isEn ? 'All News' : 'Semua Berita' ?> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </a>
+        </div>
+
+        <div class="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-3 sm:gap-6 sm:overflow-visible no-scrollbar">
             <?php foreach ($latest_news as $news): ?>
-            <article class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg border border-slate-200 transition-all duration-300 flex flex-col justify-between group">
+            <article class="w-[84vw] max-w-[320px] sm:w-auto sm:max-w-none snap-center shrink-0 sm:shrink bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg border border-slate-200 transition-all duration-300 flex flex-col justify-between group">
                 <!-- Thumbnail Image with Category Badge -->
                 <div class="h-48 relative overflow-hidden">
                     <img src="<?= esc($news['image']) ?>" alt="<?= esc($news['title']) ?>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
