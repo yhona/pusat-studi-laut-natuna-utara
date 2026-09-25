@@ -100,6 +100,11 @@ class Unduhan extends BaseController
 
         $filename = sprintf('%s-%s.%s', $doc['code'], $doc['slug'], strtolower($doc['file_type']));
 
+        // If physical file was uploaded via CMS and exists on disk
+        if (! empty($doc['file_path']) && file_exists(FCPATH . $doc['file_path'])) {
+            return $this->response->download(FCPATH . $doc['file_path'], null);
+        }
+
         if (strtolower($doc['file_type']) === 'pdf') {
             $content = $this->generatePdfContent($doc);
             return $this->response
@@ -233,14 +238,47 @@ class Unduhan extends BaseController
     }
 
     /**
-     * Find document by slug or document code.
+     * Find document by slug or document code across unduhan and publikasi_brief.
      */
     private function findDocument(string $slug): ?array
     {
-        return $this->unduhanModel
+        $doc = $this->unduhanModel
             ->where('slug', $slug)
             ->orWhere('code', $slug)
             ->first();
+
+        if ($doc) {
+            return $doc;
+        }
+
+        // Check if it matches a publication in publikasi_brief
+        try {
+            $pbModel = new \App\Models\PublikasiBriefModel();
+            $pb = $pbModel->where('number', $slug)
+                          ->orWhere('id', (int) $slug)
+                          ->first();
+
+            if ($pb) {
+                return [
+                    'id'          => $pb['id'],
+                    'slug'        => 'pb-' . $pb['id'],
+                    'code'        => $pb['number'],
+                    'title'       => $pb['title'],
+                    'category_id' => 'policy-brief',
+                    'category'    => 'Policy Brief',
+                    'year'        => $pb['year'],
+                    'file_type'   => 'PDF',
+                    'file_size'   => '3.5 MB',
+                    'desc'        => $pb['desc'],
+                    'file_path'   => $pb['file_path'] ?? null,
+                    'downloads'   => (int) ($pb['downloads'] ?? 0),
+                ];
+            }
+        } catch (\Throwable $e) {
+            // Ignore DB exceptions
+        }
+
+        return null;
     }
 
     /**

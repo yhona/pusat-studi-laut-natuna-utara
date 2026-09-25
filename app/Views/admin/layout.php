@@ -48,7 +48,7 @@
         </div>
 
         <!-- Menu Links -->
-        <nav class="p-4 space-y-1.5 flex-1 overflow-y-auto text-xs">
+        <nav class="p-4 space-y-1 flex-1 overflow-y-auto text-xs">
             <?php 
                 $uri = service('uri');
                 $segment2 = $uri->getSegment(2) ?? '';
@@ -59,141 +59,175 @@
                 <span>Ringkasan & Statistik</span>
             </a>
 
-            <a href="<?= base_url('admin/profil') ?>" 
-               class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'profil' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
-                <i class="fa-solid fa-landmark text-sm w-5 text-center"></i>
-                <span>Profil, MoU & Visi Misi</span>
-            </a>
-
-            <a href="<?= base_url('admin/sambutan') ?>" 
-               class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'sambutan' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
-                <i class="fa-solid fa-bullhorn text-sm w-5 text-center"></i>
-                <span>Sambutan Pimpinan</span>
-            </a>
-
-            <a href="<?= base_url('admin/peneliti') ?>" 
-               class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'peneliti' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
-                <i class="fa-solid fa-user-graduate text-sm w-5 text-center"></i>
-                <span>Dewan Peneliti & Pakar</span>
-            </a>
+            <!-- Klaster 1: Riset & Publikasi Ilmiah -->
+            <div class="pt-4 pb-1 px-3.5 flex items-center gap-1.5">
+                <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400">Riset & Publikasi</span>
+            </div>
 
             <a href="<?= base_url('admin/klaster') ?>" 
-               class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'klaster' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+               class="flex items-center gap-3 px-3.5 py-2 rounded-xl transition-all font-semibold <?= $segment2 === 'klaster' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
                 <i class="fa-solid fa-compass text-sm w-5 text-center"></i>
                 <span>Klaster Riset Kemaritiman</span>
             </a>
 
             <a href="<?= base_url('admin/roadmap') ?>" 
-               class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'roadmap' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+               class="flex items-center gap-3 px-3.5 py-2 rounded-xl transition-all font-semibold <?= $segment2 === 'roadmap' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
                 <i class="fa-solid fa-timeline text-sm w-5 text-center"></i>
                 <span>Roadmap Riset</span>
             </a>
 
-            <a href="<?= base_url('admin/berita') ?>" 
-               class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'berita' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
-                <i class="fa-regular fa-newspaper text-sm w-5 text-center"></i>
-                <span>Kelola Berita & Agenda</span>
-            </a>
-
             <a href="<?= base_url('admin/publikasi') ?>" 
-               class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'publikasi' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+               class="flex items-center gap-3 px-3.5 py-2 rounded-xl transition-all font-semibold <?= $segment2 === 'publikasi' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
                 <i class="fa-solid fa-file-shield text-sm w-5 text-center"></i>
                 <span>Policy Brief & Publikasi</span>
             </a>
 
             <a href="<?= base_url('admin/jurnal') ?>" 
-               class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'jurnal' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+               class="flex items-center gap-3 px-3.5 py-2 rounded-xl transition-all font-semibold <?= $segment2 === 'jurnal' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
                 <i class="fa-solid fa-book-bookmark text-sm w-5 text-center"></i>
                 <span>Jurnal Ilmiah Kemaritiman</span>
             </a>
 
+            <!-- Klaster 2: Layanan & Informasi Publik -->
+            <div class="pt-4 pb-1 px-3.5 flex items-center gap-1.5">
+                <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400">Layanan & Informasi</span>
+            </div>
+
             <a href="<?= base_url('admin/layanan') ?>" 
-               class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'layanan' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+               class="flex items-center gap-3 px-3.5 py-2 rounded-xl transition-all font-semibold <?= $segment2 === 'layanan' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
                 <i class="fa-solid fa-microchip text-sm w-5 text-center"></i>
                 <span>Layanan & Laboratorium</span>
             </a>
 
             <a href="<?= base_url('admin/unduhan') ?>" 
-               class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'unduhan' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+               class="flex items-center gap-3 px-3.5 py-2 rounded-xl transition-all font-semibold <?= $segment2 === 'unduhan' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
                 <i class="fa-solid fa-folder-open text-sm w-5 text-center"></i>
                 <span>Repositori & SOP Unduhan</span>
             </a>
 
-            <a href="<?= base_url('admin/banners') ?>" 
-               class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'banners' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
-                <i class="fa-solid fa-sliders text-sm w-5 text-center"></i>
-                <span>Banner & Slider Beranda</span>
-            </a>
-
-            <a href="<?= base_url('admin/mitra') ?>" 
-               class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'mitra' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
-                <i class="fa-solid fa-handshake-simple text-sm w-5 text-center"></i>
-                <span>Mitra Kerjasama</span>
+            <a href="<?= base_url('admin/berita') ?>" 
+               class="flex items-center gap-3 px-3.5 py-2 rounded-xl transition-all font-semibold <?= $segment2 === 'berita' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+                <i class="fa-regular fa-newspaper text-sm w-5 text-center"></i>
+                <span>Kelola Berita & Agenda</span>
             </a>
 
             <a href="<?= base_url('admin/galeri') ?>" 
-               class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'galeri' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+               class="flex items-center gap-3 px-3.5 py-2 rounded-xl transition-all font-semibold <?= $segment2 === 'galeri' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
                 <i class="fa-solid fa-camera-retro text-sm w-5 text-center"></i>
                 <span>Galeri Riset & Ekspedisi</span>
             </a>
 
+            <!-- Klaster 3: Kelembagaan & Tampilan Portal -->
+            <div class="pt-4 pb-1 px-3.5 flex items-center gap-1.5">
+                <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400">Kelembagaan & Tampilan</span>
+            </div>
+
+            <a href="<?= base_url('admin/profil') ?>" 
+               class="flex items-center gap-3 px-3.5 py-2 rounded-xl transition-all font-semibold <?= $segment2 === 'profil' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+                <i class="fa-solid fa-landmark text-sm w-5 text-center"></i>
+                <span>Profil, MoU & Visi Misi</span>
+            </a>
+
+            <a href="<?= base_url('admin/sambutan') ?>" 
+               class="flex items-center gap-3 px-3.5 py-2 rounded-xl transition-all font-semibold <?= $segment2 === 'sambutan' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+                <i class="fa-solid fa-bullhorn text-sm w-5 text-center"></i>
+                <span>Sambutan Pimpinan</span>
+            </a>
+
+            <a href="<?= base_url('admin/peneliti') ?>" 
+               class="flex items-center gap-3 px-3.5 py-2 rounded-xl transition-all font-semibold <?= $segment2 === 'peneliti' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+                <i class="fa-solid fa-user-graduate text-sm w-5 text-center"></i>
+                <span>Dewan Peneliti & Pakar</span>
+            </a>
+
+            <a href="<?= base_url('admin/mitra') ?>" 
+               class="flex items-center gap-3 px-3.5 py-2 rounded-xl transition-all font-semibold <?= $segment2 === 'mitra' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+                <i class="fa-solid fa-handshake-simple text-sm w-5 text-center"></i>
+                <span>Mitra Kerjasama</span>
+            </a>
+
+            <a href="<?= base_url('admin/banners') ?>" 
+               class="flex items-center gap-3 px-3.5 py-2 rounded-xl transition-all font-semibold <?= $segment2 === 'banners' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+                <i class="fa-solid fa-sliders text-sm w-5 text-center"></i>
+                <span>Banner & Slider Beranda</span>
+            </a>
+
             <a href="<?= base_url('admin/statistik') ?>" 
-               class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'statistik' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+               class="flex items-center gap-3 px-3.5 py-2 rounded-xl transition-all font-semibold <?= $segment2 === 'statistik' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
                 <i class="fa-solid fa-chart-simple text-sm w-5 text-center"></i>
                 <span>Counter Metrik & KPI</span>
             </a>
 
-            <div class="pt-3 pb-1 px-3.5">
-                <span class="text-[10px] uppercase font-bold tracking-wider text-slate-500">Aktivitas & Interaksi</span>
+            <!-- Klaster 4: Interaksi, Tata Kelola & Keamanan -->
+            <div class="pt-4 pb-1 px-3.5 flex items-center gap-1.5">
+                <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400">Interaksi & Keamanan</span>
             </div>
 
+            <?php
+                $unreadPermohonan = 0;
+                $unreadPesan = 0;
+                try {
+                    $unreadPermohonan = (new \App\Models\UnduhanPermohonanModel())->where('email_status', 'pending')->countAllResults();
+                    $unreadPesan = (new \App\Models\KontakPesanModel())->where('status', 'baru')->countAllResults();
+                } catch (\Throwable $e) {
+                    $unreadPermohonan = 0;
+                    $unreadPesan = 0;
+                }
+            ?>
+
             <a href="<?= base_url('admin/permohonan') ?>" 
-               class="flex items-center justify-between px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'permohonan' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+               class="flex items-center justify-between px-3.5 py-2 rounded-xl transition-all font-semibold <?= $segment2 === 'permohonan' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
                 <div class="flex items-center gap-3">
                     <i class="fa-solid fa-envelope-open-text text-sm w-5 text-center"></i>
                     <span>Permohonan Unduh</span>
                 </div>
+                <?php if ($unreadPermohonan > 0): ?>
+                <span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold <?= $segment2 === 'permohonan' ? 'bg-navy-950 text-gold-400' : 'bg-gold-500 text-navy-950' ?>">
+                    <?= $unreadPermohonan ?>
+                </span>
+                <?php endif; ?>
             </a>
 
             <a href="<?= base_url('admin/kontak') ?>" 
-               class="flex items-center justify-between px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'kontak' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+               class="flex items-center justify-between px-3.5 py-2 rounded-xl transition-all font-semibold <?= $segment2 === 'kontak' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
                 <div class="flex items-center gap-3">
                     <i class="fa-solid fa-handshake-angle text-sm w-5 text-center"></i>
                     <span>Pesan Kerjasama</span>
                 </div>
+                <?php if ($unreadPesan > 0): ?>
+                <span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold <?= $segment2 === 'kontak' ? 'bg-navy-950 text-rose-300' : 'bg-rose-500 text-white' ?>">
+                    <?= $unreadPesan ?>
+                </span>
+                <?php endif; ?>
             </a>
 
-            <div class="pt-3 pb-1 px-3.5">
-                <span class="text-[10px] uppercase font-bold tracking-wider text-slate-500">Sistem & Keamanan</span>
-            </div>
-
             <a href="<?= base_url('admin/identitas') ?>" 
-               class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'identitas' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+               class="flex items-center gap-3 px-3.5 py-2 rounded-xl transition-all font-semibold <?= $segment2 === 'identitas' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
                 <i class="fa-solid fa-address-card text-sm w-5 text-center"></i>
                 <span>Identitas & Kontak Situs</span>
             </a>
 
             <a href="<?= base_url('admin/users') ?>" 
-               class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'users' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+               class="flex items-center gap-3 px-3.5 py-2 rounded-xl transition-all font-semibold <?= $segment2 === 'users' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
                 <i class="fa-solid fa-users-gear text-sm w-5 text-center"></i>
                 <span>Pengguna Administrator</span>
             </a>
 
             <a href="<?= base_url('admin/logs') ?>" 
-               class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'logs' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+               class="flex items-center gap-3 px-3.5 py-2 rounded-xl transition-all font-semibold <?= $segment2 === 'logs' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
                 <i class="fa-solid fa-list-check text-sm w-5 text-center"></i>
                 <span>Audit Trail & Log Aktivitas</span>
             </a>
 
             <a href="<?= base_url('admin/pengaturan') ?>" 
-               class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all font-semibold <?= $segment2 === 'pengaturan' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
+               class="flex items-center gap-3 px-3.5 py-2 rounded-xl transition-all font-semibold <?= $segment2 === 'pengaturan' ? 'bg-gold-500 text-navy-950 shadow-md font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white' ?>">
                 <i class="fa-solid fa-user-gear text-sm w-5 text-center"></i>
                 <span>Pengaturan Profil Akun</span>
             </a>
 
-
-            <div class="pt-3 pb-1 px-3.5">
-                <span class="text-[10px] uppercase font-bold tracking-wider text-slate-500">Pintasan Portal</span>
+            <!-- Pintasan Portal -->
+            <div class="pt-4 pb-1 px-3.5 flex items-center gap-1.5">
+                <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400">Pintasan Portal</span>
             </div>
 
             <a href="<?= base_url() ?>" target="_blank"

@@ -281,8 +281,19 @@ class Riset extends BaseController
             unset($oc);
         }
 
+        $clusterDesc = !empty($cluster['mandate']) 
+            ? trim(strip_tags((string)$cluster['mandate'])) 
+            : ($cluster['title'] ?? 'Klaster Riset Kemaritiman');
+
+        $clusterImage = !empty($cluster['image']) ? $cluster['image'] : 'images/hero_ship.jpg';
+
         $data = [
             'title'         => ($cluster['title'] ?? 'Klaster Riset') . ($isEn ? ' - NNSRC UMRAH' : ' - Klaster Riset PSK UMRAH'),
+            'meta_desc'     => $clusterDesc,
+            'og_desc'       => $clusterDesc,
+            'og_image'      => $clusterImage,
+            'og_type'       => 'article',
+            'canonical_url' => base_url('riset/' . $cluster['slug']),
             'cluster'       => $cluster,
             'otherClusters' => $otherClusters,
         ];

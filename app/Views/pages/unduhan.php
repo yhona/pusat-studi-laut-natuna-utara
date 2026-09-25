@@ -128,8 +128,39 @@
 
         <!-- Document Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <?php if (empty($documents)): ?>
+            <div class="col-span-full py-16 text-center bg-white rounded-2xl border border-slate-200 p-8 space-y-3">
+                <div class="w-16 h-16 mx-auto rounded-full bg-slate-100 flex items-center justify-center text-slate-400 text-2xl">
+                    <i class="fa-solid fa-folder-open"></i>
+                </div>
+                <h4 class="text-base font-bold text-navy-950"><?= $isEn ? 'No documents available' : 'Belum ada dokumen repositori' ?></h4>
+                <p class="text-xs text-slate-500 max-w-md mx-auto"><?= $isEn ? 'Currently there are no repository documents published. Please check back later.' : 'Saat ini belum ada naskah atau SOP yang diterbitkan di pusat unduhan.' ?></p>
+            </div>
+            <?php else: ?>
+            <!-- Dynamic Empty State when client filter yields 0 matches -->
+            <div x-show="!hasMatches()" x-cloak class="col-span-full py-14 text-center bg-white rounded-2xl border border-slate-200 p-8 space-y-4">
+                <div class="w-14 h-14 mx-auto rounded-full bg-slate-100 flex items-center justify-center text-slate-400 text-2xl">
+                    <i class="fa-solid fa-folder-open"></i>
+                </div>
+                <div class="space-y-1">
+                    <h4 class="text-base font-bold text-navy-950"><?= $isEn ? 'No documents match your filter' : 'Tidak ada dokumen yang sesuai kriteria filter' ?></h4>
+                    <p class="text-xs text-slate-500 max-w-md mx-auto">
+                        <?= $isEn ? 'Try adjusting your search keywords or resetting the document category.' : 'Coba gunakan kata kunci pencarian yang berbeda atau setel ulang filter kategori dokumen.' ?>
+                    </p>
+                </div>
+                <button @click="search = ''; filterCategory('all')" type="button" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-navy-900 text-gold-400 hover:bg-navy-800 text-xs font-semibold shadow-xs transition-colors cursor-pointer">
+                    <i class="fa-solid fa-rotate-left"></i>
+                    <span><?= $isEn ? 'Reset Filter' : 'Setel Ulang Filter' ?></span>
+                </button>
+            </div>
+            <?php endif; ?>
+
             <?php foreach ($documents as $doc): ?>
-            <div x-show="matches('<?= $doc['category_id'] ?>', '<?= esc(addslashes($doc['title'])) ?>', '<?= esc(addslashes($doc['desc'])) ?>', '<?= esc(addslashes($doc['code'])) ?>')"
+            <div data-cat="<?= esc($doc['category_id']) ?>"
+                 data-title="<?= esc($doc['title']) ?>"
+                 data-desc="<?= esc($doc['desc']) ?>"
+                 data-code="<?= esc($doc['code']) ?>"
+                 x-show="matchEl($el)"
                  x-transition:enter="transition ease-out duration-200"
                  x-transition:enter-start="opacity-0 scale-95"
                  x-transition:enter-end="opacity-100 scale-100"
@@ -362,6 +393,16 @@ function unduhanPageData() {
         errorMessage: '',
         successMessage: '',
         downloadUrl: '',
+        documents: [
+            <?php foreach ($documents as $doc): ?>
+            {
+                cat: <?= json_encode((string)$doc['category_id']) ?>,
+                title: <?= json_encode((string)$doc['title']) ?>,
+                desc: <?= json_encode((string)($doc['desc'] ?? '')) ?>,
+                code: <?= json_encode((string)($doc['code'] ?? '')) ?>
+            },
+            <?php endforeach; ?>
+        ],
         form: {
             name: '',
             email: '',
@@ -381,6 +422,29 @@ function unduhanPageData() {
                               desc.toLowerCase().includes(term) ||
                               code.toLowerCase().includes(term);
             return catMatch && textMatch;
+        },
+        matchEl(el) {
+            if (!el || !el.dataset) return true;
+            return this.matches(
+                el.dataset.cat || '',
+                el.dataset.title || '',
+                el.dataset.desc || '',
+                el.dataset.code || ''
+            );
+        },
+        hasMatches() {
+            if (this.documents.length === 0) return false;
+            const cat = this.selectedCategory;
+            const term = this.search.toLowerCase().trim();
+            if (cat === 'all' && !term) return true;
+            return this.documents.some(d => {
+                const catMatch = (cat === 'all' || d.cat === cat);
+                if (!term) return catMatch;
+                const textMatch = d.title.toLowerCase().includes(term) ||
+                                  d.desc.toLowerCase().includes(term) ||
+                                  d.code.toLowerCase().includes(term);
+                return catMatch && textMatch;
+            });
         },
         openModal(doc) {
             this.selectedDoc = doc;
@@ -432,10 +496,10 @@ function unduhanPageData() {
                     a.click();
                     document.body.removeChild(a);
                 } else {
-                    this.errorMessage = data.message || 'Gagal memproses permohonan unduhan.';
+                    this.errorMessage = data.message || '<?= $isEn ? 'Failed to process document request.' : 'Gagal memproses permohonan unduhan.' ?>';
                 }
             } catch (err) {
-                this.errorMessage = 'Terjadi kesalahan jaringan saat mengirimkan formulir.';
+                this.errorMessage = '<?= $isEn ? 'Network error occurred while submitting the form.' : 'Terjadi kesalahan jaringan saat mengirimkan formulir.' ?>';
             } finally {
                 this.isSubmitting = false;
             }

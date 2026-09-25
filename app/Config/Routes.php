@@ -34,6 +34,9 @@ $routes->get('lang/(:segment)', 'Language::switch/$1');
 $routes->get('/kontak', 'Kontak::index');
 $routes->post('/kontak/kirim', 'Kontak::kirim');
 
+// XML Sitemap for Search Engines & Academic Indexing
+$routes->get('sitemap.xml', 'Sitemap::index');
+
 // =============================================================================
 // ADMIN DASHBOARD & CMS ROUTES
 // =============================================================================

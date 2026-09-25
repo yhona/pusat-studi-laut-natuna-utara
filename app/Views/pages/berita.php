@@ -24,22 +24,7 @@
 </div>
 
 <!-- Main Content -->
-<div class="py-16 bg-slate-50" x-data="{
-    search: '',
-    selectedCategory: 'all',
-    filterCategory(cat) {
-        this.selectedCategory = cat;
-    },
-    matches(category, title, excerpt, author) {
-        const catMatch = (this.selectedCategory === 'all' || this.selectedCategory.toLowerCase() === category.toLowerCase());
-        const term = this.search.toLowerCase().trim();
-        if (!term) return catMatch;
-        const textMatch = title.toLowerCase().includes(term) ||
-                          excerpt.toLowerCase().includes(term) ||
-                          author.toLowerCase().includes(term);
-        return catMatch && textMatch;
-    }
-}">
+<div class="py-16 bg-slate-50" x-data="beritaPageData()">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         
         <!-- Filter & Search Bar -->
@@ -59,15 +44,49 @@
                 <?php endforeach; ?>
             </div>
             <div class="relative w-full sm:w-64">
-                <input x-model="search" type="text" id="search-berita" name="search-berita" aria-label="<?= $isEn ? 'Search news or research agenda' : 'Cari berita atau agenda riset' ?>" placeholder="<?= $isEn ? 'Search news or agenda...' : 'Cari berita/agenda...' ?>" class="w-full pl-9 pr-4 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:border-maritime-500">
+                <input x-model="search" type="text" id="search-berita" name="search-berita" aria-label="<?= $isEn ? 'Search news or research agenda' : 'Cari berita atau agenda riset' ?>" placeholder="<?= $isEn ? 'Search news or agenda...' : 'Cari berita/agenda...' ?>" class="w-full pl-9 pr-8 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:border-maritime-500">
                 <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-xs"></i>
+                <button x-show="search.length > 0" x-cloak @click="search = ''" class="absolute right-2.5 top-2 text-slate-400 hover:text-slate-600 text-xs cursor-pointer" title="<?= $isEn ? 'Clear search' : 'Hapus pencarian' ?>">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                </button>
             </div>
         </div>
 
         <!-- News Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <?php if (empty($articles)): ?>
+            <div class="col-span-full py-16 text-center bg-white rounded-2xl border border-slate-200 p-8 space-y-3">
+                <div class="w-16 h-16 mx-auto rounded-full bg-slate-100 flex items-center justify-center text-slate-400 text-2xl">
+                    <i class="fa-regular fa-newspaper"></i>
+                </div>
+                <h4 class="text-base font-bold text-navy-950"><?= $isEn ? 'No news articles found' : 'Belum ada warta berita' ?></h4>
+                <p class="text-xs text-slate-500 max-w-md mx-auto"><?= $isEn ? 'Currently there are no published news or agenda items. Please check back later.' : 'Saat ini belum ada publikasi berita atau agenda kegiatan yang diterbitkan.' ?></p>
+            </div>
+            <?php else: ?>
+            <!-- Dynamic Empty State when client filter yields 0 matches -->
+            <div x-show="!hasMatches()" x-cloak class="col-span-full py-14 text-center bg-white rounded-2xl border border-slate-200 p-8 space-y-4">
+                <div class="w-14 h-14 mx-auto rounded-full bg-slate-100 flex items-center justify-center text-slate-400 text-2xl">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <div class="space-y-1">
+                    <h4 class="text-base font-bold text-navy-950"><?= $isEn ? 'No articles match your search criteria' : 'Tidak ada berita yang sesuai kriteria pencarian' ?></h4>
+                    <p class="text-xs text-slate-500 max-w-md mx-auto">
+                        <?= $isEn ? 'Try adjusting your search keywords or resetting the category filter.' : 'Coba gunakan kata kunci pencarian yang berbeda atau setel ulang filter kategori.' ?>
+                    </p>
+                </div>
+                <button @click="search = ''; selectedCategory = 'all'" type="button" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-navy-900 text-gold-400 hover:bg-navy-800 text-xs font-semibold shadow-xs transition-colors cursor-pointer">
+                    <i class="fa-solid fa-rotate-left"></i>
+                    <span><?= $isEn ? 'Reset Filter' : 'Setel Ulang Filter' ?></span>
+                </button>
+            </div>
+            <?php endif; ?>
+
             <?php foreach ($articles as $art): ?>
-            <article x-show="matches('<?= addslashes(esc($art['category'])) ?>', '<?= addslashes(esc($art['title'])) ?>', '<?= addslashes(esc($art['excerpt'])) ?>', '<?= addslashes(esc($art['author'])) ?>')"
+            <article data-cat="<?= esc($art['category']) ?>"
+                     data-title="<?= esc($art['title']) ?>"
+                     data-excerpt="<?= esc($art['excerpt']) ?>"
+                     data-author="<?= esc($art['author']) ?>"
+                     x-show="matchEl($el)"
                      x-transition:enter="transition ease-out duration-200"
                      x-transition:enter-start="opacity-0 scale-95"
                      x-transition:enter-end="opacity-100 scale-100"
@@ -113,5 +132,57 @@
 
     </div>
 </div>
+
+<script>
+function beritaPageData() {
+    return {
+        search: '',
+        selectedCategory: 'all',
+        articles: <?= json_encode(array_map(function($art) {
+            return [
+                'cat' => (string)($art['category'] ?? ''),
+                'title' => (string)($art['title'] ?? ''),
+                'excerpt' => (string)($art['excerpt'] ?? ''),
+                'author' => (string)($art['author'] ?? ''),
+            ];
+        }, $articles ?? [])) ?>,
+        filterCategory(cat) {
+            this.selectedCategory = cat;
+        },
+        matches(category, title, excerpt, author) {
+            const catMatch = (this.selectedCategory === 'all' || (this.selectedCategory || '').toLowerCase() === (category || '').toLowerCase());
+            const term = this.search.toLowerCase().trim();
+            if (!term) return catMatch;
+            const textMatch = (title || '').toLowerCase().includes(term) ||
+                              (excerpt || '').toLowerCase().includes(term) ||
+                              (author || '').toLowerCase().includes(term);
+            return catMatch && textMatch;
+        },
+        matchEl(el) {
+            if (!el || !el.dataset) return true;
+            return this.matches(
+                el.dataset.cat || '',
+                el.dataset.title || '',
+                el.dataset.excerpt || '',
+                el.dataset.author || ''
+            );
+        },
+        hasMatches() {
+            if (this.articles.length === 0) return false;
+            const cat = this.selectedCategory.toLowerCase();
+            const term = this.search.toLowerCase().trim();
+            if (cat === 'all' && !term) return true;
+            return this.articles.some(a => {
+                const catMatch = (cat === 'all' || (a.cat || '').toLowerCase() === cat);
+                if (!term) return catMatch;
+                const textMatch = (a.title || '').toLowerCase().includes(term) ||
+                                  (a.excerpt || '').toLowerCase().includes(term) ||
+                                  (a.author || '').toLowerCase().includes(term);
+                return catMatch && textMatch;
+            });
+        }
+    };
+}
+</script>
 
 <?= $this->endSection() ?>

@@ -70,7 +70,13 @@ class BeritaModel extends Model
     {
         if (isset($row['content']) && is_string($row['content'])) {
             $decoded = json_decode($row['content'], true);
-            $row['content'] = is_array($decoded) ? $decoded : [$row['content']];
+            if (is_array($decoded)) {
+                $row['content'] = $decoded;
+            } else {
+                $paragraphs = preg_split('/\r\n\r\n|\n\n|\r\r/', trim($row['content']));
+                $cleanParagraphs = array_values(array_filter(array_map('trim', $paragraphs)));
+                $row['content'] = !empty($cleanParagraphs) ? $cleanParagraphs : [$row['content']];
+            }
         }
 
         if (isset($row['tags']) && is_string($row['tags'])) {

@@ -1,2 +1,7 @@
 User-agent: *
-Disallow: 
+Allow: /
+Disallow: /admin/
+Disallow: /writable/
+
+# XML Sitemap for Search Engines & Academic Crawlers
+Sitemap: /sitemap.xml

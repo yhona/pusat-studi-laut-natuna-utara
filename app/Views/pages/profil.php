@@ -110,7 +110,7 @@
                     </div>
                     <div class="flex-shrink-0 text-right hidden md:block">
                         <span class="text-[11px] font-mono text-gold-400 bg-navy-800/80 px-3 py-1.5 rounded-lg border border-gold-500/20">
-                            <i class="fa-solid fa-scroll mr-1"></i> Nilai Luhur Tridharma
+                            <i class="fa-solid fa-scroll mr-1"></i> <?= $isEn ? 'Tridharma Core Values' : 'Nilai Luhur Tridharma' ?>
                         </span>
                     </div>
                 </div>
@@ -334,7 +334,7 @@
                     <div class="bg-navy-800/90 border-2 border-cyan-400/80 rounded-xl px-5 py-3.5 text-center shadow-lg">
                         <span class="text-cyan-400 text-[10px] font-bold uppercase tracking-wider block"><?= lang('App.structure_sekretaris') ?></span>
                         <h5 class="font-bold text-white text-sm sm:text-base mt-0.5">Euis Ammelia, S.IP., M.I.P.</h5>
-                        <p class="text-xs text-cyan-300 font-semibold mt-0.5">Secretary of Research Center</p>
+                        <p class="text-xs text-cyan-300 font-semibold mt-0.5"><?= $isEn ? 'Secretary of Research Center' : 'Sekretaris Pusat Studi' ?></p>
                     </div>
                 </div>
 
@@ -354,11 +354,11 @@
                             <div class="mt-2 space-y-2">
                                 <div class="bg-navy-900/90 rounded-lg p-2.5 border border-cyan-500/30">
                                     <div class="text-xs font-bold text-white">Dr. Ady Muzwardi, S.IP., M.A., M.H.I.</div>
-                                    <div class="text-[11px] text-cyan-300 font-semibold">Head of Research Department</div>
+                                    <div class="text-[11px] text-cyan-300 font-semibold"><?= $isEn ? 'Head of Research Department' : 'Kepala Departemen Riset' ?></div>
                                 </div>
                                 <div class="bg-navy-900/90 rounded-lg p-2.5 border border-slate-700">
                                     <div class="text-xs font-bold text-white">Rachma Indriyani, S.H., LL.M., Ph.D.</div>
-                                    <div class="text-[11px] text-slate-300 font-semibold">Vice of Research Department</div>
+                                    <div class="text-[11px] text-slate-300 font-semibold"><?= $isEn ? 'Vice of Research Department' : 'Wakil Kepala Departemen Riset' ?></div>
                                 </div>
                             </div>
                         </div>
@@ -369,7 +369,7 @@
                             <div class="mt-2 space-y-2">
                                 <div class="bg-navy-900/90 rounded-lg p-2.5 border border-emerald-500/30">
                                     <div class="text-xs font-bold text-white">Dedy Afrizal, S.Sos., M.Si., Ph.D.</div>
-                                    <div class="text-[11px] text-emerald-300 font-semibold">Head of Community Service Department</div>
+                                    <div class="text-[11px] text-emerald-300 font-semibold"><?= $isEn ? 'Head of Community Service Department' : 'Kepala Departemen Pengabdian Masyarakat' ?></div>
                                 </div>
                                 <div class="bg-navy-900/50 rounded-lg p-2.5 border border-dashed border-slate-700/50 flex items-center justify-center">
                                     <span class="text-[11px] text-slate-400 italic"><?= $isEn ? 'Coastal Community Empowerment & Outermost Island Outreach' : 'Pemberdayaan & Pengabdian Wilayah Pesisir Natuna' ?></span>

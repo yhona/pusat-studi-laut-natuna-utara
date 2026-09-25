@@ -50,5 +50,7 @@ writable/session/*
 !writable/session/index.html
 !writable/session/.gitkeep
 writable/backups/*
+writable/*.bak
 writable/cron_status.json
 writable/playwright_status.json
+scratch/

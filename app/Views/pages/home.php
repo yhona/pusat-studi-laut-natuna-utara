@@ -289,8 +289,8 @@
                                  alt="<?= esc($sambutan['name'] ?? 'Dr. Atika Thahira, S.H., M.H.') ?>" 
                                  class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500">
                             <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-navy-950 via-navy-900/85 to-transparent p-3 text-white text-center z-10">
-                                <h4 class="font-bold text-xs sm:text-sm text-gold-400"><?= esc($sambutan['name'] ?? 'Dr. Atika Thahira, S.H., M.H.') ?></h4>
-                                <p class="text-[10px] sm:text-[11px] text-slate-300"><?= esc($sambutan['title'] ?? ($isEn ? 'Center Coordinator of North Natuna Sea Research Center UMRAH' : 'Koordinator Pusat Studi Laut Natuna Utara UMRAH')) ?></p>
+                                <h4 class="font-bold text-xs sm:text-sm text-gold-400 line-clamp-2"><?= esc($sambutan['name'] ?? 'Dr. Atika Thahira, S.H., M.H.') ?></h4>
+                                <p class="text-[10px] sm:text-[11px] text-slate-300 line-clamp-1"><?= esc($sambutan['title'] ?? ($isEn ? 'Center Coordinator of North Natuna Sea Research Center UMRAH' : 'Koordinator Pusat Studi Laut Natuna Utara UMRAH')) ?></p>
                             </div>
                         </div>
                     </div>
@@ -778,6 +778,7 @@ function galleryLightbox() {
             </a>
         </div>
 
+        <?php if (!empty($latest_news)): ?>
         <div class="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-3 sm:gap-6 sm:overflow-visible no-scrollbar">
             <?php foreach ($latest_news as $news): ?>
             <article class="w-[84vw] max-w-[320px] sm:w-auto sm:max-w-none snap-center shrink-0 sm:shrink bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg border border-slate-200 transition-all duration-300 flex flex-col justify-between group">
@@ -811,7 +812,60 @@ function galleryLightbox() {
             </article>
             <?php endforeach; ?>
         </div>
+        <?php else: ?>
+        <div class="py-12 bg-white rounded-2xl border border-slate-200 text-center p-8 space-y-2">
+            <i class="fa-regular fa-newspaper text-3xl text-slate-300"></i>
+            <h4 class="text-sm font-bold text-navy-950"><?= $isEn ? 'No Recent News Available' : 'Belum Ada Berita Terbaru' ?></h4>
+            <p class="text-xs text-slate-500"><?= $isEn ? 'Stay tuned for upcoming maritime research announcements.' : 'Nantikan publikasi dan agenda riset kemaritiman mendatang.' ?></p>
+        </div>
+        <?php endif; ?>
     </div>
 </section>
+
+<!-- Mitra Kerjasama Strategis -->
+<?php if (!empty($partners)): ?>
+<section class="py-16 bg-white border-t border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+            <div>
+                <span class="text-xs uppercase font-bold tracking-wider text-maritime-600"><?= lang('App.partner_tag') ?></span>
+                <h3 class="text-2xl sm:text-3xl font-extrabold text-navy-950 mt-1"><?= lang('App.partner_heading') ?></h3>
+                <p class="text-xs sm:text-sm text-slate-600 mt-1 max-w-2xl"><?= lang('App.partner_desc') ?></p>
+            </div>
+            <a href="<?= base_url('kontak') ?>" class="inline-flex items-center gap-2 text-xs font-bold text-maritime-600 hover:text-maritime-800 flex-shrink-0">
+                <?= lang('App.btn_partner_apply') ?> <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-4 sm:gap-6">
+            <?php foreach ($partners as $partner): ?>
+            <a href="<?= esc($partner['url']) ?>" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="group relative flex flex-col items-center justify-center p-6 rounded-2xl bg-slate-50 hover:bg-white border border-slate-200/90 hover:border-maritime-400 hover:shadow-lg transition-all duration-300 text-center">
+                
+                <span class="absolute top-3 right-3 text-slate-300 group-hover:text-maritime-500 opacity-0 group-hover:opacity-100 transition-opacity text-xs" title="<?= $isEn ? 'Visit official website' : 'Kunjungi situs resmi' ?>">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </span>
+
+                <div class="h-16 w-full flex items-center justify-center p-2 mb-3">
+                    <img src="<?= esc($partner['logo']) ?>" 
+                         alt="<?= esc($partner['name']) ?>" 
+                         class="max-h-12 w-auto max-w-[130px] object-contain transition-all duration-300 filter grayscale group-hover:grayscale-0 opacity-80 group-hover:opacity-100 group-hover:scale-105"
+                         loading="lazy">
+                </div>
+
+                <span class="text-xs font-bold text-navy-900 group-hover:text-maritime-600 transition-colors block">
+                    <?= esc($partner['short']) ?>
+                </span>
+                <span class="text-[10px] text-slate-500 line-clamp-1 max-w-full px-1 mt-0.5">
+                    <?= esc($partner['name']) ?>
+                </span>
+            </a>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
 
 <?= $this->endSection() ?>

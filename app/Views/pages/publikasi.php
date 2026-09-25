@@ -117,8 +117,8 @@ $metadataMap = $isEn ? [
             <div class="space-y-4">
                 <?php foreach ($policy_briefs as $pb): 
                     $meta = $metadataMap[$pb['number']] ?? [
-                        'slug'            => 'pb-logistik-pesisir',
-                        'file_size'       => '3.0 MB',
+                        'slug'            => $pb['number'] ?? 'pb-diplomasi-perbatasan-natuna',
+                        'file_size'       => '3.5 MB',
                         'pages'           => 16,
                         'recommendations' => [$isEn ? 'Strategic recommendations for sustainable marine resource governance.' : 'Rekomendasi strategis tata kelola sumberdaya laut berkelanjutan.']
                     ];
@@ -377,10 +377,10 @@ function policyBriefModal() {
                     a.click();
                     document.body.removeChild(a);
                 } else {
-                    this.errorMessage = data.message || 'Gagal memproses permohonan unduhan.';
+                    this.errorMessage = data.message || '<?= $isEn ? 'Failed to process policy brief request.' : 'Gagal memproses permohonan unduhan.' ?>';
                 }
             } catch (err) {
-                this.errorMessage = 'Terjadi kendala jaringan saat mengirimkan formulir.';
+                this.errorMessage = '<?= $isEn ? 'Network error occurred while submitting the form.' : 'Terjadi kendala jaringan saat mengirimkan formulir.' ?>';
             } finally {
                 this.isSubmitting = false;
             }

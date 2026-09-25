@@ -105,10 +105,21 @@ class Berita extends BaseController
             unset($rel);
         }
 
+        $cleanExcerpt = !empty($article['excerpt']) 
+            ? trim(strip_tags((string)$article['excerpt'])) 
+            : mb_substr(trim(strip_tags((string)($article['content'] ?? ''))), 0, 160) . '...';
+
+        $ogImage = !empty($article['image']) ? $article['image'] : 'images/hero_ship.jpg';
+
         $data = [
-            'title'   => $article['title'],
-            'article' => $article,
-            'related' => $related,
+            'title'         => $article['title'],
+            'meta_desc'     => $cleanExcerpt,
+            'og_desc'       => $cleanExcerpt,
+            'og_image'      => $ogImage,
+            'og_type'       => 'article',
+            'canonical_url' => base_url('berita/' . $article['slug']),
+            'article'       => $article,
+            'related'       => $related,
         ];
 
         return view('pages/berita_detail', $data);

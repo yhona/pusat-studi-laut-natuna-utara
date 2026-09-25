@@ -129,16 +129,32 @@
                     </div>
                 </div>
 
-                <!-- Campus Location Map Box Placeholder -->
+                <!-- Campus Location Map Box -->
                 <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs space-y-3">
-                    <h4 class="text-xs font-bold text-navy-950 uppercase tracking-wider flex items-center gap-2">
-                        <i class="fa-solid fa-map text-maritime-600"></i> <?= $isEn ? 'UMRAH Dompak Campus Location' : 'Lokasi Kampus Dompak UMRAH' ?>
-                    </h4>
-                    <div class="h-44 rounded-xl bg-slate-100 border border-slate-200 flex flex-col items-center justify-center text-slate-400 text-xs p-4 text-center space-y-2">
-                        <i class="fa-solid fa-location-crosshairs text-3xl text-maritime-600"></i>
-                        <span class="font-medium text-slate-600"><?= $isEn ? 'Dompak Island, Tanjungpinang' : 'Pulau Dompak, Tanjungpinang' ?></span>
-                        <a href="https://maps.google.com/?q=Universitas+Maritim+Raja+Ali+Haji+Dompak" target="_blank" class="text-maritime-600 underline font-semibold">
-                            <?= $isEn ? 'Open in Google Maps →' : 'Buka di Google Maps →' ?>
+                    <div class="flex items-center justify-between">
+                        <h4 class="text-xs font-bold text-navy-950 uppercase tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-map-location-dot text-maritime-600"></i> <?= $isEn ? 'UMRAH Dompak Campus Map' : 'Lokasi Kampus Dompak UMRAH' ?>
+                        </h4>
+                        <span class="text-[10px] font-mono text-slate-400 hidden sm:inline">0.8715° N, 104.4842° E</span>
+                    </div>
+                    <div class="relative w-full h-52 rounded-xl overflow-hidden border border-slate-200 shadow-inner bg-slate-100">
+                        <iframe 
+                            src="https://maps.google.com/maps?q=Universitas+Maritim+Raja+Ali+Haji+Dompak&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                            class="w-full h-full border-0" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="<?= $isEn ? 'Map of Universitas Maritim Raja Ali Haji Dompak' : 'Peta Lokasi Universitas Maritim Raja Ali Haji Dompak' ?>">
+                        </iframe>
+                    </div>
+                    <div class="flex items-center justify-between pt-1 text-xs">
+                        <span class="text-slate-500 text-[11px] flex items-center gap-1">
+                            <i class="fa-solid fa-location-dot text-gold-500"></i>
+                            <span><?= $isEn ? 'Dompak Island, Tanjungpinang City' : 'Pulau Dompak, Kota Tanjungpinang' ?></span>
+                        </span>
+                        <a href="https://maps.google.com/?q=Universitas+Maritim+Raja+Ali+Haji+Dompak" target="_blank" rel="noopener noreferrer" class="font-semibold text-maritime-600 hover:text-navy-950 flex items-center gap-1 transition-colors">
+                            <span><?= $isEn ? 'Open Google Maps' : 'Buka di Google Maps' ?></span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                         </a>
                     </div>
                 </div>
