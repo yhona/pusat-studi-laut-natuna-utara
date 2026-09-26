@@ -513,7 +513,14 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                <?php
+                    $extCount = count($external_researchers ?? []);
+                    $extGridClass = 'grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl';
+                    if ($extCount >= 3) {
+                        $extGridClass = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4';
+                    }
+                ?>
+                <div class="<?= $extGridClass ?>">
                     <?php if (!empty($external_researchers)): ?>
                     <?php foreach ($external_researchers as $em): ?>
                     <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between space-y-3 group hover:-translate-y-1">

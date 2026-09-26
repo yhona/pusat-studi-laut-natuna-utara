@@ -166,17 +166,6 @@ class Home extends BaseController
                     'url'   => !empty($p['website_url']) ? $p['website_url'] : '#',
                 ];
             }
-        } else {
-            $partners = [
-                ['name' => 'Badan Riset dan Inovasi Nasional', 'short' => 'BRIN', 'logo' => base_url('images/partners/logo_brin.svg'), 'url' => 'https://brin.go.id'],
-                ['name' => 'Badan Keamanan Laut Republik Indonesia', 'short' => 'BAKAMLA RI', 'logo' => base_url('images/partners/logo_bakamla.svg'), 'url' => 'https://bakamla.go.id'],
-                ['name' => 'Kementerian Kelautan dan Perikanan', 'short' => 'KKP RI', 'logo' => base_url('images/partners/logo_kkp.svg'), 'url' => 'https://kkp.go.id'],
-                ['name' => 'Pemerintah Provinsi Kepulauan Riau', 'short' => 'Pemprov Kepri', 'logo' => base_url('images/partners/logo_kepri.svg'), 'url' => 'https://kepriprov.go.id'],
-                ['name' => 'Pusat Hidro-Oseanografi TNI AL', 'short' => 'Pushidrosal', 'logo' => base_url('images/partners/logo_pushidrosal.svg'), 'url' => 'https://pushidrosal.id'],
-                ['name' => 'Universiti Malaysia Terengganu', 'short' => 'UMT Malaysia', 'logo' => base_url('images/partners/logo_umt.svg'), 'url' => 'https://umt.edu.my'],
-                ['name' => 'Kementerian PPN / Bappenas', 'short' => 'Bappenas RI', 'logo' => base_url('images/partners/logo_bappenas.svg'), 'url' => 'https://bappenas.go.id'],
-                ['name' => 'Badan Informasi Geospasial', 'short' => 'BIG', 'logo' => base_url('images/partners/logo_big.svg'), 'url' => 'https://big.go.id'],
-            ];
         }
 
         // Galeri Riset & Ekspedisi (Dynamic from Database with Fallback)
@@ -294,12 +283,10 @@ class Home extends BaseController
                 $stats = $isEn ? [
                     ['number' => '142+', 'label' => 'Reputable Scopus / SINTA Publications', 'icon' => 'fa-book-open-reader'],
                     ['number' => '28',   'label' => 'Intellectual Property Rights & Maritime Patents', 'icon' => 'fa-certificate'],
-                    ['number' => '35',   'label' => 'Strategic National & International Partners', 'icon' => 'fa-handshake-angle'],
                     ['number' => '21',   'label' => 'Fostered Outermost Small Islands (PPKT) in Natuna-Kepri', 'icon' => 'fa-anchor-circle-check'],
                 ] : [
                     ['number' => '142+', 'label' => 'Publikasi Scopus / SINTA Bereputasi', 'icon' => 'fa-book-open-reader'],
                     ['number' => '28',   'label' => 'Hak Kekayaan Intelektual & Paten Maritim', 'icon' => 'fa-certificate'],
-                    ['number' => '35',   'label' => 'Mitra Kerjasama Strategis Dalam & Luar Negeri', 'icon' => 'fa-handshake-angle'],
                     ['number' => '21',   'label' => 'Pulau-Pulau Kecil Terluar (PPKT) Binaan di Natuna-Kepri', 'icon' => 'fa-anchor-circle-check'],
                 ];
             }
@@ -307,12 +294,10 @@ class Home extends BaseController
             $stats = $isEn ? [
                 ['number' => '142+', 'label' => 'Reputable Scopus / SINTA Publications', 'icon' => 'fa-book-open-reader'],
                 ['number' => '28',   'label' => 'Intellectual Property Rights & Maritime Patents', 'icon' => 'fa-certificate'],
-                ['number' => '35',   'label' => 'Strategic National & International Partners', 'icon' => 'fa-handshake-angle'],
                 ['number' => '21',   'label' => 'Fostered Outermost Small Islands (PPKT) in Natuna-Kepri', 'icon' => 'fa-anchor-circle-check'],
             ] : [
                 ['number' => '142+', 'label' => 'Publikasi Scopus / SINTA Bereputasi', 'icon' => 'fa-book-open-reader'],
                 ['number' => '28',   'label' => 'Hak Kekayaan Intelektual & Paten Maritim', 'icon' => 'fa-certificate'],
-                ['number' => '35',   'label' => 'Mitra Kerjasama Strategis Dalam & Luar Negeri', 'icon' => 'fa-handshake-angle'],
                 ['number' => '21',   'label' => 'Pulau-Pulau Kecil Terluar (PPKT) Binaan di Natuna-Kepri', 'icon' => 'fa-anchor-circle-check'],
             ];
         }

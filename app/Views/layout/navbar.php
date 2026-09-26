@@ -17,8 +17,10 @@
                     <i class="fa-solid fa-envelope text-maritime-500"></i> <?= lang('App.topbar_webmail') ?>
                 </a>
             </div>
-            <div class="flex items-center space-x-3 text-xs">
-                <span class="text-slate-400 hidden sm:inline"><i class="fa-regular fa-calendar-check mr-1 text-gold-400"></i> <?= lang('App.topbar_call_for_papers') ?></span>
+                <a href="<?= base_url('publikasi#jurnal') ?>" class="text-slate-400 hover:text-gold-400 transition-colors hidden sm:inline-flex items-center gap-1 group cursor-pointer" title="<?= $currentLocale === 'en' ? 'Explore UMRAH accredited scientific journals' : 'Kunjungi publikasi jurnal ilmiah terakreditasi UMRAH' ?>">
+                    <i class="fa-regular fa-calendar-check text-gold-400 group-hover:scale-110 transition-transform"></i>
+                    <span class="group-hover:underline underline-offset-2"><?= lang('App.topbar_call_for_papers') ?></span>
+                </a>
                 <span class="text-slate-600">|</span>
                 <div class="flex items-center space-x-1 font-semibold text-xs">
                     <a href="<?= base_url('lang/id') ?>" 
@@ -132,9 +134,6 @@
                         </a>
                         <a href="<?= base_url('publikasi#policy-brief') ?>" class="group flex items-center px-4 py-2.5 hover:bg-maritime-50 hover:text-maritime-600 transition-colors">
                             <i class="fa-solid fa-file-shield w-5 text-slate-400 mr-1 transition-transform duration-200 group-hover:translate-x-1 group-hover:text-maritime-600"></i> <?= lang('App.nav_policy_brief') ?>
-                        </a>
-                        <a href="<?= base_url('publikasi') ?>" class="group flex items-center px-4 py-2.5 hover:bg-maritime-50 hover:text-maritime-600 transition-colors border-t border-slate-100">
-                            <i class="fa-solid fa-book w-5 text-slate-400 mr-1 transition-transform duration-200 group-hover:translate-x-1 group-hover:text-maritime-600"></i> <?= lang('App.nav_books') ?>
                         </a>
                     </div>
                 </li>

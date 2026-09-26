@@ -461,10 +461,21 @@
 
 <!-- Capaian & Statistik Angka -->
 <?php if (!empty($stats)): ?>
+<?php
+    $statCount = count($stats);
+    $statGridClass = 'grid grid-cols-2 lg:grid-cols-4 gap-8 text-center';
+    if ($statCount === 3) {
+        $statGridClass = 'grid grid-cols-1 sm:grid-cols-3 gap-8 text-center max-w-5xl mx-auto';
+    } elseif ($statCount === 2) {
+        $statGridClass = 'grid grid-cols-1 sm:grid-cols-2 gap-8 text-center max-w-3xl mx-auto';
+    } elseif ($statCount === 1) {
+        $statGridClass = 'grid grid-cols-1 gap-8 text-center max-w-md mx-auto';
+    }
+?>
 <section class="py-14 bg-navy-900 text-white relative overflow-hidden">
     <div class="absolute inset-0 opacity-10 bg-pattern"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+        <div class="<?= $statGridClass ?>">
             <?php foreach ($stats as $item): ?>
             <div class="space-y-2">
                 <div class="w-12 h-12 mx-auto rounded-full bg-navy-800 border border-navy-700 flex items-center justify-center text-gold-400 text-xl mb-3 shadow-inner">

@@ -184,13 +184,13 @@
                         <span class="text-[10px] font-mono font-bold text-slate-400 tracking-wider block">
                             <?= esc($doc['code']) ?> • <?= esc($doc['year']) ?>
                         </span>
-                        <h3 class="text-sm font-bold text-navy-950 group-hover:text-maritime-600 transition-colors leading-snug">
+                        <h3 class="text-sm font-bold text-navy-950 group-hover:text-maritime-600 transition-colors leading-snug line-clamp-2 min-h-[2.5rem]" title="<?= esc($doc['title']) ?>">
                             <?= esc($doc['title']) ?>
                         </h3>
                     </div>
 
                     <!-- Description -->
-                    <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">
+                    <p class="text-xs text-slate-600 line-clamp-3 min-h-[3.75rem] leading-relaxed">
                         <?= esc($doc['desc']) ?>
                     </p>
                 </div>

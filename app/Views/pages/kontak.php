@@ -81,13 +81,22 @@
                             </div>
                         </div>
 
-                        <div class="flex items-center gap-3">
-                            <div class="w-9 h-9 rounded-lg bg-navy-900 text-gold-400 flex items-center justify-center flex-shrink-0 text-sm">
+                        <div class="flex items-start gap-3">
+                            <div class="w-9 h-9 rounded-lg bg-navy-900 text-gold-400 flex items-center justify-center flex-shrink-0 text-sm mt-0.5">
                                 <i class="fa-solid fa-phone"></i>
                             </div>
-                            <div>
-                                <strong class="text-navy-900 block"><?= $isEn ? 'Phone / Contact Persons:' : 'Telepon / Narahubung:' ?></strong>
-                                <span><?= esc($contactPhone) ?></span>
+                            <div class="space-y-1.5 flex-1">
+                                <strong class="text-navy-900 block"><?= $isEn ? 'Phone & Fast Response:' : 'Telepon & Layanan Cepat:' ?></strong>
+                                <div class="text-xs text-slate-700"><?= esc($contactPhone) ?></div>
+                                <div class="pt-1">
+                                    <a href="https://wa.me/6281270008991?text=<?= urlencode($isEn ? 'Hello Secretariat of NNSRC UMRAH, I would like to inquire about research collaboration.' : 'Halo Sekretariat Pusat Studi Laut Natuna Utara UMRAH, saya ingin berdiskusi mengenai inisiasi riset/layanan.') ?>"
+                                       target="_blank" 
+                                       rel="noopener noreferrer"
+                                       class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold shadow-xs transition-all active:scale-[0.98]">
+                                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                                        <span><?= $isEn ? 'Chat on WhatsApp' : 'Chat via WhatsApp' ?></span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
 

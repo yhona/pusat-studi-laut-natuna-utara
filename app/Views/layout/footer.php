@@ -111,14 +111,14 @@ $liUrl = !empty($siteSettings['linkedin_url']) ? $siteSettings['linkedin_url'] :
         <!-- Bottom Copyright & Disclaimer -->
         <div class="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
             <p>© <?= date('Y') ?> <?= lang('App.dept_name') ?> - <?= lang('App.inst_name') ?>. <?= lang('App.footer_rights') ?></p>
-            <div class="flex items-center gap-4">
-                <a href="<?= base_url('kontak') ?>" class="hover:text-slate-300 transition-colors"><?= lang('App.btn_contact_us') ?></a>
-                <span>•</span>
-                <a href="<?= base_url('kontak') ?>" class="hover:text-slate-300 transition-colors"><?= lang('App.footer_privacy') ?></a>
-                <span>•</span>
-                <a href="<?= base_url('kontak') ?>" class="hover:text-slate-300 transition-colors"><?= lang('App.footer_a11y') ?></a>
-                <span>•</span>
-                <a href="<?= base_url('admin/login') ?>" class="text-slate-600 hover:text-gold-400 transition-colors flex items-center gap-1" title="Login Admin Portal">
+            <div class="flex flex-wrap items-center justify-center md:justify-end gap-3.5 sm:gap-4 text-xs">
+                <a href="<?= base_url('kontak') ?>" class="hover:text-gold-400 transition-colors"><?= lang('App.btn_contact_us') ?></a>
+                <span class="text-slate-700">•</span>
+                <a href="<?= base_url('unduhan') ?>" class="hover:text-gold-400 transition-colors"><?= lang('App.nav_downloads') ?></a>
+                <span class="text-slate-700">•</span>
+                <a href="<?= base_url('layanan') ?>" class="hover:text-gold-400 transition-colors"><?= lang('App.nav_services') ?></a>
+                <span class="text-slate-700">•</span>
+                <a href="<?= base_url('admin/login') ?>" class="text-slate-500 hover:text-gold-400 transition-colors flex items-center gap-1 font-mono text-[11px]" title="Login Admin Portal">
                     <i class="fa-solid fa-lock text-[10px]"></i> <span>Admin</span>
                 </a>
             </div>
