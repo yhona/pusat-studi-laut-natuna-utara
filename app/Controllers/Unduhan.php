@@ -63,12 +63,13 @@ class Unduhan extends BaseController
 
         // Calculate statistics
         $stats = [
-            'total'       => count($documents),
-            'sop'         => count(array_filter($documents, static fn($d) => $d['category_id'] === 'sop')),
-            'policy'      => count(array_filter($documents, static fn($d) => $d['category_id'] === 'policy-brief')),
-            'template'    => count(array_filter($documents, static fn($d) => $d['category_id'] === 'template')),
-            'panduan'     => count(array_filter($documents, static fn($d) => $d['category_id'] === 'panduan')),
-            'total_dl'    => array_sum(array_column($documents, 'downloads')),
+            'total'            => count($documents),
+            'sop'              => count(array_filter($documents, static fn($d) => $d['category_id'] === 'sop')),
+            'policy'           => count(array_filter($documents, static fn($d) => $d['category_id'] === 'policy-brief')),
+            'template'         => count(array_filter($documents, static fn($d) => $d['category_id'] === 'template')),
+            'panduan'          => count(array_filter($documents, static fn($d) => $d['category_id'] === 'panduan')),
+            'template_panduan' => count(array_filter($documents, static fn($d) => in_array($d['category_id'], ['template', 'panduan'], true))),
+            'total_dl'         => array_sum(array_column($documents, 'downloads')),
         ];
 
         $data = [

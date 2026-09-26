@@ -4,30 +4,21 @@
 
 <div class="space-y-8">
     
-    <!-- Welcome Banner & Cron Action Header -->
+    <!-- Welcome Banner Header -->
     <div class="bg-gradient-to-r from-navy-950 via-navy-900 to-maritime-900 rounded-3xl p-6 sm:p-8 text-white shadow-lg border border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-6 relative overflow-hidden">
-        <div class="space-y-2 relative z-10 max-w-xl">
+        <div class="space-y-2 relative z-10 max-w-2xl">
             <span class="text-gold-400 uppercase text-[10px] font-bold tracking-widest block">Dashboard Kendali Konten</span>
             <h2 class="text-xl sm:text-2xl font-extrabold text-white">Selamat Datang, <?= esc(session('admin_name') ?? 'Admin') ?></h2>
             <p class="text-xs text-slate-300 leading-relaxed">
-                Kelola seluruh konten, publikasi kebijakan, berkas repositori unduhan, serta tinjau permohonan akses dari para peneliti dan pemangku kebijakan.
+                Kelola seluruh konten, publikasi riset, berkas repositori unduhan, serta tinjau pesan kerjasama dari para mitra dan sivitas akademika.
             </p>
         </div>
 
-        <div class="relative z-10 bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/15 space-y-3 shrink-0">
-            <div class="flex items-center justify-between gap-4 text-xs">
-                <span class="text-slate-300"><i class="fa-solid fa-clock-rotate-left text-gold-400 mr-1.5"></i> Cron 15 Menit:</span>
-                <span class="font-mono text-white font-bold"><?= $cronStatus ? esc($cronStatus['last_run_human']) : 'Belum pernah' ?></span>
-            </div>
-
-            <form action="<?= base_url('admin/cron/run') ?>" method="POST">
-                <?= csrf_field() ?>
-                <button type="submit" 
-                        class="w-full inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-950 font-bold text-xs shadow-md transition-all active:scale-[0.98] cursor-pointer">
-                    <i class="fa-solid fa-arrows-rotate"></i>
-                    <span>Jalankan Cron (15m) Sekarang</span>
-                </button>
-            </form>
+        <div class="relative z-10 flex items-center gap-3 shrink-0">
+            <a href="<?= base_url() ?>" target="_blank" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs border border-white/20 shadow-sm transition-all active:scale-[0.98]">
+                <i class="fa-solid fa-arrow-up-right-from-square text-gold-400"></i>
+                <span>Lihat Situs Publik</span>
+            </a>
         </div>
     </div>
 
@@ -130,17 +121,6 @@
             </div>
         </div>
 
-        <!-- Total Mitra Kerjasama -->
-        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex items-center gap-3.5">
-            <div class="w-11 h-11 rounded-xl bg-orange-50 text-orange-700 flex items-center justify-center text-lg shrink-0">
-                <i class="fa-solid fa-handshake-simple"></i>
-            </div>
-            <div>
-                <span class="text-[11px] text-slate-500 font-semibold block">Mitra Riset</span>
-                <span class="text-xl font-extrabold text-navy-950"><?= esc($stats['total_mitra'] ?? '0') ?></span>
-                <a href="<?= base_url('admin/mitra') ?>" class="text-[11px] text-maritime-700 hover:underline block font-medium mt-0.5">Kelola &rarr;</a>
-            </div>
-        </div>
 
         <!-- Total Galeri Riset -->
         <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex items-center gap-3.5">

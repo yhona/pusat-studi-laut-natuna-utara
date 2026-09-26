@@ -13,9 +13,7 @@
                 <a href="<?= base_url('unduhan') ?>" class="pl-4 hover:text-gold-400 transition-colors hidden md:inline-block">
                     <i class="fa-solid fa-book-bookmark text-maritime-500"></i> <?= lang('App.topbar_repository') ?>
                 </a>
-                <a href="https://mail.umrah.ac.id" target="_blank" rel="noopener noreferrer" class="pl-4 hover:text-gold-400 transition-colors hidden lg:inline-block">
-                    <i class="fa-solid fa-envelope text-maritime-500"></i> <?= lang('App.topbar_webmail') ?>
-                </a>
+
             </div>
                 <a href="<?= base_url('publikasi#jurnal') ?>" class="text-slate-400 hover:text-gold-400 transition-colors hidden sm:inline-flex items-center gap-1 group cursor-pointer" title="<?= $currentLocale === 'en' ? 'Explore UMRAH accredited scientific journals' : 'Kunjungi publikasi jurnal ilmiah terakreditasi UMRAH' ?>">
                     <i class="fa-regular fa-calendar-check text-gold-400 group-hover:scale-110 transition-transform"></i>
