@@ -114,12 +114,12 @@ class Home extends BaseController
                     'image' => base_url('images/batimetri_survey.jpg')
                 ],
                 [
-                    'badge' => 'International Conference',
-                    'title' => 'The 4th International Conference on South China Sea Dynamics, Malacca Strait & Archipelago Security',
-                    'desc'  => 'Inviting oceanography researchers, world law of the sea experts, and maritime policymakers to discuss regional water stability.',
-                    'link'  => base_url('berita'),
-                    'tag'   => 'Global Conference',
-                    'image' => base_url('images/mangrove_research.jpg')
+                    'badge' => 'International Research Grant',
+                    'title' => 'UMRAH & UNS International Research Collaboration Funded by Pulitzer Center Washington DC',
+                    'desc'  => 'Investigating legal loopholes in beneficial ownership oversight of illegal fishing practices in Natuna waters to strengthen Indonesia\'s maritime sovereignty.',
+                    'link'  => base_url('berita/didukung-pendanaan-dari-pulitzer-center-umrah-dan-uns-kolaborasi-riset-internasional'),
+                    'tag'   => 'Pulitzer Center Grant',
+                    'image' => base_url('images/berita/pulitzer_center_umrah_uns.jpg')
                 ],
             ] : [
                 [
@@ -139,12 +139,12 @@ class Home extends BaseController
                     'image' => base_url('images/batimetri_survey.jpg')
                 ],
                 [
-                    'badge' => 'Konferensi Internasional',
-                    'title' => 'The 4th International Conference on South China Sea Dynamics, Malacca Strait & Archipelago Security',
-                    'desc'  => 'Mengundang periset oseanografi, pakar hukum laut dunia, dan pembuat kebijakan maritim mendiskusikan stabilitas perairan kawasan.',
-                    'link'  => base_url('berita'),
-                    'tag'   => 'Konferensi Global',
-                    'image' => base_url('images/mangrove_research.jpg')
+                    'badge' => 'Hibah Riset Internasional',
+                    'title' => 'Kolaborasi Riset Internasional UMRAH & UNS Didanai Pulitzer Center Washington DC',
+                    'desc'  => 'Mengkaji celah hukum pengawasan beneficial ownership pada praktik illegal fishing di perairan Natuna guna memperkuat kedaulatan maritim Indonesia.',
+                    'link'  => base_url('berita/didukung-pendanaan-dari-pulitzer-center-umrah-dan-uns-kolaborasi-riset-internasional'),
+                    'tag'   => 'Pulitzer Center Grant',
+                    'image' => base_url('images/berita/pulitzer_center_umrah_uns.jpg')
                 ],
             ];
         }
