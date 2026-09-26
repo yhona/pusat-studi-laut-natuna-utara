@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= esc($title ?? 'Login Administrator - Pusat Studi Laut Natuna Utara UMRAH') ?></title>
     
     <!-- Favicon -->
@@ -63,8 +63,10 @@
         </a>
     </header>
 
-    <!-- Main Content: Perfectly Centered Professional Card -->
-    <main class="w-full max-w-md mx-auto my-auto py-6" x-data="{ showPass: false, submitting: false }">
+    <!-- Main Content: Centered Professional Card with Dev Auto-Login Mode -->
+    <main class="w-full max-w-md mx-auto my-auto py-6"
+          x-data="loginPageData(<?= !empty($isDev) ? 'true' : 'false' ?>, <?= !empty($justLoggedOut) ? 'true' : 'false' ?>)"
+          x-init="init()">
         
         <!-- Login Card -->
         <div class="login-card rounded-3xl p-7 sm:p-9 space-y-6">
@@ -79,6 +81,64 @@
                     <p class="text-xs text-slate-500 mt-1">Masuk dengan kredensial terdaftar untuk mengelola konten</p>
                 </div>
             </div>
+
+            <!-- Development Auto-Login Mode Banner -->
+            <?php if (!empty($isDev)): ?>
+            <div class="p-4 rounded-2xl bg-gradient-to-br from-amber-500/10 via-amber-500/5 to-transparent border-2 border-amber-500/40 text-slate-800 space-y-3 shadow-xs transition-all"
+                 :class="{ 'ring-2 ring-amber-400/50 shadow-md': countdown > 0 && !autoLoggingIn }">
+                
+                <div class="flex items-center justify-between">
+                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500 text-navy-950 font-black text-[10px] uppercase tracking-wider shadow-xs">
+                        <i class="fa-solid fa-bolt"></i> Mode Dev Aktif
+                    </span>
+                    <span class="text-[10px] font-mono font-bold text-amber-700 bg-amber-100/90 px-2 py-0.5 rounded-md border border-amber-300">
+                        Auto-Login Ready
+                    </span>
+                </div>
+
+                <!-- Dynamic Status Message / Countdown -->
+                <div class="space-y-1">
+                    <template x-if="countdown > 0 && !autoLoggingIn">
+                        <div class="flex items-center justify-between bg-white/80 p-2.5 rounded-xl border border-amber-200">
+                            <span class="text-xs text-amber-950 font-medium flex items-center gap-2">
+                                <i class="fa-solid fa-clock-rotate-left text-amber-600 animate-spin"></i>
+                                <span>Masuk otomatis dalam <strong class="text-sm font-black text-amber-700 font-mono" x-text="countdown">3</strong>s</span>
+                            </span>
+                            <button type="button" @click="cancelAuto()" 
+                                    class="text-[11px] font-bold text-slate-600 hover:text-rose-600 underline cursor-pointer">
+                                Batalkan
+                            </button>
+                        </div>
+                    </template>
+                    <template x-if="autoLoggingIn">
+                        <div class="flex items-center gap-2 text-xs text-emerald-800 font-bold bg-emerald-50 p-2.5 rounded-xl border border-emerald-200">
+                            <i class="fa-solid fa-circle-notch fa-spin text-emerald-600 text-sm"></i>
+                            <span>Menghubungkan sesi administrator...</span>
+                        </div>
+                    </template>
+                    <template x-if="countdown === 0 && !autoLoggingIn">
+                        <p class="text-xs text-slate-600 font-medium">
+                            Klik tombol di bawah untuk masuk instan tanpa perlu mengetik sandi:
+                        </p>
+                    </template>
+                </div>
+
+                <!-- One-Click Action Buttons -->
+                <div class="flex items-center gap-2 pt-0.5">
+                    <a href="<?= base_url('admin/dev-login') ?>" @click="autoLoggingIn = true"
+                       class="flex-1 py-2.5 px-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-navy-950 font-bold text-xs shadow-xs text-center transition-all flex items-center justify-center gap-1.5 active:scale-[0.98]">
+                        <i class="fa-solid fa-bolt"></i>
+                        <span>Masuk Otomatis Sekarang</span>
+                    </a>
+                    <button type="button" @click="fillDefaultCredentials()"
+                            class="py-2.5 px-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 font-semibold text-xs transition-colors shrink-0 shadow-xs"
+                            title="Isi formulir dengan kredensial default">
+                        <i class="fa-solid fa-wand-magic-sparkles text-amber-500 mr-1"></i>
+                        <span>Isi Form</span>
+                    </button>
+                </div>
+            </div>
+            <?php endif; ?>
 
             <!-- Flash Error Message -->
             <?php if (!empty($error)): ?>
@@ -98,7 +158,7 @@
 
             <!-- Login Form -->
             <form action="<?= base_url('admin/login-action') ?>" method="POST" 
-                  @submit="submitting = true" class="space-y-4">
+                  @submit="cancelAuto(); submitting = true" class="space-y-4">
                 <?= csrf_field() ?>
 
                 <!-- Username or Email -->
@@ -123,10 +183,6 @@
                         <label for="password" class="block text-xs font-bold text-slate-700">
                             Kata Sandi <span class="text-rose-500">*</span>
                         </label>
-                        <button type="button" @click="showPass = !showPass" tabindex="-1"
-                                class="text-[11px] font-semibold text-maritime-600 hover:text-maritime-800 transition-colors cursor-pointer">
-                            <span x-text="showPass ? 'Sembunyikan' : 'Lihat Sandi'"></span>
-                        </button>
                     </div>
                     <div class="relative flex items-center rounded-xl border border-slate-300 bg-slate-50/50 input-glow transition-all">
                         <span class="pl-3.5 text-slate-400 text-sm">
@@ -136,8 +192,10 @@
                                placeholder="••••••••••••"
                                autocomplete="current-password"
                                class="w-full px-3 py-3 text-xs sm:text-sm bg-transparent border-0 focus:outline-none text-slate-900 font-medium font-mono">
-                        <button type="button" @click="showPass = !showPass" tabindex="-1"
-                                class="pr-3.5 text-slate-400 hover:text-slate-600 text-xs">
+                        <button type="button" @click="showPass = !showPass"
+                                class="px-3 text-slate-400 hover:text-slate-600 text-xs cursor-pointer focus:outline-none focus:text-maritime-700"
+                                :title="showPass ? 'Sembunyikan Kata Sandi' : 'Tampilkan Kata Sandi'"
+                                aria-label="Tampilkan atau sembunyikan kata sandi">
                             <i class="fa-solid" :class="showPass ? 'fa-eye-slash' : 'fa-eye'"></i>
                         </button>
                     </div>
@@ -183,6 +241,56 @@
     <footer class="w-full max-w-5xl mx-auto py-3 text-center text-[11px] text-slate-400">
         &copy; <?= date('Y') ?> Pusat Studi Laut Natuna Utara &bull; Universitas Maritim Raja Ali Haji (UMRAH)
     </footer>
+
+    <!-- Alpine Data Logic -->
+    <script>
+    function loginPageData(isDev, justLoggedOut) {
+        return {
+            showPass: false,
+            submitting: false,
+            isDev: isDev,
+            countdown: (isDev && !justLoggedOut) ? 3 : 0,
+            autoLoggingIn: false,
+            timer: null,
+            init() {
+                if (this.isDev && !justLoggedOut && this.countdown > 0) {
+                    this.startCountdown();
+                }
+            },
+            startCountdown() {
+                this.timer = setInterval(() => {
+                    if (this.countdown > 1) {
+                        this.countdown--;
+                    } else {
+                        this.stopCountdown();
+                        this.triggerDevLogin();
+                    }
+                }, 1000);
+            },
+            stopCountdown() {
+                if (this.timer) {
+                    clearInterval(this.timer);
+                    this.timer = null;
+                }
+            },
+            cancelAuto() {
+                this.stopCountdown();
+                this.countdown = 0;
+            },
+            triggerDevLogin() {
+                this.autoLoggingIn = true;
+                window.location.href = '<?= base_url('admin/dev-login') ?>';
+            },
+            fillDefaultCredentials() {
+                this.cancelAuto();
+                const u = document.getElementById('username');
+                const p = document.getElementById('password');
+                if (u) u.value = 'admin_nnsrc';
+                if (p) p.value = 'AdminNatuna2026!';
+            }
+        };
+    }
+    </script>
 
 </body>
 </html>

@@ -7,6 +7,7 @@
     "test": "tests"
   },
   "scripts": {
+    "dev": "concurrently -n \"SERVER,TAILWIND\" -c \"blue,green\" \"php spark serve --port=8080\" \"bun run watch:css\"",
     "build:css": "npx tailwindcss -i ./src/input.css -o ./public/css/style.css --minify",
     "watch:css": "npx tailwindcss -i ./src/input.css -o ./public/css/style.css --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "concurrently": "^10.0.5",
     "playwright": "^1.63.0",
     "tailwindcss": "^3.4.19"
   }

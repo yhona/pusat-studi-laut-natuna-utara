@@ -12,6 +12,11 @@ class AdminAuthFilter implements FilterInterface
     {
         $session = session();
         if (! $session->get('admin_logged_in')) {
+            $intended = current_url();
+            if (! str_contains($intended, 'admin/login') && ! str_contains($intended, 'admin/logout') && ! str_contains($intended, 'admin/dev-login')) {
+                $session->set('redirect_url', $intended);
+            }
+
             return redirect()->to(base_url('admin/login'))
                 ->with('error', 'Silakan masuk terlebih dahulu untuk mengakses dashboard admin.');
         }
