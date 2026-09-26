@@ -50,6 +50,7 @@
 
     <!-- Favicon Logo Resmi UMRAH -->
     <link rel="shortcut icon" type="image/png" href="<?= base_url('images/logo_umrah.png') ?>">
+    <link rel="apple-touch-icon" href="<?= base_url('images/logo_umrah.png') ?>">
 
     <!-- Google Fonts: Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

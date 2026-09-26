@@ -9,7 +9,9 @@
     <div class="absolute inset-0 opacity-10 bg-pattern"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <nav class="flex items-center space-x-2 text-xs text-gold-400 mb-2 font-medium">
-            <a href="<?= base_url() ?>" class="hover:underline"><?= lang('App.nav_home') ?></a>
+            <a href="<?= base_url() ?>" class="hover:underline flex items-center gap-1">
+                <i class="fa-solid fa-house text-[10px]"></i> <?= lang('App.nav_home') ?>
+            </a>
             <span>/</span>
             <span class="text-slate-300"><?= lang('App.nav_services') ?></span>
         </nav>
@@ -94,7 +96,7 @@
                                 class="inline-flex items-center gap-1.5 text-xs font-bold text-navy-900 hover:text-maritime-600 transition-colors py-1.5 px-2.5 rounded-lg hover:bg-slate-100 active:scale-[0.98] border border-slate-200">
                             <i class="fa-solid fa-list-check text-gold-500"></i> <?= $isEn ? 'View Technical Specifications' : 'Lihat Spesifikasi Teknis' ?>
                         </button>
-                        <a href="<?= base_url('kontak?layanan=' . $service['id']) ?>" class="inline-flex items-center gap-1.5 text-xs font-bold text-maritime-600 hover:text-navy-950 transition-colors">
+                        <a href="<?= base_url('kontak?layanan=' . $service['id'] . '#kerjasama') ?>" class="group inline-flex items-center gap-1.5 text-xs font-bold text-maritime-600 hover:text-navy-950 transition-colors">
                             <?= $isEn ? 'Contact Team' : 'Hubungi Tim' ?> <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
                         </a>
                     </div>

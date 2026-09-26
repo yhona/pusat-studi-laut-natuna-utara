@@ -8,7 +8,9 @@
     <div class="absolute inset-0 opacity-10 bg-pattern"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <nav class="flex items-center space-x-2 text-xs text-gold-400 mb-2 font-medium">
-            <a href="<?= base_url() ?>" class="hover:underline"><?= lang('App.nav_home') ?></a>
+            <a href="<?= base_url() ?>" class="hover:underline flex items-center gap-1">
+                <i class="fa-solid fa-house text-[10px]"></i> <?= lang('App.nav_home') ?>
+            </a>
             <span>/</span>
             <span class="text-slate-300"><?= lang('App.nav_publications') ?></span>
         </nav>

@@ -6,7 +6,7 @@ const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
 
-const BASE_URL = process.env.APP_URL || 'http://127.0.0.1:8080';
+const BASE_URL = process.env.APP_URL || 'http://localhost:8080';
 const LOG_FILE = path.join(__dirname, 'writable', 'logs', 'playwright_checks.log');
 
 async function runHealthCheck() {

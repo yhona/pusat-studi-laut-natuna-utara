@@ -92,7 +92,7 @@
             <span class="bg-navy-950 text-gold-400 text-[10px] uppercase font-bold px-2 py-0.5 rounded tracking-wider flex-shrink-0"><?= lang('App.announcement_badge') ?></span>
             <span class="truncate"><?= lang('App.announcement_text') ?></span>
         </div>
-        <a href="<?= base_url('publikasi#policy-brief') ?>" class="flex-shrink-0 underline hover:text-navy-800 font-bold whitespace-nowrap"><?= lang('App.announcement_link') ?> <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-0.5"></i></a>
+        <a href="<?= base_url('publikasi#policy-brief') ?>" class="flex-shrink-0 underline hover:text-navy-800 font-bold whitespace-nowrap"><?= lang('App.announcement_link') ?> <i class="fa-solid fa-arrow-right text-[10px] ml-0.5"></i></a>
     </div>
 </div>
 

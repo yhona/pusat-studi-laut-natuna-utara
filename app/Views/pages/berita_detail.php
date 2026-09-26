@@ -192,7 +192,7 @@
                     <span class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
                         <i class="fa-solid fa-share-nodes text-maritime-600"></i> <?= $isEn ? 'Share This Article:' : 'Bagikan Artikel Ini:' ?>
                     </span>
-                    <div class="flex items-center gap-2">
+                    <div class="flex flex-wrap items-center gap-2">
                         <!-- WhatsApp -->
                         <a href="https://api.whatsapp.com/send?text=<?= urlencode($article['title'] . ' ' . current_url()) ?>" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center text-sm shadow transition-colors" title="<?= $isEn ? 'Share via WhatsApp' : 'Bagikan via WhatsApp' ?>">
                             <i class="fa-brands fa-whatsapp"></i>
@@ -215,6 +215,11 @@
                                 <?= $isEn ? 'URL copied to clipboard!' : 'URL disalin ke clipboard!' ?>
                             </span>
                         </div>
+                        <!-- Print Article Button -->
+                        <button onclick="window.print()" type="button" class="px-3 h-9 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold flex items-center gap-1.5 border border-slate-200 shadow-sm transition-colors" title="<?= $isEn ? 'Print Article' : 'Cetak Artikel' ?>" aria-label="<?= $isEn ? 'Print Article' : 'Cetak Artikel' ?>">
+                            <i class="fa-solid fa-print text-slate-500"></i>
+                            <span><?= $isEn ? 'Print' : 'Cetak' ?></span>
+                        </button>
                     </div>
                 </div>
 
@@ -343,5 +348,23 @@
 
     </div>
 </div>
+
+<style>
+@media print {
+    header, footer, aside, nav, .not-prose, button, [x-data*="copied"] {
+        display: none !important;
+    }
+    body, main, article {
+        background: #fff !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        border: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
+</style>
 
 <?= $this->endSection() ?>

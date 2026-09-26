@@ -11,7 +11,9 @@
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
                 <nav class="flex items-center space-x-2 text-xs text-gold-400 mb-2 font-medium">
-                    <a href="<?= base_url() ?>" class="hover:underline"><?= lang('App.nav_home') ?></a>
+                    <a href="<?= base_url() ?>" class="hover:underline flex items-center gap-1">
+                        <i class="fa-solid fa-house text-[10px]"></i> <?= lang('App.nav_home') ?>
+                    </a>
                     <span>/</span>
                     <span class="text-slate-300"><?= lang('App.nav_about') ?></span>
                 </nav>

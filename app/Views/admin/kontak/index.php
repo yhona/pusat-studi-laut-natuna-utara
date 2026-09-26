@@ -46,7 +46,21 @@
                                 <span><i class="fa-regular fa-envelope"></i> <?= esc($m['email']) ?></span>
                                 <?php if (!empty($m['telepon'])): ?>
                                 <span>&bull;</span>
-                                <span><i class="fa-solid fa-phone"></i> <?= esc($m['telepon']) ?></span>
+                                <?php
+                                    $rawPhone = (string) $m['telepon'];
+                                    $cleanPhone = preg_replace('/\D+/', '', $rawPhone);
+                                    if (str_starts_with($cleanPhone, '0')) {
+                                        $cleanPhone = '62' . substr($cleanPhone, 1);
+                                    }
+                                ?>
+                                <?php if (!empty($cleanPhone)): ?>
+                                <a href="https://wa.me/<?= $cleanPhone ?>" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-emerald-600 hover:text-emerald-700 hover:underline font-medium" title="Hubungi via WhatsApp (<?= esc($cleanPhone) ?>)">
+                                    <i class="fa-brands fa-whatsapp text-emerald-600"></i>
+                                    <span><?= esc($rawPhone) ?></span>
+                                </a>
+                                <?php else: ?>
+                                <span><i class="fa-solid fa-phone"></i> <?= esc($rawPhone) ?></span>
+                                <?php endif; ?>
                                 <?php endif; ?>
                             </div>
                         </td>

@@ -171,7 +171,7 @@
             </div>
 
             <!-- Col 2: Consultation & Collaboration Form -->
-            <div class="lg:col-span-7" id="kerjasama">
+            <div class="lg:col-span-7 scroll-mt-28" id="kerjasama">
                 <div class="bg-white rounded-2xl p-7 sm:p-9 border border-slate-200 shadow-sm space-y-6">
                     <div>
                         <span class="text-gold-600 uppercase text-xs font-bold tracking-wider block"><?= $isEn ? 'Integrated Portal' : 'Formulir Terpadu' ?></span>
