@@ -26,6 +26,7 @@ class Dashboard extends BaseController
         $galeriModel     = new \App\Models\GaleriRisetModel();
         $roadmapModel    = new \App\Models\RoadmapRisetModel();
         $statistikModel  = new \App\Models\CapaianStatistikModel();
+        $jurnalModel     = new \App\Models\JurnalIlmiahModel();
         $userModel       = new \App\Models\AdminUserModel();
         $logModel        = new \App\Models\AdminActivityLogModel();
 
@@ -34,6 +35,7 @@ class Dashboard extends BaseController
             'total_klaster'    => $klasterModel->countAllResults(),
             'total_peneliti'   => $penelitiModel->countAllResults(),
             'total_publikasi'  => $publikasiModel->countAllResults(),
+            'total_jurnal'     => $jurnalModel->countAllResults(),
             'total_layanan'    => $layananModel->countAllResults(),
             'total_unduhan'    => $unduhanModel->countAllResults(),
             'total_permohonan' => $permohonanModel->countAllResults(),
