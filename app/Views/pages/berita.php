@@ -46,9 +46,9 @@
                 <?php endforeach; ?>
             </div>
             <div class="relative w-full sm:w-64">
-                <input x-model="search" type="text" id="search-berita" name="search-berita" aria-label="<?= $isEn ? 'Search news or research agenda' : 'Cari berita atau agenda riset' ?>" placeholder="<?= $isEn ? 'Search news or agenda...' : 'Cari berita/agenda...' ?>" class="w-full pl-9 pr-8 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:border-maritime-500">
+                <input x-ref="searchInput" x-model="search" @keydown.escape="search = ''" type="text" id="search-berita" name="search-berita" aria-label="<?= $isEn ? 'Search news or research agenda' : 'Cari berita atau agenda riset' ?>" placeholder="<?= $isEn ? 'Search news or agenda...' : 'Cari berita/agenda...' ?>" class="w-full pl-9 pr-9 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:border-maritime-500">
                 <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-xs"></i>
-                <button x-show="search.length > 0" x-cloak @click="search = ''" class="absolute right-2.5 top-2 text-slate-400 hover:text-slate-600 text-xs cursor-pointer" title="<?= $isEn ? 'Clear search' : 'Hapus pencarian' ?>">
+                <button type="button" x-show="search.length > 0" x-cloak @click="search = ''; $refs.searchInput.focus()" class="absolute right-2.5 top-2 text-slate-400 hover:text-slate-600 text-xs cursor-pointer" aria-label="<?= $isEn ? 'Clear search' : 'Hapus pencarian' ?>" title="<?= $isEn ? 'Clear search' : 'Hapus pencarian' ?>">
                     <i class="fa-solid fa-circle-xmark"></i>
                 </button>
             </div>

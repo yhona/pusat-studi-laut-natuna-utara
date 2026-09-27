@@ -4,13 +4,18 @@
 
 <div class="space-y-6 max-w-4xl">
     <!-- Header -->
-    <div class="flex items-center justify-between">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
+            <nav class="flex items-center gap-2 text-xs text-slate-500 mb-1" aria-label="Breadcrumb">
+                <a href="<?= base_url('admin/roadmap') ?>" class="hover:text-gold-600 transition-colors font-medium">Roadmap Riset</a>
+                <span>/</span>
+                <span class="text-slate-700 font-semibold">Tambah Agenda Roadmap Baru</span>
+            </nav>
             <h2 class="text-xl font-extrabold text-navy-950">Tambah Fase Roadmap Riset</h2>
             <p class="text-xs text-slate-500 mt-1">Tambahkan periode atau tahapan baru ke peta jalan riset maritim.</p>
         </div>
         <a href="<?= base_url('admin/roadmap') ?>" 
-           class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors">
+           class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors shrink-0">
             <i class="fa-solid fa-arrow-left"></i>
             <span>Kembali ke Daftar</span>
         </a>

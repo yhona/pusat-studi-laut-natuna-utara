@@ -4,13 +4,18 @@
 
 <div class="space-y-6 max-w-4xl">
     <!-- Header -->
-    <div class="flex items-center justify-between">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
+            <nav class="flex items-center gap-2 text-xs text-slate-500 mb-1" aria-label="Breadcrumb">
+                <a href="<?= base_url('admin/jurnal') ?>" class="hover:text-gold-600 transition-colors font-medium">Jurnal Ilmiah</a>
+                <span>/</span>
+                <span class="text-slate-700 font-semibold">Sunting Jurnal</span>
+            </nav>
             <h2 class="text-xl font-extrabold text-navy-950">Edit Jurnal Ilmiah</h2>
             <p class="text-xs text-slate-500 mt-1">Perbarui status akreditasi, nomor ISSN, tautan OJS, atau cakupan fokus keilmuan.</p>
         </div>
         <a href="<?= base_url('admin/jurnal') ?>" 
-           class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors">
+           class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors shrink-0">
             <i class="fa-solid fa-arrow-left"></i>
             <span>Kembali ke Daftar</span>
         </a>
@@ -136,6 +141,7 @@
                     </label>
                     <input type="file" name="cover_image" accept="image/jpeg,image/png,image/webp"
                            class="w-full text-xs rounded-xl border border-slate-300 p-2 bg-slate-50">
+                    <p class="text-xs text-slate-500 mt-1">Format sampul: JPG, JPEG, PNG, atau WEBP. Maksimal 4MB (disarankan rasio vertikal 3:4 sampul resmi OJS).</p>
                     <?php if (! empty($journal['cover_image'])): ?>
                         <div class="flex items-center gap-3 mt-2.5 p-2 bg-slate-50 rounded-xl border border-slate-200">
                             <img src="<?= base_url($journal['cover_image']) ?>" alt="Cover" class="w-12 h-16 object-cover rounded shadow-xs">

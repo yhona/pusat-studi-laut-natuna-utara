@@ -4,13 +4,18 @@
 
 <div class="space-y-6 max-w-4xl">
     <!-- Header -->
-    <div class="flex items-center justify-between">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
+            <nav class="flex items-center gap-2 text-xs text-slate-500 mb-1" aria-label="Breadcrumb">
+                <a href="<?= base_url('admin/banners') ?>" class="hover:text-gold-600 transition-colors font-medium">Banner & Hero</a>
+                <span>/</span>
+                <span class="text-slate-700 font-semibold">Sunting Banner</span>
+            </nav>
             <h2 class="text-xl font-extrabold text-navy-950">Sunting Banner Slider</h2>
             <p class="text-xs text-slate-500 mt-1">Perbarui teks, gambar, atau tautan slide beranda.</p>
         </div>
         <a href="<?= base_url('admin/banners') ?>" 
-           class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors">
+           class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors shrink-0">
             <i class="fa-solid fa-arrow-left"></i>
             <span>Kembali ke Daftar</span>
         </a>
@@ -126,6 +131,7 @@
                     <div>
                         <label class="block text-[11px] font-semibold text-slate-600 mb-1">Atau Unggah Berkas Pengganti</label>
                         <input type="file" name="image" accept="image/*" class="w-full text-xs file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-navy-900 file:text-gold-400 hover:file:bg-navy-800">
+                        <p class="text-xs text-slate-500 mt-1">Format gambar: JPG, JPEG, PNG, atau WEBP. Maksimal 2MB (disarankan resolusi minimal 1920x1080px rasio 16:9 atau 21:9 ultra-wide).</p>
                     </div>
                 </div>
             </div>

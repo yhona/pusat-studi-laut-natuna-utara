@@ -43,6 +43,24 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100 font-medium">
+                    <?php if (empty($users)): ?>
+                    <tr>
+                        <td colspan="6" class="py-12 px-4 text-center">
+                            <div class="flex flex-col items-center justify-center max-w-sm mx-auto">
+                                <div class="w-16 h-16 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mb-4 text-2xl">
+                                    <i class="fa-solid fa-users-gear"></i>
+                                </div>
+                                <h3 class="text-base font-bold text-navy-950 mb-1">Belum Ada Pengguna Admin</h3>
+                                <p class="text-xs text-slate-500 mb-5 leading-relaxed">Belum ada akun pengguna staf administrator yang terdaftar di sistem.</p>
+                                <a href="<?= base_url('admin/users/create') ?>"
+                                   class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-950 text-xs font-bold shadow-sm transition-all active:scale-[0.98]">
+                                    <i class="fa-solid fa-plus"></i>
+                                    <span>Tambah Admin Baru</span>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    <?php else: ?>
                     <?php 
                     $currentAdminId = (int) (session('admin_id') ?? 0);
                     foreach ($users as $u): 
@@ -133,6 +151,7 @@
                         </td>
                     </tr>
                     <?php endforeach; ?>
+                    <?php endif; ?>
                 </tbody>
             </table>
         </div>

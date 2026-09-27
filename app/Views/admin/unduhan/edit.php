@@ -4,13 +4,20 @@
 
 <div class="space-y-6 max-w-3xl">
     
-    <div class="flex items-center justify-between">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
+            <nav class="flex items-center gap-2 text-xs text-slate-500 mb-1" aria-label="Breadcrumb">
+                <a href="<?= base_url('admin/unduhan') ?>" class="hover:text-gold-600 transition-colors font-medium">Pusat Unduhan</a>
+                <span>/</span>
+                <span class="text-slate-700 font-semibold">Sunting Dokumen</span>
+            </nav>
             <h2 class="text-xl font-bold text-navy-950">Sunting Dokumen Repositori</h2>
             <p class="text-xs text-slate-500 mt-0.5">Perbarui rincian metadata dokumen atau berkas unduhan</p>
         </div>
-        <a href="<?= base_url('admin/unduhan') ?>" class="text-xs text-slate-500 hover:text-navy-950 font-semibold">
-            &larr; Kembali ke Daftar
+        <a href="<?= base_url('admin/unduhan') ?>" 
+           class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors shrink-0">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span>Kembali ke Daftar</span>
         </a>
     </div>
 
@@ -23,6 +30,7 @@
                     <label for="code" class="block text-xs font-bold text-slate-700">Kode Dokumen *</label>
                     <input type="text" id="code" name="code" required value="<?= esc($doc['code']) ?>"
                            class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-maritime-600 focus:border-transparent bg-white">
+                    <p class="text-[11px] text-slate-400 mt-1">Contoh format: SOP-LPS-01, PND-2026-02, atau SK-NNSRC-05.</p>
                 </div>
 
                 <div class="space-y-1 sm:col-span-2">
@@ -55,6 +63,7 @@
                     <label for="file_size" class="block text-xs font-bold text-slate-700">Ukuran Berkas *</label>
                     <input type="text" id="file_size" name="file_size" required value="<?= esc($doc['file_size']) ?>"
                            class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-maritime-600 focus:border-transparent bg-white">
+                    <p class="text-[11px] text-slate-400 mt-1">Sertakan satuan berkas, contoh: 2.8 MB atau 750 KB.</p>
                 </div>
 
                 <div class="space-y-1">

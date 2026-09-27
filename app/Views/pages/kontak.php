@@ -60,6 +60,7 @@
                         $contactAddress = $isEn ? (!empty($siteSettings['address_en']) ? $siteSettings['address_en'] : 'LPPM UMRAH Building, 2nd Floor, Dompak Main Campus, Jl. Politeknik, Tanjungpinang City, Riau Islands 29111, Indonesia') : (!empty($siteSettings['address']) ? $siteSettings['address'] : 'Gedung LPPM UMRAH Lantai 2, Kampus Terpadu Dompak, Jl. Politeknik, Kota Tanjungpinang, Kepulauan Riau 29111');
                         $contactEmail = !empty($siteSettings['email']) ? $siteSettings['email'] : 'pusatstudilautnatunautara@umrah.ac.id';
                         $contactPhone = !empty($siteSettings['phone']) ? $siteSettings['phone'] : '(0771) 4500089 | WhatsApp: 0812-7000-8991';
+                        $contactWa = \App\Models\SiteSettingModel::getWhatsAppNumber();
                         ?>
                         <div class="flex items-start gap-3">
                             <div class="w-9 h-9 rounded-lg bg-navy-900 text-gold-400 flex items-center justify-center flex-shrink-0 text-sm mt-0.5">
@@ -89,7 +90,7 @@
                                 <strong class="text-navy-900 block"><?= $isEn ? 'Phone & Fast Response:' : 'Telepon & Layanan Cepat:' ?></strong>
                                 <div class="text-xs text-slate-700"><?= esc($contactPhone) ?></div>
                                 <div class="pt-1">
-                                    <a href="https://wa.me/6281270008991?text=<?= urlencode($isEn ? 'Hello Secretariat of NNSRC UMRAH, I would like to inquire about research collaboration.' : 'Halo Sekretariat Pusat Studi Laut Natuna Utara UMRAH, saya ingin berdiskusi mengenai inisiasi riset/layanan.') ?>"
+                                    <a href="https://wa.me/<?= esc($contactWa) ?>?text=<?= urlencode($isEn ? 'Hello Secretariat of NNSRC UMRAH, I would like to inquire about research collaboration.' : 'Halo Sekretariat Pusat Studi Laut Natuna Utara UMRAH, saya ingin berdiskusi mengenai inisiasi riset/layanan.') ?>"
                                        target="_blank" 
                                        rel="noopener noreferrer"
                                        class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold shadow-xs transition-all active:scale-[0.98]">

@@ -86,4 +86,28 @@ class SiteSettingModel extends Model
     {
         self::$cachedSettings = null;
     }
+
+    /**
+     * Extract and normalize Indonesian mobile WhatsApp number from settings.
+     * Converts 08... to 628..., or +628... to 628..., stripping non-digits.
+     * Returns fallback if no valid mobile format is found.
+     */
+    public static function getWhatsAppNumber(string $fallback = '6281270008991'): string
+    {
+        $settings = self::getSettings();
+        $rawPhone = $settings['phone'] ?? '';
+
+        // Match potential Indonesian mobile numbers starting with +628, 628, or 08
+        if (preg_match('/(?:\+?62|0)8[0-9\- ]{7,}/', $rawPhone, $matches)) {
+            $digits = preg_replace('/\D+/', '', $matches[0]);
+            if (str_starts_with($digits, '08')) {
+                $digits = '62' . substr($digits, 1);
+            }
+            if (strlen($digits) >= 10 && strlen($digits) <= 15) {
+                return $digits;
+            }
+        }
+
+        return $fallback;
+    }
 }

@@ -4,13 +4,18 @@
 
 <div class="space-y-6 max-w-3xl">
     <!-- Header -->
-    <div class="flex items-center justify-between">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
+            <nav class="flex items-center gap-2 text-xs text-slate-500 mb-1" aria-label="Breadcrumb">
+                <a href="<?= base_url('admin/mitra') ?>" class="hover:text-gold-600 transition-colors font-medium">Kemitraan & Kerjasama</a>
+                <span>/</span>
+                <span class="text-slate-700 font-semibold">Sunting Mitra</span>
+            </nav>
             <h2 class="text-xl font-extrabold text-navy-950">Sunting Mitra Kerjasama</h2>
             <p class="text-xs text-slate-500 mt-1">Perbarui logo, tautan, dan klasifikasi kemitraan.</p>
         </div>
         <a href="<?= base_url('admin/mitra') ?>" 
-           class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors">
+           class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors shrink-0">
             <i class="fa-solid fa-arrow-left"></i>
             <span>Kembali ke Daftar</span>
         </a>
@@ -94,6 +99,7 @@
                     <div>
                         <label class="block text-[11px] font-semibold text-slate-600 mb-1">Atau Unggah File Baru</label>
                         <input type="file" name="logo" accept="image/*,.svg" class="w-full text-xs file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-navy-900 file:text-gold-400 hover:file:bg-navy-800">
+                        <p class="text-xs text-slate-500 mt-1">Format logo: SVG, PNG, JPG, atau WEBP. Maksimal 2MB (sangat disarankan format vektor SVG atau PNG latar belakang transparan).</p>
                     </div>
                 </div>
             </div>

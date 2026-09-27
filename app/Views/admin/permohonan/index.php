@@ -33,7 +33,15 @@
                 <tbody class="divide-y divide-slate-100">
                     <?php if (empty($requests)): ?>
                     <tr>
-                        <td colspan="7" class="py-8 text-center text-slate-400 italic">Belum ada permohonan unduh yang masuk.</td>
+                        <td colspan="7" class="py-12 px-4 text-center">
+                            <div class="flex flex-col items-center justify-center max-w-sm mx-auto">
+                                <div class="w-16 h-16 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mb-4 text-2xl">
+                                    <i class="fa-solid fa-file-circle-check"></i>
+                                </div>
+                                <h3 class="text-base font-bold text-navy-950 mb-1">Belum Ada Permohonan Unduh</h3>
+                                <p class="text-xs text-slate-500 leading-relaxed">Belum ada permohonan akses berkas atau dokumen repositori yang masuk dari pihak pemohon.</p>
+                            </div>
+                        </td>
                     </tr>
                     <?php else: ?>
                     <?php foreach ($requests as $idx => $r): ?>

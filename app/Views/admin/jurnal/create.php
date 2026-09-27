@@ -4,13 +4,18 @@
 
 <div class="space-y-6 max-w-4xl">
     <!-- Header -->
-    <div class="flex items-center justify-between">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
+            <nav class="flex items-center gap-2 text-xs text-slate-500 mb-1" aria-label="Breadcrumb">
+                <a href="<?= base_url('admin/jurnal') ?>" class="hover:text-gold-600 transition-colors font-medium">Jurnal Ilmiah</a>
+                <span>/</span>
+                <span class="text-slate-700 font-semibold">Tambah Jurnal Baru</span>
+            </nav>
             <h2 class="text-xl font-extrabold text-navy-950">Tambah Jurnal Ilmiah Baru</h2>
             <p class="text-xs text-slate-500 mt-1">Daftarkan terbitan berkala ilmiah kemaritiman binaan Universitas Maritim Raja Ali Haji.</p>
         </div>
         <a href="<?= base_url('admin/jurnal') ?>" 
-           class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors">
+           class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors shrink-0">
             <i class="fa-solid fa-arrow-left"></i>
             <span>Kembali ke Daftar</span>
         </a>
@@ -123,7 +128,7 @@
                     </label>
                     <input type="file" name="cover_image" accept="image/jpeg,image/png,image/webp"
                            class="w-full text-xs rounded-xl border border-slate-300 p-2 bg-slate-50">
-                    <p class="text-[11px] text-slate-400 mt-1">Dianjurkan rasio 3:4 atau sampul resmi OJS.</p>
+                    <p class="text-xs text-slate-500 mt-1">Format sampul: JPG, JPEG, PNG, atau WEBP. Maksimal 4MB (disarankan rasio vertikal 3:4 sampul resmi OJS).</p>
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1">

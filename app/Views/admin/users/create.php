@@ -16,7 +16,7 @@
         <a href="<?= base_url('admin/users') ?>" 
            class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors">
             <i class="fa-solid fa-arrow-left"></i>
-            <span>Kembali</span>
+            <span>Kembali ke Daftar</span>
         </a>
     </div>
 
@@ -44,6 +44,7 @@
                     <input type="text" id="username" name="username" value="<?= old('username') ?>" required
                            placeholder="huruf kecil, angka, atau underscore"
                            class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-mono focus:outline-none focus:ring-2 focus:ring-navy-900 focus:border-transparent">
+                    <p class="text-[11px] text-slate-400 mt-1">Gunakan 4–30 karakter alfanumerik huruf kecil, angka, atau garis bawah (_) tanpa spasi.</p>
                 </div>
 
                 <!-- Email -->
@@ -91,6 +92,7 @@
                     <input type="password" id="password" name="password" required minlength="8"
                            placeholder="Minimal 8 karakter"
                            class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-navy-900 focus:border-transparent">
+                    <p class="text-[11px] text-slate-400 mt-1">Minimal 8 karakter kombinasi huruf kapital, huruf kecil, dan angka.</p>
                 </div>
 
                 <!-- Confirm Password -->

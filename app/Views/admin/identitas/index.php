@@ -71,6 +71,7 @@
                     </label>
                     <input type="text" id="phone" name="phone" value="<?= old('phone', $settings['phone'] ?? '') ?>" required
                            class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-navy-900 focus:border-transparent">
+                    <p class="text-[11px] text-slate-400 mt-1">Nomor ini terhubung dinamis ke tombol WhatsApp publik (contoh: +62 812-7000-xxxx atau 0812xxxxxxx).</p>
                 </div>
             </div>
         </div>

@@ -25,6 +25,20 @@
         </div>
     </div>
 
+    <?php if (empty($briefs)): ?>
+    <div class="bg-white rounded-2xl p-12 text-center border border-slate-200 shadow-xs">
+        <div class="w-16 h-16 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-4 text-2xl">
+            <i class="fa-solid fa-file-shield"></i>
+        </div>
+        <h3 class="text-base font-bold text-navy-950 mb-1">Belum Ada Naskah Policy Brief</h3>
+        <p class="text-xs text-slate-500 max-w-sm mx-auto mb-6 leading-relaxed">Tambahkan naskah policy brief, monograf, atau rekomendasi kebijakan maritim pertama Anda melalui tombol di bawah.</p>
+        <a href="<?= base_url('admin/publikasi/create') ?>"
+           class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-950 text-xs font-bold shadow-sm transition-all active:scale-[0.98]">
+            <i class="fa-solid fa-plus"></i>
+            <span>Tambah Naskah Baru</span>
+        </a>
+    </div>
+    <?php else: ?>
     <!-- Briefs List -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <?php foreach ($briefs as $b): ?>
@@ -78,6 +92,7 @@
         </div>
         <?php endforeach; ?>
     </div>
+    <?php endif; ?>
 </div>
 
 <?= $this->endSection() ?>

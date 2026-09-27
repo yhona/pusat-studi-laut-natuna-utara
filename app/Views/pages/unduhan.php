@@ -114,12 +114,14 @@
                 <input type="text" 
                        id="search-docs"
                        name="search"
+                       x-ref="searchInput"
                        aria-label="<?= $isEn ? 'Search document name, SOP, or code' : 'Cari dokumen, SOP, atau kode' ?>"
                        x-model="search" 
+                       @keydown.escape="search = ''"
                        placeholder="<?= $isEn ? 'Search document name, SOP, or code...' : 'Cari nama dokumen, SOP, atau kode...' ?>" 
-                       class="w-full pl-9 pr-4 py-2.5 text-xs border border-slate-200 rounded-xl focus:outline-none focus:border-maritime-600 focus:ring-1 focus:ring-maritime-600 bg-slate-50">
+                       class="w-full pl-9 pr-9 py-2.5 text-xs border border-slate-200 rounded-xl focus:outline-none focus:border-maritime-600 focus:ring-1 focus:ring-maritime-600 bg-slate-50">
                 <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-slate-400 text-xs"></i>
-                <button x-show="search.length > 0" x-cloak @click="search = ''" class="absolute right-3 top-2.5 text-slate-400 hover:text-slate-600 text-xs" title="<?= $isEn ? 'Clear search' : 'Hapus pencarian' ?>">
+                <button type="button" x-show="search.length > 0" x-cloak @click="search = ''; $refs.searchInput.focus()" class="absolute right-3 top-2.5 text-slate-400 hover:text-slate-600 text-xs cursor-pointer" aria-label="<?= $isEn ? 'Clear search' : 'Hapus pencarian' ?>" title="<?= $isEn ? 'Clear search' : 'Hapus pencarian' ?>">
                     <i class="fa-solid fa-circle-xmark"></i>
                 </button>
             </div>

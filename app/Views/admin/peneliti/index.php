@@ -45,6 +45,20 @@
         </a>
     </div>
 
+    <?php if (empty($peneliti)): ?>
+    <div class="bg-white rounded-2xl p-12 text-center border border-slate-200 shadow-xs">
+        <div class="w-16 h-16 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-4 text-2xl">
+            <i class="fa-solid fa-user-graduate"></i>
+        </div>
+        <h3 class="text-base font-bold text-navy-950 mb-1">Belum Ada Data Peneliti</h3>
+        <p class="text-xs text-slate-500 max-w-sm mx-auto mb-6 leading-relaxed">Tambahkan data peneliti, pakar, atau research fellow maritim pertama Anda melalui tombol di bawah.</p>
+        <a href="<?= base_url('admin/peneliti/create') ?>"
+           class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-950 text-xs font-bold shadow-sm transition-all active:scale-[0.98]">
+            <i class="fa-solid fa-plus"></i>
+            <span>Tambah Peneliti Baru</span>
+        </a>
+    </div>
+    <?php else: ?>
     <!-- Researchers Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
         <?php foreach ($peneliti as $p): ?>
@@ -113,6 +127,7 @@
         </div>
         <?php endforeach; ?>
     </div>
+    <?php endif; ?>
 </div>
 
 <?= $this->endSection() ?>

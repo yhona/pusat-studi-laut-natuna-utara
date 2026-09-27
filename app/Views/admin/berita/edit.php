@@ -4,13 +4,20 @@
 
 <div class="space-y-6 max-w-4xl">
     
-    <div class="flex items-center justify-between">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
+            <nav class="flex items-center gap-2 text-xs text-slate-500 mb-1" aria-label="Breadcrumb">
+                <a href="<?= base_url('admin/berita') ?>" class="hover:text-gold-600 transition-colors font-medium">Warta & Berita</a>
+                <span>/</span>
+                <span class="text-slate-700 font-semibold">Sunting Berita</span>
+            </nav>
             <h2 class="text-xl font-bold text-navy-950">Sunting Berita</h2>
             <p class="text-xs text-slate-500 mt-0.5">Perbarui informasi naskah atau gambar berita</p>
         </div>
-        <a href="<?= base_url('admin/berita') ?>" class="text-xs text-slate-500 hover:text-navy-950 font-semibold">
-            &larr; Kembali ke Daftar
+        <a href="<?= base_url('admin/berita') ?>" 
+           class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors shrink-0">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span>Kembali ke Daftar</span>
         </a>
     </div>
 
@@ -80,6 +87,7 @@
                     <label for="image" class="block text-xs font-bold text-slate-700">Ganti Foto Utama (Opsional)</label>
                     <input type="file" id="image" name="image" accept="image/*"
                            class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-maritime-600 focus:border-transparent bg-white">
+                    <p class="text-xs text-slate-500 mt-1">Format gambar: JPG, JPEG, PNG, atau WEBP. Maksimal 2MB (disarankan rasio landscape 16:9 resolusi min. 1200x675px).</p>
                     <div class="text-[11px] text-slate-400">File saat ini: <?= esc($article['image']) ?></div>
                 </div>
 
