@@ -82,12 +82,12 @@ class Layanan extends BaseController
         return redirect()->to(base_url('admin/layanan'))->with('success', 'Paket layanan berhasil ditambahkan.');
     }
 
-    public function edit(int $id): string
+    public function edit(int $id)
     {
         $service = $this->layananModel->find($id);
 
         if (! $service) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Paket layanan tidak ditemukan.');
+            return redirect()->to(base_url('admin/layanan'))->with('error', 'Paket layanan dengan ID #' . $id . ' tidak ditemukan atau telah dihapus.');
         }
 
         $data = [

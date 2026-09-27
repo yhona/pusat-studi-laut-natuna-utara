@@ -66,12 +66,12 @@ class Roadmap extends BaseController
         return redirect()->to(base_url('admin/roadmap'))->with('success', 'Fase roadmap riset berhasil ditambahkan.');
     }
 
-    public function edit(int $id): string
+    public function edit(int $id)
     {
         $phase = $this->roadmapModel->find($id);
 
         if (! $phase) {
-            throw PageNotFoundException::forPageNotFound('Fase roadmap tidak ditemukan.');
+            return redirect()->to(base_url('admin/roadmap'))->with('error', 'Fase roadmap riset dengan ID #' . $id . ' tidak ditemukan atau telah dihapus.');
         }
 
         $data = [
@@ -87,7 +87,7 @@ class Roadmap extends BaseController
         $phase = $this->roadmapModel->find($id);
 
         if (! $phase) {
-            throw PageNotFoundException::forPageNotFound('Fase roadmap tidak ditemukan.');
+            return redirect()->to(base_url('admin/roadmap'))->with('error', 'Fase roadmap riset tidak ditemukan.');
         }
 
         $rules = [
@@ -123,7 +123,7 @@ class Roadmap extends BaseController
         $phase = $this->roadmapModel->find($id);
 
         if (! $phase) {
-            throw PageNotFoundException::forPageNotFound('Fase roadmap tidak ditemukan.');
+            return redirect()->to(base_url('admin/roadmap'))->with('error', 'Fase roadmap riset tidak ditemukan.');
         }
 
         $this->roadmapModel->delete($id);

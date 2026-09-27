@@ -92,12 +92,12 @@ class Galeri extends BaseController
         return redirect()->to(base_url('admin/galeri'))->with('success', 'Dokumentasi riset berhasil ditambahkan.');
     }
 
-    public function edit(int $id): string
+    public function edit(int $id)
     {
         $item = $this->galeriModel->find($id);
 
         if (! $item) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Dokumentasi galeri tidak ditemukan.');
+            return redirect()->to(base_url('admin/galeri'))->with('error', 'Dokumentasi galeri dengan ID #' . $id . ' tidak ditemukan atau telah dihapus.');
         }
 
         $data = [
@@ -113,7 +113,7 @@ class Galeri extends BaseController
         $item = $this->galeriModel->find($id);
 
         if (! $item) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Dokumentasi galeri tidak ditemukan.');
+            return redirect()->to(base_url('admin/galeri'))->with('error', 'Dokumentasi galeri tidak ditemukan.');
         }
 
         $rules = [
@@ -177,7 +177,7 @@ class Galeri extends BaseController
         $item = $this->galeriModel->find($id);
 
         if (! $item) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Dokumentasi galeri tidak ditemukan.');
+            return redirect()->to(base_url('admin/galeri'))->with('error', 'Dokumentasi galeri tidak ditemukan.');
         }
 
         $this->galeriModel->delete($id);

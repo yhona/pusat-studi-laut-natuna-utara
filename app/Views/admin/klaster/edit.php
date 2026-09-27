@@ -117,7 +117,13 @@
                     Area Fokus Riset (Satu item per baris)
                 </label>
                 <?php 
-                    $focusString = is_array($klaster['focus_areas']) ? implode("\n", $klaster['focus_areas']) : '';
+                    $focusTitles = [];
+                    if (is_array($klaster['focus_areas'])) {
+                        foreach ($klaster['focus_areas'] as $f) {
+                            $focusTitles[] = is_array($f) ? ($f['title'] ?? '') : $f;
+                        }
+                    }
+                    $focusString = implode("\n", array_filter($focusTitles));
                 ?>
                 <textarea name="focus_areas" rows="4"
                           class="w-full text-xs rounded-xl border border-slate-300 focus:border-maritime-500 focus:ring-1 focus:ring-maritime-500 p-3 font-mono leading-relaxed"><?= esc($focusString) ?></textarea>

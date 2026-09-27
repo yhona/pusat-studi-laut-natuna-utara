@@ -77,12 +77,12 @@ class Publikasi extends BaseController
         return redirect()->to(base_url('admin/publikasi'))->with('success', 'Naskah publikasi berhasil ditambahkan.');
     }
 
-    public function edit(int $id): string
+    public function edit(int $id)
     {
         $brief = $this->publikasiModel->find($id);
 
         if (! $brief) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Naskah publikasi tidak ditemukan.');
+            return redirect()->to(base_url('admin/publikasi'))->with('error', 'Naskah publikasi dengan ID #' . $id . ' tidak ditemukan atau telah dihapus.');
         }
 
         $data = [

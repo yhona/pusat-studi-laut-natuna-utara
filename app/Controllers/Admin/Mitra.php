@@ -80,12 +80,12 @@ class Mitra extends BaseController
         return redirect()->to(base_url('admin/mitra'))->with('success', 'Mitra kerjasama berhasil ditambahkan.');
     }
 
-    public function edit(int $id): string
+    public function edit(int $id)
     {
         $partner = $this->mitraModel->find($id);
 
         if (! $partner) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Mitra kerjasama tidak ditemukan.');
+            return redirect()->to(base_url('admin/mitra'))->with('error', 'Mitra kerjasama dengan ID #' . $id . ' tidak ditemukan atau telah dihapus.');
         }
 
         $data = [
@@ -101,7 +101,7 @@ class Mitra extends BaseController
         $partner = $this->mitraModel->find($id);
 
         if (! $partner) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Mitra kerjasama tidak ditemukan.');
+            return redirect()->to(base_url('admin/mitra'))->with('error', 'Mitra kerjasama tidak ditemukan.');
         }
 
         $rules = [
@@ -153,7 +153,7 @@ class Mitra extends BaseController
         $partner = $this->mitraModel->find($id);
 
         if (! $partner) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Mitra kerjasama tidak ditemukan.');
+            return redirect()->to(base_url('admin/mitra'))->with('error', 'Mitra kerjasama tidak ditemukan.');
         }
 
         $this->mitraModel->delete($id);

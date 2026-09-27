@@ -14,6 +14,9 @@ class ContentMasterSeeder extends Seeder
         // 1. SEED PENELITI (5 Pimpinan Eksekutif + 10 Dewan Peneliti)
         // =========================================================================
         $db->table('peneliti')->truncate();
+        try {
+            $db->query("DELETE FROM sqlite_sequence WHERE name = 'peneliti'");
+        } catch (\Throwable $e) {}
 
         $penelitiData = [
             // --- 5 Pimpinan Eksekutif ---
@@ -352,6 +355,9 @@ class ContentMasterSeeder extends Seeder
         // 2. SEED PUBLIKASI / POLICY BRIEF
         // =========================================================================
         $db->table('publikasi_brief')->truncate();
+        try {
+            $db->query("DELETE FROM sqlite_sequence WHERE name = 'publikasi_brief'");
+        } catch (\Throwable $e) {}
 
         $publikasiData = [
             [
@@ -394,6 +400,9 @@ class ContentMasterSeeder extends Seeder
         // 3. SEED LAYANAN & JASA KONSULTASI MARITIM
         // =========================================================================
         $db->table('layanan_konsultasi')->truncate();
+        try {
+            $db->query("DELETE FROM sqlite_sequence WHERE name = 'layanan_konsultasi'");
+        } catch (\Throwable $e) {}
 
         $layananData = [
             [

@@ -89,11 +89,11 @@ class Berita extends BaseController
             ->with('success', 'Berita berhasil dipublikasikan!');
     }
 
-    public function edit(int $id): string
+    public function edit(int $id)
     {
         $article = $this->beritaModel->find($id);
         if (! $article) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Berita tidak ditemukan.');
+            return redirect()->to(base_url('admin/berita'))->with('error', 'Berita dengan ID #' . $id . ' tidak ditemukan atau telah dihapus.');
         }
 
         $data = [

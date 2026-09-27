@@ -66,12 +66,12 @@ class Statistik extends BaseController
         return redirect()->to(base_url('admin/statistik'))->with('success', 'Statistik capaian berhasil ditambahkan.');
     }
 
-    public function edit(int $id): string
+    public function edit(int $id)
     {
         $stat = $this->statistikModel->find($id);
 
         if (! $stat) {
-            throw PageNotFoundException::forPageNotFound('Statistik tidak ditemukan.');
+            return redirect()->to(base_url('admin/statistik'))->with('error', 'Statistik capaian dengan ID #' . $id . ' tidak ditemukan atau telah dihapus.');
         }
 
         $data = [
@@ -87,7 +87,7 @@ class Statistik extends BaseController
         $stat = $this->statistikModel->find($id);
 
         if (! $stat) {
-            throw PageNotFoundException::forPageNotFound('Statistik tidak ditemukan.');
+            return redirect()->to(base_url('admin/statistik'))->with('error', 'Statistik tidak ditemukan.');
         }
 
         $rules = [
@@ -123,7 +123,7 @@ class Statistik extends BaseController
         $stat = $this->statistikModel->find($id);
 
         if (! $stat) {
-            throw PageNotFoundException::forPageNotFound('Statistik tidak ditemukan.');
+            return redirect()->to(base_url('admin/statistik'))->with('error', 'Statistik tidak ditemukan.');
         }
 
         $this->statistikModel->delete($id);

@@ -86,12 +86,12 @@ class Banner extends BaseController
         return redirect()->to(base_url('admin/banners'))->with('success', 'Banner slider berhasil ditambahkan.');
     }
 
-    public function edit(int $id): string
+    public function edit(int $id)
     {
         $banner = $this->bannerModel->find($id);
 
         if (! $banner) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Banner slider tidak ditemukan.');
+            return redirect()->to(base_url('admin/banners'))->with('error', 'Banner slider dengan ID #' . $id . ' tidak ditemukan atau telah dihapus.');
         }
 
         $data = [
@@ -107,7 +107,7 @@ class Banner extends BaseController
         $banner = $this->bannerModel->find($id);
 
         if (! $banner) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Banner slider tidak ditemukan.');
+            return redirect()->to(base_url('admin/banners'))->with('error', 'Banner slider tidak ditemukan.');
         }
 
         $rules = [
@@ -165,7 +165,7 @@ class Banner extends BaseController
         $banner = $this->bannerModel->find($id);
 
         if (! $banner) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Banner slider tidak ditemukan.');
+            return redirect()->to(base_url('admin/banners'))->with('error', 'Banner slider tidak ditemukan.');
         }
 
         $this->bannerModel->delete($id);

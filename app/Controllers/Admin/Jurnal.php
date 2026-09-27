@@ -122,12 +122,12 @@ class Jurnal extends BaseController
     /**
      * Show form to edit an existing journal.
      */
-    public function edit(int $id): string
+    public function edit(int $id)
     {
         $journal = $this->jurnalModel->find($id);
 
         if (! $journal) {
-            throw PageNotFoundException::forPageNotFound('Data jurnal ilmiah tidak ditemukan.');
+            return redirect()->to(base_url('admin/jurnal'))->with('error', 'Data jurnal ilmiah dengan ID #' . $id . ' tidak ditemukan atau telah dihapus.');
         }
 
         $data = [

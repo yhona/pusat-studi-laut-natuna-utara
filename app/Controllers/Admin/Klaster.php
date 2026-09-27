@@ -92,11 +92,11 @@ class Klaster extends BaseController
             ->with('success', 'Klaster riset baru "' . esc($shortTitle) . '" berhasil ditambahkan ke portal!');
     }
 
-    public function edit(int $id): string
+    public function edit(int $id)
     {
         $klaster = $this->klasterModel->find($id);
         if (! $klaster) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Klaster tidak ditemukan');
+            return redirect()->to(base_url('admin/klaster'))->with('error', 'Klaster riset dengan ID #' . $id . ' tidak ditemukan atau telah dihapus.');
         }
 
         $data = [

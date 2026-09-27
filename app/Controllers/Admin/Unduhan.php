@@ -74,11 +74,11 @@ class Unduhan extends BaseController
             ->with('success', 'Dokumen berhasil ditambahkan ke repositori unduhan!');
     }
 
-    public function edit(int $id): string
+    public function edit(int $id)
     {
         $doc = $this->unduhanModel->find($id);
         if (! $doc) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Dokumen tidak ditemukan.');
+            return redirect()->to(base_url('admin/unduhan'))->with('error', 'Dokumen dengan ID #' . $id . ' tidak ditemukan atau telah dihapus.');
         }
 
         $data = [

@@ -10,6 +10,9 @@ class LayananKonsultasiSeeder extends Seeder
     {
         $db = \Config\Database::connect();
         $db->table('layanan_konsultasi')->truncate();
+        try {
+            $db->query("DELETE FROM sqlite_sequence WHERE name = 'layanan_konsultasi'");
+        } catch (\Throwable $e) {}
 
         $layananData = [
             [
@@ -175,3 +178,4 @@ class LayananKonsultasiSeeder extends Seeder
         $db->table('layanan_konsultasi')->insertBatch($layananData);
     }
 }
+

@@ -91,12 +91,12 @@ class Peneliti extends BaseController
         return redirect()->to(base_url('admin/peneliti'))->with('success', 'Data peneliti berhasil ditambahkan.');
     }
 
-    public function edit(int $id): string
+    public function edit(int $id)
     {
         $peneliti = $this->penelitiModel->find($id);
 
         if (! $peneliti) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Peneliti tidak ditemukan.');
+            return redirect()->to(base_url('admin/peneliti'))->with('error', 'Data peneliti dengan ID #' . $id . ' tidak ditemukan atau telah dihapus.');
         }
 
         $data = [
