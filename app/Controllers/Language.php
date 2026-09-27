@@ -34,17 +34,20 @@ class Language extends BaseController
         $prevPort = $parsedPrev['port'] ?? null;
         $prevScheme = strtolower($parsedPrev['scheme'] ?? '');
 
-        // Strictly allow only URLs that parse cleanly with http/https scheme and exact match on host and port
+        $target = $prevUrl;
         if (! is_array($parsedPrev)
             || empty($prevHost)
             || empty($appHost)
             || strcasecmp($prevHost, $appHost) !== 0
             || ! in_array($prevScheme, ['http', 'https'], true)
             || (! empty($appPort) && (int) $prevPort !== (int) $appPort)
+            || strpos($parsedPrev['path'] ?? '', '/lang/') !== false
         ) {
-            return redirect()->to(site_url('/'));
+            $target = site_url('/');
         }
 
-        return redirect()->to($prevUrl);
+        session_write_close();
+
+        return redirect()->to($target);
     }
 }

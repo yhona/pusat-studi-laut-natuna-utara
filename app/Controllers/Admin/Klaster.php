@@ -92,11 +92,14 @@ class Klaster extends BaseController
             ->with('success', 'Klaster riset baru "' . esc($shortTitle) . '" berhasil ditambahkan ke portal!');
     }
 
-    public function edit(int $id)
+    public function edit($id)
     {
-        $klaster = $this->klasterModel->find($id);
+        $klaster = is_numeric($id) 
+            ? $this->klasterModel->find((int)$id) 
+            : $this->klasterModel->where('slug', (string)$id)->first();
+
         if (! $klaster) {
-            return redirect()->to(base_url('admin/klaster'))->with('error', 'Klaster riset dengan ID #' . $id . ' tidak ditemukan atau telah dihapus.');
+            return redirect()->to(base_url('admin/klaster'))->with('error', 'Klaster riset dengan ID/Slug "' . esc($id) . '" tidak ditemukan atau telah dihapus.');
         }
 
         $data = [
@@ -107,12 +110,17 @@ class Klaster extends BaseController
         return view('admin/klaster/edit', $data);
     }
 
-    public function update(int $id)
+    public function update($id)
     {
-        $klaster = $this->klasterModel->find($id);
+        $klaster = is_numeric($id) 
+            ? $this->klasterModel->find((int)$id) 
+            : $this->klasterModel->where('slug', (string)$id)->first();
+
         if (! $klaster) {
             return redirect()->to(base_url('admin/klaster'))->with('error', 'Klaster tidak ditemukan.');
         }
+
+        $realId = (int) $klaster['id'];
 
         // Coordinator data structure
         $coordinator = [
@@ -143,21 +151,25 @@ class Klaster extends BaseController
             'flagship_projects' => json_encode(array_values($flagshipProjects), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
         ];
 
-        $this->klasterModel->update($id, $updateData);
+        $this->klasterModel->update($realId, $updateData);
 
         return redirect()->to(base_url('admin/klaster'))
             ->with('success', 'Data klaster riset "' . esc($updateData['short_title']) . '" berhasil diperbarui!');
     }
 
-    public function delete(int $id)
+    public function delete($id)
     {
-        $klaster = $this->klasterModel->find($id);
+        $klaster = is_numeric($id) 
+            ? $this->klasterModel->find((int)$id) 
+            : $this->klasterModel->where('slug', (string)$id)->first();
+
         if (! $klaster) {
             return redirect()->to(base_url('admin/klaster'))->with('error', 'Klaster tidak ditemukan.');
         }
 
-        $title = $klaster['short_title'] ?? $klaster['title'];
-        $this->klasterModel->delete($id);
+        $realId = (int) $klaster['id'];
+        $title  = $klaster['short_title'] ?? $klaster['title'];
+        $this->klasterModel->delete($realId);
 
         return redirect()->to(base_url('admin/klaster'))
             ->with('success', 'Klaster riset "' . esc($title) . '" berhasil dihapus.');

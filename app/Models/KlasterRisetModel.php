@@ -59,10 +59,8 @@ class KlasterRisetModel extends Model
 
     private function transformRow(array $row): array
     {
-        // Maintain compatibility with views expecting $cluster['id']
-        if (!isset($row['id_slug']) && isset($row['slug'])) {
-            $row['id'] = $row['slug'];
-        }
+        // Preserve integer primary key id, provide slug_id for slug-based references
+        $row['slug_id'] = $row['slug'] ?? '';
 
         $jsonFields = ['coordinator', 'focus_areas', 'flagship_projects', 'facilities', 'publications'];
         foreach ($jsonFields as $field) {

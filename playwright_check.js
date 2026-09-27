@@ -52,7 +52,9 @@ async function runHealthCheck() {
         console.log(`  -> English Switcher: ${isEnglish ? 'PASSED' : 'FAILED'} (${enTitle})`);
 
         // Switch back to ID
+        await page.waitForTimeout(500);
         await page.goto(`${BASE_URL}/lang/id`, { waitUntil: 'domcontentloaded', timeout: 15000 });
+        await page.waitForTimeout(500);
 
         // 3. Check Research Cluster Route
         const risetRes = await page.goto(`${BASE_URL}/riset/hukum-laut`, { waitUntil: 'domcontentloaded', timeout: 15000 });
@@ -64,6 +66,8 @@ async function runHealthCheck() {
             passed: risetRes.status() === 200
         });
         console.log(`  -> Cluster Detail: HTTP ${risetRes.status()}`);
+
+        await page.waitForTimeout(500);
 
         // 4. Check Admin Login UI Responsiveness & Elements
         const loginRes = await page.goto(`${BASE_URL}/admin/login`, { waitUntil: 'domcontentloaded', timeout: 15000 });

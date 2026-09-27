@@ -117,9 +117,9 @@ $routes->group('admin', ['filter' => 'adminAuth'], static function ($routes) {
     $routes->get('klaster', 'Admin\Klaster::index');
     $routes->get('klaster/create', 'Admin\Klaster::create');
     $routes->post('klaster/store', 'Admin\Klaster::store');
-    $routes->get('klaster/edit/(:num)', 'Admin\Klaster::edit/$1');
-    $routes->post('klaster/update/(:num)', 'Admin\Klaster::update/$1');
-    $routes->post('klaster/delete/(:num)', 'Admin\Klaster::delete/$1');
+    $routes->get('klaster/edit/(:segment)', 'Admin\Klaster::edit/$1');
+    $routes->post('klaster/update/(:segment)', 'Admin\Klaster::update/$1');
+    $routes->post('klaster/delete/(:segment)', 'Admin\Klaster::delete/$1');
 
     // Roadmap Riset Kemaritiman
     $routes->get('roadmap', 'Admin\Roadmap::index');

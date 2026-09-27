@@ -293,6 +293,9 @@ class RisetSeeder extends Seeder
 
         $builder = $this->db->table('klaster_riset');
         $builder->truncate();
+        try {
+            $this->db->query("DELETE FROM sqlite_sequence WHERE name = 'klaster_riset'");
+        } catch (\Throwable $e) {}
         $builder->insertBatch($clusters);
     }
 }

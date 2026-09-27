@@ -32,3 +32,4 @@ All AI coding agents working in this repository MUST adhere to the **CodeIgniter
    - Ensure 0 PHP syntax errors (`php -l`).
    - Ensure all 6 criteria in `audit_scanner.php` pass 100%.
    - Ensure browser test suite passes (`node playwright_check.js`).
+
