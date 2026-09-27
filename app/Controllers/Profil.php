@@ -95,32 +95,6 @@ class Profil extends BaseController
 
         // Peneliti Eksternal & Mitra Riset (External Research Fellows)
         $dbEksternal = $penelitiModel->getByCategory('eksternal');
-        if (empty($dbEksternal)) {
-            $dbEksternal = [
-                [
-                    'name'        => 'Dr. Joshua Gebert',
-                    'role'        => 'Peneliti Eksternal / Visiting Scholar',
-                    'role_en'     => 'External Research Fellow / Visiting Scholar',
-                    'faculty'     => 'Climate Transformation Programme (CTP) / Nanyang Technological University (NTU)',
-                    'faculty_en'  => 'Climate Transformation Programme (CTP) / Nanyang Technological University (NTU)',
-                    'focus'       => 'Urban Planning dan Spatial Analysis Fokus Climate Transformation',
-                    'focus_en'    => 'Urban Planning & Spatial Analysis focused on Climate Transformation',
-                    'email'       => 'joshua.gebert@ntu.edu.sg',
-                    'cluster'     => 'Perencanaan Wilayah & Transformasi Iklim',
-                ],
-                [
-                    'name'        => 'Prof. Dr. Sidik Jatmika, M.Si.',
-                    'role'        => 'Peneliti Senior Eksternal / Guru Besar HI UMY',
-                    'role_en'     => 'Senior External Fellow / Professor of International Relations',
-                    'faculty'     => 'Departemen Hubungan Internasional, Universitas Muhammadiyah Yogyakarta (UMY)',
-                    'faculty_en'  => 'Department of International Relations, Universitas Muhammadiyah Yogyakarta (UMY)',
-                    'focus'       => 'Human Security, Islam dan Politik Global, Futures Studies',
-                    'focus_en'    => 'Human Security, Islam and Global Politics, Futures Studies',
-                    'email'       => 'sidikjatmika@umy.ac.id',
-                    'cluster'     => 'Diplomasi Maritim & Hubungan Internasional',
-                ],
-            ];
-        }
 
         $extGradients = [
             'linear-gradient(135deg, #0284c7, #0d9488)',

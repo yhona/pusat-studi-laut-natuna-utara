@@ -53,17 +53,27 @@ class Home extends BaseController
             $desc = mb_strimwidth($c['mandate'], 0, 160, '...');
 
             if ($isEn) {
-                if ($c['slug'] === 'hukum-laut') {
+                if (!empty($c['title_en'])) {
+                    $title = $c['title_en'];
+                } elseif ($c['slug'] === 'hukum-laut') {
                     $title = lang('App.cluster_1_title');
-                    $desc = lang('App.cluster_1_desc');
                 } elseif ($c['slug'] === 'logistik') {
                     $title = lang('App.cluster_2_title');
-                    $desc = lang('App.cluster_2_desc');
                 } elseif ($c['slug'] === 'ketahanan-digital') {
                     $title = lang('App.cluster_3_title');
-                    $desc = lang('App.cluster_3_desc');
                 } elseif ($c['slug'] === 'energi') {
                     $title = lang('App.cluster_4_title');
+                }
+
+                if (!empty($c['mandate_en'])) {
+                    $desc = mb_strimwidth($c['mandate_en'], 0, 160, '...');
+                } elseif ($c['slug'] === 'hukum-laut') {
+                    $desc = lang('App.cluster_1_desc');
+                } elseif ($c['slug'] === 'logistik') {
+                    $desc = lang('App.cluster_2_desc');
+                } elseif ($c['slug'] === 'ketahanan-digital') {
+                    $desc = lang('App.cluster_3_desc');
+                } elseif ($c['slug'] === 'energi') {
                     $desc = lang('App.cluster_4_desc');
                 }
             }
@@ -95,58 +105,6 @@ class Home extends BaseController
                     'image' => base_url($b['image']),
                 ];
             }
-        } else {
-            $banners = $isEn ? [
-                [
-                    'badge' => 'Strategic Border Focus of Indonesia',
-                    'title' => 'Maritime Sovereignty & Oceanographic Exploration of North Natuna Sea in South China Sea Dynamics',
-                    'desc'  => 'A premier center of scientific excellence in international ocean law (UNCLOS 1982), outermost EEZ hydrodynamics monitoring, and archipelagic resilience across the Natuna-Anambas border islands.',
-                    'link'  => base_url('riset/hukum-laut'),
-                    'tag'   => 'Natuna & LCS 2026',
-                    'image' => base_url('images/hero_ship.jpg')
-                ],
-                [
-                    'badge' => 'Geopolitical Policy Strategy',
-                    'title' => 'Policy Brief: Strengthening Sovereignty & EEZ Governance of the North Natuna Sea amid South China Sea Dynamics',
-                    'desc'  => 'Strategic recommendations for integrated marine spatial surveillance, continental shelf boundaries, and protection of national fishing fleets in outermost Indonesian waters.',
-                    'link'  => base_url('publikasi#policy-brief'),
-                    'tag'   => 'Special Policy Brief',
-                    'image' => base_url('images/batimetri_survey.jpg')
-                ],
-                [
-                    'badge' => 'International Research Grant',
-                    'title' => 'UMRAH & UNS International Research Collaboration Funded by Pulitzer Center Washington DC',
-                    'desc'  => 'Investigating legal loopholes in beneficial ownership oversight of illegal fishing practices in Natuna waters to strengthen Indonesia\'s maritime sovereignty.',
-                    'link'  => base_url('berita/didukung-pendanaan-dari-pulitzer-center-umrah-dan-uns-kolaborasi-riset-internasional'),
-                    'tag'   => 'Pulitzer Center Grant',
-                    'image' => base_url('images/berita/pulitzer_center_umrah_uns.jpg')
-                ],
-            ] : [
-                [
-                    'badge' => 'Fokus Strategis Perbatasan NKRI',
-                    'title' => 'Kedaulatan Maritim & Eksplorasi Oseanografi Laut Natuna Utara di Pusaran Laut Cina Selatan',
-                    'desc'  => 'Pusat keunggulan sains terdepan dalam kajian hukum laut internasional (UNCLOS 1982), pemantauan hidrodinamika ZEE terluar, serta ketahanan maritim gugus kepulauan terdepan Natuna-Anambas.',
-                    'link'  => base_url('riset/hukum-laut'),
-                    'tag'   => 'Natuna & LCS 2026',
-                    'image' => base_url('images/hero_ship.jpg')
-                ],
-                [
-                    'badge' => 'Kebijakan Strategis Geopolitik',
-                    'title' => 'Policy Brief: Penguatan Kedaulatan & Tata Kelola ZEE Laut Natuna Utara Terhadap Dinamika Laut Cina Selatan',
-                    'desc'  => 'Rekomendasi strategis pengawasan ruang laut terpadu, batas landas kontinen, dan perlindungan armada perikanan nasional di perairan terluar Indonesia.',
-                    'link'  => base_url('publikasi#policy-brief'),
-                    'tag'   => 'Policy Brief Khusus',
-                    'image' => base_url('images/batimetri_survey.jpg')
-                ],
-                [
-                    'badge' => 'Hibah Riset Internasional',
-                    'title' => 'Kolaborasi Riset Internasional UMRAH & UNS Didanai Pulitzer Center Washington DC',
-                    'desc'  => 'Mengkaji celah hukum pengawasan beneficial ownership pada praktik illegal fishing di perairan Natuna guna memperkuat kedaulatan maritim Indonesia.',
-                    'link'  => base_url('berita/didukung-pendanaan-dari-pulitzer-center-umrah-dan-uns-kolaborasi-riset-internasional'),
-                    'tag'   => 'Pulitzer Center Grant',
-                    'image' => base_url('images/berita/pulitzer_center_umrah_uns.jpg')
-                ],
-            ];
         }
 
         // Mitra Kerjasama Strategis (Dynamic from Database with Fallback)
@@ -207,51 +165,29 @@ class Home extends BaseController
             }
         }
 
-        // Counter Statistik Capaian Riset (Dynamic from DB with bilingual fallback)
+        // Counter Statistik Capaian Riset (Dynamic from DB)
         $stats = [];
         try {
             $statistikModel = new \App\Models\CapaianStatistikModel();
-            $hasTableRecords = ($statistikModel->countAllResults() > 0);
-
-            if ($hasTableRecords) {
-                $dbStats = $statistikModel->getActiveStats();
-                if (!empty($dbStats)) {
-                    foreach ($dbStats as $s) {
-                        $stats[] = [
-                            'number' => $s['number'],
-                            'label'  => ($isEn && !empty($s['label_en'])) ? $s['label_en'] : $s['label'],
-                            'icon'   => $s['icon'],
-                        ];
-                    }
+            $dbStats = $statistikModel->getActiveStats();
+            if (!empty($dbStats)) {
+                foreach ($dbStats as $s) {
+                    $stats[] = [
+                        'number' => $s['number'],
+                        'label'  => ($isEn && !empty($s['label_en'])) ? $s['label_en'] : $s['label'],
+                        'icon'   => $s['icon'],
+                    ];
                 }
-            } else {
-                $stats = $isEn ? [
-                    ['number' => '142+', 'label' => 'Reputable Scopus / SINTA Publications', 'icon' => 'fa-book-open-reader'],
-                    ['number' => '28',   'label' => 'Intellectual Property Rights & Maritime Patents', 'icon' => 'fa-certificate'],
-                    ['number' => '21',   'label' => 'Fostered Outermost Small Islands (PPKT) in Natuna-Kepri', 'icon' => 'fa-anchor-circle-check'],
-                ] : [
-                    ['number' => '142+', 'label' => 'Publikasi Scopus / SINTA Bereputasi', 'icon' => 'fa-book-open-reader'],
-                    ['number' => '28',   'label' => 'Hak Kekayaan Intelektual & Paten Maritim', 'icon' => 'fa-certificate'],
-                    ['number' => '21',   'label' => 'Pulau-Pulau Kecil Terluar (PPKT) Binaan di Natuna-Kepri', 'icon' => 'fa-anchor-circle-check'],
-                ];
             }
         } catch (\Throwable $e) {
-            $stats = $isEn ? [
-                ['number' => '142+', 'label' => 'Reputable Scopus / SINTA Publications', 'icon' => 'fa-book-open-reader'],
-                ['number' => '28',   'label' => 'Intellectual Property Rights & Maritime Patents', 'icon' => 'fa-certificate'],
-                ['number' => '21',   'label' => 'Fostered Outermost Small Islands (PPKT) in Natuna-Kepri', 'icon' => 'fa-anchor-circle-check'],
-            ] : [
-                ['number' => '142+', 'label' => 'Publikasi Scopus / SINTA Bereputasi', 'icon' => 'fa-book-open-reader'],
-                ['number' => '28',   'label' => 'Hak Kekayaan Intelektual & Paten Maritim', 'icon' => 'fa-certificate'],
-                ['number' => '21',   'label' => 'Pulau-Pulau Kecil Terluar (PPKT) Binaan di Natuna-Kepri', 'icon' => 'fa-anchor-circle-check'],
-            ];
+            $stats = [];
         }
 
-        // Sambutan Pimpinan / Koordinator (Dynamic from DB with fallback)
+        // Sambutan Pimpinan / Koordinator (Dynamic from DB)
         $sambutan = null;
         try {
             $sambutanModel = new \App\Models\SambutanPimpinanModel();
-            $leader = $sambutanModel->first();
+            $leader = $sambutanModel->where('is_active', 1)->first();
             if ($leader) {
                 $sambutan = [
                     'name'       => $leader['name'],
@@ -265,18 +201,6 @@ class Home extends BaseController
             }
         } catch (\Throwable $e) {
             $sambutan = null;
-        }
-
-        if ($sambutan === null) {
-            $sambutan = [
-                'name'       => 'Dr. Atika Thahira, S.H., M.H.',
-                'title'      => $isEn ? 'Center Coordinator of North Natuna Sea Research Center UMRAH' : 'Koordinator Pusat Studi Laut Natuna Utara UMRAH',
-                'heading'    => lang('App.profile_lead_heading'),
-                'quote'      => lang('App.profile_lead_quote'),
-                'content'    => lang('App.profile_lead_p'),
-                'image'      => 'images/kepala_pusat.jpg',
-                'is_active'  => true,
-            ];
         }
 
         $data = [

@@ -30,17 +30,27 @@ class Riset extends BaseController
             $mandate = $c['mandate'];
 
             if ($isEn) {
-                if ($c['slug'] === 'hukum-laut') {
+                if (!empty($c['title_en'])) {
+                    $title = $c['title_en'];
+                } elseif ($c['slug'] === 'hukum-laut') {
                     $title = lang('App.cluster_1_title');
-                    $mandate = lang('App.cluster_1_desc');
                 } elseif ($c['slug'] === 'logistik') {
                     $title = lang('App.cluster_2_title');
-                    $mandate = lang('App.cluster_2_desc');
                 } elseif ($c['slug'] === 'ketahanan-digital') {
                     $title = lang('App.cluster_3_title');
-                    $mandate = lang('App.cluster_3_desc');
                 } elseif ($c['slug'] === 'energi') {
                     $title = lang('App.cluster_4_title');
+                }
+
+                if (!empty($c['mandate_en'])) {
+                    $mandate = $c['mandate_en'];
+                } elseif ($c['slug'] === 'hukum-laut') {
+                    $mandate = lang('App.cluster_1_desc');
+                } elseif ($c['slug'] === 'logistik') {
+                    $mandate = lang('App.cluster_2_desc');
+                } elseif ($c['slug'] === 'ketahanan-digital') {
+                    $mandate = lang('App.cluster_3_desc');
+                } elseif ($c['slug'] === 'energi') {
                     $mandate = lang('App.cluster_4_desc');
                 }
             }
@@ -58,125 +68,19 @@ class Riset extends BaseController
         $roadmap = [];
         try {
             $roadmapModel = new \App\Models\RoadmapRisetModel();
-            $hasTableRecords = ($roadmapModel->countAllResults() > 0);
-
-            if ($hasTableRecords) {
-                $dbRoadmap = $roadmapModel->getActiveRoadmap();
-                if (!empty($dbRoadmap)) {
-                    foreach ($dbRoadmap as $r) {
-                        $roadmap[] = [
-                            'phase'  => $r['phase'],
-                            'title'  => ($isEn && !empty($r['title_en'])) ? $r['title_en'] : $r['title'],
-                            'desc'   => ($isEn && !empty($r['desc_en'])) ? $r['desc_en'] : $r['desc'],
-                            'status' => ($isEn && !empty($r['status_en'])) ? $r['status_en'] : $r['status'],
-                        ];
-                    }
+            $dbRoadmap = $roadmapModel->getActiveRoadmap();
+            if (!empty($dbRoadmap)) {
+                foreach ($dbRoadmap as $r) {
+                    $roadmap[] = [
+                        'phase'  => $r['phase'],
+                        'title'  => ($isEn && !empty($r['title_en'])) ? $r['title_en'] : $r['title'],
+                        'desc'   => ($isEn && !empty($r['desc_en'])) ? $r['desc_en'] : $r['desc'],
+                        'status' => ($isEn && !empty($r['status_en'])) ? $r['status_en'] : $r['status'],
+                    ];
                 }
-            } else {
-                $roadmap = $isEn ? [
-                    [
-                        'phase'  => '2025 - 2026',
-                        'title'  => 'Phase 1: Oceanographic Baseline Data Consolidation & Resource Mapping',
-                        'desc'   => 'Detailed bathymetric mapping of Riau Strait and Natuna Sea, establishing mangrove blue carbon databases, and inventorying Malay customary maritime law.',
-                        'status' => 'In Progress',
-                    ],
-                    [
-                        'phase'  => '2027 - 2028',
-                        'title'  => 'Phase 2: Applied Research Commercialization & Marine Energy Innovation',
-                        'desc'   => 'Pilot testing ocean current turbine prototypes for remote islands, formulating local microalgae-based feeds, and modeling sea-tollway supply chains.',
-                        'status' => 'Strategic Plan',
-                    ],
-                    [
-                        'phase'  => '2029 - 2030',
-                        'title'  => 'Phase 3: Southeast Asian International Maritime Research Epicenter',
-                        'desc'   => 'Global research consortium for Malacca Strait - North Natuna Sea, tropical satellite oceanography hub, and policy advisory for international ocean law.',
-                        'status' => 'Long-Term Vision',
-                    ],
-                    [
-                        'phase'  => '2031 - 2035',
-                        'title'  => 'Phase 4: Global Maritime Technology Autonomy & Indo-Pacific Diplomatic Leadership',
-                        'desc'   => 'Full implementation of AI/IoT-driven autonomous border surveillance, complete renewable ocean energy independence for small islands, and foremost multilateral maritime diplomacy.',
-                        'status' => 'Future Horizon',
-                    ],
-                ] : [
-                    [
-                        'phase'  => '2025 - 2026',
-                        'title'  => 'Fase 1: Konsolidasi Baseline Data Oseanografi & Pemetaan Potensi',
-                        'desc'   => 'Pemetaan batimetri detail Selat Riau dan Natuna, pembentukan basis data blue carbon mangrove, dan inventarisasi hukum adat laut Melayu.',
-                        'status' => 'Sedang Berjalan',
-                    ],
-                    [
-                        'phase'  => '2027 - 2028',
-                        'title'  => 'Fase 2: Hilirisasi Riset Terapan & Inovasi Energi Kelautan',
-                        'desc'   => 'Uji coba prototipe turbin arus laut untuk pulau terpencil, formulasi pakan ikan berbasis mikroalga lokal, serta pemodelan rantai pasok tol laut.',
-                        'status' => 'Rencana Strategis',
-                    ],
-                    [
-                        'phase'  => '2029 - 2030',
-                        'title'  => 'Fase 3: Episentrum Riset Kemaritiman Internasional Asia Tenggara',
-                        'desc'   => 'Kemitraan riset global Selat Malaka - Laut Natuna Utara, pusat data satelit oseanografi tropis, dan rujukan kebijakan hukum laut internasional.',
-                        'status' => 'Rencana Jangka Panjang',
-                    ],
-                    [
-                        'phase'  => '2031 - 2035',
-                        'title'  => 'Fase 4: Kemandirian Teknologi & Diplomasi Maritim Global Kawasan Indo-Pasifik',
-                        'desc'   => 'Penerapan penuh sistem pemantauan otonom perbatasan maritim cerdas berbasis AI/IoT, kemandirian industri energi laut terbarukan kepulauan, dan diplomasi maritim multilateral terdepan.',
-                        'status' => 'Visi Jangka Panjang',
-                    ],
-                ];
             }
         } catch (\Throwable $e) {
-            $roadmap = $isEn ? [
-                [
-                    'phase'  => '2025 - 2026',
-                    'title'  => 'Phase 1: Oceanographic Baseline Data Consolidation & Resource Mapping',
-                    'desc'   => 'Detailed bathymetric mapping of Riau Strait and Natuna Sea, establishing mangrove blue carbon databases, and inventorying Malay customary maritime law.',
-                    'status' => 'In Progress',
-                ],
-                [
-                    'phase'  => '2027 - 2028',
-                    'title'  => 'Phase 2: Applied Research Commercialization & Marine Energy Innovation',
-                    'desc'   => 'Pilot testing ocean current turbine prototypes for remote islands, formulating local microalgae-based feeds, and modeling sea-tollway supply chains.',
-                    'status' => 'Strategic Plan',
-                ],
-                [
-                    'phase'  => '2029 - 2030',
-                    'title'  => 'Phase 3: Southeast Asian International Maritime Research Epicenter',
-                    'desc'   => 'Global research consortium for Malacca Strait - North Natuna Sea, tropical satellite oceanography hub, and policy advisory for international ocean law.',
-                    'status' => 'Long-Term Vision',
-                ],
-                [
-                    'phase'  => '2031 - 2035',
-                    'title'  => 'Phase 4: Global Maritime Technology Autonomy & Indo-Pacific Diplomatic Leadership',
-                    'desc'   => 'Full implementation of AI/IoT-driven autonomous border surveillance, complete renewable ocean energy independence for small islands, and foremost multilateral maritime diplomacy.',
-                    'status' => 'Future Horizon',
-                ],
-            ] : [
-                [
-                    'phase'  => '2025 - 2026',
-                    'title'  => 'Fase 1: Konsolidasi Baseline Data Oseanografi & Pemetaan Potensi',
-                    'desc'   => 'Pemetaan batimetri detail Selat Riau dan Natuna, pembentukan basis data blue carbon mangrove, dan inventarisasi hukum adat laut Melayu.',
-                    'status' => 'Sedang Berjalan',
-                ],
-                [
-                    'phase'  => '2027 - 2028',
-                    'title'  => 'Fase 2: Hilirisasi Riset Terapan & Inovasi Energi Kelautan',
-                    'desc'   => 'Uji coba prototipe turbin arus laut untuk pulau terpencil, formulasi pakan ikan berbasis mikroalga lokal, serta pemodelan rantai pasok tol laut.',
-                    'status' => 'Rencana Strategis',
-                ],
-                [
-                    'phase'  => '2029 - 2030',
-                    'title'  => 'Fase 3: Episentrum Riset Kemaritiman Internasional Asia Tenggara',
-                    'desc'   => 'Kemitraan riset global Selat Malaka - Laut Natuna Utara, pusat data satelit oseanografi tropis, dan rujukan kebijakan hukum laut internasional.',
-                    'status' => 'Rencana Jangka Panjang',
-                ],
-                [
-                    'phase'  => '2031 - 2035',
-                    'title'  => 'Fase 4: Kemandirian Teknologi & Diplomasi Maritim Global Kawasan Indo-Pasifik',
-                    'desc'   => 'Penerapan penuh sistem pemantauan otonom perbatasan maritim cerdas berbasis AI/IoT, kemandirian industri energi laut terbarukan kepulauan, dan diplomasi maritim multilateral terdepan.',
-                    'status' => 'Visi Jangka Panjang',
-                ],
-            ];
+            $roadmap = [];
         }
 
         $data = [
@@ -239,21 +143,27 @@ class Riset extends BaseController
         }
 
         if ($isEn) {
-            if ($cluster['slug'] === 'hukum-laut') {
+            if (!empty($cluster['title_en'])) {
+                $cluster['title'] = $cluster['title_en'];
+            } elseif ($cluster['slug'] === 'hukum-laut') {
                 $cluster['title'] = lang('App.cluster_1_title');
-                $cluster['short_title'] = 'Maritime Law & Oceanography';
-                $cluster['mandate'] = lang('App.cluster_1_desc');
             } elseif ($cluster['slug'] === 'logistik') {
                 $cluster['title'] = lang('App.cluster_2_title');
-                $cluster['short_title'] = 'Connectivity & Logistics';
-                $cluster['mandate'] = lang('App.cluster_2_desc');
             } elseif ($cluster['slug'] === 'ketahanan-digital') {
                 $cluster['title'] = lang('App.cluster_3_title');
-                $cluster['short_title'] = 'Island Digital Resilience';
-                $cluster['mandate'] = lang('App.cluster_3_desc');
             } elseif ($cluster['slug'] === 'energi') {
                 $cluster['title'] = lang('App.cluster_4_title');
-                $cluster['short_title'] = 'Renewable Marine Energy';
+            }
+
+            if (!empty($cluster['mandate_en'])) {
+                $cluster['mandate'] = $cluster['mandate_en'];
+            } elseif ($cluster['slug'] === 'hukum-laut') {
+                $cluster['mandate'] = lang('App.cluster_1_desc');
+            } elseif ($cluster['slug'] === 'logistik') {
+                $cluster['mandate'] = lang('App.cluster_2_desc');
+            } elseif ($cluster['slug'] === 'ketahanan-digital') {
+                $cluster['mandate'] = lang('App.cluster_3_desc');
+            } elseif ($cluster['slug'] === 'energi') {
                 $cluster['mandate'] = lang('App.cluster_4_desc');
             }
         }

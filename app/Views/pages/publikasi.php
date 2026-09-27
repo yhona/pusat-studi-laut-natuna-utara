@@ -83,6 +83,7 @@ $metadataMap = $isEn ? [
                 <h3 class="text-xl sm:text-2xl font-bold text-navy-950 mt-1"><?= $isEn ? 'UMRAH Marine & Maritime Scientific Journals' : 'Jurnal Ilmiah Kelautan & Kemaritiman UMRAH' ?></h3>
             </div>
 
+            <?php if (!empty($journals)): ?>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <?php foreach ($journals as $j): ?>
                 <div class="bg-white rounded-2xl p-7 border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-4">
@@ -106,6 +107,12 @@ $metadataMap = $isEn ? [
                 </div>
                 <?php endforeach; ?>
             </div>
+            <?php else: ?>
+            <div class="py-10 bg-white rounded-2xl border border-slate-200 text-center p-6 space-y-2">
+                <i class="fa-solid fa-book-journal-whills text-3xl text-slate-300"></i>
+                <h4 class="text-sm font-bold text-navy-950"><?= $isEn ? 'No Scientific Journals Published Yet' : 'Belum Ada Jurnal Ilmiah yang Diterbitkan' ?></h4>
+            </div>
+            <?php endif; ?>
         </div>
 
         <!-- Policy Brief Kemaritiman (Adopsi PSE UGM) -->
@@ -116,6 +123,7 @@ $metadataMap = $isEn ? [
                 <p class="text-slate-600 text-xs sm:text-sm mt-1"><?= $isEn ? 'Evidence-based executive summaries for regional and national regulatory considerations.' : 'Ringkasan eksekutif berbasis bukti ilmiah untuk pertimbangan regulasi daerah dan nasional.' ?></p>
             </div>
 
+            <?php if (!empty($policy_briefs)): ?>
             <div class="space-y-4">
                 <?php foreach ($policy_briefs as $pb): 
                     $meta = $metadataMap[$pb['number']] ?? [
@@ -148,6 +156,12 @@ $metadataMap = $isEn ? [
                 </div>
                 <?php endforeach; ?>
             </div>
+            <?php else: ?>
+            <div class="py-10 bg-white rounded-2xl border border-slate-200 text-center p-6 space-y-2">
+                <i class="fa-solid fa-file-lines text-3xl text-slate-300"></i>
+                <h4 class="text-sm font-bold text-navy-950"><?= $isEn ? 'No Policy Briefs Available' : 'Belum Ada Policy Brief yang Diterbitkan' ?></h4>
+            </div>
+            <?php endif; ?>
         </div>
 
     </div>

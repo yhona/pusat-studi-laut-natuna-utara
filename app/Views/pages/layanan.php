@@ -43,6 +43,7 @@
         <!-- Services Section with Technical Spec Modal -->
         <div x-data="serviceSpecModal()" @keydown.escape.window="if (isOpen) closeSpec()">
             
+            <?php if (!empty($services)): ?>
             <!-- Services Cards List -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <?php foreach ($services as $service): ?>
@@ -103,6 +104,19 @@
                 </div>
                 <?php endforeach; ?>
             </div>
+            <?php else: ?>
+            <div class="bg-white rounded-2xl p-12 text-center border border-slate-200 shadow-sm max-w-lg mx-auto">
+                <div class="w-16 h-16 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-4 text-2xl">
+                    <i class="fa-solid fa-briefcase"></i>
+                </div>
+                <h3 class="text-base font-bold text-navy-950 mb-1">
+                    <?= $isEn ? 'No Services Published Yet' : 'Belum Ada Layanan Dipublikasikan' ?>
+                </h3>
+                <p class="text-xs text-slate-500">
+                    <?= $isEn ? 'Service packages and laboratory specifications will appear here once published via the CMS dashboard.' : 'Paket layanan dan spesifikasi teknis laboratorium akan ditampilkan di sini setelah dikonfigurasi melalui CMS admin.' ?>
+                </p>
+            </div>
+            <?php endif; ?>
 
             <!-- Service Technical Spec Sheet Modal -->
             <div x-show="isOpen" x-cloak

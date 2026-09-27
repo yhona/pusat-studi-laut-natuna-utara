@@ -4,23 +4,25 @@
 
 <?php $isEn = (service('request')->getLocale() === 'en'); ?>
 
+<?php if (!empty($banners)): ?>
 <!-- Hero Slider Section (Alpine.js Interactive Carousel) -->
 <section class="relative bg-navy-950 text-white overflow-hidden" x-data="{
     activeSlide: 0,
     slides: <?= htmlspecialchars(json_encode($banners), ENT_QUOTES, 'UTF-8') ?>,
     timer: null,
     startAutoPlay() {
+        if (!this.slides || this.slides.length <= 1) return;
         this.timer = setInterval(() => {
             this.activeSlide = (this.activeSlide + 1) % this.slides.length;
         }, 6000);
     },
     stopAutoPlay() {
-        clearInterval(this.timer);
+        if (this.timer) clearInterval(this.timer);
     }
 }" x-init="startAutoPlay()" @mouseenter="stopAutoPlay()" @mouseleave="startAutoPlay()">
     
     <!-- Dynamic Background Image & Gradient Overlay -->
-    <div class="absolute inset-0 bg-cover bg-center transition-all duration-700 scale-105" :style="'background-image: url(' + slides[activeSlide].image + ')'"></div>
+    <div class="absolute inset-0 bg-cover bg-center transition-all duration-700 scale-105" :style="'background-image: url(' + (slides[activeSlide]?.image || '<?= base_url('images/hero_ship.jpg') ?>') + ')'"></div>
     <div class="absolute inset-0 bg-gradient-to-r from-navy-950/95 via-navy-950/85 to-navy-900/65 z-10 pointer-events-none"></div>
     <div class="absolute inset-0 opacity-10 bg-pattern z-10 pointer-events-none"></div>
 
@@ -61,29 +63,63 @@
         </div>
 
         <!-- Slider Controls / Indicators -->
-        <div class="mt-12 flex items-center justify-between border-t border-slate-800/80 pt-6">
-            <div class="flex items-center gap-2">
-                <template x-for="(slide, index) in slides" :key="index">
-                    <button @click="activeSlide = index" 
-                            class="h-2 rounded-full transition-all duration-300 focus:outline-none"
-                            :class="activeSlide === index ? 'w-8 bg-gold-400' : 'w-2 bg-slate-700 hover:bg-slate-500'"
-                            :aria-label="'Slide ' + (index + 1)">
-                    </button>
-                </template>
-            </div>
+        <template x-if="slides && slides.length > 1">
+            <div class="mt-12 flex items-center justify-between border-t border-slate-800/80 pt-6">
+                <div class="flex items-center gap-2">
+                    <template x-for="(slide, index) in slides" :key="index">
+                        <button @click="activeSlide = index" 
+                                class="h-2 rounded-full transition-all duration-300 focus:outline-none"
+                                :class="activeSlide === index ? 'w-8 bg-gold-400' : 'w-2 bg-slate-700 hover:bg-slate-500'"
+                                :aria-label="'Slide ' + (index + 1)">
+                        </button>
+                    </template>
+                </div>
 
-            <div class="flex items-center gap-2 text-slate-400">
-                <button @click="activeSlide = (activeSlide - 1 + slides.length) % slides.length" class="w-9 h-9 rounded-lg border border-slate-800 hover:border-slate-600 hover:text-white flex items-center justify-center transition-colors" aria-label="<?= lang('App.slide_prev') ?>">
-                    <i class="fa-solid fa-chevron-left text-xs"></i>
-                </button>
-                <button @click="activeSlide = (activeSlide + 1) % slides.length" class="w-9 h-9 rounded-lg border border-slate-800 hover:border-slate-600 hover:text-white flex items-center justify-center transition-colors" aria-label="<?= lang('App.slide_next') ?>">
-                    <i class="fa-solid fa-chevron-right text-xs"></i>
-                </button>
+                <div class="flex items-center gap-2 text-slate-400">
+                    <button @click="activeSlide = (activeSlide - 1 + slides.length) % slides.length" class="w-9 h-9 rounded-lg border border-slate-800 hover:border-slate-600 hover:text-white flex items-center justify-center transition-colors" aria-label="<?= lang('App.slide_prev') ?>">
+                        <i class="fa-solid fa-chevron-left text-xs"></i>
+                    </button>
+                    <button @click="activeSlide = (activeSlide + 1) % slides.length" class="w-9 h-9 rounded-lg border border-slate-800 hover:border-slate-600 hover:text-white flex items-center justify-center transition-colors" aria-label="<?= lang('App.slide_next') ?>">
+                        <i class="fa-solid fa-chevron-right text-xs"></i>
+                    </button>
+                </div>
             </div>
-        </div>
+        </template>
 
     </div>
 </section>
+<?php else: ?>
+<!-- Clean Default Hero Section -->
+<section class="relative bg-navy-950 text-white overflow-hidden">
+    <div class="absolute inset-0 bg-cover bg-center transition-all duration-700 scale-105" style="background-image: url('<?= base_url('images/hero_ship.jpg') ?>')"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-navy-950/95 via-navy-950/85 to-navy-900/65 z-10 pointer-events-none"></div>
+    <div class="absolute inset-0 opacity-10 bg-pattern z-10 pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 relative z-20 min-h-[480px] flex flex-col justify-center">
+        <div class="max-w-3xl space-y-5 w-full">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/20 border border-gold-500/40 text-gold-400 text-xs font-semibold uppercase tracking-wider">
+                <i class="fa-solid fa-compass text-[11px]"></i>
+                <span><?= $isEn ? 'North Natuna Sea Research Center' : 'Pusat Studi Laut Natuna Utara' ?></span>
+            </div>
+            <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-white">
+                <?= $isEn ? 'Maritime Sovereignty & Oceanographic Exploration in Natuna Waters' : 'Kedaulatan Maritim & Eksplorasi Oseanografi Laut Natuna Utara' ?>
+            </h1>
+            <p class="text-slate-300 text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl">
+                <?= $isEn ? 'A premier center of scientific excellence in international ocean law (UNCLOS 1982), outermost EEZ hydrodynamics monitoring, and archipelagic resilience across the Natuna-Anambas border islands.' : 'Pusat keunggulan sains terdepan dalam kajian hukum laut internasional (UNCLOS 1982), pemantauan hidrodinamika ZEE terluar, serta ketahanan maritim gugus kepulauan terdepan Natuna-Anambas.' ?>
+            </p>
+            <div class="pt-4 flex flex-wrap items-center gap-4">
+                <a href="<?= base_url('riset') ?>" class="inline-flex items-center gap-2.5 px-6 py-3 rounded-lg bg-maritime-600 hover:bg-maritime-500 text-white font-semibold text-sm shadow-lg shadow-maritime-900/50 hover:shadow-maritime-600/30 transition-all">
+                    <span><?= lang('App.btn_learn_more') ?></span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+                <a href="<?= base_url('profil') ?>" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-navy-800/80 hover:bg-navy-800 text-slate-200 hover:text-white border border-slate-700 font-medium text-sm transition-colors">
+                    <span><?= lang('App.nav_about') ?></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
 
 <!-- Callout Announcement Ticker -->
 <div class="bg-gold-500 text-navy-950 py-2.5 px-4 text-xs sm:text-sm font-semibold shadow-inner">

@@ -92,7 +92,7 @@
                 <div class="max-w-3xl relative z-10 space-y-4">
                     <span class="text-gold-400 uppercase text-xs font-bold tracking-widest"><?= lang('App.vision_title') ?></span>
                     <h2 class="text-xl sm:text-3xl font-bold leading-relaxed">
-                        <?= lang('App.vision_text') ?>
+                        <?= (!empty($customProfile['visi_id']) && !$isEn) ? esc($customProfile['visi_id']) : lang('App.vision_text') ?>
                     </h2>
                 </div>
                 <div class="absolute right-4 -bottom-8 text-white/5 text-9xl pointer-events-none">
@@ -125,7 +125,7 @@
                             <span><?= $isEn ? 'Verse on Scientific Tenacity' : 'Bait Insan Peneliti & Keilmuan' ?></span>
                         </div>
                         <blockquote class="text-sm sm:text-base font-serif italic text-gold-200 border-l-2 border-gold-400 pl-3 py-0.5">
-                            "Jika hendak mengenal orang yang berilmu,<br>bertanya dan belajar tiadalah jemu."
+                            <?= (!empty($customProfile['gurindam_bait1']) && !$isEn) ? nl2br(esc($customProfile['gurindam_bait1'])) : '"Jika hendak mengenal orang yang berilmu,<br>bertanya dan belajar tiadalah jemu."' ?>
                         </blockquote>
                         <p class="text-xs text-slate-300 leading-relaxed pt-1">
                             <?= $isEn ? 'Becomes the moral foundation for continuous oceanographic exploration, scientific rigor, and persistent inquiry in outermost border maritime dynamics.' : 'Menjadi ruh dan etos kerja saintifik dewan peneliti dalam melakukan eksplorasi oseanografi serta pemodelan sains perbatasan terluar tanpa kenal lelah.' ?>
@@ -139,7 +139,7 @@
                             <span><?= $isEn ? 'Verse on Wisdom & Strategic Foresight' : 'Bait Kebijakan & Bekal Kemaslahatan' ?></span>
                         </div>
                         <blockquote class="text-sm sm:text-base font-serif italic text-gold-200 border-l-2 border-gold-400 pl-3 py-0.5">
-                            "Jika hendak mengenal orang yang berakal,<br>di dalam dunia mengambil bekal."
+                            <?= (!empty($customProfile['gurindam_bait2']) && !$isEn) ? nl2br(esc($customProfile['gurindam_bait2'])) : '"Jika hendak mengenal orang yang berakal,<br>di dalam dunia mengambil bekal."' ?>
                         </blockquote>
                         <p class="text-xs text-slate-300 leading-relaxed pt-1">
                             <?= $isEn ? 'Becomes the foundation for high-impact policy briefs, serving as strategic assets (bekal) for national diplomacy, maritime sovereignty, and coastal welfare.' : 'Menjadi pijakan lahirnya policy brief dan rekomendasi kebijakan strategis sebagai "bekal" diplomasi kedaulatan maritim bangsa dan keberdayaan nelayan perbatasan.' ?>
@@ -177,7 +177,7 @@
                         </div>
                         <h3 class="text-base sm:text-lg font-bold text-navy-950 mb-2"><?= $isEn ? '1. Oceanic Science Exploration' : '1. Eksplorasi Sains Bahari Berkelanjutan' ?></h3>
                         <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                            <?= $isEn ? 'Manifesting "tiadalah jemu bertanya dan belajar" through continuous applied oceanographic surveys, tropical marine hydrodynamic modeling, and blue carbon ecosystem mapping across border waters.' : 'Mengaktualisasikan falsafah "tiadalah jemu belajar" melalui riset oseanografi terapan, pemodelan hidrodinamika laut tropis, dan pemetaan ekosistem blue carbon secara konsisten di wilayah perbatasan.' ?>
+                            <?= (!empty($customProfile['misi_1']) && !$isEn) ? esc($customProfile['misi_1']) : ($isEn ? 'Manifesting "tiadalah jemu bertanya dan belajar" through continuous applied oceanographic surveys, tropical marine hydrodynamic modeling, and blue carbon ecosystem mapping across border waters.' : 'Mengaktualisasikan falsafah "tiadalah jemu belajar" melalui riset oseanografi terapan, pemodelan hidrodinamika laut tropis, dan pemetaan ekosistem blue carbon secara konsisten di wilayah perbatasan.') ?>
                         </p>
                     </div>
                     <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs hover:shadow-md transition-shadow">
@@ -186,7 +186,7 @@
                         </div>
                         <h3 class="text-base sm:text-lg font-bold text-navy-950 mb-2"><?= $isEn ? '2. Outermost Sovereignty Advocacy' : '2. Penguatan Kedaulatan & Diplomasi ZEE' ?></h3>
                         <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                            <?= $isEn ? 'Producing authoritative policy briefs and UNCLOS 1982 studies as strategic national assets (bekal) to reinforce Indonesian sovereignty and maritime diplomacy in the North Natuna Sea.' : 'Menghasilkan policy brief dan kajian hukum laut internasional (UNCLOS 1982) sebagai "bekal strategis" diplomasi kedaulatan wilayah NKRI di kawasan Zona Ekonomi Eksklusif (ZEE) Natuna Utara.' ?>
+                            <?= (!empty($customProfile['misi_2']) && !$isEn) ? esc($customProfile['misi_2']) : ($isEn ? 'Producing authoritative policy briefs and UNCLOS 1982 studies as strategic national assets (bekal) to reinforce Indonesian sovereignty and maritime diplomacy in the North Natuna Sea.' : 'Menghasilkan policy brief dan kajian hukum laut internasional (UNCLOS 1982) sebagai "bekal strategis" diplomasi kedaulatan wilayah NKRI di kawasan Zona Ekonomi Eksklusif (ZEE) Natuna Utara.') ?>
                         </p>
                     </div>
                     <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs hover:shadow-md transition-shadow">
@@ -195,7 +195,7 @@
                         </div>
                         <h3 class="text-base sm:text-lg font-bold text-navy-950 mb-2"><?= $isEn ? '3. Community Empowerment & Wisdom' : '3. Hilirisasi & Pemberdayaan Masyarakat Pesisir' ?></h3>
                         <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                            <?= $isEn ? 'Empowering traditional border fishermen and small island communities through appropriate marine technology innovations, seafood processing, and sustainable coastal livelihoods.' : 'Menebarkan manfaat ilmu bagi masyarakat nelayan tradisional melalui alih teknologi tepat guna bahari, diversifikasi pangan laut, dan peningkatan ketahanan ekonomi pulau-pulau perbatasan.' ?>
+                            <?= (!empty($customProfile['misi_3']) && !$isEn) ? esc($customProfile['misi_3']) : ($isEn ? 'Empowering traditional border fishermen and small island communities through appropriate marine technology innovations, seafood processing, and sustainable coastal livelihoods.' : 'Menebarkan manfaat ilmu bagi masyarakat nelayan tradisional melalui alih teknologi tepat guna bahari, diversifikasi pangan laut, dan peningkatan ketahanan ekonomi pulau-pulau perbatasan.') ?>
                         </p>
                     </div>
                 </div>
@@ -429,6 +429,7 @@
             </div>
 
             <!-- Section: Peneliti Eksternal & Mitra Riset (External Research Fellows) -->
+            <?php if (!empty($external_researchers)): ?>
             <div class="pt-10 border-t border-slate-200 space-y-6">
                 <div class="flex flex-col md:flex-row md:items-end justify-between gap-3">
                     <div>
@@ -497,6 +498,7 @@
                     <?php endif; ?>
                 </div>
             </div>
+            <?php endif; ?>
         </div>
 
     </div>
