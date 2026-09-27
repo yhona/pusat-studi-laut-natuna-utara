@@ -16,12 +16,41 @@
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="<?= base_url('css/style.css') ?>">
 
+    <!-- Advanced Admin Datatable Engine -->
+    <script src="<?= base_url('js/admin-datatable.js') ?>"></script>
+
     <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.5/dist/cdn.min.js"></script>
 
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
         [x-cloak] { display: none !important; }
+        
+        /* Advanced Table Compact Mode */
+        .table-compact th {
+            padding-top: 0.5rem !important;
+            padding-bottom: 0.5rem !important;
+            font-size: 0.7rem !important;
+        }
+        .table-compact td {
+            padding-top: 0.45rem !important;
+            padding-bottom: 0.45rem !important;
+            font-size: 0.75rem !important;
+        }
+
+        /* Print Optimization */
+        @media print {
+            aside, header, nav, .no-print, [data-no-print] {
+                display: none !important;
+            }
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            main {
+                padding: 0 !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-slate-100 text-slate-800 antialiased min-h-screen flex" x-data="{ sidebarOpen: false }">
