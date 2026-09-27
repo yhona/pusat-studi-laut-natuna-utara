@@ -200,3 +200,4 @@ class MitraGaleriSeeder extends Seeder
         $db->table('galeri_riset')->insertBatch($galeriData);
     }
 }
+

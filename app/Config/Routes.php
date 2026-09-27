@@ -42,7 +42,6 @@ $routes->get('sitemap.xml', 'Sitemap::index');
 // =============================================================================
 $routes->get('/admin/login', 'Admin\Auth::login');
 $routes->post('/admin/login-action', 'Admin\Auth::loginAction');
-$routes->get('/admin/dev-login', 'Admin\Auth::devLogin');
 $routes->get('/admin/logout', 'Admin\Auth::logout');
 
 $routes->group('admin', ['filter' => 'adminAuth'], static function ($routes) {

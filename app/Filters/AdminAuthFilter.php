@@ -13,7 +13,7 @@ class AdminAuthFilter implements FilterInterface
         $session = session();
         if (! $session->get('admin_logged_in')) {
             $intended = current_url();
-            if (! str_contains($intended, 'admin/login') && ! str_contains($intended, 'admin/logout') && ! str_contains($intended, 'admin/dev-login')) {
+            if (! str_contains($intended, 'admin/login') && ! str_contains($intended, 'admin/logout')) {
                 $session->set('redirect_url', $intended);
             }
 
