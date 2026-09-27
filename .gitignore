@@ -1,7 +1,9 @@
 # ----------------------------------------------------------------------
 # AI Agent & Internal Logs
 # ----------------------------------------------------------------------
-.agents/
+.agents/*
+!.agents/skills/
+!.agents/rules/
 ORIGINAL_REQUEST.md
 PROJECT.md
 
