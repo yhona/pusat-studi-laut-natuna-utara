@@ -205,61 +205,6 @@ class Home extends BaseController
                     'desc'          => ($isEn && !empty($g['desc_en'])) ? $g['desc_en'] : $g['desc'],
                 ];
             }
-        } else {
-            $galleryItems = [
-                [
-                    'id'            => 1,
-                    'title'         => $isEn ? 'North Natuna Oceanographic Expedition' : 'Ekspedisi Oseanografi Natuna Utara',
-                    'category'      => 'ekspedisi',
-                    'categoryLabel' => $isEn ? 'Sea Expedition' : 'Ekspedisi Laut',
-                    'badgeClass'    => 'bg-gold-500/20 text-gold-400 border-gold-500/30',
-                    'image'         => base_url('images/hero_ship.jpg'),
-                    'date'          => '12 - 25 November 2025',
-                    'location'      => $isEn ? 'North Natuna Sea (Indonesian EEZ Waters)' : 'Laut Natuna Utara (Wilayah ZEE Indonesia)',
-                    'vessel'        => $isEn ? 'Collaborative Research Vessel UMRAH - BRIN' : 'Kapal Riset Kolaboratif UMRAH - BRIN',
-                    'focal'         => $isEn ? 'Thermocline Structure & Deep Layer Current Dynamics' : 'Karakteristik Termoklin & Dinamika Arus Lapisan',
-                    'desc'          => $isEn ? 'Deep-sea research cruise measuring temperature, salinity, and acoustic transmission layers using Acoustic Doppler Current Profiler (ADCP) and CTD rosette sensors down to 150 meters depth.' : 'Pelayaran riset laut dalam untuk mengukur profil suhu, salinitas, dan transmisi akustik bawah air lapis demi lapis menggunakan sensor Acoustic Doppler Current Profiler (ADCP) dan CTD rosette hingga kedalaman 150 meter.',
-                ],
-                [
-                    'id'            => 2,
-                    'title'         => $isEn ? 'Bathymetric Survey & Underwater Acoustics' : 'Survei Batimetri & Akustik Bawah Air',
-                    'category'      => 'ekspedisi',
-                    'categoryLabel' => $isEn ? 'Sea Expedition' : 'Ekspedisi Laut',
-                    'badgeClass'    => 'bg-gold-500/20 text-gold-400 border-gold-500/30',
-                    'image'         => base_url('images/batimetri_survey.jpg'),
-                    'date'          => '14 - 22 Januari 2026',
-                    'location'      => $isEn ? 'Helen Mars Reef Navigation Channel, Malacca Strait' : 'Alur Pelayaran Karang Helen Mars, Selat Malaka',
-                    'vessel'        => $isEn ? 'RV Baruna Jaya IV & UMRAH Hydrography Team' : 'KM. Baruna Jaya IV & Tim Hidrografi UMRAH',
-                    'focal'         => $isEn ? 'Underwater Navigation Hazard Charting (IHO S-44)' : 'Pemetaan Hazard Bawah Air Standar IHO S-44',
-                    'desc'          => $isEn ? 'High-resolution bathymetric sounding using Multibeam Echosounder (MBES) and maritime RTK-DGPS to validate safe draft depths for commercial supertankers navigating the Malacca Strait.' : 'Pemeruman kedalaman laut resolusi tinggi menggunakan Multibeam Echosounder (MBES) dan RTK-DGPS maritim untuk memvalidasi batas aman kedalaman draft kapal tanker komersial internasional yang melintasi Selat Malaka.',
-                ],
-                [
-                    'id'            => 3,
-                    'title'         => $isEn ? 'Mangrove Ecology & Blue Carbon Bintan' : 'Ekologi Mangrove & Blue Carbon Bintan',
-                    'category'      => 'blue-carbon',
-                    'categoryLabel' => 'Blue Carbon',
-                    'badgeClass'    => 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
-                    'image'         => base_url('images/mangrove_research.jpg'),
-                    'date'          => '03 - 10 Februari 2026',
-                    'location'      => $isEn ? 'Sebong Pereh Mangrove Forest Area, Bintan' : 'Kawasan Hutan Mangrove Sebong Pereh, Bintan',
-                    'vessel'        => $isEn ? 'Mini Catamaran Coastal Ecology Division' : 'Wahana Katamaran Mini Divisi Ekologi Pesisir',
-                    'focal'         => $isEn ? 'Sediment Coring & Blue Carbon Stock Valuation' : 'Sediment Coring & Valuasi Stok Karbon Biru',
-                    'desc'          => $isEn ? 'Mangrove sediment coring down to 1-meter depth and greenhouse gas flux measurement to calculate coastal blue carbon reserves for local community conservation incentives.' : 'Pengambilan sampel inti sedimen (sediment coring) tanah mangrove hingga kedalaman 1 meter dan pengukuran fluks gas rumah kaca guna menghitung cadangan karbon biru untuk skema insentif konservasi masyarakat adat.',
-                ],
-                [
-                    'id'            => 4,
-                    'title'         => $isEn ? 'Oceanography & Marine Instrumentation Laboratory' : 'Laboratorium Oseanografi & Instrumentasi Kelautan',
-                    'category'      => 'laboratorium',
-                    'categoryLabel' => $isEn ? 'Laboratory' : 'Laboratorium',
-                    'badgeClass'    => 'bg-maritime-500/20 text-maritime-300 border-maritime-500/30',
-                    'image'         => base_url('images/lab_oseanografi.jpg'),
-                    'date'          => 'Operasional Rutin 2026',
-                    'location'      => $isEn ? 'Marine Laboratory Building, Dompak Campus' : 'Gedung Laboratorium Kelautan Kampus Dompak',
-                    'vessel'        => $isEn ? 'LPPM Oceanographic Calibration Facility' : 'Fasilitas Kalibrasi Instrumen Oseanografi LPPM',
-                    'focal'         => $isEn ? 'CTD Calibration, Salinity Benchmarking & Spectrophotometry' : 'Kalibrasi CTD, Uji Salinitas & Spektrofotometri Nutrien',
-                    'desc'          => $isEn ? 'Integrated laboratory facility testing physical and chemical oceanography parameters conforming to ISO/IEC 17025 standards.' : 'Fasilitas laboratorium terpadu untuk pengujian parameter fisika dan kimia oseanografi sesuai standar pengujian nasional ISO/IEC 17025.',
-                ],
-            ];
         }
 
         // Counter Statistik Capaian Riset (Dynamic from DB with bilingual fallback)

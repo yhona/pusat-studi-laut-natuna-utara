@@ -432,6 +432,7 @@
 <?php endif; ?>
 
 <!-- Galeri Dokumentasi Ekspedisi Maritim & Fasilitas Lab -->
+<?php if (!empty($gallery_items)): ?>
 <section id="galeri" class="py-16 bg-white border-b border-slate-200" x-data="galleryLightbox()" @keydown.escape.window="if (isOpen) close()" @keydown.arrow-right.window="if (isOpen) next()" @keydown.arrow-left.window="if (isOpen) prev()">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
@@ -700,6 +701,7 @@ function galleryLightbox() {
     };
 }
 </script>
+<?php endif; ?>
 
 <!-- Berita & Agenda Terkini -->
 <section class="py-16 bg-sand">
