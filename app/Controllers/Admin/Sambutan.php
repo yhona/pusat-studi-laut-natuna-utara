@@ -16,42 +16,36 @@ class Sambutan extends BaseController
 
     public function index(): string
     {
-        $sambutan = $this->sambutanModel->first();
-
-        if (! $sambutan) {
-            // Seed a default record if empty
-            $now = date('Y-m-d H:i:s');
-            $default = [
-                'name'       => 'Dr. Atika Thahira, S.H., M.H.',
-                'title'      => 'Koordinator Pusat Studi Laut Natuna Utara UMRAH',
-                'title_en'   => 'Center Coordinator of North Natuna Sea Research Center UMRAH',
-                'heading'    => 'Mengokohkan Kedaulatan Bahari Melalui Riset Saintifik & Diplomasi Maritim Laut Natuna Utara',
-                'heading_en' => 'Strengthening Maritime Sovereignty Through Scientific Rigor & Ocean Diplomacy in the North Natuna Sea',
-                'quote'      => '"Kepulauan Riau dengan gugus kepulauan terluar Natuna-Anambas dan perairan Selat Malaka berhadapan langsung dengan episentrum dinamika geopolitik Laut Cina Selatan. Pusat Studi Laut Natuna Utara (North Natuna Sea Research Center) UMRAH memegang mandat moral dan akademis sebagai garda terdepan sains kebaharian, pemantauan oseanografi ZEE, serta penegakan hukum UNCLOS 1982 demi menjaga kedaulatan laut ibu pertiwi."',
-                'quote_en'   => '"Riau Islands with its outermost Natuna-Anambas archipelago and the Malacca Strait faces the epicenter of South China Sea geopolitics. North Natuna Sea Research Center UMRAH carries a moral and scientific mandate to safeguard sovereign waters through oceanographic monitoring and UNCLOS 1982 enforcement."',
-                'content'    => 'Sebagai universitas negeri berkarakter kemaritiman di perbatasan utara Indonesia, kami mendedikasikan riset terapan untuk memperkuat data batimetri dasar laut, ketahanan pangan nelayan tradisional di perbatasan, pemodelan arus lintas laut lepas, hingga perlindungan kedaulatan pulau-pulau kecil terluar (PPKT).',
-                'content_en' => 'As a public university defined by its maritime character on Indonesia northern border, we dedicate applied research to seafloor bathymetric mapping, traditional border fisheries resilience, cross-sea current modeling, and small island conservation.',
-                'image'      => 'images/kepala_pusat.jpg',
-                'is_active'  => 1,
-                'created_at' => $now,
-                'updated_at' => $now,
-            ];
-            $id = $this->sambutanModel->insert($default);
-            $sambutan = $this->sambutanModel->find($id);
+        $bskln = $this->sambutanModel->where('role_key', 'bskln')->first();
+        if (! $bskln) {
+            $seeder = new \App\Database\Seeds\SambutanBsklnSeeder();
+            $seeder->run();
+            $bskln = $this->sambutanModel->where('role_key', 'bskln')->first();
         }
 
+        $koordinator = $this->sambutanModel->where('role_key', 'koordinator')->first()
+                    ?? $this->sambutanModel->where('id', 1)->first();
+
+        $activeTab = $this->request->getGet('tab') ?? 'bskln';
+
         $data = [
-            'title'    => 'Kelola Sambutan Pimpinan / Koordinator',
-            'sambutan' => $sambutan,
+            'title'       => 'Kelola Sambutan Pimpinan & Pejabat',
+            'bskln'       => $bskln,
+            'koordinator' => $koordinator,
+            'activeTab'   => in_array($activeTab, ['bskln', 'koordinator'], true) ? $activeTab : 'bskln',
         ];
 
         return view('admin/sambutan/index', $data);
     }
 
-    public function update()
+    public function update($id = null)
     {
-        $sambutan = $this->sambutanModel->first();
-        $id = $sambutan ? $sambutan['id'] : null;
+        $id = (int) ($this->request->getPost('id') ?: $id);
+        $sambutan = $id > 0 ? $this->sambutanModel->find($id) : $this->sambutanModel->first();
+
+        if (! $sambutan) {
+            return redirect()->to(base_url('admin/sambutan'))->with('error', 'Data sambutan tidak ditemukan.');
+        }
 
         $rules = [
             'name'    => 'required|max_length[255]',
@@ -64,7 +58,7 @@ class Sambutan extends BaseController
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
-        $imagePath = $sambutan ? $sambutan['image'] : 'images/kepala_pusat.jpg';
+        $imagePath = $sambutan['image'];
 
         $file = $this->request->getFile('image');
         if ($file && $file->getError() !== UPLOAD_ERR_NO_FILE) {
@@ -82,7 +76,8 @@ class Sambutan extends BaseController
             $file->move(FCPATH . 'images', $newName);
             
             // Clean up previous custom uploaded image (avoid deleting stock default asset)
-            if ($sambutan && !empty($sambutan['image']) && $sambutan['image'] !== 'images/kepala_pusat.jpg') {
+            $stockImages = ['images/kepala_pusat.jpg', 'images/kepala_bskln.jpg', 'images/rektor_umrah.png'];
+            if (!empty($sambutan['image']) && !in_array($sambutan['image'], $stockImages, true)) {
                 $oldFile = FCPATH . $sambutan['image'];
                 if (file_exists($oldFile) && is_file($oldFile)) {
                     @unlink($oldFile);
@@ -106,12 +101,9 @@ class Sambutan extends BaseController
             'is_active'  => $this->request->getPost('is_active') ? 1 : 0,
         ];
 
-        if ($id) {
-            $this->sambutanModel->update($id, $data);
-        } else {
-            $this->sambutanModel->insert($data);
-        }
+        $this->sambutanModel->update($sambutan['id'], $data);
 
-        return redirect()->to(base_url('admin/sambutan'))->with('success', 'Sambutan pimpinan berhasil diperbarui.');
+        $tab = $sambutan['role_key'] ?? 'bskln';
+        return redirect()->to(base_url('admin/sambutan?tab=' . $tab))->with('success', 'Sambutan ' . esc($data['name']) . ' berhasil diperbarui.');
     }
 }

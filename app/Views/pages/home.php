@@ -133,9 +133,14 @@
 </div>
 
 <!-- Sambutan Pimpinan Institusi & Pusat Studi (Executive Leadership Greetings) -->
-<?php $hasKoordinator = (!empty($sambutan) && !empty($sambutan['is_active'])); ?>
+<?php 
+$hasBskln       = (!empty($sambutan_bskln) && !empty($sambutan_bskln['is_active']));
+$targetKoor     = !empty($sambutan_koordinator) ? $sambutan_koordinator : ($sambutan ?? null);
+$hasKoordinator = (!empty($targetKoor) && !empty($targetKoor['is_active']));
+$defaultTab     = $hasBskln ? 'bskln' : 'rektor';
+?>
 <section id="sambutan" class="py-12 sm:py-16 bg-gradient-to-br from-navy-950 via-navy-900 to-maritime-950 text-white relative overflow-hidden border-b border-navy-800" 
-         x-data="{ activeTab: 'rektor', hasKoordinator: <?= $hasKoordinator ? 'true' : 'false' ?> }">
+         x-data="{ activeTab: '<?= $defaultTab ?>', hasBskln: <?= $hasBskln ? 'true' : 'false' ?>, hasKoordinator: <?= $hasKoordinator ? 'true' : 'false' ?> }">
     <!-- Subtle Background Nautical / Wave Accents -->
     <div class="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#d97706_1px,transparent_1px)] [background-size:24px_24px]"></div>
     <div class="absolute -top-24 -right-24 w-96 h-96 bg-maritime-600/20 rounded-full blur-3xl pointer-events-none"></div>
@@ -155,29 +160,117 @@
             </div>
 
             <!-- Tab Pills Selector -->
-            <?php if ($hasKoordinator): ?>
-            <div class="flex items-center gap-2 w-full sm:w-auto">
+            <?php if ($hasBskln || $hasKoordinator): ?>
+            <div class="flex items-center gap-2 w-full sm:w-auto overflow-x-auto pb-1 sm:pb-0">
                 <div class="inline-flex p-1 rounded-xl bg-navy-900/90 border border-navy-700/80 shadow-inner text-xs font-semibold flex-1 sm:flex-initial">
+                    <?php if ($hasBskln): ?>
+                    <button @click="activeTab = 'bskln'" 
+                            type="button"
+                            class="flex-1 sm:flex-initial px-3.5 py-2 rounded-lg transition-all flex items-center justify-center gap-2 cursor-pointer text-center whitespace-nowrap"
+                            :class="activeTab === 'bskln' ? 'bg-gold-500 text-navy-950 font-bold shadow-md' : 'text-slate-300 hover:text-white hover:bg-white/5'">
+                        <i class="fa-solid fa-landmark text-xs"></i>
+                        <span><?= $isEn ? 'Head of BSKLN MoFA' : 'Kepala BSKLN Kemlu' ?></span>
+                    </button>
+                    <?php endif; ?>
                     <button @click="activeTab = 'rektor'" 
                             type="button"
-                            class="flex-1 sm:flex-initial px-4 py-2 rounded-lg transition-all flex items-center justify-center gap-2 cursor-pointer text-center"
+                            class="flex-1 sm:flex-initial px-3.5 py-2 rounded-lg transition-all flex items-center justify-center gap-2 cursor-pointer text-center whitespace-nowrap"
                             :class="activeTab === 'rektor' ? 'bg-gold-500 text-navy-950 font-bold shadow-md' : 'text-slate-300 hover:text-white hover:bg-white/5'">
                         <i class="fa-solid fa-graduation-cap text-xs"></i>
                         <span><?= $isEn ? 'Rector of UMRAH' : 'Rektor UMRAH' ?></span>
                     </button>
+                    <?php if ($hasKoordinator): ?>
                     <button @click="activeTab = 'koordinator'" 
                             type="button"
-                            class="flex-1 sm:flex-initial px-4 py-2 rounded-lg transition-all flex items-center justify-center gap-2 cursor-pointer text-center"
+                            class="flex-1 sm:flex-initial px-3.5 py-2 rounded-lg transition-all flex items-center justify-center gap-2 cursor-pointer text-center whitespace-nowrap"
                             :class="activeTab === 'koordinator' ? 'bg-gold-500 text-navy-950 font-bold shadow-md' : 'text-slate-300 hover:text-white hover:bg-white/5'">
                         <i class="fa-solid fa-compass text-xs"></i>
                         <span><?= $isEn ? 'Center Coordinator' : 'Koordinator Pusat Studi' ?></span>
                     </button>
+                    <?php endif; ?>
                 </div>
             </div>
             <?php endif; ?>
         </div>
 
-        <!-- Panel 1: Sambutan Rektor UMRAH -->
+        <!-- Panel 1: Sambutan Kepala BSKLN Kementerian Luar Negeri RI -->
+        <?php if ($hasBskln): ?>
+        <div x-show="activeTab === 'bskln'" 
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0 translate-y-2"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+            
+            <!-- Foto Kepala BSKLN Kemlu RI -->
+            <div class="lg:col-span-4 flex flex-col items-center text-center">
+                <div class="relative group">
+                    <div class="w-52 h-64 sm:w-64 sm:h-76 rounded-2xl bg-gradient-to-tr from-gold-500/40 via-maritime-600 to-navy-800 p-1.5 shadow-2xl relative overflow-hidden border border-gold-500/30">
+                        <!-- Top Floating Role Pill -->
+                        <div class="absolute top-3 right-3 z-20 bg-navy-950/85 backdrop-blur-md text-gold-400 text-[10px] sm:text-[11px] font-bold px-2.5 py-1 rounded-full shadow-lg border border-gold-500/40 flex items-center gap-1.5">
+                            <i class="fa-solid fa-landmark"></i> <?= $isEn ? 'MoFA RI' : 'Kemlu RI' ?>
+                        </div>
+
+                        <div class="w-full h-full bg-slate-100 rounded-[14px] flex flex-col items-center justify-end overflow-hidden relative">
+                            <img src="<?= base_url(esc($sambutan_bskln['image'] ?? 'images/kepala_bskln.jpg')) ?>" 
+                                 alt="<?= esc($sambutan_bskln['name'] ?? 'Dr. Yayan G.H. Mulyana') ?>" 
+                                 class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500">
+                            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-navy-950 via-navy-900/85 to-transparent p-3 text-white text-center z-10">
+                                <h4 class="font-bold text-xs sm:text-sm text-gold-400 line-clamp-2"><?= esc($sambutan_bskln['name'] ?? 'Dr. Yayan G.H. Mulyana') ?></h4>
+                                <p class="text-[10px] sm:text-[11px] text-slate-300 line-clamp-1"><?= esc($sambutan_bskln['title'] ?? ($isEn ? 'Head of BSKLN, Ministry of Foreign Affairs of Indonesia' : 'Kepala BSKLN Kementerian Luar Negeri Republik Indonesia')) ?></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pesan Sambutan & Dukungan Kepala BSKLN Kemlu RI -->
+            <div class="lg:col-span-8 space-y-3.5 sm:space-y-4">
+                <div class="flex items-center gap-2 text-gold-400 text-xs font-bold uppercase tracking-wider">
+                    <span class="w-6 h-0.5 bg-gold-400"></span>
+                    <span><?= $isEn ? 'Remarks by Head of BSKLN MoFA RI' : 'Sambutan Kepala BSKLN Kemlu RI' ?></span>
+                </div>
+                
+                <h3 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white tracking-tight leading-snug">
+                    <?= esc($sambutan_bskln['heading'] ?? ($isEn ? 'Head of BSKLN MoFA Remarks' : 'SAMBUTAN KEPALA BSKLN KEMENTERIAN LUAR NEGERI')) ?>
+                </h3>
+
+                <?php if (!empty($sambutan_bskln['quote'])): ?>
+                <blockquote class="border-l-4 border-gold-500 pl-4 py-2 text-slate-200 italic text-xs sm:text-sm md:text-base leading-relaxed bg-white/5 rounded-r-xl">
+                    "<?= esc($sambutan_bskln['quote']) ?>"
+                </blockquote>
+                <?php endif; ?>
+
+                <div class="text-slate-300 text-xs sm:text-sm leading-relaxed space-y-2.5">
+                    <?php 
+                    $paragraphs = preg_split('/\r\n|\r|\n/', (string)($sambutan_bskln['content'] ?? ''));
+                    foreach ($paragraphs as $p):
+                        $p = trim($p);
+                        if (!empty($p)):
+                    ?>
+                        <p><?= esc($p) ?></p>
+                    <?php 
+                        endif;
+                    endforeach; 
+                    ?>
+                </div>
+
+                <div class="pt-2 flex flex-wrap items-center gap-3">
+                    <a href="<?= base_url('profil#visi-misi') ?>" class="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-950 font-bold text-xs sm:text-sm transition-all shadow-md active:scale-[0.98]">
+                        <i class="fa-solid fa-handshake"></i>
+                        <span><?= $isEn ? 'Strategic Partnership' : 'Kerjasama Strategis' ?></span>
+                        <i class="fa-solid fa-chevron-right text-xs ml-0.5"></i>
+                    </a>
+                    <a href="<?= base_url('publikasi#policy-brief') ?>" class="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs sm:text-sm border border-white/20 transition-all active:scale-[0.98]">
+                        <i class="fa-solid fa-file-shield"></i>
+                        <span><?= $isEn ? 'Policy Briefs' : 'Policy Brief Kemaritiman' ?></span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <?php endif; ?>
+
+        <!-- Panel 2: Sambutan Rektor UMRAH -->
         <div x-show="activeTab === 'rektor'" 
              x-transition:enter="transition ease-out duration-300"
              x-transition:enter-start="opacity-0 translate-y-2"
@@ -240,8 +333,8 @@
 
         </div>
 
-        <!-- Panel 2: Sambutan Koordinator Pusat Studi -->
-        <?php if (!empty($sambutan) && !empty($sambutan['is_active'])): ?>
+        <!-- Panel 3: Sambutan Koordinator Pusat Studi -->
+        <?php if (!empty($targetKoor) && !empty($targetKoor['is_active'])): ?>
         <div x-show="activeTab === 'koordinator'" 
              x-transition:enter="transition ease-out duration-300"
              x-transition:enter-start="opacity-0 translate-y-2"
@@ -258,12 +351,12 @@
                         </div>
 
                         <div class="w-full h-full bg-slate-100 rounded-[14px] flex flex-col items-center justify-end overflow-hidden relative">
-                            <img src="<?= base_url(esc($sambutan['image'] ?? 'images/kepala_pusat.jpg')) ?>" 
-                                 alt="<?= esc($sambutan['name'] ?? 'Dr. Atika Thahira, S.H., M.H.') ?>" 
+                            <img src="<?= base_url(esc($targetKoor['image'] ?? 'images/kepala_pusat.jpg')) ?>" 
+                                 alt="<?= esc($targetKoor['name'] ?? 'Dr. Atika Thahira, S.H., M.H.') ?>" 
                                  class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500">
                             <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-navy-950 via-navy-900/85 to-transparent p-3 text-white text-center z-10">
-                                <h4 class="font-bold text-xs sm:text-sm text-gold-400 line-clamp-2"><?= esc($sambutan['name'] ?? 'Dr. Atika Thahira, S.H., M.H.') ?></h4>
-                                <p class="text-[10px] sm:text-[11px] text-slate-300 line-clamp-1"><?= esc($sambutan['title'] ?? ($isEn ? 'Center Coordinator of North Natuna Sea Research Center UMRAH' : 'Koordinator Pusat Studi Laut Natuna Utara UMRAH')) ?></p>
+                                <h4 class="font-bold text-xs sm:text-sm text-gold-400 line-clamp-2"><?= esc($targetKoor['name'] ?? 'Dr. Atika Thahira, S.H., M.H.') ?></h4>
+                                <p class="text-[10px] sm:text-[11px] text-slate-300 line-clamp-1"><?= esc($targetKoor['title'] ?? ($isEn ? 'Center Coordinator of North Natuna Sea Research Center UMRAH' : 'Koordinator Pusat Studi Laut Natuna Utara UMRAH')) ?></p>
                             </div>
                         </div>
                     </div>
@@ -278,15 +371,15 @@
                 </div>
                 
                 <h3 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white tracking-tight leading-snug">
-                    <?= esc($sambutan['heading'] ?? lang('App.profile_lead_heading')) ?>
+                    <?= esc($targetKoor['heading'] ?? lang('App.profile_lead_heading')) ?>
                 </h3>
 
                 <blockquote class="border-l-4 border-gold-500 pl-4 py-2 text-slate-200 italic text-xs sm:text-sm md:text-base leading-relaxed bg-white/5 rounded-r-xl">
-                    "<?= esc($sambutan['quote'] ?? lang('App.profile_lead_quote')) ?>"
+                    "<?= esc($targetKoor['quote'] ?? lang('App.profile_lead_quote')) ?>"
                 </blockquote>
 
                 <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                    <?= nl2br(esc($sambutan['content'] ?? lang('App.profile_lead_p'))) ?>
+                    <?= nl2br(esc($targetKoor['content'] ?? lang('App.profile_lead_p'))) ?>
                 </p>
 
                 <div class="pt-2 flex flex-wrap items-center gap-3">

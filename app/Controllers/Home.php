@@ -183,13 +183,19 @@ class Home extends BaseController
             $stats = [];
         }
 
-        // Sambutan Pimpinan / Koordinator (Dynamic from DB)
-        $sambutan = null;
+        // Sambutan Pimpinan Institusi & Mitra Strategis (Dynamic from DB)
+        $sambutanBskln = null;
+        $sambutanKoordinator = null;
         try {
             $sambutanModel = new \App\Models\SambutanPimpinanModel();
-            $leader = $sambutanModel->where('is_active', 1)->first();
-            if ($leader) {
-                $sambutan = [
+            
+            $formatSpeech = static function (?array $leader) use ($isEn): ?array {
+                if (! $leader) {
+                    return null;
+                }
+                return [
+                    'id'         => (int) $leader['id'],
+                    'role_key'   => $leader['role_key'] ?? 'koordinator',
                     'name'       => $leader['name'],
                     'title'      => ($isEn && !empty($leader['title_en'])) ? $leader['title_en'] : $leader['title'],
                     'heading'    => ($isEn && !empty($leader['heading_en'])) ? $leader['heading_en'] : (!empty($leader['heading']) ? $leader['heading'] : lang('App.profile_lead_heading')),
@@ -198,20 +204,31 @@ class Home extends BaseController
                     'image'      => !empty($leader['image']) ? $leader['image'] : 'images/kepala_pusat.jpg',
                     'is_active'  => (bool) ($leader['is_active'] ?? true),
                 ];
-            }
+            };
+
+            $bsklnRow = $sambutanModel->where('role_key', 'bskln')->where('is_active', 1)->first();
+            $sambutanBskln = $formatSpeech($bsklnRow);
+
+            $koorRow = $sambutanModel->where('role_key', 'koordinator')->where('is_active', 1)->first()
+                    ?? $sambutanModel->where('id', 1)->where('is_active', 1)->first();
+            $sambutanKoordinator = $formatSpeech($koorRow);
+
         } catch (\Throwable $e) {
-            $sambutan = null;
+            $sambutanBskln = null;
+            $sambutanKoordinator = null;
         }
 
         $data = [
-            'title'         => $isEn ? 'Home - North Natuna Sea Research Center UMRAH' : 'Beranda - Pusat Studi Laut Natuna Utara UMRAH',
-            'banners'       => $banners,
-            'clusters'      => $clusters,
-            'stats'         => $stats,
-            'sambutan'      => $sambutan,
-            'latest_news'   => $latestNews,
-            'partners'      => $partners,
-            'gallery_items' => $galleryItems,
+            'title'                => $isEn ? 'Home - North Natuna Sea Research Center UMRAH' : 'Beranda - Pusat Studi Laut Natuna Utara UMRAH',
+            'banners'              => $banners,
+            'clusters'             => $clusters,
+            'stats'                => $stats,
+            'sambutan'             => $sambutanKoordinator,
+            'sambutan_koordinator' => $sambutanKoordinator,
+            'sambutan_bskln'       => $sambutanBskln,
+            'latest_news'          => $latestNews,
+            'partners'             => $partners,
+            'gallery_items'        => $galleryItems,
         ];
 
         return view('pages/home', $data);
