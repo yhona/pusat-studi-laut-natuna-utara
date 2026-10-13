@@ -293,18 +293,6 @@ $slidesJson = htmlspecialchars(json_encode($slidesList), ENT_QUOTES, 'UTF-8');
                     endforeach; 
                     ?>
                 </div>
-
-                <div class="pt-2 flex flex-wrap items-center gap-3">
-                    <a href="<?= base_url('profil#visi-misi') ?>" class="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-950 font-bold text-xs sm:text-sm transition-all shadow-md active:scale-[0.98]">
-                        <i class="fa-solid fa-handshake"></i>
-                        <span><?= $isEn ? 'Strategic Partnership' : 'Kerjasama Strategis' ?></span>
-                        <i class="fa-solid fa-chevron-right text-xs ml-0.5"></i>
-                    </a>
-                    <a href="<?= base_url('publikasi#policy-brief') ?>" class="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs sm:text-sm border border-white/20 transition-all active:scale-[0.98]">
-                        <i class="fa-solid fa-file-shield"></i>
-                        <span><?= $isEn ? 'Policy Briefs' : 'Policy Brief Kemaritiman' ?></span>
-                    </a>
-                </div>
             </div>
 
         </div>
@@ -357,18 +345,6 @@ $slidesJson = htmlspecialchars(json_encode($slidesList), ENT_QUOTES, 'UTF-8');
                 <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
                     <?= lang('App.rector_speech_p') ?>
                 </p>
-
-                <div class="pt-2 flex flex-wrap items-center gap-3">
-                    <a href="<?= base_url('profil#visi-misi') ?>" class="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-950 font-bold text-xs sm:text-sm transition-all shadow-md active:scale-[0.98]">
-                        <i class="fa-solid fa-compass"></i>
-                        <span><?= lang('App.rector_btn_strategic') ?></span>
-                        <i class="fa-solid fa-chevron-right text-xs ml-0.5"></i>
-                    </a>
-                    <a href="<?= base_url('riset') ?>" class="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs sm:text-sm border border-white/20 transition-all active:scale-[0.98]">
-                        <i class="fa-solid fa-microscope"></i>
-                        <span><?= $isEn ? 'Explore Research Clusters' : 'Jelajahi Klaster Riset' ?></span>
-                    </a>
-                </div>
             </div>
 
         </div>
@@ -421,14 +397,6 @@ $slidesJson = htmlspecialchars(json_encode($slidesList), ENT_QUOTES, 'UTF-8');
                 <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
                     <?= nl2br(esc($targetKoor['content'] ?? lang('App.profile_lead_p'))) ?>
                 </p>
-
-                <div class="pt-2 flex flex-wrap items-center gap-3">
-                    <a href="<?= base_url('profil') ?>" class="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-950 font-bold text-xs sm:text-sm transition-all shadow-md active:scale-[0.98]">
-                        <i class="fa-solid fa-users"></i>
-                        <span><?= lang('App.profile_read_more') ?></span>
-                        <i class="fa-solid fa-chevron-right text-xs ml-0.5"></i>
-                    </a>
-                </div>
             </div>
 
         </div>
