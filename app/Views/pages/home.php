@@ -132,15 +132,69 @@
     </div>
 </div>
 
-<!-- Sambutan Pimpinan Institusi & Pusat Studi (Executive Leadership Greetings) -->
+<!-- Sambutan Pimpinan Institusi & Pusat Studi (Executive Leadership Greetings - Auto-Rolling) -->
 <?php 
 $hasBskln       = (!empty($sambutan_bskln) && !empty($sambutan_bskln['is_active']));
 $targetKoor     = !empty($sambutan_koordinator) ? $sambutan_koordinator : ($sambutan ?? null);
 $hasKoordinator = (!empty($targetKoor) && !empty($targetKoor['is_active']));
-$defaultTab     = $hasBskln ? 'bskln' : 'rektor';
+
+$slidesList = [];
+if ($hasBskln) {
+    $slidesList[] = [
+        'id'    => 'bskln',
+        'label' => $isEn ? 'Head of BSKLN MoFA RI' : 'Kepala BSKLN Kemlu RI',
+    ];
+}
+$slidesList[] = [
+    'id'    => 'rektor',
+    'label' => $isEn ? 'Rector of UMRAH' : 'Rektor UMRAH',
+];
+if ($hasKoordinator) {
+    $slidesList[] = [
+        'id'    => 'koordinator',
+        'label' => $isEn ? 'Center Coordinator' : 'Koordinator Pusat Studi',
+    ];
+}
+$slidesJson = htmlspecialchars(json_encode($slidesList), ENT_QUOTES, 'UTF-8');
 ?>
 <section id="sambutan" class="py-12 sm:py-16 bg-gradient-to-br from-navy-950 via-navy-900 to-maritime-950 text-white relative overflow-hidden border-b border-navy-800" 
-         x-data="{ activeTab: '<?= $defaultTab ?>', hasBskln: <?= $hasBskln ? 'true' : 'false' ?>, hasKoordinator: <?= $hasKoordinator ? 'true' : 'false' ?> }">
+         x-data="{ 
+            slides: <?= $slidesJson ?>, 
+            currentSlideIndex: 0, 
+            timer: null, 
+            intervalMs: 8000, 
+            isPaused: false,
+            init() {
+                this.startTimer();
+            },
+            get activeTab() {
+                return (this.slides[this.currentSlideIndex] && this.slides[this.currentSlideIndex].id) ? this.slides[this.currentSlideIndex].id : 'rektor';
+            },
+            get currentSlideName() {
+                return (this.slides[this.currentSlideIndex] && this.slides[this.currentSlideIndex].label) ? this.slides[this.currentSlideIndex].label : '';
+            },
+            nextSlide() {
+                if (this.slides.length > 1) {
+                    this.currentSlideIndex = (this.currentSlideIndex + 1) % this.slides.length;
+                }
+            },
+            startTimer() {
+                if (this.timer) clearInterval(this.timer);
+                this.timer = setInterval(() => {
+                    if (!this.isPaused && this.slides.length > 1) {
+                        this.nextSlide();
+                    }
+                }, this.intervalMs);
+            },
+            pause() {
+                this.isPaused = true;
+            },
+            resume() {
+                this.isPaused = false;
+            }
+         }"
+         @mouseenter="pause()"
+         @mouseleave="resume()">
     <!-- Subtle Background Nautical / Wave Accents -->
     <div class="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#d97706_1px,transparent_1px)] [background-size:24px_24px]"></div>
     <div class="absolute -top-24 -right-24 w-96 h-96 bg-maritime-600/20 rounded-full blur-3xl pointer-events-none"></div>
@@ -148,7 +202,7 @@ $defaultTab     = $hasBskln ? 'bskln' : 'rektor';
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-6 sm:space-y-8">
         
-        <!-- Tab Switcher Navigation Bar -->
+        <!-- Header & Live Auto-Rolling Indicator Bar (No buttons) -->
         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 sm:pb-6 border-b border-navy-800">
             <div>
                 <span class="text-xs uppercase font-bold tracking-wider text-gold-400 flex items-center gap-1.5">
@@ -159,44 +213,30 @@ $defaultTab     = $hasBskln ? 'bskln' : 'rektor';
                 </h3>
             </div>
 
-            <!-- Tab Pills Selector -->
-            <?php if ($hasBskln || $hasKoordinator): ?>
-            <div class="flex items-center gap-2 w-full sm:w-auto overflow-x-auto pb-1 sm:pb-0">
-                <div class="inline-flex p-1 rounded-xl bg-navy-900/90 border border-navy-700/80 shadow-inner text-xs font-semibold flex-1 sm:flex-initial">
-                    <?php if ($hasBskln): ?>
-                    <button @click="activeTab = 'bskln'" 
-                            type="button"
-                            class="flex-1 sm:flex-initial px-3.5 py-2 rounded-lg transition-all flex items-center justify-center gap-2 cursor-pointer text-center whitespace-nowrap"
-                            :class="activeTab === 'bskln' ? 'bg-gold-500 text-navy-950 font-bold shadow-md' : 'text-slate-300 hover:text-white hover:bg-white/5'">
-                        <i class="fa-solid fa-landmark text-xs"></i>
-                        <span><?= $isEn ? 'Head of BSKLN MoFA' : 'Kepala BSKLN Kemlu' ?></span>
-                    </button>
-                    <?php endif; ?>
-                    <button @click="activeTab = 'rektor'" 
-                            type="button"
-                            class="flex-1 sm:flex-initial px-3.5 py-2 rounded-lg transition-all flex items-center justify-center gap-2 cursor-pointer text-center whitespace-nowrap"
-                            :class="activeTab === 'rektor' ? 'bg-gold-500 text-navy-950 font-bold shadow-md' : 'text-slate-300 hover:text-white hover:bg-white/5'">
-                        <i class="fa-solid fa-graduation-cap text-xs"></i>
-                        <span><?= $isEn ? 'Rector of UMRAH' : 'Rektor UMRAH' ?></span>
-                    </button>
-                    <?php if ($hasKoordinator): ?>
-                    <button @click="activeTab = 'koordinator'" 
-                            type="button"
-                            class="flex-1 sm:flex-initial px-3.5 py-2 rounded-lg transition-all flex items-center justify-center gap-2 cursor-pointer text-center whitespace-nowrap"
-                            :class="activeTab === 'koordinator' ? 'bg-gold-500 text-navy-950 font-bold shadow-md' : 'text-slate-300 hover:text-white hover:bg-white/5'">
-                        <i class="fa-solid fa-compass text-xs"></i>
-                        <span><?= $isEn ? 'Center Coordinator' : 'Koordinator Pusat Studi' ?></span>
-                    </button>
-                    <?php endif; ?>
+            <!-- Live Rolling Indicator & Progress Indicator (Rolling otomatis) -->
+            <div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-navy-900/90 border border-navy-700/80 shadow-inner text-xs">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-gold-500"></span>
+                    </span>
+                    <span class="text-[11px] font-semibold text-slate-300" x-text="currentSlideName"></span>
+                </div>
+
+                <!-- Rolling Progress Dots -->
+                <div class="flex items-center gap-1.5">
+                    <template x-for="(s, idx) in slides" :key="idx">
+                        <span class="h-1.5 rounded-full transition-all duration-500"
+                              :class="currentSlideIndex === idx ? 'w-6 bg-gold-400' : 'w-2 bg-slate-700'"></span>
+                    </template>
                 </div>
             </div>
-            <?php endif; ?>
         </div>
 
         <!-- Panel 1: Sambutan Kepala BSKLN Kementerian Luar Negeri RI -->
         <?php if ($hasBskln): ?>
         <div x-show="activeTab === 'bskln'" 
-             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter="transition ease-out duration-500"
              x-transition:enter-start="opacity-0 translate-y-2"
              x-transition:enter-end="opacity-100 translate-y-0"
              class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
@@ -272,7 +312,7 @@ $defaultTab     = $hasBskln ? 'bskln' : 'rektor';
 
         <!-- Panel 2: Sambutan Rektor UMRAH -->
         <div x-show="activeTab === 'rektor'" 
-             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter="transition ease-out duration-500"
              x-transition:enter-start="opacity-0 translate-y-2"
              x-transition:enter-end="opacity-100 translate-y-0"
              class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
@@ -336,7 +376,7 @@ $defaultTab     = $hasBskln ? 'bskln' : 'rektor';
         <!-- Panel 3: Sambutan Koordinator Pusat Studi -->
         <?php if (!empty($targetKoor) && !empty($targetKoor['is_active'])): ?>
         <div x-show="activeTab === 'koordinator'" 
-             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter="transition ease-out duration-500"
              x-transition:enter-start="opacity-0 translate-y-2"
              x-transition:enter-end="opacity-100 translate-y-0"
              class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
