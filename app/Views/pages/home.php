@@ -26,19 +26,19 @@
     <div class="absolute inset-0 bg-gradient-to-r from-navy-950/95 via-navy-950/85 to-navy-900/65 z-10 pointer-events-none"></div>
     <div class="absolute inset-0 opacity-10 bg-pattern z-10 pointer-events-none"></div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 relative z-20 min-h-[480px] flex flex-col justify-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 relative z-20 flex flex-col justify-center">
         
-        <!-- Slide Content Loop Container -->
-        <div class="relative min-h-[340px] sm:min-h-[290px] flex items-center">
+        <!-- Slide Content Loop Container (Locked Height Grid Stack to prevent CLS / jumping height) -->
+        <div class="grid grid-cols-1 items-center min-h-[470px] sm:min-h-[390px] lg:min-h-[415px] overflow-hidden">
             <template x-for="(slide, index) in slides" :key="index">
                 <div x-show="activeSlide === index" 
                      x-transition:enter="transition ease-out duration-500 transform"
                      x-transition:enter-start="opacity-0 translate-y-2"
                      x-transition:enter-end="opacity-100 translate-y-0"
-                     x-transition:leave="transition ease-in duration-300 transform absolute inset-0"
+                     x-transition:leave="transition ease-in duration-300 transform"
                      x-transition:leave-start="opacity-100 translate-y-0"
                      x-transition:leave-end="opacity-0 -translate-y-2"
-                     class="max-w-3xl space-y-5 w-full">
+                     class="col-start-1 row-start-1 max-w-3xl space-y-5 w-full self-center">
                     
                     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/20 border border-gold-500/40 text-gold-400 text-xs font-semibold uppercase tracking-wider">
                         <i class="fa-solid fa-compass text-[11px]"></i>
